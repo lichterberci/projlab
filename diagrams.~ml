@@ -606,7 +606,7 @@
 <XPD:REF name="InteractionInstanceSet">JHX9ttPqs0Cj1KlaOfdVYwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:ATTR name="#ParticipatingInstances" type="integer">4</XPD:ATTR>
+<XPD:ATTR name="#ParticipatingInstances" type="integer">5</XPD:ATTR>
 <XPD:OBJ name="ParticipatingInstances[0]" type="UMLObject" guid="zdy9RwUdAECscYo1nQ6GdgAA">
 <XPD:ATTR name="Name" type="string">controller</XPD:ATTR>
 <XPD:REF name="Classifier">fYg8eWeQf0e32BETy4cxgwAA</XPD:REF>
@@ -655,6 +655,10 @@
 <XPD:REF name="Views[1]">U2UN3FSkNUmKVU/B30JVrgAA</XPD:REF>
 <XPD:ATTR name="#ReceivingStimuli" type="integer">1</XPD:ATTR>
 <XPD:REF name="ReceivingStimuli[0]">bIXN8UVc4Uu06chPb59zgQAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="ParticipatingInstances[4]" type="UMLObject" guid="HHOnP4VrxkOvyA9ikIK6kQAA">
+<XPD:ATTR name="Name" type="string">Object1</XPD:ATTR>
+<XPD:REF name="CollaborationInstanceSet">R/41zNfoZ02clRKUgzXf/gAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
