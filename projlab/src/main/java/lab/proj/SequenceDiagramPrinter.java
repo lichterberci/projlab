@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class SequenceDiagramPrinter {
@@ -74,10 +75,15 @@ public class SequenceDiagramPrinter {
 		outputStream.println(" <<destroys>>");
 
 		lifelines.stream()
-				.map(obj -> (obj == null) ? "       "
-						: ((obj == destroyedObject)
-						? "   X   "
-						: "   |   "))
+				.map(obj -> {
+					if (obj == null) {
+						return "       ";
+					}
+					if (obj == destroyedObject) {
+						return "   X   ";
+					}
+					return "   |   ";
+				})
 				.forEach(outputStream::print);
 
 		lifelines.set(indexOfDestroyed, null);
@@ -87,9 +93,41 @@ public class SequenceDiagramPrinter {
 		printEmptyLineOfLifelines();
 	}
 
-	public <T> void invokeObjectMethod(T callee, Method method, List<?> params) {
+	public <T, U> void invokeObjectMethod(T caller, U callee, String methodName, List<?> params) {
 
+		final int indexOfCaller = lifelines.indexOf(caller);
+		final int indexOfCallee = lifelines.indexOf(callee);
 
+		final int minIndex = Math.min(indexOfCaller, indexOfCallee);
+		final int maxIndex = Math.max(indexOfCaller, indexOfCallee);
 
+		IntStream.range(0, lifelines.size())
+				.mapToObj(i -> {
+					if (i < minIndex || i > maxIndex)
+						return "   |   ";
+					if (i == indexOfCallee) {
+						if (indexOfCaller > indexOfCallee)
+							return "   |<--";
+						else
+							return  "-->|  ";
+					}
+					if (i == indexOfCaller) {
+						if (indexOfCaller > indexOfCallee)
+							return "---|   ";
+						else
+							return  "   |---";
+					}
+					return "---|---";
+				})
+				.forEach(outputStream::print);
+
+		outputStream.print(" ");
+
+		outputStream.print(methodName);
+		outputStream.print('(');
+		outputStream.print(String.join(", ",params.stream().map(Object::toString).collect(Collectors.toList())));
+		outputStream.println(')');
+
+		printEmptyLineOfLifelines();
 	}
 }

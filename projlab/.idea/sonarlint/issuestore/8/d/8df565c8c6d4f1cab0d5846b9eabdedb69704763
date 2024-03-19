@@ -1,15 +1,17 @@
 
 j
-java:S1192"HDefine a constant instead of duplicating this literal "   |   " 4 times.(ÃîÇÀúÿÿÿÿ8ï¶â¹å1
-
-java:S1186Z"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(öšÜ8·â¹å1
+java:S1192"HDefine a constant instead of duplicating this literal "   |   " 5 times.(ÃîÇÀúÿÿÿÿ8¡äêºå1
+e
+java:S1192""HDefine a constant instead of duplicating this literal "---|---" 3 times.(ÍìöË8£äêºå1
+j
+java:S1192!"HDefine a constant instead of duplicating this literal "   |---" 3 times.(ÆŠÛÅşÿÿÿÿ8£äêºå1
 o
-java:S3776/"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(¡øÜß8·â¹å1
-f
-java:S3358N"DExtract this nested ternary operation into an independent statement.(¾³˜ùøÿÿÿÿ8Úğ¹å1
+java:S37760"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¡øÜß8Ğäêºå1
+u
+java:S6204€"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(½¾¥÷øÿÿÿÿ8Ùäêºå1
 R
-java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8”·â¹å1
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8İäêºå1
 T
-java:S1128"7Remove this unused import 'java.io.OutputStreamWriter'.(Ÿ“¸8”·â¹å1
+java:S1128"7Remove this unused import 'java.io.OutputStreamWriter'.(Ÿ“¸8İäêºå1
 K
-java:S1128	".Remove this unused import 'java.util.Objects'.(¼¸õ›8”·â¹å1
+java:S1128	".Remove this unused import 'java.util.Objects'.(¼¸õ›8İäêºå1

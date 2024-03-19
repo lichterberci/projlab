@@ -25,8 +25,6 @@ C
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 b
-2src/test/java/lab/proj/SequenceDiagramPrinter.java,5\2\52650527a55ab620dfbb0fdf761baae8a83c2bb6
-b
 2src/main/java/lab/proj/SequenceDiagramPrinter.java,8\d\8df565c8c6d4f1cab0d5846b9eabdedb69704763
 w
 G.idea/sonarlint/issuestore/5/2/52650527a55ab620dfbb0fdf761baae8a83c2bb6,0\0\00a03eef76a69af918b097234db33ca71e3b6edb
