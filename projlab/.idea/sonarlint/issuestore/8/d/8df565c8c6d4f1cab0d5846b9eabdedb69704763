@@ -1,17 +1,9 @@
 
-j
-java:S1192"HDefine a constant instead of duplicating this literal "   |   " 5 times.(ÃîÇÀúÿÿÿÿ8¡äêºå1
 e
-java:S1192""HDefine a constant instead of duplicating this literal "---|---" 3 times.(ÍìöË8£äêºå1
-j
-java:S1192!"HDefine a constant instead of duplicating this literal "   |---" 3 times.(ÆŠÛÅşÿÿÿÿ8£äêºå1
+java:S1192"HDefine a constant instead of duplicating this literal "       " 3 times.(öî· 8ö¯±åå1
+e
+java:S1192"HDefine a constant instead of duplicating this literal "   |   " 4 times.(öî· 8”¤Ãåå1
 o
-java:S37760"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¡øÜß8Ğäêºå1
-u
-java:S6204€"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(½¾¥÷øÿÿÿÿ8Ùäêºå1
-R
-java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8İäêºå1
-T
-java:S1128"7Remove this unused import 'java.io.OutputStreamWriter'.(Ÿ“¸8İäêºå1
-K
-java:S1128	".Remove this unused import 'java.util.Objects'.(¼¸õ›8İäêºå1
+java:S6204M"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ø€è8—°±åå1
+n
+java:S3776a"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ğú“O8Íı¾åå1
