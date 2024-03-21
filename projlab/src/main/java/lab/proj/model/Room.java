@@ -18,6 +18,7 @@ public class Room implements Entity {
     private int capacity;
     private List<Actor> actorsInside;
     private List<Item> itemsOnTheFloor;
+    private List<RoomEffect> activeEffects;
     public boolean StepIn(Actor a) {
     }
     
@@ -28,12 +29,15 @@ public class Room implements Entity {
     }
     
     public List<Item> GetItems() {
+        return itemsOnTheFloor;
     }
     
     public void AddItem(Item i) {
+        itemsOnTheFloor.add(i);
     }
     
     public void RemoveItem(Item i) {
+        itemsOnTheFloor.remove(i);
     }
     
     public void Merge() {
@@ -43,9 +47,11 @@ public class Room implements Entity {
     }
     
     public void AddEffect(RoomEffect e) {
+        activeEffects.add(e);
     }
     
     public void RemoveEffect(RoomEffect e) {
+        activeEffects.remove(e);
     }
     
     public void VisitActors(ActorVisitor v) {
@@ -58,15 +64,19 @@ public class Room implements Entity {
     }
     
     public List<Actor> GetActors() {
+        return actorsInside;
     }
     
     public int GetCapacity() {
+        return capacity;
     }
     
     public void SetCapacity(int i) {
+        capacity = i;
     }
     
     public List<RoomEffect> GetEffects() {
+        return activeEffects;
     }
 
     @Override

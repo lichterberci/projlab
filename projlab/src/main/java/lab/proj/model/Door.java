@@ -22,12 +22,14 @@ public class Door implements Entity {
     }
     
     public boolean GoThrough(Room r, Actor a) {
+        throw new RuntimeException();
     }
     
     public void SetRooms(Room r1, Room r2) {
     }
     
-    public Room[2] GetRooms() {
+    public Room[] GetRooms() {
+        throw new RuntimeException();
     }
     
     public void ChangeRoom(Room r1, Room r2) {
