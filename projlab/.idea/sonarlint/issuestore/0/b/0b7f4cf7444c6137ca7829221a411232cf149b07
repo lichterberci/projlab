@@ -1,8 +1,2 @@
 
-]
-java:S1854";Remove this useless assignment to local variable "printer".(×õöûüÿÿÿÿ8Ñ”çå1
-L	java:S106"+Replace this use of System.out by a logger.(×õöûüÿÿÿÿ8Ò”çå1
-N
-java:S1481",Remove this unused "printer" local variable.(×õöûüÿÿÿÿ8Ó”çå1
-X	java:S125"<This block of commented-out lines of code should be removed.(§éÎ8Ó”çå1
-W	java:S125"<This block of commented-out lines of code should be removed.(ÃŒ…C8Ó”çå1
+L	java:S106"+Replace this use of System.out by a logger.( Ä¥¾üÿÿÿÿ8²Ó‡æ1

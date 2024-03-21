@@ -1,9 +1,0 @@
-
-e
-java:S1192"HDefine a constant instead of duplicating this literal "       " 3 times.(öî· 8ö¯±åå1
-e
-java:S1192"HDefine a constant instead of duplicating this literal "   |   " 4 times.(öî· 8”¤Ãåå1
-o
-java:S6204M"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ø€è8—°±åå1
-n
-java:S3776a"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ğú“O8Íı¾åå1

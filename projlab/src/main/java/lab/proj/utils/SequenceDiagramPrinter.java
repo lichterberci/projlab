@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class SequenceDiagramPrinter {
+public class SequenceDiagramPrinter implements DebugPrinter {
 	private final PrintStream outputPrinter;
 	private List<Object> lifelines;
 	private static SequenceDiagramPrinter instance;
@@ -125,7 +125,7 @@ public class SequenceDiagramPrinter {
 				.forEach(outputPrinter::print);
 	}
 
-	public <T> void selfInvokeMethod (T object, String methodName, List<?> args) {
+	public <T, V> void selfInvokeMethod (T object, String methodName, List<?> args, Optional<V> returnValue) {
 
 		lifelines.stream()
 				.map(obj -> {
