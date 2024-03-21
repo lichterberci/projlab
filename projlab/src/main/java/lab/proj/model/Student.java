@@ -1,9 +1,11 @@
 package lab.proj.model;
 
+import java.util.List;
+
 public class Student extends Actor {
     private boolean droppedOut;
-    private Charge gasProtections;
-    private Charge dropOutProtections;
+    private List<Charge> gasProtections;
+    private List<Charge> dropOutProtections;
     public void DropOut() {
     }
     

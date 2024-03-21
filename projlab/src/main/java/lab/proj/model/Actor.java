@@ -2,8 +2,11 @@ package lab.proj.model;
 
 
 import jdk.jshell.spi.ExecutionControl;
+import lab.proj.utils.IndentedDebugPrinter;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class Actor implements Entity {
     protected boolean incapacitated;
@@ -18,6 +21,9 @@ public abstract class Actor implements Entity {
     }
     
     public void DropItem(Item i) {
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, i, "Drop", Collections.emptyList());
+        i.Drop();
+        IndentedDebugPrinter.getInstance().returnFromMethod(this, i, "Drop", Optional.empty());
     }
     
     public List<Item> GetItems() {

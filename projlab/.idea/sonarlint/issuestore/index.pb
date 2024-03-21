@@ -474,3 +474,13 @@ w
 G.idea/sonarlint/issuestore/0/3/032372add9c1490363c49675a1b0d5ef721695f6,9\f\9f223bce9ba659af4ce3d56406d01ef4606cf1b9
 w
 G.idea/sonarlint/issuestore/0/8/08505dfcd76b3ebe29d182e414a2de60c2d8cbe3,d\3\d37357e7e9751604ee07a6c386e9c182338e1801
+\
+,src/main/java/lab/proj/utils/AskTheUser.java,8\8\88c5b4b55177c55a68b3e4f037225357e1f62158
+j
+:src/main/java/lab/proj/testUseCases/StudentDropsABeer.java,4\9\4914124d9ccfb8727840c0ae73698f0aa197dc3d
+d
+4src/main/java/lab/proj/testUseCases/TestUseCase.java,d\f\df62712fefe00de4697a273aa5a97672ca7ade3e
+j
+:src/main/java/lab/proj/testUseCases/TestUseCaseRunner.java,c\9\c992eac54eb8f553148fa9681ce32edc83bc9bcc
+\
+,src/main/java/lab/proj/testUseCases/Map.java,4\2\42b42a818aa1751090e64c4b5425258aa70e519e
