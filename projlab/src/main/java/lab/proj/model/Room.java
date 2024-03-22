@@ -11,21 +11,33 @@ package lab.proj.model;//
 
 
 import lab.proj.model.Entity;
+import lab.proj.utils.AskTheUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Room implements Entity {
     private int capacity;
-    private List<Actor> actorsInside;
-    private List<Item> itemsOnTheFloor;
-    private List<RoomEffect> activeEffects;
+    private List<Actor> actorsInside = new ArrayList<>();
+    private List<Item> itemsOnTheFloor = new ArrayList<>();
+    private List<RoomEffect> activeEffects = new ArrayList<>();
     public boolean StepIn(Actor a) {
+        boolean roomIsFull = AskTheUser.decision("Is the room full?");
+
+        if (roomIsFull)
+            return false;
+
+        actorsInside.add(a);
+
+	    return true;
     }
     
     public void StepOut(Actor a) {
+        actorsInside.remove(a);
     }
     
     public List<Door> GetDoors() {
+        throw new RuntimeException();
     }
     
     public List<Item> GetItems() {

@@ -14,13 +14,20 @@ public class StudentDropsABeer implements TestUseCase{
 		var s = new Student();
 		var b = new BeerMug();
 		s.CollectItem(b);
-		IndentedDebugPrinter.getInstance().createObject(null, s, "s");
-		IndentedDebugPrinter.getInstance().createObject(null, b, "b");
-		IndentedDebugPrinter.getInstance().invokeObjectMethod(null,
+		IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER,
+				s,
+				"s");
+		IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER,
+				b,
+				"b");
+		IndentedDebugPrinter.getInstance().invokeObjectMethod(IndentedDebugPrinter.CONTROLLER,
 				s,
 				"DropItem",
 				List.of(b));
 		s.DropItem(b);
-		IndentedDebugPrinter.getInstance().returnFromMethod(null, s, "DropItem", Optional.empty());
+		IndentedDebugPrinter.getInstance().returnFromMethod(IndentedDebugPrinter.CONTROLLER,
+				s,
+				"DropItem",
+				Optional.empty());
 	}
 }

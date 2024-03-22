@@ -1,2 +1,8 @@
 
-L	java:S106"+Replace this use of System.out by a logger.(Φυίζωÿÿÿÿ8Κ‰ή‰ζ1
+x
+java:S1104"VMake CONTROLLER a static final constant or non-public and provide accessors if needed.(¥ναόÿÿÿÿ8Ω«ή­ζ1
+R
+java:S1444"0Make this "public static CONTROLLER" field final(¥ναόÿÿÿÿ8Ϊ«ή­ζ1
+w
+java:S3008"URename this field "CONTROLLER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥ναόÿÿÿÿ8ν«ή­ζ1
+L	java:S106"+Replace this use of System.out by a logger.(Φυίζωÿÿÿÿ8‡τΫ­ζ1

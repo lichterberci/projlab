@@ -4,16 +4,26 @@ package lab.proj.model;
 import jdk.jshell.spi.ExecutionControl;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public abstract class Actor implements Entity {
     protected boolean incapacitated;
     private Room location;
-    private List<Item> collectedItems;
+    private List<Item> collectedItems = new ArrayList<>();
     public boolean UseDoor(Door d) {
-        throw new RuntimeException();
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, d, "GoThrough", List.of());
+        Room dst = Arrays.stream(d.GetRooms())
+                .filter(r -> r != location)
+                .findAny()
+                .orElseThrow(() -> new IllegalStateException("Door connects to the same room on both sides!"));
+        boolean wasSuccessful = d.GoThrough(dst, this);
+        if (wasSuccessful) {
+            IndentedDebugPrinter.getInstance().invokeObjectMethod(this, location, "StepOut", List.of(this));
+            location.StepOut(this);
+            IndentedDebugPrinter.getInstance().returnFromMethod(this, location, "StepOut", Optional.empty());
+        }
+        IndentedDebugPrinter.getInstance().returnFromMethod(this, d, "GoThrough", Optional.of(wasSuccessful));
+        return wasSuccessful;
     }
     
     public void CollectItem(Item i) {
@@ -33,7 +43,9 @@ public abstract class Actor implements Entity {
     public Room GetLocation() {
         return location;
     }
-    
+    public void SetLocation(Room r) {
+        location = r;
+    }
     public void VisitActor(ActorVisitor v) {
     }
     

@@ -45,8 +45,6 @@ G.idea/sonarlint/issuestore/7/4/749edfcc96398253e5b3416184e95c46621da850,d\4\d4
 w
 G.idea/sonarlint/issuestore/8/8/88a9255124c95bdc913197c120a8d560edc59c8e,a\e\ae9ddf453f55affea2d6b9e3973cac1eb2efb4e1
 Å
-Q.idea/sonarlint/securityhotspotstore/8/d/8df565c8c6d4f1cab0d5846b9eabdedb69704763,b\1\b165e14748a60c4fcf2addeda8932c22e0152e9e
-Å
 Q.idea/sonarlint/securityhotspotstore/e/c/ec4317fc3093e8c354ef226260d7fd566c3957fb,6\6\662f9d912d5502f1ed333db085c4d125e6b0e63b
 Å
 Q.idea/sonarlint/securityhotspotstore/5/9/597ee72a8e9f089a0f26608d0d77229bc4510a37,9\9\994f1980d0f0df42c4444de326a4d981a8da6350
@@ -88,8 +86,6 @@ Q.idea/sonarlint/securityhotspotstore/e/d/ed67eb178d523a4b3f117dcbe0eda5196367ce
 Q.idea/sonarlint/securityhotspotstore/0/b/0b260fd0a0cd7bd953d3c6422b9262326a069e97,6\2\626409f5364e7d750c94bf6550434342d749fe5c
 Å
 Q.idea/sonarlint/securityhotspotstore/2/a/2a357145b04aeee0545d8bc616c6d89a975ff771,2\6\26c370892a64e86838532e341d0fde40cf0324ae
-Å
-Q.idea/sonarlint/securityhotspotstore/8/f/8ff96c0b64ee6c26783208c7fa711759de05bd4a,a\0\a0d3e23e9cec4b981129da7bc412995fa8a9d2f8
 \
 ,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
 Å
@@ -152,10 +148,6 @@ w
 G.idea/sonarlint/issuestore/a/e/ae9ddf453f55affea2d6b9e3973cac1eb2efb4e1,6\2\6248197ca7a44d8bc42b5bd6cd80cd6e99143261
 w
 G.idea/sonarlint/issuestore/d/4/d4115e7e13112fe372c450a6354345d7e7531a57,2\2\22b701479cafe0cd0961e01fa878b48dfd50dbf7
-Å
-Q.idea/sonarlint/securityhotspotstore/0/0/005e89a049d8dac2dfe47ae3bf21225a92b87cbf,8\1\81a00986949bd6ddb0fd8d3fda0b907548352c45
-w
-G.idea/sonarlint/issuestore/0/0/005e89a049d8dac2dfe47ae3bf21225a92b87cbf,e\8\e832551cb907d8a8f290d6bf66ebd4c092815643
 w
 G.idea/sonarlint/issuestore/f/0/f06e4b9b883c4d53c45f2b8a028d48790a4ce86c,8\d\8d2a0c0ac5d551523a5bcbd8e8c5afe6d096f0f2
 w
@@ -482,5 +474,5 @@ d
 4src/main/java/lab/proj/testUseCases/TestUseCase.java,d\f\df62712fefe00de4697a273aa5a97672ca7ade3e
 j
 :src/main/java/lab/proj/testUseCases/TestUseCaseRunner.java,c\9\c992eac54eb8f553148fa9681ce32edc83bc9bcc
-\
-,src/main/java/lab/proj/testUseCases/Map.java,4\2\42b42a818aa1751090e64c4b5425258aa70e519e
+m
+=src/main/java/lab/proj/testUseCases/StudentSwitchesRooms.java,e\0\e06c4aab7c9d870c8729214a8d3c09909f979f62
