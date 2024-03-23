@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 public class IndentedDebugPrinter implements DebugPrinter {
 
 	private int indentation;
-	private PrintStream outputStream;
-	private Map<Object, String> objectNameMap;
-	private Deque<Object> objectStack;
+	private final PrintStream outputStream;
+	private final Map<Object, String> objectNameMap;
+	private final Deque<Object> objectStack;
 	private static IndentedDebugPrinter instance;
 	public static Object CONTROLLER = new Object();
 
