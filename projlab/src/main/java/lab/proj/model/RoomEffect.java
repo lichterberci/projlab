@@ -2,7 +2,9 @@ package lab.proj.model;
 
 
 
-public interface RoomEffect extends Entity {
-    Room location = null;
-    void SetLocation(Room r);
+public abstract class RoomEffect implements Entity {
+    Room location;
+    public void SetLocation(Room r)  {
+        location = r;
+    }
 }

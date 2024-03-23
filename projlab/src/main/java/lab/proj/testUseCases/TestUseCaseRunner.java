@@ -5,9 +5,11 @@ import java.util.Map;
 
 public class TestUseCaseRunner {
 	private static Map<String, Class<? extends TestUseCase>> useCases = Map.of(
-		"StudentDropsABeer", StudentDropsABeer.class,
-		"StudentSwitchesRooms", StudentSwitchesRooms.class,
-		"TwoTeachersOneStudent", TwoTeachersOneStudent.class
+			"StudentDropsABeer", StudentDropsABeer.class,
+			"StudentSwitchesRooms", StudentSwitchesRooms.class,
+			"TwoTeachersOneStudent", TwoTeachersOneStudent.class,
+			"CamembertUsage", CamembertUsage.class,
+			"Gas", Gas.class
 	);
 
 	public static void runTest(String id) {

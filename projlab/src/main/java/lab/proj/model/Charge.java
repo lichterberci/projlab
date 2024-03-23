@@ -1,8 +1,11 @@
 package lab.proj.model;
 
 
-public interface Charge {
-    LivingItem creator = null;
-    int GetPriority();
-    void Affect();
+public abstract class Charge {
+    LivingItem creator;
+    protected Charge(LivingItem creator) {
+        this.creator = creator;
+    }
+    abstract int GetPriority();
+    abstract void Affect();
 }

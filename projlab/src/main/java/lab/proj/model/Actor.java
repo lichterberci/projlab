@@ -2,6 +2,7 @@ package lab.proj.model;
 
 
 import jdk.jshell.spi.ExecutionControl;
+import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.*;
@@ -31,9 +32,13 @@ public abstract class Actor implements Entity {
     }
     
     public void DropItem(Item i) {
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, i, "Drop", Collections.emptyList());
-        i.Drop();
-        IndentedDebugPrinter.getInstance().returnFromMethod(this, i, "Drop", Optional.empty());
+        // this would cause an infinite recursion :((
+//        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, i, "Drop", Collections.emptyList());
+//        i.Drop();
+//        IndentedDebugPrinter.getInstance().returnFromMethod(this, i, "Drop", Optional.empty());
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, location, "AddItem", List.of(i));
+        location.AddItem(i);
+        IndentedDebugPrinter.getInstance().returnFromMethod(this, location, "AddItem", Optional.empty());
     }
     
     public List<Item> GetItems() {
@@ -49,11 +54,9 @@ public abstract class Actor implements Entity {
         r.AddActor(this);
         IndentedDebugPrinter.getInstance().returnFromMethod(this, r, "AddActor", Optional.empty());
     }
-    public void VisitActor(ActorVisitor v) {
-    }
+    public abstract void VisitActor(ActorVisitor v);
     
-    public void Shock() {
-    }
+    public abstract void Shock();
     
     public boolean IsBlocked() {
         return incapacitated;

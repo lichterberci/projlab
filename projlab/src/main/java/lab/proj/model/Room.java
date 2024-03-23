@@ -12,9 +12,11 @@ package lab.proj.model;//
 
 import lab.proj.model.Entity;
 import lab.proj.utils.AskTheUser;
+import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Room implements Entity {
     private int capacity;
@@ -67,6 +69,11 @@ public class Room implements Entity {
     }
     
     public void VisitActors(ActorVisitor v) {
+        actorsInside.forEach(actor -> {
+            IndentedDebugPrinter.getInstance().invokeObjectMethod(this, actor, "VisitActor", List.of(v));
+	        actor.VisitActor(v);
+            IndentedDebugPrinter.getInstance().returnFromMethod(this, actor, "VisitActor", Optional.empty());
+        });
     }
     
     public void AddDoor(Door d) {
@@ -93,7 +100,7 @@ public class Room implements Entity {
 
     @Override
     public void TimePassed() {
-
+        activeEffects.forEach(Entity::TimePassed);
     }
 
     public void AddActor(Actor actor) {

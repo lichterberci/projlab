@@ -3,10 +3,14 @@ package lab.proj.model;
 
 
 
-public class DropOutProtection implements Charge {
+public class DropOutProtection extends Charge {
+	public DropOutProtection(LivingItem creator) {
+		super(creator);
+	}
+
 	@Override
 	public int GetPriority() {
-		throw new RuntimeException();
+		return 1;
 	}
 
 	@Override
