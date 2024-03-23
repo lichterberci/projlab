@@ -68,22 +68,6 @@ public class IndentedDebugPrinter implements DebugPrinter {
 		).orElse(""));
 	}
 
-	@Override
-	public <T, V> void selfInvokeMethod(T object, String methodName, List<?> args, Optional<V> returnValue) {
-		printIndentations();
-
-		outputStream.printf("--> %s.%s(%s)%n", objectNameMap.get(object), methodName, args.stream()
-				.map(val -> objectNameMap.getOrDefault(val, val.toString()))
-				.collect(Collectors.joining(", ")));
-
-		outputStream.printf(
-				"<-- %s%n",
-				returnValue
-					.map(val -> objectNameMap.getOrDefault(val, val.toString()))
-					.orElse("")
-		);
-	}
-
 	private void printIndentations() {
 		for (int i = 0; i < indentation; i++) {
 			outputStream.print('\t');
