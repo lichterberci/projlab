@@ -45,6 +45,9 @@ public abstract class Actor implements Entity {
     }
     public void SetLocation(Room r) {
         location = r;
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, r, "AddActor", List.of(this));
+        r.AddActor(this);
+        IndentedDebugPrinter.getInstance().returnFromMethod(this, r, "AddActor", Optional.empty());
     }
     public void VisitActor(ActorVisitor v) {
     }

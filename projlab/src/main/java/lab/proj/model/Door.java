@@ -41,6 +41,12 @@ public class Door implements Entity {
     public void SetRooms(Room r1, Room r2) {
         source = r1;
         directedTowards = r2;
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, r1, "AddDoor", List.of(this));
+        r1.AddDoor(this);
+        IndentedDebugPrinter.getInstance().returnFromMethod(this, r1, "AddDoor", Optional.empty());
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, r2, "AddDoor", List.of(this));
+        r2.AddDoor(this);
+        IndentedDebugPrinter.getInstance().returnFromMethod(this, r2, "AddDoor", Optional.empty());
     }
     
     public Room[] GetRooms() {

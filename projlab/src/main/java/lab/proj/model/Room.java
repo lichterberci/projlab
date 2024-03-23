@@ -95,4 +95,8 @@ public class Room implements Entity {
     public void TimePassed() {
 
     }
+
+    public void AddActor(Actor actor) {
+        actorsInside.add(actor);
+    }
 }
