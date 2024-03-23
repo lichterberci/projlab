@@ -8,5 +8,4 @@ public interface DebugPrinter {
 	void destroyObject(Object destroyer, Object destroyedObject);
 	<T, U> void invokeObjectMethod(T caller, U callee, String methodName, List<?> params);
 	<T, U, V> void returnFromMethod(T caller, U callee, String methodName, Optional<V> returnValue);
-	<T, U> void selfInvokeMethod (T object, String methodName, List<?> args, Optional<U> returnValue);
 }
