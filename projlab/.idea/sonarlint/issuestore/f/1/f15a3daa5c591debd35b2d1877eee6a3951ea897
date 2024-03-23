@@ -1,0 +1,13 @@
+
+
+java:S1192,"HDefine a constant instead of duplicating this literal "AddDoor" 4 times.(ÇÑ’şÿÿÿÿ8ùÁ˜Ùæ1J$a0c0d93e-a95f-4ead-ac03-100950ff7e84
+É
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ƒ«ÿúÿÿÿÿ8şÁ˜Ùæ1J$44a80fa5-043d-4c98-91ae-bab1d5703c77
+Ä
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñ¼²8şÁ˜Ùæ1J$9b973f2e-886e-4c21-9c79-89b9d4d04fe9
+Ä
+java:S11868"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Œ¯Ùæ8ÿÁ˜Ùæ1J$fb2854a6-31bf-46ed-8252-5272923a0c69
+Ä
+java:S1186<"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ªŠöº8ÿÁ˜Ùæ1J$2cebc2c5-0fc0-4ab4-959f-d1e5fd7b7c93
+m
+java:S1068"*Remove this unused "hidden" private field.(‘ñ’¿8‹Â˜Ùæ1J$a7424762-647e-4a03-9539-3e5c1de48bb2
