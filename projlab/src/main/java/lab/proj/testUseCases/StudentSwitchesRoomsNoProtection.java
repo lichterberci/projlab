@@ -12,12 +12,12 @@ public class StudentSwitchesRoomsNoProtection extends StudentSwitchesRooms {
     public void runUseCase() {
         super.runUseCase();
         assert result; // after running the base case, it should be true
-        Logger.invokeObjectMethod(IndentedDebugPrinter.CONTROLLER,
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN,
                 t1,
                 "DropOutAll",
                 List.of());
         t1.DropOutAll();
-        Logger.returnFromMethod(IndentedDebugPrinter.CONTROLLER,
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
                 s,
                 "DropOutAll",
                 Optional.empty());

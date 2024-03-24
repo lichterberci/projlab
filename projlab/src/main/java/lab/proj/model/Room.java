@@ -2,107 +2,279 @@ package lab.proj.model;
 
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * A class representing a room in the game environment.
+ * Rooms can contain actors, items, and room effects.
+ */
 public class Room implements Entity {
+
+    /** A logger for debugging purposes. */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
-    private int capacity;
+    /** The actors currently inside the room. */
     private final List<Actor> actorsInside = new ArrayList<>();
+
+    /** The items on the floor of the room. */
     private final List<Item> itemsOnTheFloor = new ArrayList<>();
+
+    /** The active effects present in the room. */
     private final List<RoomEffect> activeEffects = new ArrayList<>();
 
-    public boolean StepIn(Actor a) {
-        boolean roomIsFull = AskTheUser.decision("Tele van a szoba?");
+    /** The doors connected to the room. */
+    private final List<Door> doors = new ArrayList<>();
 
-        if (roomIsFull)
+    /** The capacity of the room. */
+    private int capacity;
+
+    /**
+     * Adds an actor to the room.
+     * @param actor The actor to be added.
+     */
+    public void AddActor(Actor actor) {
+        actorsInside.add(actor);
+    }
+
+    /**
+     * Removes an actor from the room.
+     * @param actor The actor to be removed.
+     */
+    public void RemoveActor(Actor actor) {
+        actorsInside.remove(actor);
+    }
+
+    /**
+     * Checks if the room is at full capacity.
+     * @return true if the room is full, false otherwise.
+     */
+    public boolean IsFull() {
+        boolean roomIsFull = AskTheUser.decision("Is the room full?");
+        return roomIsFull;
+    }
+
+    /**
+     * Allows an actor to step into the room.
+     * @param a The actor attempting to step into the room.
+     * @return true if the actor successfully steps into the room, false otherwise.
+     */
+    public boolean StepIn(Actor a) {
+        if (IsFull())
             return false;
 
         actorsInside.add(a);
-
         return true;
     }
 
+    /**
+     * Allows an actor to step out of the room.
+     * @param a The actor attempting to step out of the room.
+     */
     public void StepOut(Actor a) {
         actorsInside.remove(a);
     }
 
+    /**
+     * Retrieves the doors connected to the room.
+     * @return A list of doors connected to the room.
+     */
     public List<Door> GetDoors() {
-        throw new RuntimeException();
+        return doors;
     }
 
+    /**
+     * Retrieves the items on the floor of the room.
+     * @return A list of items on the floor of the room.
+     */
     public List<Item> GetItems() {
         return itemsOnTheFloor;
     }
 
+    /**
+     * Adds an item to the floor of the room.
+     * @param i The item to be added.
+     */
     public void AddItem(Item i) {
-        Logger.invokeObjectMethod(this, i, "SetLocation", List.of(this));
+        Logger.invokeObjectMethod(this, i, "SetLocation", Collections.singletonList(this));
         i.SetLocation(this);
         Logger.returnFromMethod(this, i, "SetLocation", Optional.empty());
-
         itemsOnTheFloor.add(i);
     }
 
+    /**
+     * Removes an item from the floor of the room.
+     * @param i The item to be removed.
+     */
     public void RemoveItem(Item i) {
-        Logger.invokeObjectMethod(this, i, "SetLocation", List.of());
+        Logger.invokeObjectMethod(this, i, "SetLocation", Collections.emptyList());
         i.SetLocation(null);
         Logger.returnFromMethod(this, i, "SetLocation", Optional.empty());
-
         itemsOnTheFloor.remove(i);
     }
 
+    /**
+     * Merges the room with another room.
+     * This method is currently empty.
+     */
     public void Merge() {
+        // Empty method
     }
 
+    /**
+     * Splits the room into two separate rooms.
+     */
     public void Split() {
+        var r2 = new Room();
+        Logger.createObject(this, r2, "r2");
+
+        CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);
+        for (Item item : currentItems) {
+            boolean shouldPass = AskTheUser.decision(String.format("Átkerül-e a %s tárgy az új szobába?", Logger.getObjectName(item)));
+            if (shouldPass) {
+                Logger.selfInvokeMethod(this, "RemoveItem", List.of(item));
+                RemoveItem(item);
+                Logger.returnFromMethod(this, this, "RemoveItem", Optional.empty());
+                Logger.invokeObjectMethod(this, r2, "AddItem", List.of(item));
+                r2.AddItem(item);
+                Logger.returnFromMethod(this, r2, "AddItem", Optional.empty());
+            }
+        }
+
+        CopyOnWriteArrayList<RoomEffect> currentEffects = new CopyOnWriteArrayList<>(activeEffects);
+        for (RoomEffect effect : currentEffects) {
+            boolean shouldPass = AskTheUser.decision(String.format("Átkerül-e a %s effekt az új szobába?", Logger.getObjectName(effect)));
+            if (shouldPass) {
+                Logger.selfInvokeMethod(this, "RemoveEffect", List.of(effect));
+                RemoveEffect(effect);
+                Logger.returnFromMethod(this, this, "RemoveEffect", Optional.empty());
+                Logger.invokeObjectMethod(this, r2, "AddEffect", List.of(effect));
+                r2.AddEffect(effect);
+                Logger.returnFromMethod(this, r2, "AddEffect", Optional.empty());
+            }
+        }
+
+        for (Door door : doors) {
+            Logger.invokeObjectMethod(this, door, "Show", List.of());
+            door.Show();
+            Logger.returnFromMethod(this, door, "Show", Optional.empty());
+        }
+
+        CopyOnWriteArrayList<Door> currentDoors = new CopyOnWriteArrayList<>(doors);
+        for (Door door : currentDoors) {
+            boolean shouldPass = AskTheUser.decision(String.format("Átkerül-e a %s ajtó az új szobába?", Logger.getObjectName(door)));
+            if (shouldPass) {
+                Logger.invokeObjectMethod(this, door, "ChangeRoom", List.of(this, r2));
+                door.ChangeRoom(this, r2);
+                Logger.returnFromMethod(this, door, "ChangeRoom", Optional.empty());
+            }
+        }
+
+        var d3 = new Door();
+        Logger.createObject(this, d3, "d3");
+
+        Logger.invokeObjectMethod(this, d3, "SetRooms", List.of(this, r2));
+        d3.SetRooms(this, r2);
+        Logger.returnFromMethod(this, d3, "SetRooms", Optional.empty());
     }
 
+    /**
+     * Adds an effect to the room.
+     * @param e The effect to be added.
+     */
     public void AddEffect(RoomEffect e) {
+        Logger.invokeObjectMethod(this, e, "SetLocation", Collections.singletonList(this));
+        e.SetLocation(this);
+        Logger.returnFromMethod(this, e, "SetLocation", Optional.empty());
+
         activeEffects.add(e);
     }
 
+    /**
+     * Removes an effect from the room.
+     * @param e The effect to be removed.
+     */
     public void RemoveEffect(RoomEffect e) {
+        Logger.invokeObjectMethod(this, e, "SetLocation", Collections.emptyList());
+        e.SetLocation(null);
+        Logger.returnFromMethod(this, e, "SetLocation", Optional.empty());
+
         activeEffects.remove(e);
     }
 
+    /**
+     * Visits actors in the room using the provided visitor.
+     * @param v The visitor object used to visit actors.
+     */
     public void VisitActors(ActorVisitor v) {
         actorsInside.forEach(actor -> {
-            Logger.invokeObjectMethod(this, actor, "VisitActor", List.of(v));
+            Logger.invokeObjectMethod(this, actor, "VisitActor", Collections.singletonList(v));
             actor.VisitActor(v);
             Logger.returnFromMethod(this, actor, "VisitActor", Optional.empty());
         });
     }
 
+    /**
+     * Adds a door to the room.
+     * @param d The door to be added.
+     */
     public void AddDoor(Door d) {
+        doors.add(d);
     }
 
+    /**
+     * Removes a door from the room.
+     * @param d The door to be removed.
+     */
     public void RemoveDoor(Door d) {
+        doors.remove(d);
     }
 
+    /**
+     * Retrieves the actors currently inside the room.
+     * @return A list of actors in the room.
+     */
     public List<Actor> GetActors() {
         return actorsInside;
     }
 
+    /**
+     * Retrieves the capacity of the room.
+     * @return The capacity of the room.
+     */
     public int GetCapacity() {
         return capacity;
     }
 
+    /**
+     * Sets the capacity of the room.
+     * @param i The new capacity of the room.
+     */
     public void SetCapacity(int i) {
         capacity = i;
     }
 
-    public List<RoomEffect> GetEffects() {
-        return activeEffects;
-    }
-
+    /**
+     * Performs actions associated with the passage of time for the room.
+     * This method checks if the room should split and updates active effects.
+     */
     @Override
     public void TimePassed() {
-        activeEffects.forEach(Entity::TimePassed);
-    }
+        boolean shouldSplit = AskTheUser.decision("Does the room want and can split?");
+        if (shouldSplit) {
+            Logger.selfInvokeMethod(this, "Split", Collections.emptyList());
+            Split();
+            Logger.returnFromMethod(this, this, "Split", Optional.empty());
+        }
 
-    public void AddActor(Actor actor) {
-        actorsInside.add(actor);
+        for (RoomEffect effect : activeEffects) {
+            Logger.invokeObjectMethod(this, effect, "TimePassed", Collections.emptyList());
+            effect.TimePassed();
+            Logger.returnFromMethod(this, effect, "TimePassed", Optional.empty());
+        }
     }
 }

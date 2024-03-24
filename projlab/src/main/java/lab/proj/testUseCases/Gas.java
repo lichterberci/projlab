@@ -1,35 +1,34 @@
 package lab.proj.testUseCases;
 
-import lab.proj.model.GasPoisoning;
-import lab.proj.model.GasProtection;
-import lab.proj.model.Mask;
-import lab.proj.model.Student;
-import lab.proj.model.Room;
+import lab.proj.model.*;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.Collections;
 import java.util.Optional;
 
-public class Gas implements TestUseCase{
-	@Override
-	public void runUseCase() {
-		var room = new Room();
-		var g = new GasPoisoning();
-		var st = new Student();
-		var mask = new Mask();
-		var gprot = new GasProtection(mask, 0);
-		st.CollectItem(mask);
-		mask.PickUp(st);
-		st.SetLocation(room);
-		room.AddEffect(g);
-		g.SetLocation(room);
-		IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, room, "room");
-        IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, g, "gasPoisoning");
-        IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, st, "student");
-        IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, gprot, "gprot");
-        IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, mask, "mask");
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(IndentedDebugPrinter.CONTROLLER, room, "TimePassed", Collections.emptyList());
+public class Gas implements TestUseCase {
+
+    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+
+    @Override
+    public void runUseCase() {
+        var room = new Room();
+        var g = new GasPoisoning();
+        var st = new Student();
+        var mask = new Mask();
+        var gprot = new GasProtection(mask, 0);
+        st.CollectItem(mask);
+        mask.PickUp(st);
+        st.SetLocation(room);
+        room.AddEffect(g);
+        g.SetLocation(room);
+        Logger.createObject(IndentedDebugPrinter.MAIN, room, "room");
+        Logger.createObject(IndentedDebugPrinter.MAIN, g, "gasPoisoning");
+        Logger.createObject(IndentedDebugPrinter.MAIN, st, "student");
+        Logger.createObject(IndentedDebugPrinter.MAIN, gprot, "gprot");
+        Logger.createObject(IndentedDebugPrinter.MAIN, mask, "mask");
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, room, "TimePassed", Collections.emptyList());
         room.TimePassed();
-        IndentedDebugPrinter.getInstance().returnFromMethod(IndentedDebugPrinter.CONTROLLER, room, "TimePassed", Optional.empty());
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, room, "TimePassed", Optional.empty());
     }
 }

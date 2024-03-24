@@ -1,9 +1,5 @@
 package lab.proj.testUseCases;
 
-import lab.proj.model.Actor;
-import lab.proj.model.Door;
-import lab.proj.model.Room;
-import lab.proj.model.Student;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.List;
@@ -17,8 +13,8 @@ public class StudentSwitchesRooms extends TwoTeachersOneStudent {
     @Override
     public void runUseCase() {
         super.runUseCase();
-        Logger.invokeObjectMethod(IndentedDebugPrinter.CONTROLLER, s, "UseDoor", List.of(d));
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "UseDoor", List.of(d));
         result = s.UseDoor(d);
-        Logger.returnFromMethod(IndentedDebugPrinter.CONTROLLER, s, "UseDoor", Optional.of(result));
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "UseDoor", Optional.of(result));
     }
 }

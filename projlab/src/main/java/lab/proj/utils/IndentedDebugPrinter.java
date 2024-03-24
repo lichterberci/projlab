@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class IndentedDebugPrinter implements DebugPrinter {
 
-    public static Object CONTROLLER = new Object();
+    public static Object MAIN = new Object();
     private static IndentedDebugPrinter instance;
     private final PrintStream outputStream;
     private final Map<Object, String> objectNameMap = new HashMap<>();
@@ -15,7 +15,7 @@ public class IndentedDebugPrinter implements DebugPrinter {
 
     private IndentedDebugPrinter(PrintStream outputStream) {
         this.outputStream = outputStream;
-        objectNameMap.put(CONTROLLER, "Controller");
+        objectNameMap.put(MAIN, "Main");
     }
 
     public static IndentedDebugPrinter getInstance() {

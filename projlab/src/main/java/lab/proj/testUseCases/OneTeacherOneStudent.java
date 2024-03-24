@@ -10,33 +10,40 @@ import java.util.List;
 import java.util.Optional;
 
 public class OneTeacherOneStudent implements TestUseCase {
-    protected Student s = new Student();
-    protected Teacher t1 = new Teacher();
-    protected Room r2 = new Room();
+    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+
+    protected Student s;
+    protected Teacher t1;
+    protected Room r1;
+    protected Room r2;
+    protected Door d;
 
     @Override
     public void runUseCase() {
-        var r1 = new Room();
-        var d = new Door();
+        s = new Student();
+        t1 = new Teacher();
+        r1 = new Room();
+        r2 = new Room();
+        d = new Door();
 
-        IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, r1, "r1");
-        IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, r2, "r2");
-        IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, d, "d");
+        Logger.createObject(IndentedDebugPrinter.MAIN, r1, "r1");
+        Logger.createObject(IndentedDebugPrinter.MAIN, r2, "r2");
+        Logger.createObject(IndentedDebugPrinter.MAIN, d, "d");
 
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(IndentedDebugPrinter.CONTROLLER, d, "SetRooms", List.of(r1, r2));
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, d, "SetRooms", List.of(r1, r2));
         d.SetRooms(r1, r2);
-        IndentedDebugPrinter.getInstance().returnFromMethod(IndentedDebugPrinter.CONTROLLER, d, "SetRooms", Optional.empty());
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, d, "SetRooms", Optional.empty());
 
-        IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, s, "s");
+        Logger.createObject(IndentedDebugPrinter.MAIN, s, "s");
 
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(IndentedDebugPrinter.CONTROLLER, s, "SetLocation", List.of(r1));
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "SetLocation", List.of(r1));
         s.SetLocation(r1);
-        IndentedDebugPrinter.getInstance().returnFromMethod(IndentedDebugPrinter.CONTROLLER, s, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "SetLocation", Optional.empty());
 
-        IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, t1, "t1");
+        Logger.createObject(IndentedDebugPrinter.MAIN, t1, "t1");
 
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(IndentedDebugPrinter.CONTROLLER, t1, "SetLocation", List.of(r2));
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t1, "SetLocation", List.of(r2));
         t1.SetLocation(r2);
-        IndentedDebugPrinter.getInstance().returnFromMethod(IndentedDebugPrinter.CONTROLLER, t1, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t1, "SetLocation", Optional.empty());
     }
 }

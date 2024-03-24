@@ -3,7 +3,7 @@ package lab.proj.testUseCases;
 import lab.proj.model.BeerMug;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class StudentDefendsWithBeer extends OneTeacherOneStudent {
@@ -14,18 +14,18 @@ public class StudentDefendsWithBeer extends OneTeacherOneStudent {
         super.runUseCase();
 
         BeerMug b = new BeerMug();
-        Logger.createObject(IndentedDebugPrinter.CONTROLLER, b, "b");
+        Logger.createObject(IndentedDebugPrinter.MAIN, b, "b");
 
         b.PickUp(s);
         s.CollectItem(b);
         s.SetLocation(r2);
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.CONTROLLER, s, "TimePassed", new ArrayList<>());
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "TimePassed", List.of());
         s.TimePassed();
-        Logger.returnFromMethod(IndentedDebugPrinter.CONTROLLER, s, "TimePassed", Optional.empty());
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "TimePassed", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.CONTROLLER, t1, "DropOutAll", new ArrayList<>());
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t1, "DropOutAll", List.of());
         t1.DropOutAll();
-        Logger.returnFromMethod(IndentedDebugPrinter.CONTROLLER, t1, "DropOutAll", Optional.empty());
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t1, "DropOutAll", Optional.empty());
     }
 }

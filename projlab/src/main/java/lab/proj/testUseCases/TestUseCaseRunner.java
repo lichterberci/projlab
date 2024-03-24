@@ -18,7 +18,7 @@ public class TestUseCaseRunner {
         useCases.add(new TestUseCaseWrapper("Gázos szoba mérgez", UnimplementedTestUseCase.class));
         useCases.add(new TestUseCaseWrapper("Hallgató Camembert-et használ", CamembertUsage.class));
         useCases.add(new TestUseCaseWrapper("Szobaátok érvényesül", UnimplementedTestUseCase.class));
-        useCases.add(new TestUseCaseWrapper("Szoba osztódik", UnimplementedTestUseCase.class));
+        useCases.add(new TestUseCaseWrapper("Szoba osztódik", RoomSplit.class));
         useCases.add(new TestUseCaseWrapper("Szomszédos szobák egyesülnek", UnimplementedTestUseCase.class));
         useCases.add(new TestUseCaseWrapper("Tranzisztorok párosítása", UnimplementedTestUseCase.class));
         useCases.add(new TestUseCaseWrapper("Tranzisztor használata", UnimplementedTestUseCase.class));
