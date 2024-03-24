@@ -13,7 +13,9 @@ public class Student extends Actor {
     private final List<Charge> gasProtections = new ArrayList<>();
     private final List<Charge> dropOutProtections = new ArrayList<>();
 
+    @Override
     public void DropOut() {
+        droppedOut = true;
     }
 
     public void AddCharge(Charge c) {

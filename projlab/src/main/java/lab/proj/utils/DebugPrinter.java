@@ -10,7 +10,7 @@ public interface DebugPrinter {
 
     <T, U> void invokeObjectMethod(T caller, U callee, String methodName, List<?> params);
 
-    <T, V> void selfInvokeMethod(T object, String methodName, List<?> params, Optional<V> returnValue);
+    <T, V> void selfInvokeMethod(T object, String methodName, List<?> params);
 
     <T, U, V> void returnFromMethod(T caller, U callee, String methodName, Optional<V> returnValue);
 }

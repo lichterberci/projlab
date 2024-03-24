@@ -1,6 +1,5 @@
 package lab.proj.model;
 
-
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.ArrayList;
@@ -9,27 +8,31 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class Actor implements Entity {
+    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+
     protected boolean incapacitated;
-    private Room location;
+    protected Room location;
     private final List<Item> collectedItems = new ArrayList<>();
 
     public boolean UseDoor(Door d) {
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, d, "GoThrough", List.of());
-        Room dst = Arrays.stream(d.GetRooms())
-                .filter(r -> r != location)
-                .findAny()
-                .orElseThrow(() -> new IllegalStateException("Door connects to the same room on both sides!"));
-        boolean wasSuccessful = d.GoThrough(dst, this);
+        Logger.invokeObjectMethod(this, d, "GoThrough", List.of(location, this));
+        boolean wasSuccessful = d.GoThrough(location, this);
+        Logger.returnFromMethod(this, d, "GoThrough", Optional.of(wasSuccessful));
+
         if (wasSuccessful) {
-            IndentedDebugPrinter.getInstance().invokeObjectMethod(this, location, "StepOut", List.of(this));
+            Logger.invokeObjectMethod(this, location, "StepOut", List.of(this));
             location.StepOut(this);
-            IndentedDebugPrinter.getInstance().returnFromMethod(this, location, "StepOut", Optional.empty());
+            Logger.returnFromMethod(this, location, "StepOut", Optional.empty());
         }
-        IndentedDebugPrinter.getInstance().returnFromMethod(this, d, "GoThrough", Optional.of(wasSuccessful));
+
         return wasSuccessful;
     }
 
     public void CollectItem(Item i) {
+        Logger.invokeObjectMethod(this, location, "RemoveItem", List.of(i));
+        location.RemoveItem(i);
+        Logger.returnFromMethod(this, location, "RemoveItem", Optional.empty());
+
         collectedItems.add(i);
     }
 
@@ -38,9 +41,9 @@ public abstract class Actor implements Entity {
 //        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, i, "Drop", Collections.emptyList());
 //        i.Drop();
 //        IndentedDebugPrinter.getInstance().returnFromMethod(this, i, "Drop", Optional.empty());
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, location, "AddItem", List.of(i));
+        Logger.invokeObjectMethod(this, location, "AddItem", List.of(i));
         location.AddItem(i);
-        IndentedDebugPrinter.getInstance().returnFromMethod(this, location, "AddItem", Optional.empty());
+        Logger.returnFromMethod(this, location, "AddItem", Optional.empty());
     }
 
     public List<Item> GetItems() {
@@ -53,9 +56,9 @@ public abstract class Actor implements Entity {
 
     public void SetLocation(Room r) {
         location = r;
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, r, "AddActor", List.of(this));
+        Logger.invokeObjectMethod(this, r, "AddActor", List.of(this));
         r.AddActor(this);
-        IndentedDebugPrinter.getInstance().returnFromMethod(this, r, "AddActor", Optional.empty());
+        Logger.returnFromMethod(this, r, "AddActor", Optional.empty());
     }
 
     public abstract void VisitActor(ActorVisitor v);
@@ -64,5 +67,9 @@ public abstract class Actor implements Entity {
 
     public boolean IsBlocked() {
         return incapacitated;
+    }
+
+    public void DropOut() {
+        // Empty by default..
     }
 }

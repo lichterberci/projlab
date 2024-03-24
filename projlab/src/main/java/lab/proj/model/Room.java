@@ -18,13 +18,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class Room implements Entity {
+    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+
     private int capacity;
     private final List<Actor> actorsInside = new ArrayList<>();
     private final List<Item> itemsOnTheFloor = new ArrayList<>();
     private final List<RoomEffect> activeEffects = new ArrayList<>();
 
     public boolean StepIn(Actor a) {
-        boolean roomIsFull = AskTheUser.decision("Is the room full?");
+        boolean roomIsFull = AskTheUser.decision("Tele van a szoba?");
 
         if (roomIsFull)
             return false;
@@ -47,10 +49,18 @@ public class Room implements Entity {
     }
 
     public void AddItem(Item i) {
+        Logger.invokeObjectMethod(this, i, "SetLocation", List.of(this));
+        i.SetLocation(this);
+        Logger.returnFromMethod(this, i, "SetLocation", Optional.empty());
+
         itemsOnTheFloor.add(i);
     }
 
     public void RemoveItem(Item i) {
+        Logger.invokeObjectMethod(this, i, "SetLocation", List.of());
+        i.SetLocation(null);
+        Logger.returnFromMethod(this, i, "SetLocation", Optional.empty());
+
         itemsOnTheFloor.remove(i);
     }
 
@@ -70,9 +80,9 @@ public class Room implements Entity {
 
     public void VisitActors(ActorVisitor v) {
         actorsInside.forEach(actor -> {
-            IndentedDebugPrinter.getInstance().invokeObjectMethod(this, actor, "VisitActor", List.of(v));
+            Logger.invokeObjectMethod(this, actor, "VisitActor", List.of(v));
             actor.VisitActor(v);
-            IndentedDebugPrinter.getInstance().returnFromMethod(this, actor, "VisitActor", Optional.empty());
+            Logger.returnFromMethod(this, actor, "VisitActor", Optional.empty());
         });
     }
 

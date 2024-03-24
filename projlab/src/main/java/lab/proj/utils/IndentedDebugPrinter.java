@@ -30,7 +30,10 @@ public class IndentedDebugPrinter implements DebugPrinter {
     }
 
     public String getObjectName(Object object) {
-        return objectNameMap.getOrDefault(object, object.getClass().getSimpleName());
+        if (object instanceof Collection<?> collection)
+            return String.format("[%s]",
+                    collection.stream().map(this::getObjectName).collect(Collectors.joining(", ")));
+        return objectNameMap.getOrDefault(object, object.toString());
     }
 
     @Override
@@ -53,6 +56,11 @@ public class IndentedDebugPrinter implements DebugPrinter {
 
     @Override
     public <T, U> void invokeObjectMethod(T caller, U callee, String methodName, List<?> params) {
+        if (caller == callee) {
+            selfInvokeMethod(caller, methodName, params);
+            return;
+        }
+
         objectStack.push(callee);
 
         printIndentations();
@@ -63,7 +71,7 @@ public class IndentedDebugPrinter implements DebugPrinter {
     }
 
     @Override
-    public <T, V> void selfInvokeMethod(T object, String methodName, List<?> params, Optional<V> returnValue) {
+    public <T, V> void selfInvokeMethod(T object, String methodName, List<?> params) {
         objectStack.push(object);
 
         printIndentations();

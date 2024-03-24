@@ -127,7 +127,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
                 .forEach(outputPrinter::print);
     }
 
-    public <T, V> void selfInvokeMethod(T object, String methodName, List<?> params, Optional<V> returnValue) {
+    public <T, V> void selfInvokeMethod(T object, String methodName, List<?> params) {
 
         lifelines.stream()
                 .map(obj -> {

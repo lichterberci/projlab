@@ -17,6 +17,6 @@ public class AskTheUser {
         System.out.print("> ");
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.nextLine().trim();
-        return answer.equalsIgnoreCase("igen") || answer.equalsIgnoreCase("nem");
+        return answer.equalsIgnoreCase("igen") || answer.equalsIgnoreCase("i");
     }
 }
