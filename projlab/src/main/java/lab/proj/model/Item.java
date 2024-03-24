@@ -27,6 +27,8 @@ public abstract class Item implements Entity {
         Logger.invokeObjectMethod(this, actor, "DropItem", List.of(this));
         actor.DropItem(this);
         Logger.returnFromMethod(this, actor, "DropItem", Optional.empty());
+
+        actor = null;
     }
 
     public void SetLocation(Room location) {
