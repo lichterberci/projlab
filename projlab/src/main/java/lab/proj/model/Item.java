@@ -11,6 +11,7 @@ public abstract class Item implements Entity {
     protected boolean activated;
     protected boolean dead;
     protected Actor actor;
+    protected Room location;
     public boolean PickUp(Actor a) {
         actor = a;
         return true;
@@ -43,5 +44,9 @@ public abstract class Item implements Entity {
     }
     
     public void ApplyCharges() {
+    }
+
+    public void SetLocation(Room r) {
+        this.location = r;
     }
 }

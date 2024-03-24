@@ -14,10 +14,5 @@ package lab.proj.model;//
 
 public abstract class LivingItem extends Item {
     private int lifetime;
-    public void Use() {
-        lifetime--;
-        if (lifetime <= 0) {
-            actor.GetItems().remove(this);
-        }
-    }
+    public abstract void Use();
 }

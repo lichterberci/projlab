@@ -1,10 +1,12 @@
 package lab.proj.testUseCases;
 
 import lab.proj.model.BeerMug;
+import lab.proj.model.Room;
 import lab.proj.model.Student;
 import lab.proj.utils.DebugPrinter;
 import lab.proj.utils.IndentedDebugPrinter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +15,7 @@ public class StudentDropsABeer implements TestUseCase{
 	public void runUseCase() {
 		var s = new Student();
 		var b = new BeerMug();
+		var r1 = new Room();
 		s.CollectItem(b);
 		IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER,
 				s,
@@ -20,14 +23,19 @@ public class StudentDropsABeer implements TestUseCase{
 		IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER,
 				b,
 				"b");
+		IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER,
+				r1,
+				"r1");
+		b.PickUp(s);
+		s.SetLocation(r1);
 		IndentedDebugPrinter.getInstance().invokeObjectMethod(IndentedDebugPrinter.CONTROLLER,
-				s,
-				"DropItem",
-				List.of(b));
-		s.DropItem(b);
+				b,
+				"Drop",
+				new ArrayList<>());
+		b.Drop();
 		IndentedDebugPrinter.getInstance().returnFromMethod(IndentedDebugPrinter.CONTROLLER,
-				s,
-				"DropItem",
+				b,
+				"Drop",
 				Optional.empty());
 	}
 }

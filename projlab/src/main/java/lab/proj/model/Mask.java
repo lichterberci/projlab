@@ -6,4 +6,9 @@ public class Mask extends LivingItem {
 	public void TimePassed() {
 
 	}
+
+	@Override
+	public void Use() {
+
+	}
 }

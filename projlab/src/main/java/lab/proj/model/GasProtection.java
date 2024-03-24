@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.Optional;
 
 public class GasProtection extends Charge {
-	public GasProtection(LivingItem creator) {
-		super(creator);
+	public GasProtection(LivingItem creator, int priority) {
+		super(creator, priority);
 	}
 
 	@Override

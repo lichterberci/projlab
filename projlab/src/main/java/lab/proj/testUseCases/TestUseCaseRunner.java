@@ -9,7 +9,8 @@ public class TestUseCaseRunner {
 			"StudentSwitchesRooms", StudentSwitchesRooms.class,
 			"TwoTeachersOneStudent", TwoTeachersOneStudent.class,
 			"CamembertUsage", CamembertUsage.class,
-			"Gas", Gas.class
+			"Gas", Gas.class,
+			"StudentDefendsWithBeer", StudentDefendsWithBeer.class
 	);
 
 	public static void runTest(String id) {

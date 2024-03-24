@@ -19,6 +19,5 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		String selectedUseCase = scanner.nextLine().trim();
 		TestUseCaseRunner.runTest(selectedUseCase);
-
 	}
 }

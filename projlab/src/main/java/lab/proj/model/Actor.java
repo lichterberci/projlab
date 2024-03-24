@@ -9,8 +9,10 @@ import java.util.*;
 
 public abstract class Actor implements Entity {
     protected boolean incapacitated;
-    private Room location;
-    private List<Item> collectedItems = new ArrayList<>();
+    protected Room location;
+    protected List<Item> collectedItems = new ArrayList<>();
+    protected List<GasProtection> gasProtections = new ArrayList<>();
+    protected List<DropOutProtection> dropOutProtections = new ArrayList<>();
     public boolean UseDoor(Door d) {
         IndentedDebugPrinter.getInstance().invokeObjectMethod(this, d, "GoThrough", List.of());
         Room dst = Arrays.stream(d.GetRooms())
@@ -39,6 +41,17 @@ public abstract class Actor implements Entity {
         IndentedDebugPrinter.getInstance().invokeObjectMethod(this, location, "AddItem", List.of(i));
         location.AddItem(i);
         IndentedDebugPrinter.getInstance().returnFromMethod(this, location, "AddItem", Optional.empty());
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, i, "SetLocation", List.of(location));
+        i.SetLocation(location);
+        IndentedDebugPrinter.getInstance().returnFromMethod(this, i, "SetLocation", Optional.empty());
+    }
+
+    public void AddDropOutProtection(DropOutProtection dropOutProtection) {
+        dropOutProtections.add(dropOutProtection);
+    }
+
+    public void AddGasProtection(GasProtection gasProtection) {
+        gasProtections.add(gasProtection);
     }
     
     public List<Item> GetItems() {
@@ -61,4 +74,6 @@ public abstract class Actor implements Entity {
     public boolean IsBlocked() {
         return incapacitated;
     }
+
+    public abstract void DropOut();
 }

@@ -10,23 +10,6 @@ import java.util.Optional;
 
 public class Student extends Actor {
     private boolean droppedOut;
-    private List<Charge> gasProtections = new ArrayList<>();
-    private List<Charge> dropOutProtections = new ArrayList<>();
-    public void DropOut() {
-    }
-    
-    public void AddCharge(Charge c) {
-		switch (c.GetPriority()) {
-			case 0 :
-				gasProtections.add(c);
-				break;
-			case 1 :
-				dropOutProtections.add(c);
-				break;
-			default:
-				throw new IllegalStateException("Unexpected value: " + c.GetPriority());
-		}
-    }
     
     public void RemoveCharge(Charge c) {
     }
@@ -37,7 +20,13 @@ public class Student extends Actor {
 
     @Override
     public void TimePassed() {
-
+		gasProtections.clear();
+		dropOutProtections.clear();
+		for (Item i : collectedItems) {
+			IndentedDebugPrinter.getInstance().invokeObjectMethod(this, i, "ApplyCharges", new ArrayList<>());
+			i.ApplyCharges();
+			IndentedDebugPrinter.getInstance().returnFromMethod(this, i, "ApplyCharges", Optional.empty());
+		}
     }
 
 	@Override
@@ -54,6 +43,19 @@ public class Student extends Actor {
 			IndentedDebugPrinter.getInstance().invokeObjectMethod(this, gasProtection, "Affect", Collections.emptyList());
 			gasProtection.Affect();
 			IndentedDebugPrinter.getInstance().returnFromMethod(this, gasProtection, "Affect", Optional.empty());
+		}
+	}
+
+	@Override
+	public void DropOut() {
+		if (dropOutProtections.isEmpty()) {
+			droppedOut = true;
+		} else {
+			DropOutProtection dropOutProtection = dropOutProtections.get(0);
+			IndentedDebugPrinter.getInstance().invokeObjectMethod(this, dropOutProtection, "Affect", new ArrayList<>());
+			dropOutProtection.Affect();
+			IndentedDebugPrinter.getInstance().returnFromMethod(this, dropOutProtection, "Affect", Optional.empty());
+			dropOutProtections.remove(0);
 		}
 	}
 }
