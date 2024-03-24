@@ -1,15 +1,15 @@
 package lab.proj.testUseCases;
 
 import lab.proj.model.BeerMug;
+import lab.proj.model.CSE;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class StudentDefendsWithBeer extends OneTeacherOneStudent {
+public class StudentDefendsWithBeerAndCSE extends OneTeacherOneStudent {
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
-
     @Override
     public void runUseCase() {
         super.runUseCase();
@@ -22,6 +22,15 @@ public class StudentDefendsWithBeer extends OneTeacherOneStudent {
         Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, b, "Activate", new ArrayList<>());
         b.Activate();
         Logger.returnFromMethod(IndentedDebugPrinter.MAIN, b, "Activate", Optional.empty());
+
+        CSE cse = new CSE();
+        Logger.createObject(IndentedDebugPrinter.MAIN, cse, "cse");
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse, "PickUp", List.of(s));
+        success = cse.PickUp(s);
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cse, "PickUp", Optional.of(success));
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse, "Activate", new ArrayList<>());
+        cse.Activate();
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cse, "Activate", Optional.empty());
 
         Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "UseDoor", List.of(d));
         success = s.UseDoor(d);

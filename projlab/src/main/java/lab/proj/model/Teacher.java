@@ -80,7 +80,5 @@ public class Teacher extends Actor {
      */
     @Override
     public void DropOut() {
-        Logger.invokeObjectMethod(this, this, "DropOut", List.of());
-        Logger.returnFromMethod(this, this, "DropOut", Optional.empty());
     }
 }

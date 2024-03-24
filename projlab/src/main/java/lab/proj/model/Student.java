@@ -89,11 +89,11 @@ public class Student extends Actor {
         if (dropOutProtections.isEmpty()) {
             droppedOut = true;
         } else {
-            DropOutProtection dropOutProtection = dropOutProtections.getFirst();
+            DropOutProtection dropOutProtection = dropOutProtections.get(0);
             Logger.invokeObjectMethod(this, dropOutProtection, "Affect", Collections.emptyList());
             dropOutProtection.Affect();
             Logger.returnFromMethod(this, dropOutProtection, "Affect", Optional.empty());
-            dropOutProtections.removeFirst();
+            dropOutProtections.remove(0);
         }
     }
 }

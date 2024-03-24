@@ -7,7 +7,7 @@ package lab.proj.model;
 public abstract class LivingItem extends Item {
 
     /** The remaining lifetime of the living item. */
-    private int lifetime;
+    protected int lifetime;
 
     /**
      * Performs the action associated with using the living item.

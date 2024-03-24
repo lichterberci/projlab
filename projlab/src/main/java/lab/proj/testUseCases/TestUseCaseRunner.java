@@ -12,8 +12,8 @@ public class TestUseCaseRunner {
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, nincs nála aktivált eszköz, nem védekezik", StudentSwitchesRoomsNoProtection.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, TVSZ-el próbál védeni", UnimplementedTestUseCase.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, sörrel próbál védeni", StudentDefendsWithBeer.class));
-        useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, sör és TVSZ is aktív, a sörrel próbál védeni", UnimplementedTestUseCase.class));
-        useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, törlőronggyal lebénítja", UnimplementedTestUseCase.class));
+        useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, sör és TVSZ is aktív, a sörrel próbál védeni", StudentDefendsWithBeerAndCSE.class));
+        useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, törlőronggyal lebénítja", StudentStunsTeacher.class));
         useCases.add(new TestUseCaseWrapper("Hallgató gázos szobába lép, masszkal próbál védekezni ellene, van tanár", Gas.class));
         useCases.add(new TestUseCaseWrapper("Gázos szoba mérgez", UnimplementedTestUseCase.class));
         useCases.add(new TestUseCaseWrapper("Hallgató Camembert-et használ", CamembertUsage.class));

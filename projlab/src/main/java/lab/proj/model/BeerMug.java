@@ -29,6 +29,9 @@ public class BeerMug extends LivingItem {
      */
     @Override
     public void ApplyCharges() {
+        if (!activated) {
+            return;
+        }
         DropOutProtection dp1 = new DropOutProtection(this, 0);
 
         Logger.createObject(this, dp1, "dp1");

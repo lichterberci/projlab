@@ -73,7 +73,8 @@ public abstract class Item implements Entity {
      * This method typically applies some effect associated with the item.
      */
     public void Activate() {
-        var gp = new GasPoisoning();
+        activated = true;
+        /*var gp = new GasPoisoning();
         Logger.createObject(this, gp, "gp");
 
         Logger.invokeObjectMethod(this, actor, "GetLocation", List.of());
@@ -86,7 +87,7 @@ public abstract class Item implements Entity {
 
         Logger.invokeObjectMethod(this, this, "Drop", Collections.emptyList());
         Drop();
-        Logger.returnFromMethod(this, this, "Drop", Optional.empty());
+        Logger.returnFromMethod(this, this, "Drop", Optional.empty());*/
     }
 
     /**
