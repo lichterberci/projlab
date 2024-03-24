@@ -19,7 +19,7 @@ public class Teacher extends Actor {
      * This method is currently empty.
      */
     public void Stun() {
-        // Empty method
+        incapacitated = true;
     }
 
     /**
@@ -36,6 +36,9 @@ public class Teacher extends Actor {
      * If an actor is droppable, the method calls its `DropOut` method.
      */
     public void DropOutAll() {
+        if (incapacitated) {
+            return;
+        }
         Logger.invokeObjectMethod(this, location, "GetActors", List.of());
         List<Actor> actorsInTheRoom = location.GetActors();
         Logger.returnFromMethod(this, location, "GetActors", Optional.of(actorsInTheRoom));
@@ -62,7 +65,9 @@ public class Teacher extends Actor {
      */
     @Override
     public void VisitActor(ActorVisitor v) {
+        Logger.invokeObjectMethod(this, v, "VisitTeacher", List.of(this));
         v.VisitTeacher(this);
+        Logger.returnFromMethod(this, v, "VisitTeacher", Optional.empty());
     }
 
     /**

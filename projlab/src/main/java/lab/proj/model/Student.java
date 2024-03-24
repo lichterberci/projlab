@@ -4,6 +4,7 @@ import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -63,7 +64,9 @@ public class Student extends Actor {
      */
     @Override
     public void VisitActor(ActorVisitor v) {
+        Logger.invokeObjectMethod(this, v, "VisitStudent", List.of(this));
         v.VisitStudent(this);
+        Logger.returnFromMethod(this, v, "VisitStudent", Optional.empty());
     }
 
     /**

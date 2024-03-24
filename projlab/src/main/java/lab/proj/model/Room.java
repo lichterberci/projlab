@@ -68,6 +68,7 @@ public class Room implements Entity {
             return false;
 
         actorsInside.add(a);
+        a.SetLocation(this);
         return true;
     }
 
@@ -212,7 +213,7 @@ public class Room implements Entity {
      */
     public void VisitActors(ActorVisitor v) {
         actorsInside.forEach(actor -> {
-            Logger.invokeObjectMethod(this, actor, "VisitActor", Collections.singletonList(v));
+            Logger.invokeObjectMethod(this, actor, "VisitActor", List.of(v));
             actor.VisitActor(v);
             Logger.returnFromMethod(this, actor, "VisitActor", Optional.empty());
         });
