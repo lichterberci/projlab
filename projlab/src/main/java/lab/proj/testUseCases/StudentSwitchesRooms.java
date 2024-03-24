@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public class StudentSwitchesRooms extends TwoTeachersOneStudent {
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
-
     protected boolean result;
 
     @Override

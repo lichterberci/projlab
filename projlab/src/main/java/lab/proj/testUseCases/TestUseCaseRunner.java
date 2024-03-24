@@ -22,7 +22,7 @@ public class TestUseCaseRunner {
         useCases.add(new TestUseCaseWrapper("Szomszédos szobák egyesülnek", UnimplementedTestUseCase.class));
         useCases.add(new TestUseCaseWrapper("Tranzisztorok párosítása", UnimplementedTestUseCase.class));
         useCases.add(new TestUseCaseWrapper("Tranzisztor használata", UnimplementedTestUseCase.class));
-        useCases.add(new TestUseCaseWrapper("Hallgató felvenni próbál egy sört", UnimplementedTestUseCase.class));
+        useCases.add(new TestUseCaseWrapper("Hallgató felvenni próbál egy sört", StudentTriesToPickUpABeer.class));
         useCases.add(new TestUseCaseWrapper("Hallgató ledob egy sört", StudentDropsABeer.class));
 
         useCases.sort(Comparator.comparing(TestUseCaseWrapper::title));

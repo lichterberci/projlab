@@ -16,6 +16,10 @@ public class CSE extends LivingItem {
     public CSE() {
         lifetime = 3;
     }
+
+    public CSE(int lifetime) {
+        this.lifetime = lifetime;
+    }
     /**
      * Performs actions associated with the passage of time.
      * This method is currently empty for CSE items.

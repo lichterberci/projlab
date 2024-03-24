@@ -67,7 +67,6 @@ public class Room implements Entity {
         if (IsFull())
             return false;
 
-        actorsInside.add(a);
         a.SetLocation(this);
         return true;
     }

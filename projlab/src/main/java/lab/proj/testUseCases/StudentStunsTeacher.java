@@ -5,7 +5,7 @@ import lab.proj.model.Towel;
 import lab.proj.model.TowelVisitor;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 

@@ -1,5 +1,6 @@
 package lab.proj.model;
 
+import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.Collections;
@@ -33,12 +34,17 @@ public abstract class Item implements Entity {
      * @return true if the item is successfully picked up, false otherwise.
      */
     public boolean PickUp(Actor a) {
-        Logger.invokeObjectMethod(this, a, "CollectItem", List.of(this));
-        a.CollectItem(this);
-        Logger.returnFromMethod(this, a, "CollectItem", Optional.empty());
+        boolean result = AskTheUser.decision("Felvehető a tárgy?");
+        if (result) {
+            Logger.invokeObjectMethod(this, a, "CollectItem", List.of(this));
+            a.CollectItem(this);
+            Logger.returnFromMethod(this, a, "CollectItem", Optional.empty());
 
-        actor = a;
-        return true;
+            actor = a;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -23,7 +23,7 @@ public class StudentDefendsWithBeerAndCSE extends OneTeacherOneStudent {
         b.Activate();
         Logger.returnFromMethod(IndentedDebugPrinter.MAIN, b, "Activate", Optional.empty());
 
-        CSE cse = new CSE();
+        CSE cse = new CSE(1);
         Logger.createObject(IndentedDebugPrinter.MAIN, cse, "cse");
         Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse, "PickUp", List.of(s));
         success = cse.PickUp(s);
