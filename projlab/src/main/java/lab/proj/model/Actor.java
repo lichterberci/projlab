@@ -37,10 +37,6 @@ public abstract class Actor implements Entity {
     }
 
     public void DropItem(Item i) {
-        // this would cause an infinite recursion :((
-//        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, i, "Drop", Collections.emptyList());
-//        i.Drop();
-//        IndentedDebugPrinter.getInstance().returnFromMethod(this, i, "Drop", Optional.empty());
         Logger.invokeObjectMethod(this, location, "AddItem", List.of(i));
         location.AddItem(i);
         Logger.returnFromMethod(this, location, "AddItem", Optional.empty());
