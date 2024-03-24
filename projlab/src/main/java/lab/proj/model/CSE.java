@@ -10,11 +10,9 @@ package lab.proj.model;//
 //
 
 
-
-
 public class CSE extends LivingItem {
-	@Override
-	public void TimePassed() {
+    @Override
+    public void TimePassed() {
 
-	}
+    }
 }

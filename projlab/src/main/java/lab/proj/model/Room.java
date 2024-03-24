@@ -10,7 +10,6 @@ package lab.proj.model;//
 //
 
 
-import lab.proj.model.Entity;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
@@ -20,9 +19,10 @@ import java.util.Optional;
 
 public class Room implements Entity {
     private int capacity;
-    private List<Actor> actorsInside = new ArrayList<>();
-    private List<Item> itemsOnTheFloor = new ArrayList<>();
-    private List<RoomEffect> activeEffects = new ArrayList<>();
+    private final List<Actor> actorsInside = new ArrayList<>();
+    private final List<Item> itemsOnTheFloor = new ArrayList<>();
+    private final List<RoomEffect> activeEffects = new ArrayList<>();
+
     public boolean StepIn(Actor a) {
         boolean roomIsFull = AskTheUser.decision("Is the room full?");
 
@@ -31,69 +31,69 @@ public class Room implements Entity {
 
         actorsInside.add(a);
 
-	    return true;
+        return true;
     }
-    
+
     public void StepOut(Actor a) {
         actorsInside.remove(a);
     }
-    
+
     public List<Door> GetDoors() {
         throw new RuntimeException();
     }
-    
+
     public List<Item> GetItems() {
         return itemsOnTheFloor;
     }
-    
+
     public void AddItem(Item i) {
         itemsOnTheFloor.add(i);
     }
-    
+
     public void RemoveItem(Item i) {
         itemsOnTheFloor.remove(i);
     }
-    
+
     public void Merge() {
     }
-    
+
     public void Split() {
     }
-    
+
     public void AddEffect(RoomEffect e) {
         activeEffects.add(e);
     }
-    
+
     public void RemoveEffect(RoomEffect e) {
         activeEffects.remove(e);
     }
-    
+
     public void VisitActors(ActorVisitor v) {
         actorsInside.forEach(actor -> {
             IndentedDebugPrinter.getInstance().invokeObjectMethod(this, actor, "VisitActor", List.of(v));
-	        actor.VisitActor(v);
+            actor.VisitActor(v);
             IndentedDebugPrinter.getInstance().returnFromMethod(this, actor, "VisitActor", Optional.empty());
         });
     }
-    
+
     public void AddDoor(Door d) {
     }
-    
+
     public void RemoveDoor(Door d) {
     }
-    
+
     public List<Actor> GetActors() {
         return actorsInside;
     }
-    
+
     public int GetCapacity() {
         return capacity;
     }
-    
+
     public void SetCapacity(int i) {
         capacity = i;
     }
-    
+
     public List<RoomEffect> GetEffects() {
         return activeEffects;
     }

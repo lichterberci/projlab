@@ -3,10 +3,10 @@ package lab.proj.model;
 public class Teacher extends Actor {
     public void Stun() {
     }
-    
+
     public void DropOutStudent(Student s) {
     }
-    
+
     public void DropOutAll() {
     }
 
@@ -15,13 +15,13 @@ public class Teacher extends Actor {
 
     }
 
-	@Override
-	public void VisitActor(ActorVisitor v) {
-		v.VisitTeacher(this);
-	}
+    @Override
+    public void VisitActor(ActorVisitor v) {
+        v.VisitTeacher(this);
+    }
 
-	@Override
-	public void Shock() {
+    @Override
+    public void Shock() {
 
-	}
+    }
 }

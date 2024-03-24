@@ -10,11 +10,9 @@ package lab.proj.model;//
 //
 
 
-
-
 public class Curse extends RoomEffect {
-	@Override
-	public void TimePassed() {
+    @Override
+    public void TimePassed() {
 
-	}
+    }
 }

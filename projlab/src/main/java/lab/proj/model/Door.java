@@ -20,12 +20,13 @@ public class Door implements Entity {
     private boolean hidden;
     private Room directedTowards;
     private Room source;
+
     public void Hide() {
     }
-    
+
     public void Show() {
     }
-    
+
     public boolean GoThrough(Room r, Actor a) {
         boolean doorCanBeSeen = AskTheUser.decision("Can the door be seen?");
 
@@ -37,7 +38,7 @@ public class Door implements Entity {
         IndentedDebugPrinter.getInstance().returnFromMethod(this, r, "StepIn", Optional.of(wasSuccessful));
         return wasSuccessful;
     }
-    
+
     public void SetRooms(Room r1, Room r2) {
         source = r1;
         directedTowards = r2;
@@ -48,11 +49,11 @@ public class Door implements Entity {
         r2.AddDoor(this);
         IndentedDebugPrinter.getInstance().returnFromMethod(this, r2, "AddDoor", Optional.empty());
     }
-    
+
     public Room[] GetRooms() {
-        return new Room[] { source, directedTowards };
+        return new Room[]{source, directedTowards};
     }
-    
+
     public void ChangeRoom(Room r1, Room r2) {
     }
 

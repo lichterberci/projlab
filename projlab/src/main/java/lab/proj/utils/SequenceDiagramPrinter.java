@@ -8,150 +8,152 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class SequenceDiagramPrinter implements DebugPrinter {
-	private final PrintStream outputPrinter;
-	private List<Object> lifelines;
-	private static SequenceDiagramPrinter instance;
-	public SequenceDiagramPrinter(PrintStream outputStream) {
-		this.outputPrinter = outputStream;
-		lifelines = new ArrayList<>();
-		instance = this;
-	}
-	public static SequenceDiagramPrinter getInstance() {
-		return instance;
-	}
+    private static SequenceDiagramPrinter instance;
+    private final PrintStream outputPrinter;
+    private final List<Object> lifelines;
 
-	public void printEmptyLineOfLifelines() {
-		lifelines.forEach(obj -> outputPrinter.print(obj == null ? "       " : "   │   "));
-		outputPrinter.println();
-	}
+    public SequenceDiagramPrinter(PrintStream outputStream) {
+        this.outputPrinter = outputStream;
+        lifelines = new ArrayList<>();
+        instance = this;
+    }
 
-	public <T, U> void createObject(T creator, U createdObject, String nameOfCreatedObject) {
+    public static SequenceDiagramPrinter getInstance() {
+        return instance;
+    }
 
-		final int indexOfCreator = lifelines.indexOf(creator);
+    public void printEmptyLineOfLifelines() {
+        lifelines.forEach(obj -> outputPrinter.print(obj == null ? "       " : "   │   "));
+        outputPrinter.println();
+    }
 
-		IntStream.range(0, lifelines.size())
-			.mapToObj(i -> switch (Integer.signum(Integer.compare(i, indexOfCreator))) {
-				case -1 -> "   │   ";
-				case 0 -> "   ├───";
-				case 1 -> "───┼───";
-				default -> throw new IllegalStateException();
-			})
-			.forEach(outputPrinter::print);
+    public <T, U> void createObject(T creator, U createdObject, String nameOfCreatedObject) {
 
-		outputPrinter.print("─> ");
-		outputPrinter.print(nameOfCreatedObject);
-		outputPrinter.println(" <<creates>>");
+        final int indexOfCreator = lifelines.indexOf(creator);
 
-		lifelines.add(createdObject);
+        IntStream.range(0, lifelines.size())
+                .mapToObj(i -> switch (Integer.signum(Integer.compare(i, indexOfCreator))) {
+                    case -1 -> "   │   ";
+                    case 0 -> "   ├───";
+                    case 1 -> "───┼───";
+                    default -> throw new IllegalStateException();
+                })
+                .forEach(outputPrinter::print);
 
-		printEmptyLineOfLifelines();
-	}
+        outputPrinter.print("─> ");
+        outputPrinter.print(nameOfCreatedObject);
+        outputPrinter.println(" <<creates>>");
 
-	public void destroyObject(Object destroyer, Object destroyedObject) {
-		printArrowBetweenObjects(destroyer, destroyedObject);
+        lifelines.add(createdObject);
 
-		outputPrinter.println(" <<destroys>>");
+        printEmptyLineOfLifelines();
+    }
 
-		lifelines.stream()
-				.map(obj -> {
-					if (obj == null) {
-						return "       ";
-					}
-					if (obj == destroyedObject) {
-						return "   X   ";
-					}
-					return "   │   ";
-				})
-				.forEach(outputPrinter::print);
+    public void destroyObject(Object destroyer, Object destroyedObject) {
+        printArrowBetweenObjects(destroyer, destroyedObject);
 
-		lifelines.set(lifelines.indexOf(destroyedObject), null);
+        outputPrinter.println(" <<destroys>>");
 
-		outputPrinter.println();
+        lifelines.stream()
+                .map(obj -> {
+                    if (obj == null) {
+                        return "       ";
+                    }
+                    if (obj == destroyedObject) {
+                        return "   X   ";
+                    }
+                    return "   │   ";
+                })
+                .forEach(outputPrinter::print);
 
-		printEmptyLineOfLifelines();
-	}
+        lifelines.set(lifelines.indexOf(destroyedObject), null);
 
-	public <T, U> void invokeObjectMethod(T caller, U callee, String methodName, List<?> params) {
+        outputPrinter.println();
 
-		printArrowBetweenObjects(caller, callee);
+        printEmptyLineOfLifelines();
+    }
 
-		outputPrinter.print("  ");
+    public <T, U> void invokeObjectMethod(T caller, U callee, String methodName, List<?> params) {
 
-		outputPrinter.print(methodName);
-		outputPrinter.print('(');
-		outputPrinter.print(String.join(", ",params.stream().map(Object::toString).collect(Collectors.toList())));
-		outputPrinter.println(')');
+        printArrowBetweenObjects(caller, callee);
 
-		printEmptyLineOfLifelines();
-	}
+        outputPrinter.print("  ");
 
-	public <T, U, V> void returnFromMethod(T caller, U callee, String methodName,Optional<V> returnValue) {
-		printArrowBetweenObjects(callee, caller);
+        outputPrinter.print(methodName);
+        outputPrinter.print('(');
+        outputPrinter.print(String.join(", ", params.stream().map(Object::toString).collect(Collectors.toList())));
+        outputPrinter.println(')');
 
-		outputPrinter.print(' ');
+        printEmptyLineOfLifelines();
+    }
 
-		outputPrinter.print(returnValue.map(Object::toString).orElse("void"));
+    public <T, U, V> void returnFromMethod(T caller, U callee, String methodName, Optional<V> returnValue) {
+        printArrowBetweenObjects(callee, caller);
 
-		outputPrinter.print(" (");
-		outputPrinter.print(methodName);
-		outputPrinter.println(")");
+        outputPrinter.print(' ');
 
-		printEmptyLineOfLifelines();
-	}
+        outputPrinter.print(returnValue.map(Object::toString).orElse("void"));
 
-	private <T, U> void printArrowBetweenObjects(T from, U to) {
-		final int indexOfCaller = lifelines.indexOf(from);
-		final int indexOfCallee = lifelines.indexOf(to);
+        outputPrinter.print(" (");
+        outputPrinter.print(methodName);
+        outputPrinter.println(")");
 
-		final int minIndex = Math.min(indexOfCaller, indexOfCallee);
-		final int maxIndex = Math.max(indexOfCaller, indexOfCallee);
+        printEmptyLineOfLifelines();
+    }
 
-		IntStream.range(0, lifelines.size())
-				.mapToObj(i -> {
-					if (i < minIndex || i > maxIndex) {
-						return lifelines.get(i) != null ? "   │   " : "       ";
-					}
+    private <T, U> void printArrowBetweenObjects(T from, U to) {
+        final int indexOfCaller = lifelines.indexOf(from);
+        final int indexOfCallee = lifelines.indexOf(to);
 
-					if (i == indexOfCallee) {
-						return indexOfCaller > indexOfCallee ? "   │<──" : "──>│  ";
-					}
+        final int minIndex = Math.min(indexOfCaller, indexOfCallee);
+        final int maxIndex = Math.max(indexOfCaller, indexOfCallee);
 
-					if (i == indexOfCaller) {
-						return indexOfCaller > indexOfCallee ? "───┤   " : "   ├───";
-					}
+        IntStream.range(0, lifelines.size())
+                .mapToObj(i -> {
+                    if (i < minIndex || i > maxIndex) {
+                        return lifelines.get(i) != null ? "   │   " : "       ";
+                    }
 
-					return lifelines.get(i) != null ? "───┼───" : "───────";
-				})
-				.forEach(outputPrinter::print);
-	}
+                    if (i == indexOfCallee) {
+                        return indexOfCaller > indexOfCallee ? "   │<──" : "──>│  ";
+                    }
 
-	public <T, V> void selfInvokeMethod (T object, String methodName, List<?> args, Optional<V> returnValue) {
+                    if (i == indexOfCaller) {
+                        return indexOfCaller > indexOfCallee ? "───┤   " : "   ├───";
+                    }
 
-		lifelines.stream()
-				.map(obj -> {
-					if (obj == null) return "       ";
-					if (obj == object) return "   ├──┬";
-					return "   │   ";
-				})
-				.forEach(outputPrinter::print);
+                    return lifelines.get(i) != null ? "───┼───" : "───────";
+                })
+                .forEach(outputPrinter::print);
+    }
 
-		outputPrinter.println();
+    public <T, V> void selfInvokeMethod(T object, String methodName, List<?> params, Optional<V> returnValue) {
 
-		lifelines.stream()
-				.map(obj -> {
-					if (obj == null) return "       ";
-					if (obj == object) return "   │<─┴";
-					return "   │   ";
-				})
-				.forEach(outputPrinter::print);
+        lifelines.stream()
+                .map(obj -> {
+                    if (obj == null) return "       ";
+                    if (obj == object) return "   ├──┬";
+                    return "   │   ";
+                })
+                .forEach(outputPrinter::print);
 
-		outputPrinter.print(' ');
+        outputPrinter.println();
 
-    	outputPrinter.print(methodName);
-    	outputPrinter.print('(');
-    	outputPrinter.print(String.join(", ", args.stream().map(Object::toString).collect(Collectors.toList())));
-    	outputPrinter.println(')');
+        lifelines.stream()
+                .map(obj -> {
+                    if (obj == null) return "       ";
+                    if (obj == object) return "   │<─┴";
+                    return "   │   ";
+                })
+                .forEach(outputPrinter::print);
 
-		printEmptyLineOfLifelines();
-	}
+        outputPrinter.print(' ');
+
+        outputPrinter.print(methodName);
+        outputPrinter.print('(');
+        outputPrinter.print(params.stream().map(Object::toString).collect(Collectors.joining(", ")));
+        outputPrinter.println(')');
+
+        printEmptyLineOfLifelines();
+    }
 }

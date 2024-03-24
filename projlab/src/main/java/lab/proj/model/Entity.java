@@ -10,8 +10,6 @@ package lab.proj.model;//
 //
 
 
-
-
 public interface Entity {
     void TimePassed();
 }

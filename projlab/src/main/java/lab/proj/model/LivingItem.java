@@ -10,10 +10,9 @@ package lab.proj.model;//
 //
 
 
-
-
 public abstract class LivingItem extends Item {
     private int lifetime;
+
     public void Use() {
         lifetime--;
         if (lifetime <= 0) {
