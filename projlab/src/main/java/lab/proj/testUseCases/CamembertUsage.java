@@ -1,8 +1,5 @@
 package lab.proj.testUseCases;
 
-import lab.proj.model.Camembert;
-import lab.proj.model.Room;
-import lab.proj.model.Student;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.Collections;

@@ -5,7 +5,6 @@ import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 public class Student extends Actor {

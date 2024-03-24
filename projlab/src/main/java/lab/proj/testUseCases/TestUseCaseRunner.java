@@ -11,7 +11,7 @@ public class TestUseCaseRunner {
         useCases.add(new TestUseCaseWrapper("Hallgató átlépni próbál a másik szobába", StudentSwitchesRooms.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, nincs nála aktivált eszköz, nem védekezik", StudentSwitchesRoomsNoProtection.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, TVSZ-el próbál védeni", UnimplementedTestUseCase.class));
-        useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, sörrel próbál védeni", UnimplementedTestUseCase.class));
+        useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, sörrel próbál védeni", StudentDefendsWithBeer.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, sör és TVSZ is aktív, a sörrel próbál védeni", UnimplementedTestUseCase.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, törlőronggyal lebénítja", UnimplementedTestUseCase.class));
         useCases.add(new TestUseCaseWrapper("Hallgató gázos szobába lép, masszkal próbál védekezni ellene, van tanár", Gas.class));

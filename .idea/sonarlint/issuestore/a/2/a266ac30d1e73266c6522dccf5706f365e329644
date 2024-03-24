@@ -1,0 +1,9 @@
+
+d
+java:S1192+"GDefine a constant instead of duplicating this literal "Affect" 4 times.(³Äíº8…ÁŠç1
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÕÖì«8…ÁŠç1
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÖì«8…ÁŠç1
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸Š şÿÿÿÿ8…ÁŠç1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ÿÅŠç1

@@ -1,6 +1,10 @@
 package lab.proj.testUseCases;
 
-import lab.proj.model.*;
+import lab.proj.model.GasPoisoning;
+import lab.proj.model.GasProtection;
+import lab.proj.model.Mask;
+import lab.proj.model.Student;
+import lab.proj.model.Room;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.Collections;

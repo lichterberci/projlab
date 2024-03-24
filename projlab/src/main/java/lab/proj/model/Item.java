@@ -60,8 +60,4 @@ public abstract class Item implements Entity {
 
     public void ApplyCharges() {
     }
-
-    public void SetLocation(Room r) {
-        this.location = r;
-    }
 }
