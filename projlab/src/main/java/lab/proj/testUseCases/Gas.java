@@ -24,8 +24,8 @@ public class Gas implements TestUseCase{
         IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, st, "student");
         IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, gprot, "gprot");
         IndentedDebugPrinter.getInstance().createObject(IndentedDebugPrinter.CONTROLLER, mask, "mask");
-		IndentedDebugPrinter.getInstance().invokeObjectMethod(IndentedDebugPrinter.CONTROLLER, room, "TimePassed", Collections.emptyList());
-		room.TimePassed();
-		IndentedDebugPrinter.getInstance().returnFromMethod(IndentedDebugPrinter.CONTROLLER, room, "TimePassed", Optional.empty());
-	}
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(IndentedDebugPrinter.CONTROLLER, room, "TimePassed", Collections.emptyList());
+        room.TimePassed();
+        IndentedDebugPrinter.getInstance().returnFromMethod(IndentedDebugPrinter.CONTROLLER, room, "TimePassed", Optional.empty());
+    }
 }

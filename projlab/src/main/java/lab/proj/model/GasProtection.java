@@ -11,15 +11,15 @@ public class GasProtection extends Charge {
 		super(creator, priority);
 	}
 
-	@Override
-	public int GetPriority() {
-		return 0;
-	}
+    @Override
+    public int GetPriority() {
+        return 0;
+    }
 
-	@Override
-	public void Affect() {
-		IndentedDebugPrinter.getInstance().invokeObjectMethod(this, creator, "Use", Collections.emptyList());
-		creator.Use();
-		IndentedDebugPrinter.getInstance().returnFromMethod(this, creator, "Use", Optional.empty());
-	}
+    @Override
+    public void Affect() {
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, creator, "Use", Collections.emptyList());
+        creator.Use();
+        IndentedDebugPrinter.getInstance().returnFromMethod(this, creator, "Use", Optional.empty());
+    }
 }

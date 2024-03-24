@@ -10,11 +10,11 @@ import java.util.Optional;
 
 public class Student extends Actor {
     private boolean droppedOut;
-    
+
     public void RemoveCharge(Charge c) {
     }
 
-	public boolean IsDroppedOut() {
+    public boolean IsDroppedOut() {
         return droppedOut;
     }
 
@@ -29,10 +29,10 @@ public class Student extends Actor {
 		}
     }
 
-	@Override
-	public void VisitActor(ActorVisitor v) {
-		v.VisitStudent(this);
-	}
+    @Override
+    public void VisitActor(ActorVisitor v) {
+        v.VisitStudent(this);
+    }
 
 	@Override
 	public void Shock() {
