@@ -1,10 +1,11 @@
 
-j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡äŞÛ8êÂ¦„ç1
-j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êæäü8êÂ¦„ç1
-j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë½Î8êÂ¦„ç1
-o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äª ®ÿÿÿÿÿ8êÂ¦„ç1
-o	java:S100*"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äÇ¼™ûÿÿÿÿ8êÂ¦„ç1
-i	java:S100."NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ’A8êÂ¦„ç1
-j	java:S1001"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ©òÙ8êÂ¦„ç1
-O
-java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8¹áµ„ç1
+j	java:S100$"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡äŞÛ8µÆÕ¥ç1
+j	java:S1005"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êæäü8·ÆÕ¥ç1
+o	java:S100A"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è©Ïœşÿÿÿÿ8¿ÆÕ¥ç1
+j	java:S100I"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë½Î8ÀÆÕ¥ç1
+o	java:S100Q"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äª ®ÿÿÿÿÿ8ÁÆÕ¥ç1
+W	java:S125S"<This block of commented-out lines of code should be removed.(úØ´H8û«Ô¤ç1
+o	java:S100g"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äÇ¼™ûÿÿÿÿ8ÏÆÕ¥ç1
+i	java:S100o"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ’A8ĞÆÕ¥ç1
+T
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8ÑÆÕ¥ç1

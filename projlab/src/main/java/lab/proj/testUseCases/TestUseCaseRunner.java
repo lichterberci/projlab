@@ -10,7 +10,7 @@ public class TestUseCaseRunner {
     static {
         useCases.add(new TestUseCaseWrapper("Hallgató átlépni próbál a másik szobába", StudentSwitchesRooms.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, nincs nála aktivált eszköz, nem védekezik", StudentSwitchesRoomsNoProtection.class));
-        useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, TVSZ-el próbál védeni", UnimplementedTestUseCase.class));
+        useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, TVSZ-el próbál védeni", StudentDefendWithCSE.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, sörrel próbál védeni", StudentDefendsWithBeer.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, sör és TVSZ is aktív, a sörrel próbál védeni", StudentDefendsWithBeerAndCSE.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, törlőronggyal lebénítja", StudentStunsTeacher.class));
@@ -20,8 +20,8 @@ public class TestUseCaseRunner {
         useCases.add(new TestUseCaseWrapper("Szobaátok érvényesül", UnimplementedTestUseCase.class));
         useCases.add(new TestUseCaseWrapper("Szoba osztódik", RoomSplit.class));
         useCases.add(new TestUseCaseWrapper("Szomszédos szobák egyesülnek", UnimplementedTestUseCase.class));
-        useCases.add(new TestUseCaseWrapper("Tranzisztorok párosítása", UnimplementedTestUseCase.class));
-        useCases.add(new TestUseCaseWrapper("Tranzisztor használata", UnimplementedTestUseCase.class));
+        useCases.add(new TestUseCaseWrapper("Tranzisztorok párosítása", TransistorPairing.class));
+        useCases.add(new TestUseCaseWrapper("Tranzisztor használata", UseTransistors.class));
         useCases.add(new TestUseCaseWrapper("Hallgató felvenni próbál egy sört", StudentTriesToPickUpABeer.class));
         useCases.add(new TestUseCaseWrapper("Hallgató ledob egy sört", StudentDropsABeer.class));
 

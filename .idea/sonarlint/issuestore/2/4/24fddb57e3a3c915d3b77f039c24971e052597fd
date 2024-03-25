@@ -1,3 +1,6 @@
 
-g
-java:S1192"LDefine a constant instead of duplicating this literal "SetLocation" 6 times.(„¥˜ıÿÿÿÿ
+d
+java:S1192?"GDefine a constant instead of duplicating this literal "PickUp" 6 times.(“²ÁÄ8šŞá¤ç1
+n
+java:S1192/"LDefine a constant instead of duplicating this literal "SetLocation" 6 times.(êìˆ­üÿÿÿÿ8›Şá¤ç1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¤ÄÙıÿÿÿÿ8Şá¤ç1

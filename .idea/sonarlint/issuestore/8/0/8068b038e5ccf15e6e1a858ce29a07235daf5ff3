@@ -1,0 +1,10 @@
+
+k
+java:S1192"IDefine a constant instead of duplicating this literal "Activate" 4 times.(Öã’ºüÿÿÿÿ8‚ç›©ç1
+h
+java:S1192."KDefine a constant instead of duplicating this literal "DropOutAll" 4 times.(Á ª«8‚ç›©ç1
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¤ÄÙýÿÿÿÿ
+P
+java:S1128"3Remove this unused import 'lab.proj.model.BeerMug'.(Å£Ÿƒ8’‘ž©ç1
+v
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(‰ŸáÝøÿÿÿÿ8’‘ž©ç1

@@ -134,7 +134,7 @@ public class Room implements Entity {
 
         CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);
         for (Item item : currentItems) {
-            boolean shouldPass = AskTheUser.decision(String.format("Átkerül-e a %s tárgy az új szobába?", Logger.getObjectName(item)));
+            boolean shouldPass = AskTheUser.decision(String.format("Atkerül-e a %s tárgy az új szobába?", Logger.getObjectName(item)));
             if (shouldPass) {
                 Logger.selfInvokeMethod(this, "RemoveItem", List.of(item));
                 RemoveItem(item);
@@ -147,7 +147,7 @@ public class Room implements Entity {
 
         CopyOnWriteArrayList<RoomEffect> currentEffects = new CopyOnWriteArrayList<>(activeEffects);
         for (RoomEffect effect : currentEffects) {
-            boolean shouldPass = AskTheUser.decision(String.format("Átkerül-e a %s effekt az új szobába?", Logger.getObjectName(effect)));
+            boolean shouldPass = AskTheUser.decision(String.format("Atkerül-e a %s effekt az új szobába?", Logger.getObjectName(effect)));
             if (shouldPass) {
                 Logger.selfInvokeMethod(this, "RemoveEffect", List.of(effect));
                 RemoveEffect(effect);
@@ -166,7 +166,7 @@ public class Room implements Entity {
 
         CopyOnWriteArrayList<Door> currentDoors = new CopyOnWriteArrayList<>(doors);
         for (Door door : currentDoors) {
-            boolean shouldPass = AskTheUser.decision(String.format("Átkerül-e a %s ajtó az új szobába?", Logger.getObjectName(door)));
+            boolean shouldPass = AskTheUser.decision(String.format("Atkerül-e a %s ajtó az új szobába?", Logger.getObjectName(door)));
             if (shouldPass) {
                 Logger.invokeObjectMethod(this, door, "ChangeRoom", List.of(this, r2));
                 door.ChangeRoom(this, r2);
