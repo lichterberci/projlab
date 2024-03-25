@@ -7,26 +7,51 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * A debug printer implementation for printing sequence diagrams.
+ */
 public class SequenceDiagramPrinter implements DebugPrinter {
     private static SequenceDiagramPrinter instance;
     private final PrintStream outputPrinter;
     private final List<Object> lifelines;
 
+    /**
+     * Constructs a SequenceDiagramPrinter with a specified output stream.
+     * @param outputStream The output stream to which the sequence diagrams will be printed.
+     */
     public SequenceDiagramPrinter(PrintStream outputStream) {
         this.outputPrinter = outputStream;
         lifelines = new ArrayList<>();
         instance = this;
     }
 
+    /**
+     * Retrieves the singleton instance of SequenceDiagramPrinter.
+     * @return The singleton instance of SequenceDiagramPrinter.
+     */
     public static SequenceDiagramPrinter getInstance() {
         return instance;
     }
 
+    /**
+     * Resets the singleton instance of IndentedDebugPrinter with a target stream.
+     * @param targetStream The target stream to which debug messages will be printed.
+     * @return The reset singleton instance of IndentedDebugPrinter.
+     */
+    public static SequenceDiagramPrinter resetInstance(PrintStream targetStream) {
+        instance = new SequenceDiagramPrinter(targetStream);
+        return instance;
+    }
+
+    /**
+     * Prints an empty line of lifelines in the sequence diagram.
+     */
     public void printEmptyLineOfLifelines() {
         lifelines.forEach(obj -> outputPrinter.print(obj == null ? "       " : "   │   "));
         outputPrinter.println();
     }
 
+    @Override
     public <T, U> void createObject(T creator, U createdObject, String nameOfCreatedObject) {
 
         final int indexOfCreator = lifelines.indexOf(creator);
@@ -49,6 +74,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         printEmptyLineOfLifelines();
     }
 
+    @Override
     public void destroyObject(Object destroyer, Object destroyedObject) {
         printArrowBetweenObjects(destroyer, destroyedObject);
 
@@ -73,6 +99,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         printEmptyLineOfLifelines();
     }
 
+    @Override
     public <T, U> void invokeObjectMethod(T caller, U callee, String methodName, List<?> params) {
 
         printArrowBetweenObjects(caller, callee);
@@ -87,6 +114,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         printEmptyLineOfLifelines();
     }
 
+    @Override
     public <T, U, V> void returnFromMethod(T caller, U callee, String methodName, Optional<V> returnValue) {
         printArrowBetweenObjects(callee, caller);
 
@@ -127,7 +155,8 @@ public class SequenceDiagramPrinter implements DebugPrinter {
                 .forEach(outputPrinter::print);
     }
 
-    public <T, V> void selfInvokeMethod(T object, String methodName, List<?> params) {
+    @Override
+    public <T> void selfInvokeMethod(T object, String methodName, List<?> params) {
 
         lifelines.stream()
                 .map(obj -> {

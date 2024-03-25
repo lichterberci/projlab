@@ -52,7 +52,7 @@ public class Door implements Entity {
             return false;
 
         // Find the other room connected by the door
-        Room o = Arrays.stream(GetRooms())
+        Room o = GetRooms().stream()
                 .filter(candidate -> candidate != r)
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException("Door connects to the same room on both sides!"));
@@ -85,10 +85,10 @@ public class Door implements Entity {
 
     /**
      * Retrieves the rooms connected by the door.
-     * @return An array containing the connected rooms.
+     * @return A list containing the connected rooms.
      */
-    public Room[] GetRooms() {
-        return new Room[]{r1, r2};
+    public List<Room> GetRooms() {
+        return List.of(r1, r2);
     }
 
     /**

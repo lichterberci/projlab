@@ -111,7 +111,7 @@ public class Room implements Entity {
      * @param i The item to be removed.
      */
     public void RemoveItem(Item i) {
-        Logger.invokeObjectMethod(this, i, "SetLocation", Collections.emptyList());
+        Logger.invokeObjectMethod(this, i, "SetLocation", Collections.singletonList(null));
         i.SetLocation(null);
         Logger.returnFromMethod(this, i, "SetLocation", Optional.empty());
         itemsOnTheFloor.remove(i);
@@ -119,10 +119,48 @@ public class Room implements Entity {
 
     /**
      * Merges the room with another room.
-     * This method is currently empty.
      */
     public void Merge() {
-        // Empty method
+        if (!actorsInside.isEmpty())
+            return;
+
+        Room r2 = null;
+        for (Door door : doors) {
+            List<Room> doorRooms = door.GetRooms();
+            Room otherRoom = (doorRooms.getFirst() == this) ? doorRooms.getLast() : doorRooms.getFirst();
+            boolean chooseThis = AskTheUser.decision(String.format("A %s szobával egyesüljön?", Logger.getObjectName(otherRoom)));
+            if (chooseThis) {
+                r2 = otherRoom;
+                break;
+            }
+        }
+
+        if (r2 == null || !r2.actorsInside.isEmpty())
+            return;
+
+        CopyOnWriteArrayList<Item> otherRoomsItems = new CopyOnWriteArrayList<>(r2.itemsOnTheFloor);
+        for (Item item : otherRoomsItems) {
+            Logger.invokeObjectMethod(this, r2, "RemoveItem", List.of(item));
+            r2.RemoveItem(item);
+            Logger.returnFromMethod(this, r2, "RemoveItem", Optional.empty());
+            Logger.selfInvokeMethod(this, "AddItem", List.of(item));
+            AddItem(item);
+            Logger.returnFromMethod(this, this, "AddItem", Optional.empty());
+        }
+
+        capacity = r2.capacity;
+
+        Logger.invokeObjectMethod(this, doors.getLast(), "ChangeRoom", List.of(r2, this));
+        // fake it till you make it
+        Logger.returnFromMethod(this, doors.getLast(), "ChangeRoom", Optional.empty());
+
+        for (Door door : doors) {
+            Logger.invokeObjectMethod(this, door, "Show", List.of());
+            door.Show();
+            Logger.returnFromMethod(this, door, "Show", Optional.empty());
+        }
+
+        Logger.destroyObject(this, r2);
     }
 
     /**
@@ -199,7 +237,7 @@ public class Room implements Entity {
      * @param e The effect to be removed.
      */
     public void RemoveEffect(RoomEffect e) {
-        Logger.invokeObjectMethod(this, e, "SetLocation", Collections.emptyList());
+        Logger.invokeObjectMethod(this, e, "SetLocation", Collections.singletonList(null));
         e.SetLocation(null);
         Logger.returnFromMethod(this, e, "SetLocation", Optional.empty());
 
@@ -264,7 +302,14 @@ public class Room implements Entity {
      */
     @Override
     public void TimePassed() {
-        boolean shouldSplit = AskTheUser.decision("Does the room want and can split?");
+        boolean shouldMerge = AskTheUser.decision("Akar a szoba egyesülni?");
+        if (shouldMerge) {
+            Logger.selfInvokeMethod(this, "Merge", Collections.emptyList());
+            Merge();
+            Logger.returnFromMethod(this, this, "Merge", Optional.empty());
+        }
+
+        boolean shouldSplit = AskTheUser.decision("Akar a szoba szétválni?");
         if (shouldSplit) {
             Logger.selfInvokeMethod(this, "Split", Collections.emptyList());
             Split();

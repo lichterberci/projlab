@@ -5,7 +5,7 @@ import lab.proj.utils.IndentedDebugPrinter;
 import java.util.List;
 import java.util.Optional;
 
-public class RoomSplit extends ThreeRoomsTwoDoors {
+public class CursedRoom extends ThreeRoomsTwoDoors {
 
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 

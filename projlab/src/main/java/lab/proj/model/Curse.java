@@ -1,17 +1,35 @@
 package lab.proj.model;
 
+import lab.proj.utils.AskTheUser;
+import lab.proj.utils.IndentedDebugPrinter;
+
+import java.util.List;
+import java.util.Optional;
+
 /**
  * A class representing a curse effect in the game environment.
  * Curse effects extend the functionality of room effects.
  */
 public class Curse extends RoomEffect {
 
+    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+
     /**
      * Performs actions associated with the passage of time.
-     * This method is currently empty for curse effects.
      */
     @Override
     public void TimePassed() {
-        // No actions for curse effects on time passage
+        Logger.invokeObjectMethod(this, location, "GetDoors", List.of());
+        List<Door> doors = location.GetDoors();
+        Logger.returnFromMethod(this, location, "GetDoors", Optional.of(doors));
+
+        boolean shouldHide = AskTheUser.decision("Érvényesül-e az átok?");
+        if (shouldHide) {
+            for (Door door : doors) {
+                Logger.invokeObjectMethod(this, door, "Hide", List.of());
+                door.Hide();
+                Logger.returnFromMethod(this, door, "Hide", Optional.empty());
+            }
+        }
     }
 }
