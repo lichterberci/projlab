@@ -99,8 +99,6 @@ Eprojlab/src/main/java/lab/proj/testUseCases/StudentSwitchesRooms.java,4\1\411d
 Qprojlab/src/main/java/lab/proj/testUseCases/StudentSwitchesRoomsNoProtection.java,3\1\31fd07bf55a0627d13263b88003a05d742dfc0d4
 z
 Jprojlab/src/main/java/lab/proj/testUseCases/StudentTriesToPickUpABeer.java,b\f\bfc122f987290c283e8a25186a6c659279a2abd4
-p
-@projlab/src/main/java/lab/proj/testUseCases/PairTransistors.java,4\2\4209e94548544eebac5da67dc9cc1f1d14c0c18a
 n
 >projlab/src/main/java/lab/proj/utils/IndentedDebugPrinter.java,7\6\7624ffde0e23b1fa336f7e3c5cc354109e5c7a19
 d
@@ -111,3 +109,9 @@ r
 Bprojlab/src/main/java/lab/proj/testUseCases/TransistorPairing.java,d\1\d1df70a98b59a70ad3fb9e397df700b3e6e1225d
 u
 Eprojlab/src/main/java/lab/proj/testUseCases/StudentDefendWithCSE.java,8\0\8068b038e5ccf15e6e1a858ce29a07235daf5ff3
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+o
+?projlab/src/main/java/lab/proj/testUseCases/GasPoisTeacher.java,3\1\311528aed47f17745759890098450465b73fbe1b
+s
+Cprojlab/src/main/java/lab/proj/testUseCases/ThreeRoomsTwoDoors.java,2\b\2b6b5448a4203826ae317da26ac0b7dbd12f34ad

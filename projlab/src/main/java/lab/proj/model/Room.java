@@ -127,7 +127,7 @@ public class Room implements Entity {
         Room r2 = null;
         for (Door door : doors) {
             List<Room> doorRooms = door.GetRooms();
-            Room otherRoom = (doorRooms.getFirst() == this) ? doorRooms.getLast() : doorRooms.getFirst();
+            Room otherRoom = (doorRooms.get(0) == this) ? doorRooms.get(doorRooms.size()-1) : doorRooms.get(0);
             boolean chooseThis = AskTheUser.decision(String.format("A %s szobával egyesüljön?", Logger.getObjectName(otherRoom)));
             if (chooseThis) {
                 r2 = otherRoom;
@@ -150,9 +150,9 @@ public class Room implements Entity {
 
         capacity = r2.capacity;
 
-        Logger.invokeObjectMethod(this, doors.getLast(), "ChangeRoom", List.of(r2, this));
+        Logger.invokeObjectMethod(this, doors.get(doors.size()-1), "ChangeRoom", List.of(r2, this));
         // fake it till you make it
-        Logger.returnFromMethod(this, doors.getLast(), "ChangeRoom", Optional.empty());
+        Logger.returnFromMethod(this, doors.get(doors.size()-1), "ChangeRoom", Optional.empty());
 
         for (Door door : doors) {
             Logger.invokeObjectMethod(this, door, "Show", List.of());

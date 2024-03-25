@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class TwoTeachersOneStudent implements TestUseCase {
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    protected static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     protected Student s;
     protected Teacher t1;
