@@ -42,13 +42,15 @@ public abstract class Actor implements Entity {
 
         if (wasSuccessful) {
             List<Room> rooms = d.GetRooms();
-            Logger.invokeObjectMethod(this, location, "StepOut", List.of(this));
+            Room prevRoom = null;
             if (rooms.get(0) == location) {
-                rooms.get(1).StepOut(this);
+                prevRoom = rooms.get(1);
             } else {
-                rooms.get(0).StepOut(this);
+                prevRoom = rooms.get(0);
             }
-            Logger.returnFromMethod(this, location, "StepOut", Optional.empty());
+            Logger.invokeObjectMethod(this, prevRoom, "StepOut", List.of(this));
+            prevRoom.StepOut(this);
+            Logger.returnFromMethod(this, prevRoom, "StepOut", Optional.empty());
         }
 
         return wasSuccessful;
