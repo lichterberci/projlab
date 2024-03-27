@@ -76,7 +76,7 @@ public class Teacher extends Actor {
      */
     @Override
     public void Shock() {
-        // Empty method
+        incapacitated = true;
     }
 
     /**
