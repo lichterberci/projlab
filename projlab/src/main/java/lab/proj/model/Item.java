@@ -14,7 +14,7 @@ import java.util.Optional;
 public abstract class Item implements Entity {
 
     /** A logger for debugging purposes. */
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    protected static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     /** Indicates whether the item is activated. */
     protected boolean activated;
@@ -80,20 +80,6 @@ public abstract class Item implements Entity {
      */
     public void Activate() {
         activated = true;
-        var gp = new GasPoisoning();
-        Logger.createObject(this, gp, "gp");
-
-        Logger.invokeObjectMethod(this, actor, "GetLocation", List.of());
-        Room room = actor.GetLocation();
-        Logger.returnFromMethod(this, actor, "GetLocation", Optional.of(room));
-
-        Logger.invokeObjectMethod(this, room, "AddEffect", List.of(gp));
-        room.AddEffect(gp);
-        Logger.returnFromMethod(this, room, "AddEffect", Optional.empty());
-
-        Logger.invokeObjectMethod(this, this, "Drop", Collections.emptyList());
-        Drop();
-        Logger.returnFromMethod(this, this, "Drop", Optional.empty());
     }
 
     /**
