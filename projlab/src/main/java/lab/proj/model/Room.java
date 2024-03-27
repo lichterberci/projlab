@@ -54,7 +54,7 @@ public class Room implements Entity {
      * @return true if the room is full, false otherwise.
      */
     public boolean IsFull() {
-        boolean roomIsFull = AskTheUser.decision("Is the room full?");
+        boolean roomIsFull = AskTheUser.decision("Tele van a szoba?");
         return roomIsFull;
     }
 

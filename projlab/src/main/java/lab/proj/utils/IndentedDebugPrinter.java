@@ -47,6 +47,8 @@ public class IndentedDebugPrinter implements DebugPrinter {
      * @return The name of the object.
      */
     public String getObjectName(Object object) {
+        if (object == null)
+            return "null";
         if (object instanceof Collection<?> collection)
             return String.format("[%s]",
                     collection.stream().map(this::getObjectName).collect(Collectors.joining(", ")));
@@ -56,9 +58,11 @@ public class IndentedDebugPrinter implements DebugPrinter {
     @Override
     public <T, U> void createObject(T creator, U createdObject, String nameOfCreatedObject) {
         printIndentations();
-        outputStream.printf("%s created %s%n",
+        outputStream.printf("%s created %s of type %s%n",
                 objectNameMap.getOrDefault(creator, "Unknown"),
-                nameOfCreatedObject);
+                nameOfCreatedObject,
+                createdObject.getClass().getSimpleName()
+        );
         objectNameMap.put(createdObject, nameOfCreatedObject);
     }
 

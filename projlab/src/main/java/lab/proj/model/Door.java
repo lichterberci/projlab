@@ -46,7 +46,7 @@ public class Door implements Entity {
      * @return true if the actor successfully goes through the door, false otherwise.
      */
     public boolean GoThrough(Room r, Actor a) {
-        boolean doorIsHidden = AskTheUser.decision("Is the door hidden?");
+        boolean doorIsHidden = AskTheUser.decision("El van rejtve az ajtó?");
 
         if (doorIsHidden)
             return false;
