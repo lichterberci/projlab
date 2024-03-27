@@ -80,7 +80,7 @@ public abstract class Item implements Entity {
      */
     public void Activate() {
         activated = true;
-        /*var gp = new GasPoisoning();
+        var gp = new GasPoisoning();
         Logger.createObject(this, gp, "gp");
 
         Logger.invokeObjectMethod(this, actor, "GetLocation", List.of());
@@ -93,7 +93,7 @@ public abstract class Item implements Entity {
 
         Logger.invokeObjectMethod(this, this, "Drop", Collections.emptyList());
         Drop();
-        Logger.returnFromMethod(this, this, "Drop", Optional.empty());*/
+        Logger.returnFromMethod(this, this, "Drop", Optional.empty());
     }
 
     /**

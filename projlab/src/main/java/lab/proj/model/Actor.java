@@ -76,9 +76,6 @@ public abstract class Actor implements Entity {
         Logger.invokeObjectMethod(this, location, "AddItem", List.of(i));
         location.AddItem(i);
         IndentedDebugPrinter.getInstance().returnFromMethod(this, location, "AddItem", Optional.empty());
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, i, "SetLocation", List.of(location));
-        i.SetLocation(location);
-        IndentedDebugPrinter.getInstance().returnFromMethod(this, i, "SetLocation", Optional.empty());
     }
 
     /**

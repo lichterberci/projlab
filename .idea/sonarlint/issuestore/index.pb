@@ -19,3 +19,17 @@ V
 ,src/main/java/lab/proj/model/Transistor.java,b\8\b8d8dd4b85c4d95119cde400359e0c31cd621b9b
 Y
 )src/main/java/lab/proj/model/Teacher.java,8\5\857b75f0e37d853448e93869e4c02a620693cb8f
+y
+Isrc/main/java/lab/proj/testUseCases/StudentSwitchesRoomsNoProtection.java,4\4\4439c6f01ab01fd196a64ea7e1b2b5cee2bbf7cf
+m
+=src/main/java/lab/proj/testUseCases/OneTeacherOneStudent.java,2\3\23deed73c305392c4e40087d1bb6d2633bd47ad9
+m
+=src/main/java/lab/proj/testUseCases/StudentSwitchesRooms.java,e\0\e06c4aab7c9d870c8729214a8d3c09909f979f62
+m
+=src/main/java/lab/proj/testUseCases/StudentDefendWithCSE.java,e\1\e1a93a91d811521c79808ffed2d93056b1cf84a1
+n
+>src/main/java/lab/proj/testUseCases/TwoTeachersOneStudent.java,e\1\e18dc8fae8641f4941a2e6c72c8e4a81fd4c3680
+[
++src/main/java/lab/proj/model/Camembert.java,d\8\d89e28144ca6c24069df8f7961f93abf0b8db782
+g
+7src/main/java/lab/proj/testUseCases/CamembertUsage.java,b\4\b49d9545502a442dad889fa1362b4a4c5c76fb88
