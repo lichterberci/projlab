@@ -41,8 +41,13 @@ public abstract class Actor implements Entity {
         Logger.returnFromMethod(this, d, "GoThrough", Optional.of(wasSuccessful));
 
         if (wasSuccessful) {
+            List<Room> rooms = d.GetRooms();
             Logger.invokeObjectMethod(this, location, "StepOut", List.of(this));
-            location.StepOut(this);
+            if (rooms.get(0) == location) {
+                rooms.get(1).StepOut(this);
+            } else {
+                rooms.get(0).StepOut(this);
+            }
             Logger.returnFromMethod(this, location, "StepOut", Optional.empty());
         }
 

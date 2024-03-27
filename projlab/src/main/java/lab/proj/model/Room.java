@@ -111,7 +111,7 @@ public class Room implements Entity {
      * @param i The item to be removed.
      */
     public void RemoveItem(Item i) {
-        Logger.invokeObjectMethod(this, i, "SetLocation", Collections.singletonList(null));
+        Logger.invokeObjectMethod(this, i, "SetLocation", new ArrayList<>());
         i.SetLocation(null);
         Logger.returnFromMethod(this, i, "SetLocation", Optional.empty());
         itemsOnTheFloor.remove(i);
