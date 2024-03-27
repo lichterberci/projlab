@@ -100,9 +100,9 @@ public class Room implements Entity {
      * @param i The item to be added.
      */
     public void AddItem(Item i) {
-        Logger.invokeObjectMethod(this, i, "SetLocation", Collections.singletonList(this));
+        Logger.invokeObjectMethod(i, "SetLocation", Collections.singletonList(this));
         i.SetLocation(this);
-        Logger.returnFromMethod(this, i, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(i, "SetLocation", Optional.empty());
         itemsOnTheFloor.add(i);
     }
 
@@ -111,9 +111,9 @@ public class Room implements Entity {
      * @param i The item to be removed.
      */
     public void RemoveItem(Item i) {
-        Logger.invokeObjectMethod(this, i, "SetLocation", new ArrayList<>());
+        Logger.invokeObjectMethod(i, "SetLocation", List.of());
         i.SetLocation(null);
-        Logger.returnFromMethod(this, i, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(i, "SetLocation", Optional.empty());
         itemsOnTheFloor.remove(i);
     }
 
@@ -140,24 +140,24 @@ public class Room implements Entity {
 
         CopyOnWriteArrayList<Item> otherRoomsItems = new CopyOnWriteArrayList<>(r2.itemsOnTheFloor);
         for (Item item : otherRoomsItems) {
-            Logger.invokeObjectMethod(this, r2, "RemoveItem", List.of(item));
+            Logger.invokeObjectMethod(r2, "RemoveItem", List.of(item));
             r2.RemoveItem(item);
-            Logger.returnFromMethod(this, r2, "RemoveItem", Optional.empty());
+            Logger.returnFromMethod(r2, "RemoveItem", Optional.empty());
             Logger.selfInvokeMethod(this, "AddItem", List.of(item));
             AddItem(item);
-            Logger.returnFromMethod(this, this, "AddItem", Optional.empty());
+            Logger.returnFromMethod(this, "AddItem", Optional.empty());
         }
 
         capacity = r2.capacity;
 
-        Logger.invokeObjectMethod(this, doors.get(doors.size()-1), "ChangeRoom", List.of(r2, this));
+        Logger.invokeObjectMethod(doors.get(doors.size()-1), "ChangeRoom", List.of(r2, this));
         // fake it till you make it
-        Logger.returnFromMethod(this, doors.get(doors.size()-1), "ChangeRoom", Optional.empty());
+        Logger.returnFromMethod(doors.get(doors.size()-1), "ChangeRoom", Optional.empty());
 
         for (Door door : doors) {
-            Logger.invokeObjectMethod(this, door, "Show", List.of());
+            Logger.invokeObjectMethod(door, "Show", List.of());
             door.Show();
-            Logger.returnFromMethod(this, door, "Show", Optional.empty());
+            Logger.returnFromMethod(door, "Show", Optional.empty());
         }
 
         Logger.destroyObject(this, r2);
@@ -176,10 +176,10 @@ public class Room implements Entity {
             if (shouldPass) {
                 Logger.selfInvokeMethod(this, "RemoveItem", List.of(item));
                 RemoveItem(item);
-                Logger.returnFromMethod(this, this, "RemoveItem", Optional.empty());
-                Logger.invokeObjectMethod(this, r2, "AddItem", List.of(item));
+                Logger.returnFromMethod(this, "RemoveItem", Optional.empty());
+                Logger.invokeObjectMethod(r2, "AddItem", List.of(item));
                 r2.AddItem(item);
-                Logger.returnFromMethod(this, r2, "AddItem", Optional.empty());
+                Logger.returnFromMethod(r2, "AddItem", Optional.empty());
             }
         }
 
@@ -189,35 +189,35 @@ public class Room implements Entity {
             if (shouldPass) {
                 Logger.selfInvokeMethod(this, "RemoveEffect", List.of(effect));
                 RemoveEffect(effect);
-                Logger.returnFromMethod(this, this, "RemoveEffect", Optional.empty());
-                Logger.invokeObjectMethod(this, r2, "AddEffect", List.of(effect));
+                Logger.returnFromMethod(this, "RemoveEffect", Optional.empty());
+                Logger.invokeObjectMethod(r2, "AddEffect", List.of(effect));
                 r2.AddEffect(effect);
-                Logger.returnFromMethod(this, r2, "AddEffect", Optional.empty());
+                Logger.returnFromMethod(r2, "AddEffect", Optional.empty());
             }
         }
 
         for (Door door : doors) {
-            Logger.invokeObjectMethod(this, door, "Show", List.of());
+            Logger.invokeObjectMethod(door, "Show", List.of());
             door.Show();
-            Logger.returnFromMethod(this, door, "Show", Optional.empty());
+            Logger.returnFromMethod(door, "Show", Optional.empty());
         }
 
         CopyOnWriteArrayList<Door> currentDoors = new CopyOnWriteArrayList<>(doors);
         for (Door door : currentDoors) {
             boolean shouldPass = AskTheUser.decision(String.format("Atkerül-e a %s ajtó az új szobába?", Logger.getObjectName(door)));
             if (shouldPass) {
-                Logger.invokeObjectMethod(this, door, "ChangeRoom", List.of(this, r2));
+                Logger.invokeObjectMethod(door, "ChangeRoom", List.of(this, r2));
                 door.ChangeRoom(this, r2);
-                Logger.returnFromMethod(this, door, "ChangeRoom", Optional.empty());
+                Logger.returnFromMethod(door, "ChangeRoom", Optional.empty());
             }
         }
 
         var d3 = new Door();
         Logger.createObject(this, d3, "d3");
 
-        Logger.invokeObjectMethod(this, d3, "SetRooms", List.of(this, r2));
+        Logger.invokeObjectMethod(d3, "SetRooms", List.of(this, r2));
         d3.SetRooms(this, r2);
-        Logger.returnFromMethod(this, d3, "SetRooms", Optional.empty());
+        Logger.returnFromMethod(d3, "SetRooms", Optional.empty());
     }
 
     /**
@@ -225,9 +225,9 @@ public class Room implements Entity {
      * @param e The effect to be added.
      */
     public void AddEffect(RoomEffect e) {
-        Logger.invokeObjectMethod(this, e, "SetLocation", Collections.singletonList(this));
+        Logger.invokeObjectMethod(e, "SetLocation", Collections.singletonList(this));
         e.SetLocation(this);
-        Logger.returnFromMethod(this, e, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(e, "SetLocation", Optional.empty());
 
         activeEffects.add(e);
     }
@@ -237,9 +237,9 @@ public class Room implements Entity {
      * @param e The effect to be removed.
      */
     public void RemoveEffect(RoomEffect e) {
-        Logger.invokeObjectMethod(this, e, "SetLocation", Collections.singletonList(null));
+        Logger.invokeObjectMethod(e, "SetLocation", Collections.singletonList(null));
         e.SetLocation(null);
-        Logger.returnFromMethod(this, e, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(e, "SetLocation", Optional.empty());
 
         activeEffects.remove(e);
     }
@@ -250,9 +250,9 @@ public class Room implements Entity {
      */
     public void VisitActors(ActorVisitor v) {
         actorsInside.forEach(actor -> {
-            Logger.invokeObjectMethod(this, actor, "VisitActor", List.of(v));
+            Logger.invokeObjectMethod(actor, "VisitActor", List.of(v));
             actor.VisitActor(v);
-            Logger.returnFromMethod(this, actor, "VisitActor", Optional.empty());
+            Logger.returnFromMethod(actor, "VisitActor", Optional.empty());
         });
     }
 
@@ -306,20 +306,20 @@ public class Room implements Entity {
         if (shouldMerge) {
             Logger.selfInvokeMethod(this, "Merge", Collections.emptyList());
             Merge();
-            Logger.returnFromMethod(this, this, "Merge", Optional.empty());
+            Logger.returnFromMethod(this, "Merge", Optional.empty());
         }
 
         boolean shouldSplit = AskTheUser.decision("Akar a szoba szétválni?");
         if (shouldSplit) {
             Logger.selfInvokeMethod(this, "Split", Collections.emptyList());
             Split();
-            Logger.returnFromMethod(this, this, "Split", Optional.empty());
+            Logger.returnFromMethod(this, "Split", Optional.empty());
         }
 
         for (RoomEffect effect : activeEffects) {
-            Logger.invokeObjectMethod(this, effect, "TimePassed", Collections.emptyList());
+            Logger.invokeObjectMethod(effect, "TimePassed", Collections.emptyList());
             effect.TimePassed();
-            Logger.returnFromMethod(this, effect, "TimePassed", Optional.empty());
+            Logger.returnFromMethod(effect, "TimePassed", Optional.empty());
         }
     }
 }

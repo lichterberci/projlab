@@ -11,8 +11,8 @@ public class StudentDropsABeer extends TwoTeachersOneStudent {
     @Override
     public void runUseCase() {
         super.runUseCase();
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, b, "Drop", List.of());
+        Logger.invokeObjectMethod(b, "Drop", List.of());
         b.Drop();
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, b, "Drop", Optional.empty());
+        Logger.returnFromMethod(b, "Drop", Optional.empty());
     }
 }

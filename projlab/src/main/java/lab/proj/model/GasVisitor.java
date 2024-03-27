@@ -21,9 +21,9 @@ public class GasVisitor implements ActorVisitor {
      */
     @Override
     public void VisitStudent(Student s) {
-        Logger.invokeObjectMethod(this, s, "Shock", Collections.emptyList());
+        Logger.invokeObjectMethod(s, "Shock", Collections.emptyList());
         s.Shock();
-        Logger.returnFromMethod(this, s, "Shock", Optional.empty());
+        Logger.returnFromMethod(s, "Shock", Optional.empty());
     }
 
     /**

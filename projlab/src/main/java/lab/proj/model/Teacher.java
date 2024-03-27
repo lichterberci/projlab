@@ -39,14 +39,14 @@ public class Teacher extends Actor {
         if (incapacitated) {
             return;
         }
-        Logger.invokeObjectMethod(this, location, "GetActors", List.of());
+        Logger.invokeObjectMethod(location, "GetActors", List.of());
         List<Actor> actorsInTheRoom = location.GetActors();
-        Logger.returnFromMethod(this, location, "GetActors", Optional.of(actorsInTheRoom));
+        Logger.returnFromMethod(location, "GetActors", Optional.of(actorsInTheRoom));
 
         for (Actor actor : actorsInTheRoom) {
-            Logger.invokeObjectMethod(this, actor, "DropOut", List.of());
+            Logger.invokeObjectMethod(actor, "DropOut", List.of());
             actor.DropOut();
-            Logger.returnFromMethod(this, actor, "DropOut", Optional.empty());
+            Logger.returnFromMethod(actor, "DropOut", Optional.empty());
         }
     }
 
@@ -65,9 +65,9 @@ public class Teacher extends Actor {
      */
     @Override
     public void VisitActor(ActorVisitor v) {
-        Logger.invokeObjectMethod(this, v, "VisitTeacher", List.of(this));
+        Logger.invokeObjectMethod(v, "VisitTeacher", List.of(this));
         v.VisitTeacher(this);
-        Logger.returnFromMethod(this, v, "VisitTeacher", Optional.empty());
+        Logger.returnFromMethod(v, "VisitTeacher", Optional.empty());
     }
 
     /**

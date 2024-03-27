@@ -36,9 +36,9 @@ public class BeerMug extends LivingItem {
 
         Logger.createObject(this, dp1, "dp1");
 
-        Logger.invokeObjectMethod(this, actor, "AddDropOutProtection", List.of(dp1));
+        Logger.invokeObjectMethod(actor, "AddDropOutProtection", List.of(dp1));
         actor.AddDropOutProtection(dp1);
-        Logger.returnFromMethod(this, actor, "AddDropOutProtection", Optional.empty());
+        Logger.returnFromMethod(actor, "AddDropOutProtection", Optional.empty());
     }
 
     /**
@@ -50,8 +50,8 @@ public class BeerMug extends LivingItem {
         DropOutProtection dp2 = new DropOutProtection(this, 0);
         Logger.createObject(this, dp2, "dp2");
 
-        Logger.invokeObjectMethod(this, actor, "AddDropOutProtection", List.of(dp2));
+        Logger.invokeObjectMethod(actor, "AddDropOutProtection", List.of(dp2));
         actor.AddDropOutProtection(dp2);
-        Logger.returnFromMethod(this, actor, "AddDropOutProtection", Optional.empty());
+        Logger.returnFromMethod(actor, "AddDropOutProtection", Optional.empty());
     }
 }

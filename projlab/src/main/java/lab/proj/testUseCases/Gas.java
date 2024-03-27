@@ -27,8 +27,8 @@ public class Gas implements TestUseCase {
         Logger.createObject(IndentedDebugPrinter.MAIN, st, "student");
         Logger.createObject(IndentedDebugPrinter.MAIN, gprot, "gprot");
         Logger.createObject(IndentedDebugPrinter.MAIN, mask, "mask");
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, room, "TimePassed", Collections.emptyList());
+        Logger.invokeObjectMethod(room, "TimePassed", Collections.emptyList());
         room.TimePassed();
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, room, "TimePassed", Optional.empty());
+        Logger.returnFromMethod(room, "TimePassed", Optional.empty());
     }
 }

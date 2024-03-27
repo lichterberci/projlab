@@ -40,28 +40,28 @@ public class ThreeRoomsTwoDoors implements TestUseCase {
         Logger.createObject(IndentedDebugPrinter.MAIN, t, "t");
         Logger.createObject(IndentedDebugPrinter.MAIN, m, "m");
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, d1, "SetRooms", List.of(r1, r3));
+        Logger.invokeObjectMethod(d1, "SetRooms", List.of(r1, r3));
         d1.SetRooms(r1, r3);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, d1, "SetRooms", Optional.empty());
+        Logger.returnFromMethod(d1, "SetRooms", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, d2, "SetRooms", List.of(r1, r4));
+        Logger.invokeObjectMethod(d2, "SetRooms", List.of(r1, r4));
         d2.SetRooms(r1, r4);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, d2, "SetRooms", Optional.empty());
+        Logger.returnFromMethod(d2, "SetRooms", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, r1, "AddItem", List.of(t));
+        Logger.invokeObjectMethod(r1, "AddItem", List.of(t));
         r1.AddItem(t);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, r1, "AddItem", Optional.empty());
+        Logger.returnFromMethod(r1, "AddItem", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, r1, "AddItem", List.of(m));
+        Logger.invokeObjectMethod(r1, "AddItem", List.of(m));
         r1.AddItem(m);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, r1, "AddEffect", Optional.empty());
+        Logger.returnFromMethod(r1, "AddEffect", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, r1, "AddEffect", List.of(c1));
+        Logger.invokeObjectMethod(r1, "AddEffect", List.of(c1));
         r1.AddEffect(c1);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, r1, "AddEffect", Optional.empty());
+        Logger.returnFromMethod(r1, "AddEffect", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, r1, "AddEffect", List.of(g));
+        Logger.invokeObjectMethod(r1, "AddEffect", List.of(g));
         r1.AddEffect(g);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, r1, "AddEffect", Optional.empty());
+        Logger.returnFromMethod(r1, "AddEffect", Optional.empty());
     }
 }

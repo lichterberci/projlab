@@ -20,26 +20,26 @@ public class GasPoisTeacher implements TestUseCase{
         Logger.createObject(IndentedDebugPrinter.MAIN, r2, "r1");
 
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t1, "SetLocation", List.of(r2));
+        Logger.invokeObjectMethod(t1, "SetLocation", List.of(r2));
         t1.SetLocation(r2);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t1, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(t1, "SetLocation", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t2, "SetLocation", List.of(r2));
+        Logger.invokeObjectMethod(t2, "SetLocation", List.of(r2));
         t2.SetLocation(r2);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t2, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(t2, "SetLocation", Optional.empty());
 
 
         GasPoisoning g = new GasPoisoning();
         Logger.createObject(IndentedDebugPrinter.MAIN, g, "g");
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, r2, "AddEffect", List.of(g));
+        Logger.invokeObjectMethod(r2, "AddEffect", List.of(g));
         r2.AddEffect(g);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, r2, "AddEffect", Optional.empty());
+        Logger.returnFromMethod(r2, "AddEffect", Optional.empty());
 
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, r2, "TimePassed", List.of());
+        Logger.invokeObjectMethod(r2, "TimePassed", List.of());
         r2.TimePassed();
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, r2, "TimePassed", Optional.empty());
+        Logger.returnFromMethod(r2, "TimePassed", Optional.empty());
 
 
     }

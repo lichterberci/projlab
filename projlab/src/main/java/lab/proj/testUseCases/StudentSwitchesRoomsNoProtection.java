@@ -11,17 +11,11 @@ public class StudentSwitchesRoomsNoProtection extends OneTeacherOneStudent {
     @Override
     public void runUseCase() {
         super.runUseCase();
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "UseDoor", List.of(d));
+        Logger.invokeObjectMethod(s, "UseDoor", List.of(d));
         boolean success = s.UseDoor(d);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "UseDoor", Optional.of(success));
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN,
-                t1,
-                "DropOutAll",
-                List.of());
+        Logger.returnFromMethod(s, "UseDoor", Optional.of(success));
+        Logger.invokeObjectMethod(t1, "DropOutAll", List.of());
         t1.DropOutAll();
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
-                s,
-                "DropOutAll",
-                Optional.empty());
+        Logger.returnFromMethod(s, "DropOutAll", Optional.empty());
     }
 }

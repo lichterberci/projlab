@@ -20,8 +20,8 @@ public class CamembertUsage extends TwoTeachersOneStudent {
     @Override
     public void runUseCase() {
         super.runUseCase();
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cm, "Activate", Collections.emptyList());
+        Logger.invokeObjectMethod(cm, "Activate", Collections.emptyList());
         cm.Activate();
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cm, "Activate", Optional.empty());
+        Logger.returnFromMethod(cm, "Activate", Optional.empty());
     }
 }

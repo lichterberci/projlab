@@ -36,16 +36,16 @@ public class Transistor extends Item {
         if(result){
             return;
         }else{
-            Logger.invokeObjectMethod(this, t, "SetPair", List.of(this));
+            Logger.invokeObjectMethod(t, "SetPair", List.of(this));
             t.SetPair(this);
-            Logger.returnFromMethod(this,
+            Logger.returnFromMethod(
                     t,
                     "SetPair",
                     Optional.empty());
 
-            Logger.invokeObjectMethod(this, this, "SetPair", List.of(t));
+            Logger.invokeObjectMethod(this, "SetPair", List.of(t));
             this.SetPair(t);
-            Logger.returnFromMethod(this,
+            Logger.returnFromMethod(
                     this,
                     "SetPair",
                     Optional.empty());
@@ -71,25 +71,25 @@ public class Transistor extends Item {
             if(this.location != this.actor.location && this.pair != null && this.pair.activated){
                 Room prevLoc = this.actor.location;
 
-                Logger.invokeObjectMethod(this, this.location, "StepIn", List.of(this.actor));
+                Logger.invokeObjectMethod(this.location, "StepIn", List.of(this.actor));
                 boolean success = this.location.StepIn(this.actor);
-                Logger.returnFromMethod(this,
+                Logger.returnFromMethod(
                         this.location,
                         "StepIn",
                         Optional.of(success));
                 if(success){
-                    Logger.invokeObjectMethod(this, prevLoc, "StepOut", List.of(this.actor));
+                    Logger.invokeObjectMethod(prevLoc, "StepOut", List.of(this.actor));
                     prevLoc.StepOut(this.actor);
-                    Logger.returnFromMethod(this,
+                    Logger.returnFromMethod(
                             prevLoc,
                             "StepOut",
                             Optional.empty());
                 }
             }else{
                 if(this.pair!=null && this.pair.activated){
-                    Logger.invokeObjectMethod(this, this.pair, "Activate", List.of());
+                    Logger.invokeObjectMethod(this.pair, "Activate", List.of());
                     this.pair.Activate();
-                    Logger.returnFromMethod(this,
+                    Logger.returnFromMethod(
                             this.pair,
                             "Activate",
                             Optional.empty());
@@ -97,9 +97,9 @@ public class Transistor extends Item {
             }
         }else if(this.pair != null){
             this.activated = true;
-            Logger.invokeObjectMethod(this, this.actor, "DropItem", List.of(this));
+            Logger.invokeObjectMethod(this.actor, "DropItem", List.of(this));
             this.actor.DropItem(this);
-            Logger.returnFromMethod(this,
+            Logger.returnFromMethod(
                     this.actor,
                     "DropItem",
                     Optional.empty());

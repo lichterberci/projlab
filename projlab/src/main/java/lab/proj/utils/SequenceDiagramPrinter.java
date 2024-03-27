@@ -1,9 +1,7 @@
 package lab.proj.utils;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,9 +9,12 @@ import java.util.stream.IntStream;
  * A debug printer implementation for printing sequence diagrams.
  */
 public class SequenceDiagramPrinter implements DebugPrinter {
+
+    public static Object MAIN = new Object();
     private static SequenceDiagramPrinter instance;
     private final PrintStream outputPrinter;
     private final List<Object> lifelines;
+    private final Deque<Object> objectStack = new ArrayDeque<>();
 
     /**
      * Constructs a SequenceDiagramPrinter with a specified output stream.
@@ -21,8 +22,8 @@ public class SequenceDiagramPrinter implements DebugPrinter {
      */
     public SequenceDiagramPrinter(PrintStream outputStream) {
         this.outputPrinter = outputStream;
+        objectStack.offerLast(MAIN);
         lifelines = new ArrayList<>();
-        instance = this;
     }
 
     /**
@@ -30,6 +31,8 @@ public class SequenceDiagramPrinter implements DebugPrinter {
      * @return The singleton instance of SequenceDiagramPrinter.
      */
     public static SequenceDiagramPrinter getInstance() {
+        if (instance == null)
+            instance = new SequenceDiagramPrinter(System.out);
         return instance;
     }
 
@@ -100,22 +103,23 @@ public class SequenceDiagramPrinter implements DebugPrinter {
     }
 
     @Override
-    public <T, U> void invokeObjectMethod(T caller, U callee, String methodName, List<?> params) {
-
+    public <T> void invokeObjectMethod(T callee, String methodName, List<?> params) {
+        Object caller = objectStack.peekLast();
         printArrowBetweenObjects(caller, callee);
 
         outputPrinter.print("  ");
 
         outputPrinter.print(methodName);
         outputPrinter.print('(');
-        outputPrinter.print(String.join(", ", params.stream().map(Object::toString).collect(Collectors.toList())));
+        outputPrinter.print(params.stream().map(Object::toString).collect(Collectors.joining(", ")));
         outputPrinter.println(')');
 
         printEmptyLineOfLifelines();
     }
 
     @Override
-    public <T, U, V> void returnFromMethod(T caller, U callee, String methodName, Optional<V> returnValue) {
+    public <T, U> void returnFromMethod(T callee, String methodName, Optional<U> returnValue) {
+        Object caller = objectStack.pollLast();
         printArrowBetweenObjects(callee, caller);
 
         outputPrinter.print(' ');

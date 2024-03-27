@@ -44,36 +44,36 @@ public class TwoTeachersOneStudent implements TestUseCase {
         Logger.createObject(IndentedDebugPrinter.MAIN, cm, "cm");
         Logger.createObject(IndentedDebugPrinter.MAIN, sr, "sr");
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "SetLocation", List.of(r1));
+        Logger.invokeObjectMethod(s, "SetLocation", List.of(r1));
         s.SetLocation(r1);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(s, "SetLocation", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t1, "SetLocation", List.of(r2));
+        Logger.invokeObjectMethod(t1, "SetLocation", List.of(r2));
         t1.SetLocation(r2);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t1, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(t1, "SetLocation", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t2, "SetLocation", List.of(r2));
+        Logger.invokeObjectMethod(t2, "SetLocation", List.of(r2));
         t2.SetLocation(r2);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t2, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(t2, "SetLocation", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, d, "SetRooms", List.of(r1, r2));
+        Logger.invokeObjectMethod(d, "SetRooms", List.of(r1, r2));
         d.SetRooms(r1, r2);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, d, "SetRooms", Optional.empty());
+        Logger.returnFromMethod(d, "SetRooms", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, b, "PickUp", List.of(s));
+        Logger.invokeObjectMethod(b, "PickUp", List.of(s));
         boolean beerPickedUp = b.PickUp(s);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, b, "PickUp", Optional.of(beerPickedUp));
+        Logger.returnFromMethod(b, "PickUp", Optional.of(beerPickedUp));
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse, "PickUp", List.of(s));
+        Logger.invokeObjectMethod(cse, "PickUp", List.of(s));
         boolean csePickedUp = cse.PickUp(s);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cse, "PickUp", Optional.of(csePickedUp));
+        Logger.returnFromMethod(cse, "PickUp", Optional.of(csePickedUp));
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cm, "PickUp", List.of(s));
+        Logger.invokeObjectMethod(cm, "PickUp", List.of(s));
         boolean camembertPickedUp = cm.PickUp(s);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cm, "PickUp", Optional.of(camembertPickedUp));
+        Logger.returnFromMethod(cm, "PickUp", Optional.of(camembertPickedUp));
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, r2, "AddItem", List.of(sr));
+        Logger.invokeObjectMethod(r2, "AddItem", List.of(sr));
         r2.AddItem(sr);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, r2, "AddItem", Optional.empty());
+        Logger.returnFromMethod(r2, "AddItem", Optional.empty());
     }
 }

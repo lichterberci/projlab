@@ -39,8 +39,8 @@ public class GasProtection extends Charge {
      */
     @Override
     public void Affect() {
-        Logger.invokeObjectMethod(this, creator, "Use", Collections.emptyList());
+        Logger.invokeObjectMethod(creator, "Use", Collections.emptyList());
         creator.Use();
-        Logger.returnFromMethod(this, creator, "Use", Optional.empty());
+        Logger.returnFromMethod(creator, "Use", Optional.empty());
     }
 }

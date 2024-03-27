@@ -36,9 +36,9 @@ public abstract class Actor implements Entity {
      * @return true if the actor successfully goes through the door, false otherwise.
      */
     public boolean UseDoor(Door d) {
-        Logger.invokeObjectMethod(this, d, "GoThrough", List.of(location, this));
+        Logger.invokeObjectMethod(d, "GoThrough", List.of(location, this));
         boolean wasSuccessful = d.GoThrough(location, this);
-        Logger.returnFromMethod(this, d, "GoThrough", Optional.of(wasSuccessful));
+        Logger.returnFromMethod(d, "GoThrough", Optional.of(wasSuccessful));
 
         if (wasSuccessful) {
             List<Room> rooms = d.GetRooms();
@@ -48,9 +48,9 @@ public abstract class Actor implements Entity {
             } else {
                 prevRoom = rooms.get(0);
             }
-            Logger.invokeObjectMethod(this, prevRoom, "StepOut", List.of(this));
+            Logger.invokeObjectMethod(prevRoom, "StepOut", List.of(this));
             prevRoom.StepOut(this);
-            Logger.returnFromMethod(this, prevRoom, "StepOut", Optional.empty());
+            Logger.returnFromMethod(prevRoom, "StepOut", Optional.empty());
         }
 
         return wasSuccessful;
@@ -61,9 +61,9 @@ public abstract class Actor implements Entity {
      * @param i The item to be collected.
      */
     public void CollectItem(Item i) {
-        Logger.invokeObjectMethod(this, location, "RemoveItem", List.of(i));
+        Logger.invokeObjectMethod(location, "RemoveItem", List.of(i));
         location.RemoveItem(i);
-        Logger.returnFromMethod(this, location, "RemoveItem", Optional.empty());
+        Logger.returnFromMethod(location, "RemoveItem", Optional.empty());
 
         collectedItems.add(i);
     }
@@ -73,9 +73,9 @@ public abstract class Actor implements Entity {
      * @param i The item to be dropped.
      */
     public void DropItem(Item i) {
-        Logger.invokeObjectMethod(this, location, "AddItem", List.of(i));
+        Logger.invokeObjectMethod(location, "AddItem", List.of(i));
         location.AddItem(i);
-        IndentedDebugPrinter.getInstance().returnFromMethod(this, location, "AddItem", Optional.empty());
+        IndentedDebugPrinter.getInstance().returnFromMethod(location, "AddItem", Optional.empty());
     }
 
     /**
@@ -116,9 +116,9 @@ public abstract class Actor implements Entity {
      */
     public void SetLocation(Room r) {
         location = r;
-        Logger.invokeObjectMethod(this, r, "AddActor", List.of(this));
+        Logger.invokeObjectMethod(r, "AddActor", List.of(this));
         r.AddActor(this);
-        Logger.returnFromMethod(this, r, "AddActor", Optional.empty());
+        Logger.returnFromMethod(r, "AddActor", Optional.empty());
     }
 
     /**

@@ -51,9 +51,9 @@ public class Student extends Actor {
         gasProtections.clear();
         dropOutProtections.clear();
         for (Item i : collectedItems) {
-            Logger.invokeObjectMethod(this, i, "ApplyCharges", Collections.emptyList());
+            Logger.invokeObjectMethod(i, "ApplyCharges", Collections.emptyList());
             i.ApplyCharges();
-            Logger.returnFromMethod(this, i, "ApplyCharges", Optional.empty());
+            Logger.returnFromMethod(i, "ApplyCharges", Optional.empty());
         }
     }
 
@@ -64,9 +64,9 @@ public class Student extends Actor {
      */
     @Override
     public void VisitActor(ActorVisitor v) {
-        Logger.invokeObjectMethod(this, v, "VisitStudent", List.of(this));
+        Logger.invokeObjectMethod(v, "VisitStudent", List.of(this));
         v.VisitStudent(this);
-        Logger.returnFromMethod(this, v, "VisitStudent", Optional.empty());
+        Logger.returnFromMethod(v, "VisitStudent", Optional.empty());
     }
 
     /**
@@ -78,9 +78,9 @@ public class Student extends Actor {
             var gasProtection = gasProtections.stream()
                     .findFirst()
                     .orElseThrow(() -> new IllegalStateException("Student does not have a mask"));
-            Logger.invokeObjectMethod(this, gasProtection, "Affect", Collections.emptyList());
+            Logger.invokeObjectMethod(gasProtection, "Affect", Collections.emptyList());
             gasProtection.Affect();
-            Logger.returnFromMethod(this, gasProtection, "Affect", Optional.empty());
+            Logger.returnFromMethod(gasProtection, "Affect", Optional.empty());
         }
     }
 
@@ -93,9 +93,9 @@ public class Student extends Actor {
             droppedOut = true;
         } else {
             DropOutProtection dropOutProtection = dropOutProtections.get(0);
-            Logger.invokeObjectMethod(this, dropOutProtection, "Affect", Collections.emptyList());
+            Logger.invokeObjectMethod(dropOutProtection, "Affect", Collections.emptyList());
             dropOutProtection.Affect();
-            Logger.returnFromMethod(this, dropOutProtection, "Affect", Optional.empty());
+            Logger.returnFromMethod(dropOutProtection, "Affect", Optional.empty());
             dropOutProtections.remove(0);
         }
     }

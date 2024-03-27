@@ -28,12 +28,12 @@ public class Towel extends LivingItem {
 
     @Override
     public void ApplyCharges() {
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, actor, "GetLocation", new ArrayList<>());
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(actor, "GetLocation", List.of());
         Room r2 = actor.GetLocation();
-        IndentedDebugPrinter.getInstance().returnFromMethod(this, actor, "GetLocation", Optional.of(r2));
-        IndentedDebugPrinter.getInstance().invokeObjectMethod(this, r2, "VisitActors", List.of(v));
+        IndentedDebugPrinter.getInstance().returnFromMethod(actor, "GetLocation", Optional.of(r2));
+        IndentedDebugPrinter.getInstance().invokeObjectMethod(r2, "VisitActors", List.of(v));
         r2.VisitActors(v);
-        IndentedDebugPrinter.getInstance().returnFromMethod(this, r2, "VisitActors", Optional.empty());
+        IndentedDebugPrinter.getInstance().returnFromMethod(r2, "VisitActors", Optional.empty());
     }
 
     /**

@@ -36,9 +36,9 @@ public abstract class Item implements Entity {
     public boolean PickUp(Actor a) {
         boolean result = AskTheUser.decision("Felvehető a tárgy?");
         if (result) {
-            Logger.invokeObjectMethod(this, a, "CollectItem", List.of(this));
+            Logger.invokeObjectMethod(a, "CollectItem", List.of(this));
             a.CollectItem(this);
-            Logger.returnFromMethod(this, a, "CollectItem", Optional.empty());
+            Logger.returnFromMethod(a, "CollectItem", Optional.empty());
 
             actor = a;
             return true;
@@ -51,9 +51,9 @@ public abstract class Item implements Entity {
      * Drops the item.
      */
     public void Drop() {
-        Logger.invokeObjectMethod(this, actor, "DropItem", List.of(this));
+        Logger.invokeObjectMethod(actor, "DropItem", List.of(this));
         actor.DropItem(this);
-        Logger.returnFromMethod(this, actor, "DropItem", Optional.empty());
+        Logger.returnFromMethod(actor, "DropItem", Optional.empty());
 
         actor = null;
     }
@@ -83,17 +83,17 @@ public abstract class Item implements Entity {
         var gp = new GasPoisoning();
         Logger.createObject(this, gp, "gp");
 
-        Logger.invokeObjectMethod(this, actor, "GetLocation", List.of());
+        Logger.invokeObjectMethod(actor, "GetLocation", List.of());
         Room room = actor.GetLocation();
-        Logger.returnFromMethod(this, actor, "GetLocation", Optional.of(room));
+        Logger.returnFromMethod(actor, "GetLocation", Optional.of(room));
 
-        Logger.invokeObjectMethod(this, room, "AddEffect", List.of(gp));
+        Logger.invokeObjectMethod(room, "AddEffect", List.of(gp));
         room.AddEffect(gp);
-        Logger.returnFromMethod(this, room, "AddEffect", Optional.empty());
+        Logger.returnFromMethod(room, "AddEffect", Optional.empty());
 
-        Logger.invokeObjectMethod(this, this, "Drop", Collections.emptyList());
+        Logger.invokeObjectMethod(this, "Drop", Collections.emptyList());
         Drop();
-        Logger.returnFromMethod(this, this, "Drop", Optional.empty());
+        Logger.returnFromMethod(this, "Drop", Optional.empty());
     }
 
     /**

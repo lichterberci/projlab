@@ -16,23 +16,23 @@ public class StudentDefendsWithBeer extends OneTeacherOneStudent {
 
         BeerMug b = new BeerMug();
         Logger.createObject(IndentedDebugPrinter.MAIN, b, "b");
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, b, "PickUp", List.of(s));
+        Logger.invokeObjectMethod(b, "PickUp", List.of(s));
         boolean success = b.PickUp(s);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, b, "PickUp", Optional.of(success));
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, b, "Activate", new ArrayList<>());
+        Logger.returnFromMethod(b, "PickUp", Optional.of(success));
+        Logger.invokeObjectMethod(b, "Activate", List.of());
         b.Activate();
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, b, "Activate", Optional.empty());
+        Logger.returnFromMethod(b, "Activate", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "UseDoor", List.of(d));
+        Logger.invokeObjectMethod(s, "UseDoor", List.of(d));
         success = s.UseDoor(d);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "UseDoor", Optional.of(success));
+        Logger.returnFromMethod(s, "UseDoor", Optional.of(success));
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "TimePassed", List.of());
+        Logger.invokeObjectMethod(s, "TimePassed", List.of());
         s.TimePassed();
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "TimePassed", Optional.empty());
+        Logger.returnFromMethod(s, "TimePassed", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t1, "DropOutAll", List.of());
+        Logger.invokeObjectMethod(t1, "DropOutAll", List.of());
         t1.DropOutAll();
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t1, "DropOutAll", Optional.empty());
+        Logger.returnFromMethod(t1, "DropOutAll", Optional.empty());
     }
 }
