@@ -33,6 +33,8 @@ public class GasVisitor implements ActorVisitor {
      */
     @Override
     public void VisitTeacher(Teacher t) {
-        // No specific behavior defined for visiting teacher actors
+        Logger.invokeObjectMethod(this, t, "Shock", Collections.emptyList());
+        t.Shock();
+        Logger.returnFromMethod(this, t, "Shock", Optional.empty());
     }
 }
