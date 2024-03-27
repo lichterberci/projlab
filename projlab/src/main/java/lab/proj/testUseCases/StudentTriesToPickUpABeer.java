@@ -21,15 +21,15 @@ public class StudentTriesToPickUpABeer implements TestUseCase {
 
         Room location = new Room();
         Logger.createObject(IndentedDebugPrinter.MAIN, location, "location");
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "SetLocation", new ArrayList<>());
+        Logger.invokeObjectMethod(s, "SetLocation", List.of());
         s.SetLocation(location);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "SetLocation", Optional.empty());
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, location, "AddItem", List.of(b));
+        Logger.returnFromMethod(s, "SetLocation", Optional.empty());
+        Logger.invokeObjectMethod(location, "AddItem", List.of(b));
         location.AddItem(b);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, location, "AddItem", Optional.empty());
+        Logger.returnFromMethod(location, "AddItem", Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, b, "PickUp", List.of(s));
+        Logger.invokeObjectMethod(b, "PickUp", List.of(s));
         boolean success = b.PickUp(s);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, b, "PickUp", Optional.of(success));
+        Logger.returnFromMethod(b, "PickUp", Optional.of(success));
     }
 }

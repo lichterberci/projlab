@@ -27,70 +27,70 @@ public class UseTransistors extends TransistorPairing{
         Logger.createObject(IndentedDebugPrinter.MAIN, st, "st");
 
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, st, "SetLocation", List.of(r1));
+        Logger.invokeObjectMethod(st, "SetLocation", List.of(r1));
         st.SetLocation(r1);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
+        Logger.returnFromMethod(
                 st,
                 "SetLocation",
                 Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, r1, "AddItem", List.of(t1));
+        Logger.invokeObjectMethod(r1, "AddItem", List.of(t1));
         r1.AddItem(t1);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
+        Logger.returnFromMethod(
                 r1,
                 "AddItem",
                 Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, r1, "AddItem", List.of(t2));
+        Logger.invokeObjectMethod(r1, "AddItem", List.of(t2));
         r1.AddItem(t2);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
+        Logger.returnFromMethod(
                 r1,
                 "AddItem",
                 Optional.empty());
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t1, "PickUp", List.of(st));
+        Logger.invokeObjectMethod(t1, "PickUp", List.of(st));
         boolean suc1 = t1.PickUp(st);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
+        Logger.returnFromMethod(
                 t1,
                 "PickUp",
                 Optional.empty());
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t2, "PickUp", List.of(st));
+        Logger.invokeObjectMethod(t2, "PickUp", List.of(st));
         boolean suc2 = t2.PickUp(st);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
+        Logger.returnFromMethod(
                 t2,
                 "PickUp",
                 Optional.empty());
 
         if(suc1 && suc2){
-            Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t1, "Activate", List.of());
+            Logger.invokeObjectMethod(t1, "Activate", List.of());
             t1.Activate();
-            Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
+            Logger.returnFromMethod(
                     t1,
                     "Activate",
                     Optional.empty());
-            Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, st, "SetLocation", List.of(r2));
+            Logger.invokeObjectMethod(st, "SetLocation", List.of(r2));
             st.SetLocation(r2);
-            Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
+            Logger.returnFromMethod(
                     st,
                     "SetLocation",
                     Optional.empty());
 
-            Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, r1, "StepOut", List.of(st));
+            Logger.invokeObjectMethod(r1, "StepOut", List.of(st));
             r1.StepOut(st);
-            Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
+            Logger.returnFromMethod(
                     r1,
                     "StepOut",
                     Optional.empty());
 
-            Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t2, "Activate", List.of());
+            Logger.invokeObjectMethod(t2, "Activate", List.of());
             t2.Activate();
-            Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
+            Logger.returnFromMethod(
                     t2,
                     "Activate",
                     Optional.empty());
-            Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t2, "Activate", List.of());
+            Logger.invokeObjectMethod(t2, "Activate", List.of());
             t2.Activate();
-            Logger.returnFromMethod(IndentedDebugPrinter.MAIN,
+            Logger.returnFromMethod(
                     t2,
                     "Activate",
                     Optional.empty());

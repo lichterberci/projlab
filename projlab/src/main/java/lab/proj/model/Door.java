@@ -3,7 +3,6 @@ package lab.proj.model;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,9 +56,9 @@ public class Door implements Entity {
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException("Door connects to the same room on both sides!"));
 
-        Logger.invokeObjectMethod(this, o, "StepIn", List.of(a));
+        Logger.invokeObjectMethod(o, "StepIn", List.of(a));
         boolean wasSuccessful = o.StepIn(a);
-        Logger.returnFromMethod(this, o, "StepIn", Optional.of(wasSuccessful));
+        Logger.returnFromMethod(o, "StepIn", Optional.of(wasSuccessful));
 
         return wasSuccessful;
     }
@@ -74,13 +73,13 @@ public class Door implements Entity {
         this.r2 = r2;
 
         // Add the door to both rooms
-        Logger.invokeObjectMethod(this, r1, "AddDoor", List.of(this));
+        Logger.invokeObjectMethod(r1, "AddDoor", List.of(this));
         r1.AddDoor(this);
-        Logger.returnFromMethod(this, r1, "AddDoor", Optional.empty());
+        Logger.returnFromMethod(r1, "AddDoor", Optional.empty());
 
-        Logger.invokeObjectMethod(this, r2, "AddDoor", List.of(this));
+        Logger.invokeObjectMethod(r2, "AddDoor", List.of(this));
         r2.AddDoor(this);
-        Logger.returnFromMethod(this, r2, "AddDoor", Optional.empty());
+        Logger.returnFromMethod(r2, "AddDoor", Optional.empty());
     }
 
     /**
@@ -98,12 +97,12 @@ public class Door implements Entity {
      */
     public void ChangeRoom(Room r1, Room r2) {
         // Remove the door from the first room and add it to the second room
-        Logger.invokeObjectMethod(this, r1, "RemoveDoor", List.of(this));
+        Logger.invokeObjectMethod(r1, "RemoveDoor", List.of(this));
         r1.RemoveDoor(this);
-        Logger.returnFromMethod(this, r1, "RemoveDoor", Optional.empty());
-        Logger.invokeObjectMethod(this, r2, "AddDoor", List.of(this));
+        Logger.returnFromMethod(r1, "RemoveDoor", Optional.empty());
+        Logger.invokeObjectMethod(r2, "AddDoor", List.of(this));
         r2.AddDoor(this);
-        Logger.returnFromMethod(this, r2, "AddDoor", Optional.empty());
+        Logger.returnFromMethod(r2, "AddDoor", Optional.empty());
     }
 
     /**

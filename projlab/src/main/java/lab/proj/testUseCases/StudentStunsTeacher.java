@@ -1,8 +1,6 @@
 package lab.proj.testUseCases;
 
-import lab.proj.model.BeerMug;
 import lab.proj.model.Towel;
-import lab.proj.model.TowelVisitor;
 import lab.proj.utils.IndentedDebugPrinter;
 
 
@@ -18,16 +16,16 @@ public class StudentStunsTeacher extends OneTeacherOneStudent {
 
         Towel t = new Towel();
         Logger.createObject(IndentedDebugPrinter.MAIN, t, "t");
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t, "PickUp", List.of(s));
+        Logger.invokeObjectMethod(t, "PickUp", List.of(s));
         boolean success = t.PickUp(s);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t, "PickUp", Optional.of(success));
+        Logger.returnFromMethod(t, "PickUp", Optional.of(success));
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "UseDoor", List.of(d));
+        Logger.invokeObjectMethod(s, "UseDoor", List.of(d));
         success = s.UseDoor(d);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "UseDoor", Optional.of(success));
+        Logger.returnFromMethod(s, "UseDoor", Optional.of(success));
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "TimePassed", List.of());
+        Logger.invokeObjectMethod(s, "TimePassed", List.of());
         s.TimePassed();
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "TimePassed", Optional.empty());
+        Logger.returnFromMethod(s, "TimePassed", Optional.empty());
     }
 }

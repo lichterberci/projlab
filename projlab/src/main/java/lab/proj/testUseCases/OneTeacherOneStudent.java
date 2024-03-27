@@ -30,20 +30,20 @@ public class OneTeacherOneStudent implements TestUseCase {
         Logger.createObject(IndentedDebugPrinter.MAIN, r2, "r2");
         Logger.createObject(IndentedDebugPrinter.MAIN, d, "d");
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, d, "SetRooms", List.of(r1, r2));
+        Logger.invokeObjectMethod(d, "SetRooms", List.of(r1, r2));
         d.SetRooms(r1, r2);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, d, "SetRooms", Optional.empty());
+        Logger.returnFromMethod(d, "SetRooms", Optional.empty());
 
         Logger.createObject(IndentedDebugPrinter.MAIN, s, "s");
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "SetLocation", List.of(r1));
+        Logger.invokeObjectMethod(s, "SetLocation", List.of(r1));
         s.SetLocation(r1);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(s, "SetLocation", Optional.empty());
 
         Logger.createObject(IndentedDebugPrinter.MAIN, t1, "t1");
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t1, "SetLocation", List.of(r2));
+        Logger.invokeObjectMethod(t1, "SetLocation", List.of(r2));
         t1.SetLocation(r2);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t1, "SetLocation", Optional.empty());
+        Logger.returnFromMethod(t1, "SetLocation", Optional.empty());
     }
 }

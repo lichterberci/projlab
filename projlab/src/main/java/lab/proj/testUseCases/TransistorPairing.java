@@ -29,8 +29,8 @@ public class TransistorPairing implements TestUseCase {
         Logger.createObject(IndentedDebugPrinter.MAIN, t1, "t1");
         Logger.createObject(IndentedDebugPrinter.MAIN, t2, "t2");
 
-        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t1, "PairWith", List.of(t2));
+        Logger.invokeObjectMethod(t1, "PairWith", List.of(t2));
         t1.PairWith(t2);
-        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t1, "PairWith", Optional.empty());
+        Logger.returnFromMethod(t1, "PairWith", Optional.empty());
     }
 }

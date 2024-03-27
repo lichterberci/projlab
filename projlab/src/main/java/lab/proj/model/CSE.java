@@ -39,9 +39,9 @@ public class CSE extends LivingItem {
 
             Logger.createObject(this, dp1, "dpcse" + i);
 
-            Logger.invokeObjectMethod(this, actor, "AddDropOutProtection", List.of(dp1));
+            Logger.invokeObjectMethod(actor, "AddDropOutProtection", List.of(dp1));
             actor.AddDropOutProtection(dp1);
-            Logger.returnFromMethod(this, actor, "AddDropOutProtection", Optional.empty());
+            Logger.returnFromMethod(actor, "AddDropOutProtection", Optional.empty());
         }
     }
 
@@ -54,9 +54,9 @@ public class CSE extends LivingItem {
         lifetime--;
         if (lifetime == 0) {
             dead = true;
-            Logger.invokeObjectMethod(this, this, "Drop", new ArrayList<>());
+            Logger.invokeObjectMethod(this, "Drop", List.of());
             this.Drop();
-            Logger.returnFromMethod(this, this, "Drop", Optional.empty());
+            Logger.returnFromMethod(this, "Drop", Optional.empty());
         }
     }
 
