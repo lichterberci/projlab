@@ -17,9 +17,9 @@ public class Gas implements TestUseCase {
         var st = new Student();
         var mask = new Mask();
         var gprot = new GasProtection(mask, 0);
+        st.SetLocation(room);
         st.CollectItem(mask);
         mask.PickUp(st);
-        st.SetLocation(room);
         room.AddEffect(g);
         g.SetLocation(room);
         Logger.createObject(IndentedDebugPrinter.MAIN, room, "room");
