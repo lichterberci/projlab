@@ -19,6 +19,7 @@ public class IndentedDebugPrinter implements DebugPrinter {
     private IndentedDebugPrinter(PrintStream outputStream) {
         this.outputStream = outputStream;
         objectNameMap.put(MAIN, "Main");
+        objectStack.offerLast(MAIN);
     }
 
     /**
@@ -56,55 +57,64 @@ public class IndentedDebugPrinter implements DebugPrinter {
     }
 
     @Override
-    public <T, U> void createObject(T creator, U createdObject, String nameOfCreatedObject) {
+    public void createObject(Object createdObject, String nameOfCreatedObject) {
+        Object creator = objectStack.peekLast();
+
         printIndentations();
         outputStream.printf("%s created %s of type %s%n",
                 objectNameMap.getOrDefault(creator, "Unknown"),
                 nameOfCreatedObject,
                 createdObject.getClass().getSimpleName()
         );
+
         objectNameMap.put(createdObject, nameOfCreatedObject);
     }
 
     @Override
-    public void destroyObject(Object destroyer, Object destroyedObject) {
+    public void destroyObject(Object destroyedObject) {
+        Object destroyer = objectStack.peekLast();
+
         printIndentations();
         outputStream.printf("%s destroyed %s%n",
                 objectNameMap.getOrDefault(destroyer, "Unknown"),
                 objectNameMap.get(destroyedObject));
+
         objectNameMap.remove(destroyedObject);
     }
 
-    private String getCallerMethod() {
-        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-        if (stackTraceElements.length <= 3)
-            return "Unknown";
-        return stackTraceElements[3].getMethodName();
+    private String getCallerMethodName() {
+        List<StackTraceElement> stackTraceElements = Arrays.asList(Thread.currentThread().getStackTrace());
+        stackTraceElements.remove(0);
+        final String currentLogger = stackTraceElements.get(0).getClassName();
+        return stackTraceElements.stream()
+                .filter(ste -> !currentLogger.equals(ste.getClassName()))
+                .findFirst().orElseThrow().getMethodName();
     }
 
     @Override
-    public <T> void invokeObjectMethod(T callee, String methodName, List<?> params) {
+    public void invokeObjectMethod(Object callee, List<?> params) {
         Object caller = objectStack.peekLast();
         if (caller == callee) {
-            selfInvokeMethod(caller, methodName, params);
+            selfInvokeMethod(params);
             return;
         }
 
         objectStack.offerLast(callee);
 
         printIndentations();
-        outputStream.printf("--> %s.%s(%s)%n", objectNameMap.get(callee), methodName,
+        outputStream.printf("--> %s.%s(%s)%n", objectNameMap.get(callee), getCallerMethodName(),
                 params.stream().map(this::getObjectName).collect(Collectors.joining(", ")));
 
         indentation++;
     }
 
     @Override
-    public <T> void selfInvokeMethod(T object, String methodName, List<?> params) {
+    public void selfInvokeMethod(List<?> params) {
+        Object object = objectStack.peekLast();
         objectStack.offerLast(object);
 
         printIndentations();
-        outputStream.printf("--| %s.%s(%s)%n", objectNameMap.get(object), methodName,
+        outputStream.printf("--| %s.%s(%s)%n", objectNameMap.get(object), getCallerMethodName(),
                 params.stream().map(this::getObjectName).collect(Collectors.joining(", ")));
         printIndentations();
         outputStream.println("<-|");
@@ -113,7 +123,7 @@ public class IndentedDebugPrinter implements DebugPrinter {
     }
 
     @Override
-    public <T, U> void returnFromMethod(T callee, String methodName, Optional<U> returnValue) {
+    public void returnFromMethod(Optional<Object> returnValue) {
         indentation--;
 
         printIndentations();
