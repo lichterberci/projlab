@@ -1,8 +1,0 @@
-
-`
-java:S11929"JDefine a constant instead of duplicating this literal "AddEffect" 5 times.(‰ÊòŠ
-_
-java:S1192+"IDefine a constant instead of duplicating this literal "SetRooms" 4 times.(óºüè
-^
-java:S11923"HDefine a constant instead of duplicating this literal "AddItem" 3 times.(Ñêœ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¤ÄÙıÿÿÿÿ

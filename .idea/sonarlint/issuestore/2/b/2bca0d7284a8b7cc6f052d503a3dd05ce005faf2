@@ -1,9 +1,0 @@
-
-e
-java:S1192'"HDefine a constant instead of duplicating this literal "SetPair" 4 times.(È×ì¦8úô®¨ç1
-W
-java:S1161":Add the "@Override" annotation above this method signature(êæäü8†õ®¨ç1
-j	java:S100!"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶áÅµ8†õ®¨ç1
-8
-java:S3626%"Remove this redundant jump.(ûÁÝ…8‡õ®¨ç1
-o	java:S100@"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó²»¬ùÿÿÿÿ8‰õ®¨ç1

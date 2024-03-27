@@ -1,16 +1,0 @@
-
-e
-java:S1192A"IDefine a constant instead of duplicating this literal "Activate" 6 times.(ÄòœC8äÏø¨ç1
-i
-java:S11923"GDefine a constant instead of duplicating this literal "PickUp" 4 times.(—¨ıùüÿÿÿÿ8ó¹ô¨ç1
-j
-java:S1192%"HDefine a constant instead of duplicating this literal "AddItem" 4 times.(öÒ²úÿÿÿÿ8 ãÎ¨ç1
-n
-java:S1192"LDefine a constant instead of duplicating this literal "SetLocation" 4 times.(§êÍšúÿÿÿÿ8¢ò÷¨ç1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡¤ÄÙıÿÿÿÿ8¡ãÎ¨ç1
-s
-java:S1450"QRemove the "r1" field and declare it as a local variable in the relevant methods.(Äâ²œøÿÿÿÿ8£ãÎ¨ç1
-n
-java:S1450"QRemove the "r2" field and declare it as a local variable in the relevant methods.(÷’¾‹8£ãÎ¨ç1
-s
-java:S1450"QRemove the "st" field and declare it as a local variable in the relevant methods.(¹Ô›éÿÿÿÿÿ8£ãÎ¨ç1

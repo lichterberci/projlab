@@ -1,0 +1,1 @@
+find src -type f -iname "*.java" -exec stat -c "%n,%s,%y" {} \;| awk -F/ '{print $NF}'
