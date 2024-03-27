@@ -74,10 +74,8 @@ public class Student extends Actor {
      */
     @Override
     public void Shock() {
-        if (AskTheUser.decision("Does the player have a mask?")) {
-            var gasProtection = gasProtections.stream()
-                    .findFirst()
-                    .orElseThrow(() -> new IllegalStateException("Student does not have a mask"));
+        if (gasProtections.size() > 0) {
+            var gasProtection = gasProtections.remove(0);
             Logger.invokeObjectMethod(this, gasProtection, "Affect", Collections.emptyList());
             gasProtection.Affect();
             Logger.returnFromMethod(this, gasProtection, "Affect", Optional.empty());
