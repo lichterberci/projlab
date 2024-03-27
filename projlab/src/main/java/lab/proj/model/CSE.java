@@ -53,6 +53,7 @@ public class CSE extends LivingItem {
     public void Use() {
         lifetime--;
         if (lifetime == 0) {
+            dead = true;
             Logger.invokeObjectMethod(this, this, "Drop", new ArrayList<>());
             this.Drop();
             Logger.returnFromMethod(this, this, "Drop", Optional.empty());
