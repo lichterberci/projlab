@@ -58,9 +58,11 @@ public class IndentedDebugPrinter implements DebugPrinter {
     @Override
     public <T, U> void createObject(T creator, U createdObject, String nameOfCreatedObject) {
         printIndentations();
-        outputStream.printf("%s created %s%n",
+        outputStream.printf("%s created %s of type %s%n",
                 objectNameMap.getOrDefault(creator, "Unknown"),
-                nameOfCreatedObject);
+                nameOfCreatedObject,
+                createdObject.getClass().getSimpleName()
+        );
         objectNameMap.put(createdObject, nameOfCreatedObject);
     }
 
