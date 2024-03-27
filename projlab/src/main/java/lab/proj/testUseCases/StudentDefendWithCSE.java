@@ -1,7 +1,6 @@
 package lab.proj.testUseCases;
 
-import lab.proj.model.BeerMug;
-import lab.proj.model.CSE;
+import lab.proj.model.*;
 import lab.proj.testUseCases.TwoTeachersOneStudent;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
@@ -10,31 +9,62 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class StudentDefendWithCSE extends TwoTeachersOneStudent {
+public class StudentDefendWithCSE implements TestUseCase {
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
     @Override
     public void runUseCase() {
-        super.runUseCase();
+        Room r1 = new Room();
+        Logger.createObject(IndentedDebugPrinter.MAIN, r1, "r1");
 
-        CSE cse2;
-        boolean choose = AskTheUser.decision("Három életerejű TVSZ-e legyen?");
-        if (!choose)
-        {
-            cse2 = new CSE(1);
-            Logger.createObject(IndentedDebugPrinter.MAIN, cse2, "cse2");
+        Room r2 = new Room();
+        Logger.createObject(IndentedDebugPrinter.MAIN, r2, "r2");
 
-            Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse2, "PickUp", List.of(s));
-            boolean csePickedUp = cse2.PickUp(s);
-            Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cse2, "PickUp", Optional.of(csePickedUp));
+        Door d = new Door();
+        Logger.createObject(IndentedDebugPrinter.MAIN, d, "d");
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, d, "SetRooms", List.of(r1, r2));
+        d.SetRooms(r1, r2);
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, d, "SetRooms", Optional.empty());
 
-            Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse2, "Activate", new ArrayList<>());
-            cse2.Activate();
-            Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cse2, "Activate", Optional.empty());
-        } else {
-            Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse, "Activate", new ArrayList<>());
-            cse.Activate();
-            Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cse, "Activate", Optional.empty());
+        Student s = new Student();
+        Logger.createObject(IndentedDebugPrinter.MAIN, s, "s");
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "SetLocation", List.of(r1));
+        s.SetLocation(r1);
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, s, "SetLocation", Optional.empty());
+
+        CSE cse = new CSE();
+        Logger.createObject(IndentedDebugPrinter.MAIN, cse, "cse");
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse, "PickUp", List.of(s));
+        boolean csePickedUp = cse.PickUp(s);
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cse, "PickUp", Optional.of(csePickedUp));
+        if (!csePickedUp) {
+            return;
         }
+
+        int answer = AskTheUser.number("Hány élete maradt a TVSZ-nek? (1 vagy 2)");
+        if (answer == 2) {
+            Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse, "SetLifeTime", List.of(2));
+            cse.SetLifeTime(2);
+            Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cse, "PickUp", Optional.empty());
+        } else if (answer == 1) {
+            Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse, "SetLifeTime", List.of(1));
+            cse.SetLifeTime(1);
+            Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cse, "PickUp", Optional.empty());
+        }
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, cse, "Active", new ArrayList<>());
+        cse.Activate();
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, cse, "Active", Optional.empty());
+
+        Teacher t1 = new Teacher();
+        Logger.createObject(IndentedDebugPrinter.MAIN, t1, "t1");
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t1, "SetLocation", List.of(r2));
+        t1.SetLocation(r2);
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t1, "SetLocation", Optional.empty());
+
+        Teacher t2 = new Teacher();
+        Logger.createObject(IndentedDebugPrinter.MAIN, t2, "t2");
+        Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, t2, "SetLocation", List.of(r2));
+        t2.SetLocation(r2);
+        Logger.returnFromMethod(IndentedDebugPrinter.MAIN, t2, "SetLocation", Optional.empty());
 
         Logger.invokeObjectMethod(IndentedDebugPrinter.MAIN, s, "UseDoor", List.of(d));
         boolean success = s.UseDoor(d);

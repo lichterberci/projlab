@@ -58,4 +58,8 @@ public class CSE extends LivingItem {
             Logger.returnFromMethod(this, this, "Drop", Optional.empty());
         }
     }
+
+    public void SetLifeTime(int lifetime) {
+        this.lifetime = lifetime;
+    }
 }

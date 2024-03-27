@@ -33,3 +33,7 @@ n
 +src/main/java/lab/proj/model/Camembert.java,d\8\d89e28144ca6c24069df8f7961f93abf0b8db782
 g
 7src/main/java/lab/proj/testUseCases/CamembertUsage.java,b\4\b49d9545502a442dad889fa1362b4a4c5c76fb88
+u
+Esrc/main/java/lab/proj/testUseCases/StudentDefendsWithBeerAndCSE.java,6\9\6933d33d85b4027883e916d26ebcc94ffddaf13c
+U
+%src/main/java/lab/proj/model/CSE.java,b\2\b2a719fac4d254a6a7906077b61cd9a0b1f32242
