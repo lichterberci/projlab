@@ -37,3 +37,17 @@ u
 Esrc/main/java/lab/proj/testUseCases/StudentDefendsWithBeerAndCSE.java,6\9\6933d33d85b4027883e916d26ebcc94ffddaf13c
 U
 %src/main/java/lab/proj/model/CSE.java,b\2\b2a719fac4d254a6a7906077b61cd9a0b1f32242
+^
+.src/main/java/lab/proj/model/GasPoisoning.java,6\5\65be463601f735c05b823ea55e56f95586f40b96
+\
+,src/main/java/lab/proj/model/GasVisitor.java,e\3\e38f4688237f4e876ce8c8e5b6cebbf8d63b35e1
+Y
+)src/main/java/lab/proj/model/Student.java,5\f\5f80cac675197b4fdf4b9a784b9bfef15d99e63f
+\
+,src/main/java/lab/proj/testUseCases/Gas.java,9\b\9bf7e406590a3e7837c1dfd5e180306a38f66d56
+V
+&src/main/java/lab/proj/model/Mask.java,0\8\08505dfcd76b3ebe29d182e414a2de60c2d8cbe3
+\
+,src/main/java/lab/proj/model/LivingItem.java,2\b\2b7c43060644bc31e5c766b9fbacf0f79e0f89ef
+Y
+)src/main/java/lab/proj/model/BeerMug.java,3\0\307f8e350087076ba5c759d79678c7fde386d0d6
