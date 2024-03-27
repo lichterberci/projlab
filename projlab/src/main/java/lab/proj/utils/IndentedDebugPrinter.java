@@ -47,6 +47,8 @@ public class IndentedDebugPrinter implements DebugPrinter {
      * @return The name of the object.
      */
     public String getObjectName(Object object) {
+        if (object == null)
+            return "null";
         if (object instanceof Collection<?> collection)
             return String.format("[%s]",
                     collection.stream().map(this::getObjectName).collect(Collectors.joining(", ")));
