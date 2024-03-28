@@ -94,8 +94,7 @@ public class Door implements Entity {
 
         this.r1 = r1;
         this.r2 = r2;
-        // Add the door to both rooms        r1.AddDoor(this);
-
+        r1.AddDoor(this);
         r2.AddDoor(this);
 
         Logger.returnVoid();
