@@ -70,3 +70,23 @@ R
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 c
 3src/lab/proj/testUseCases/StudentDefendWithCSE.java,5\9\597019bf65a6dae0648110b5611452a6e94b5746
+]
+-src/lab/proj/testUseCases/GasPoisTeacher.java,b\1\b13a3f920ed8c3a76d46af2dcef776e0887c6604
+c
+3src/lab/proj/testUseCases/StudentSwitchesRooms.java,1\4\14ad13566b73a8228fa3f23b7f276bdc3bdad559
+Y
+)src/lab/proj/testUseCases/CursedRoom.java,7\0\70eece762eb491c0d9d4fce29cd02c717d9c537c
+O
+src/lab/proj/model/Student.java,7\7\77ef381a3115d8a21716435f9174a4deb6c25296
+U
+%src/lab/proj/model/GasProtection.java,c\7\c75516d2fa57bcbce9c1806bba92579946cf956f
+Q
+!src/lab/proj/model/SlideRule.java,e\8\e878f86aa33fd2bdd32bc2b583192223d83eea5d
+V
+&src/lab/proj/model/DropOutVisitor.java,4\d\4d52218286b1ea9c14c31b618cb1197e730b346e
+L
+src/lab/proj/model/Mask.java,8\7\8797c82475e252de52b06d4dd8fedecd721b8780
+R
+"src/lab/proj/model/GasVisitor.java,e\e\ee1d5b1bee751f85f9d7f977c58f0d5af8d5eaa1
+;
+projlab.iml,6\0\602f5eff1a18dc78d9e191adebac2f3f5394bd13
