@@ -21,6 +21,10 @@ public abstract class RoomEffect implements Entity {
      */
     protected Room location;
 
+    public RoomEffect() {
+        Logger.createObject(this);
+    }
+
     /**
      * Sets the location (room) associated with the room effect.
      *

@@ -10,21 +10,14 @@ public class StudentDefendWithCSE implements TestUseCase {
     @Override
     public void runUseCase() {
         Room r1 = new Room();
-        Logger.createObject(r1, "r1");
-
         Room r2 = new Room();
-        Logger.createObject(r2, "r2");
-
         Door d = new Door();
-        Logger.createObject(d, "d");
         d.SetRooms(r1, r2);
 
         Student s = new Student();
-        Logger.createObject(s, "s");
         s.SetLocation(r1);
 
         CSE cse = new CSE();
-        Logger.createObject(cse, "cse");
         boolean csePickedUp = cse.PickUp(s);
         if (!csePickedUp) {
             return;
@@ -39,11 +32,9 @@ public class StudentDefendWithCSE implements TestUseCase {
         cse.Activate();
 
         Teacher t1 = new Teacher();
-        Logger.createObject(t1, "t1");
         t1.SetLocation(r2);
 
         Teacher t2 = new Teacher();
-        Logger.createObject(t2, "t2");
         t2.SetLocation(r2);
 
         boolean success = s.UseDoor(d);

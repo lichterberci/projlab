@@ -31,6 +31,10 @@ public class Door implements Entity {
      */
     private Room r2;
 
+    public Door() {
+        Logger.createObject(this);
+    }
+
     /**
      * Hides the door, making it invisible.
      */

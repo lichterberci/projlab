@@ -16,6 +16,10 @@ public class Teacher extends Actor {
      */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
+    public Teacher() {
+        Logger.createObject(this);
+    }
+
     /**
      * Stuns the teacher.
      * This method is currently empty.

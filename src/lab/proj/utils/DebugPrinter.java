@@ -13,7 +13,7 @@ public interface DebugPrinter {
      * @param createdObject       The object created.
      * @param nameOfCreatedObject The name of the created object.
      */
-    void createObject(Object createdObject, String nameOfCreatedObject);
+    void createObject(Object createdObject);
 
     /**
      * Logs the destruction of an object.

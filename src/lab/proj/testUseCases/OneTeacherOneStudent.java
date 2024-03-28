@@ -23,15 +23,9 @@ public class OneTeacherOneStudent implements TestUseCase {
         r2 = new Room();
         d = new Door();
 
-        Logger.createObject(r1, "r1");
-        Logger.createObject(r2, "r2");
-        Logger.createObject(d, "d");
-
         d.SetRooms(r1, r2);
-        Logger.createObject(s, "s");
 
         s.SetLocation(r1);
-        Logger.createObject(t1, "t1");
 
         t1.SetLocation(r2);
     }

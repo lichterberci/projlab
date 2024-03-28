@@ -11,7 +11,6 @@ public class StudentDefendsWithBeer extends OneTeacherOneStudent {
         super.runUseCase();
 
         BeerMug b = new BeerMug();
-        Logger.createObject(b, "b");
         boolean success = b.PickUp(s);
         b.Activate();
         success = s.UseDoor(d);

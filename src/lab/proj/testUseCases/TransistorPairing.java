@@ -25,9 +25,6 @@ public class TransistorPairing implements TestUseCase {
         t1 = new Transistor();
         t2 = new Transistor();
 
-        Logger.createObject(t1, "t1");
-        Logger.createObject(t2, "t2");
-
         t1.PairWith(t2);
     }
 }

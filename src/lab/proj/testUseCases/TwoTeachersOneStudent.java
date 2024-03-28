@@ -30,17 +30,6 @@ public class TwoTeachersOneStudent implements TestUseCase {
         cm = new Camembert();
         sr = new SlideRule();
 
-        Logger.createObject(s, "s");
-        Logger.createObject(t1, "t1");
-        Logger.createObject(t2, "t2");
-        Logger.createObject(r1, "r1");
-        Logger.createObject(r2, "r2");
-        Logger.createObject(d, "d");
-        Logger.createObject(b, "b");
-        Logger.createObject(cse, "cse");
-        Logger.createObject(cm, "cm");
-        Logger.createObject(sr, "sr");
-
         s.SetLocation(r1);
 
         t1.SetLocation(r2);

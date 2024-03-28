@@ -15,6 +15,10 @@ public class DropOutVisitor implements ActorVisitor {
      */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
+    public DropOutVisitor() {
+        Logger.createObject(this);
+    }
+
     /**
      * Defines the behavior of visiting a student actor.
      * This method is currently empty.

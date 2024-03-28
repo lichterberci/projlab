@@ -32,7 +32,6 @@ public abstract class Charge {
      * @param priority The priority level of this charge.
      */
     protected Charge(LivingItem creator, int priority) {
-        Logger.invokeMethod(this, List.of(creator, priority));
         this.creator = creator;
         this.priority = priority;
     }
@@ -42,7 +41,7 @@ public abstract class Charge {
      *
      * @return The priority level of this charge.
      */
-    int GetPriority() {
+    public int GetPriority() {
         Logger.invokeMethod(this, List.of());
         Logger.returnValue(priority);
         return priority;
@@ -52,5 +51,5 @@ public abstract class Charge {
      * Defines the effect of this charge.
      * Each subclass must implement this method to specify the effect of the charge.
      */
-    abstract void Affect();
+    public abstract void Affect();
 }

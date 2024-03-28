@@ -31,18 +31,6 @@ public class FourRoomsThreeDoors implements TestUseCase {
         t = new Towel();
         m = new Mask();
 
-        Logger.createObject(r1, "r1");
-        Logger.createObject(r2, "r2");
-        Logger.createObject(r3, "r3");
-        Logger.createObject(r4, "r4");
-        Logger.createObject(d1, "d1");
-        Logger.createObject(d2, "d2");
-        Logger.createObject(d3, "d3");
-        Logger.createObject(c1, "c1");
-        Logger.createObject(g, "g");
-        Logger.createObject(t, "t");
-        Logger.createObject(m, "m");
-
         d3.SetRooms(r1, r2);
         d1.SetRooms(r1, r3);
         d2.SetRooms(r2, r4);

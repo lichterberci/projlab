@@ -15,11 +15,6 @@ public class Gas implements TestUseCase {
         var mask = new Mask();
         var t1 = new Teacher();
         var gprot = new GasProtection(mask, 0);
-        Logger.createObject(room, "room");
-        Logger.createObject(g, "gasPoisoning");
-        Logger.createObject(st, "student");
-        Logger.createObject(gprot, "gprot");
-        Logger.createObject(mask, "mask");
         room.TimePassed();
     }
 }

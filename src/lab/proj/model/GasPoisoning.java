@@ -19,6 +19,10 @@ public class GasPoisoning extends RoomEffect {
      */
     private int lifetime;
 
+    public GasPoisoning() {
+        Logger.createObject(this);
+    }
+
     /**
      * Performs actions associated with the passage of time for the gas poisoning effect.
      * This method visits actors in the location affected by the gas poisoning.
@@ -28,7 +32,7 @@ public class GasPoisoning extends RoomEffect {
         Logger.invokeMethod(this, List.of());
 
         var gv = new GasVisitor();
-        Logger.createObject(gv, "gv");
+        Logger.createObject(gv);
         location.VisitActors(gv);
 
         Logger.returnVoid();

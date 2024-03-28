@@ -22,6 +22,10 @@ public class Student extends Actor {
      */
     private boolean droppedOut;
 
+    public Student() {
+        Logger.createObject(this);
+    }
+
     /**
      * Removes a charge from the student.
      * This method is currently empty.

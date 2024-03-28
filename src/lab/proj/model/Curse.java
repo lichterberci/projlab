@@ -13,6 +13,10 @@ public class Curse extends RoomEffect {
 
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
+    public Curse() {
+        Logger.createObject(this);
+    }
+
     /**
      * Performs actions associated with the passage of time.
      */

@@ -19,6 +19,10 @@ public class Transistor extends Item {
      */
     private Transistor pair = null;
 
+    public Transistor() {
+        Logger.createObject(this);
+    }
+
     /**
      * Drops the transistor.
      * This method is currently empty.

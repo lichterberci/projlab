@@ -12,12 +12,10 @@ public class StudentDefendsWithBeerAndCSE extends OneTeacherOneStudent {
         super.runUseCase();
 
         BeerMug b = new BeerMug();
-        Logger.createObject(b, "b");
         boolean success = b.PickUp(s);
         Logger.returnValue(success);
         b.Activate();
         CSE cse = new CSE(1);
-        Logger.createObject(cse, "cse");
         success = cse.PickUp(s);
         Logger.returnValue(success);
         cse.Activate();

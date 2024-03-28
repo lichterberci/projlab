@@ -8,6 +8,10 @@ import java.util.List;
  */
 public class Mask extends LivingItem {
 
+    public Mask() {
+        Logger.createObject(this);
+    }
+
     /**
      * Performs actions associated with the passage of time.
      * This method is currently empty for masks.
@@ -43,8 +47,6 @@ public class Mask extends LivingItem {
         }
 
         GasProtection gp = new GasProtection(this, 0);
-        Logger.createObject(gp, "gp");
-
         actor.AddGasProtection(gp);
 
         Logger.returnVoid();

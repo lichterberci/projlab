@@ -15,6 +15,10 @@ public class BeerMug extends LivingItem {
      */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
+    public BeerMug() {
+        Logger.createObject(this);
+    }
+
     /**
      * Performs actions associated with the passage of time.
      * This method is currently empty for beer mugs.
@@ -39,8 +43,6 @@ public class BeerMug extends LivingItem {
         }
 
         DropOutProtection dp1 = new DropOutProtection(this, 0);
-        Logger.createObject(dp1, "dp1");
-
         actor.AddDropOutProtection(dp1);
 
         Logger.returnVoid();
@@ -55,7 +57,7 @@ public class BeerMug extends LivingItem {
         Logger.invokeMethod(this, List.of());
 
         DropOutProtection dp2 = new DropOutProtection(this, 0);
-        Logger.createObject(dp2, "dp2");
+        Logger.createObject(dp2);
         actor.AddDropOutProtection(dp2);
 
         Logger.returnVoid();

@@ -13,20 +13,14 @@ public class UseTransistors extends TransistorPairing {
 
     @Override
     public void runUseCase() {
+        super.runUseCase();
         st = new Student();
         r1 = new Room();
         r2 = new Room();
-        super.runUseCase();
-        Logger.createObject(t1, "t1");
-        Logger.createObject(t2, "t2");
-        Logger.createObject(r1, "r1");
-        Logger.createObject(r2, "r2");
-        Logger.createObject(st, "st");
 
         st.SetLocation(r1);
 
         r1.AddItem(t1);
-
         r1.AddItem(t2);
 
         boolean suc1 = t1.PickUp(st);

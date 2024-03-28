@@ -13,9 +13,9 @@ public class Towel extends LivingItem {
     private final TowelVisitor v;
 
     public Towel() {
-        Logger.invokeMethod(this, List.of());
+        Logger.createObject(this);
         v = new TowelVisitor();
-        IndentedDebugPrinter.getInstance().createObject(v, "v");
+        Logger.createObject(v);
     }
 
     /**

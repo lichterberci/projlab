@@ -10,6 +10,10 @@ import static lab.proj.model.Item.Logger;
  */
 public class TowelVisitor implements ActorVisitor {
 
+    public TowelVisitor() {
+        Logger.createObject(this);
+    }
+
     /**
      * Visits a student actor.
      * This method is currently empty.

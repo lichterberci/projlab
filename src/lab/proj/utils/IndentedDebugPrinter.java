@@ -59,8 +59,22 @@ public class IndentedDebugPrinter implements DebugPrinter {
         return objectNameMap.getOrDefault(object, object.toString());
     }
 
+    private String generateNameToObject(Object createdObject) {
+        String originalName = createdObject.getClass().getSimpleName();
+        StringBuilder newName = new StringBuilder();
+        for (int i = 0; i < originalName.length(); i++)
+            if (Character.isUpperCase(originalName.charAt(i)))
+                newName.append(Character.toLowerCase(originalName.charAt(i)));
+        String nameOfCreatedObject = newName.toString() + 1;
+        for (int id = 2; objectNameMap.containsValue(nameOfCreatedObject); id++)
+            nameOfCreatedObject = newName.toString() + id;
+        return nameOfCreatedObject;
+    }
+
     @Override
-    public void createObject(Object createdObject, String nameOfCreatedObject) {
+    public void createObject(Object createdObject) {
+        String nameOfCreatedObject = generateNameToObject(createdObject);
+
         Object creator = objectStack.peekLast();
 
         printIndentations();

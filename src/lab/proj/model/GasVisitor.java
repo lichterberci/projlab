@@ -15,6 +15,10 @@ public class GasVisitor implements ActorVisitor {
      */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
+    public GasVisitor() {
+        Logger.createObject(this);
+    }
+
     /**
      * Defines the behavior of visiting a student actor affected by gas.
      * This method invokes the "Shock" method of the student actor.

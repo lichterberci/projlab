@@ -44,6 +44,10 @@ public class Room implements Entity {
      */
     private int capacity;
 
+    public Room() {
+        Logger.createObject(this);
+    }
+
     /**
      * Adds an actor to the room.
      *
@@ -216,8 +220,6 @@ public class Room implements Entity {
         Logger.invokeMethod(this, List.of());
 
         var r2 = new Room();
-        Logger.createObject(r2, "r2");
-
         CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);
         for (Item item : currentItems) {
             boolean shouldPass = AskTheUser.decision(String.format("Atkerül-e a %s tárgy az új szobába?", Logger.getObjectName(item)));
@@ -247,7 +249,7 @@ public class Room implements Entity {
         }
 
         var d3 = new Door();
-        Logger.createObject(d3, "d3");
+        Logger.createObject(d3);
         d3.SetRooms(this, r2);
 
         Logger.returnVoid();

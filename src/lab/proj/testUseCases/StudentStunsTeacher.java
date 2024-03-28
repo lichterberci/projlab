@@ -11,7 +11,6 @@ public class StudentStunsTeacher extends OneTeacherOneStudent {
         super.runUseCase();
 
         Towel t = new Towel();
-        Logger.createObject(t, "t");
         boolean success = t.PickUp(s);
         Logger.returnValue(success);
 

@@ -21,9 +21,9 @@ public class DropOutProtection extends Charge {
      * @param creator  The living item that created this drop out protection.
      * @param priority The priority level of this drop out protection.
      */
-    protected DropOutProtection(LivingItem creator, int priority) {
+    public DropOutProtection(LivingItem creator, int priority) {
         super(creator, priority);
-        Logger.invokeMethod(this, List.of(creator, priority));
+        Logger.createObject(this);
     }
 
     /**

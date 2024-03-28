@@ -8,6 +8,10 @@ import java.util.List;
  */
 public class Camembert extends Item {
 
+    public Camembert() {
+        Logger.createObject(this);
+    }
+
     /**
      * Performs actions associated with the passage of time.
      * This method is currently empty for Camembert items.
@@ -24,7 +28,7 @@ public class Camembert extends Item {
         Logger.invokeMethod(this, List.of());
 
         var gp = new GasPoisoning();
-        Logger.createObject(gp, "gp");
+        Logger.createObject(gp);
         Room room = actor.GetLocation();
         room.AddEffect(gp);
         Drop();
