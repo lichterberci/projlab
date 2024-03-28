@@ -13,7 +13,6 @@ public class Towel extends LivingItem {
     private final TowelVisitor v;
 
     public Towel() {
-        Logger.invokeMethod(this, List.of());
         v = new TowelVisitor();
         IndentedDebugPrinter.getInstance().createObject(v, "v");
     }

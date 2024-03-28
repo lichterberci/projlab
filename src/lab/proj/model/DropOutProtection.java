@@ -23,7 +23,6 @@ public class DropOutProtection extends Charge {
      */
     protected DropOutProtection(LivingItem creator, int priority) {
         super(creator, priority);
-        Logger.invokeMethod(this, List.of(creator, priority));
     }
 
     /**

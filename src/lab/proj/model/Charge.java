@@ -32,7 +32,6 @@ public abstract class Charge {
      * @param priority The priority level of this charge.
      */
     protected Charge(LivingItem creator, int priority) {
-        Logger.invokeMethod(this, List.of(creator, priority));
         this.creator = creator;
         this.priority = priority;
     }

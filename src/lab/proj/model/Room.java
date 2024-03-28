@@ -316,6 +316,7 @@ public class Room implements Entity {
 
         doors.remove(d);
 
+
         Logger.returnVoid();
     }
 

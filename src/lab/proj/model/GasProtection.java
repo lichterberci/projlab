@@ -23,7 +23,6 @@ public class GasProtection extends Charge {
      */
     public GasProtection(LivingItem creator, int priority) {
         super(creator, priority);
-        Logger.invokeMethod(this, List.of(creator, priority));
     }
 
     /**
