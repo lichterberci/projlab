@@ -101,8 +101,8 @@ public class Room implements Entity {
         if (!isFull)
             a.SetLocation(this);
 
-        Logger.returnValue(isFull);
-        return true;
+        Logger.returnValue(!isFull);
+        return !isFull;
     }
 
     /**
@@ -317,6 +317,7 @@ public class Room implements Entity {
         Logger.invokeMethod(this, Collections.singletonList(d));
 
         doors.remove(d);
+
 
         Logger.returnVoid();
     }

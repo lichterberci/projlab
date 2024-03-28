@@ -68,9 +68,10 @@ public class Door implements Entity {
         Logger.invokeMethod(this, List.of(r, a));
         boolean doorIsHidden = AskTheUser.decision("El van rejtve az ajtó?");
 
-        if (doorIsHidden)
+        if (doorIsHidden) {
+            Logger.returnValue(false);
             return false;
-
+        }
         // Find the other room connected by the door
         Room o = GetRooms().stream()
                 .filter(candidate -> candidate != r)
