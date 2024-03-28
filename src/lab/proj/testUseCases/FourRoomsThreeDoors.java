@@ -34,45 +34,45 @@ public class FourRoomsThreeDoors implements TestUseCase {
         t = new Towel();
         m = new Mask();
 
-        Logger.createObject(IndentedDebugPrinter.MAIN, r1, "r1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, r2, "r2");
-        Logger.createObject(IndentedDebugPrinter.MAIN, r3, "r3");
-        Logger.createObject(IndentedDebugPrinter.MAIN, r4, "r4");
-        Logger.createObject(IndentedDebugPrinter.MAIN, d1, "d1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, d2, "d2");
-        Logger.createObject(IndentedDebugPrinter.MAIN, d3, "d3");
-        Logger.createObject(IndentedDebugPrinter.MAIN, c1, "c1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, g, "g");
-        Logger.createObject(IndentedDebugPrinter.MAIN, t, "t");
-        Logger.createObject(IndentedDebugPrinter.MAIN, m, "m");
+        Logger.createObject(r1, "r1");
+        Logger.createObject(r2, "r2");
+        Logger.createObject(r3, "r3");
+        Logger.createObject(r4, "r4");
+        Logger.createObject(d1, "d1");
+        Logger.createObject(d2, "d2");
+        Logger.createObject(d3, "d3");
+        Logger.createObject(c1, "c1");
+        Logger.createObject(g, "g");
+        Logger.createObject(t, "t");
+        Logger.createObject(m, "m");
 
-        Logger.invokeObjectMethod(d3, "SetRooms", List.of(r1, r2));
+        Logger.invokeMethod(d3, "SetRooms", List.of(r1, r2));
         d3.SetRooms(r1, r2);
-        Logger.returnFromMethod(d3, "SetRooms", Optional.empty());
+        Logger.returnVoid();
 
-        Logger.invokeObjectMethod(d1, "SetRooms", List.of(r1, r3));
+        Logger.invokeMethod(d1, "SetRooms", List.of(r1, r3));
         d1.SetRooms(r1, r3);
-        Logger.returnFromMethod(d1, "SetRooms", Optional.empty());
+        Logger.returnVoid();
 
-        Logger.invokeObjectMethod(d2, "SetRooms", List.of(r2, r4));
+        Logger.invokeMethod(d2, "SetRooms", List.of(r2, r4));
         d2.SetRooms(r2, r4);
-        Logger.returnFromMethod(d2, "SetRooms", Optional.empty());
+        Logger.returnVoid();
 
-        Logger.invokeObjectMethod(r1, "AddItem", List.of(t));
+        Logger.invokeMethod(r1, "AddItem", List.of(t));
         r1.AddItem(t);
-        Logger.returnFromMethod(r1, "AddItem", Optional.empty());
+        Logger.returnVoid();
 
-        Logger.invokeObjectMethod(r1, "AddItem", List.of(m));
+        Logger.invokeMethod(r1, "AddItem", List.of(m));
         r1.AddItem(m);
-        Logger.returnFromMethod(r1, "AddEffect", Optional.empty());
+        Logger.returnVoid();
 
-        Logger.invokeObjectMethod(r2, "AddEffect", List.of(c1));
+        Logger.invokeMethod(r2, "AddEffect", List.of(c1));
         r2.AddEffect(c1);
-        Logger.returnFromMethod(r2, "AddEffect", Optional.empty());
+        Logger.returnVoid();
 
-        Logger.invokeObjectMethod(r1, "AddEffect", List.of(g));
+        Logger.invokeMethod(r1, "AddEffect", List.of(g));
         r1.AddEffect(g);
-        Logger.returnFromMethod(r1, "AddEffect", Optional.empty());
+        Logger.returnVoid();
     }
 }
 

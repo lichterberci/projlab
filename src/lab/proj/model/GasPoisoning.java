@@ -11,9 +11,13 @@ import java.util.Optional;
  */
 public class GasPoisoning extends RoomEffect {
 
-    /** A logger for debugging purposes. */
+    /**
+     * A logger for debugging purposes.
+     */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
-    /** The remaining lifetime of the gas poisoning effect. */
+    /**
+     * The remaining lifetime of the gas poisoning effect.
+     */
     private int lifetime;
 
     /**
@@ -22,11 +26,12 @@ public class GasPoisoning extends RoomEffect {
      */
     @Override
     public void TimePassed() {
-        Logger.invokeObjectMethod(location, "VisitActors", List.of(this));
+        
+        
         var gv = new GasVisitor();
-        Logger.createObject(this, gv, "gv");
-        Logger.invokeObjectMethod(this, location, "VisitActors", List.of(gv));
+        Logger.createObject(gv, "gv");
+        
         location.VisitActors(gv);
-        Logger.returnFromMethod(location, "VisitActors", Optional.empty());
+        
     }
 }

@@ -11,15 +11,19 @@ import java.util.Optional;
  */
 public class DropOutProtection extends Charge {
 
-    /** A logger for debugging purposes. */
+    /**
+     * A logger for debugging purposes.
+     */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     /**
      * Constructs a new drop out protection charge with the specified creator and priority.
-     * @param creator The living item that created this drop out protection.
+     *
+     * @param creator  The living item that created this drop out protection.
      * @param priority The priority level of this drop out protection.
      */
     protected DropOutProtection(LivingItem creator, int priority) {
+        
         super(creator, priority);
     }
 
@@ -29,8 +33,9 @@ public class DropOutProtection extends Charge {
      */
     @Override
     public void Affect() {
-        Logger.invokeObjectMethod(creator, "Use", List.of());
+        
+        
         creator.Use();
-        Logger.returnFromMethod(creator, "Use", Optional.empty());
+        
     }
 }

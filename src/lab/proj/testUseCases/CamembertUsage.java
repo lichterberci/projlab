@@ -11,7 +11,9 @@ import java.util.Optional;
  */
 public class CamembertUsage extends TwoTeachersOneStudent {
 
-    /** The logger instance for debugging purposes. */
+    /**
+     * The logger instance for debugging purposes.
+     */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     /**
@@ -20,8 +22,6 @@ public class CamembertUsage extends TwoTeachersOneStudent {
     @Override
     public void runUseCase() {
         super.runUseCase();
-        Logger.invokeObjectMethod(cm, "Activate", Collections.emptyList());
         cm.Activate();
-        Logger.returnFromMethod(cm, "Activate", Optional.empty());
     }
 }

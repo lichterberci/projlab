@@ -11,35 +11,44 @@ import java.util.Optional;
  * This class implements the basic functionalities and properties of an actor.
  */
 public abstract class Actor implements Entity {
-
-    /** A logger for debugging purposes. */
+    /**
+     * A logger for debugging purposes.
+     */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
-    /** Indicates whether the actor is incapacitated or not. */
+    /**
+     * Indicates whether the actor is incapacitated or not.
+     */
     protected boolean incapacitated;
 
-    /** The room where the actor is currently located. */
+    /**
+     * The room where the actor is currently located.
+     */
     protected Room location;
 
-    /** The items collected by the actor. */
+    /**
+     * The items collected by the actor.
+     */
     protected List<Item> collectedItems = new ArrayList<>();
 
-    /** Gas protections possessed by the actor. */
+    /**
+     * Gas protections possessed by the actor.
+     */
     protected List<GasProtection> gasProtections = new ArrayList<>();
 
-    /** Drop out protections possessed by the actor. */
+    /**
+     * Drop out protections possessed by the actor.
+     */
     protected List<DropOutProtection> dropOutProtections = new ArrayList<>();
 
     /**
      * Attempts to use a door to move to another room.
+     *
      * @param d The door to be used.
      * @return true if the actor successfully goes through the door, false otherwise.
      */
     public boolean UseDoor(Door d) {
-        Logger.invokeObjectMethod(d, "GoThrough", List.of(location, this));
         boolean wasSuccessful = d.GoThrough(location, this);
-        Logger.returnFromMethod(d, "GoThrough", Optional.of(wasSuccessful));
-
         if (wasSuccessful) {
             List<Room> rooms = d.GetRooms();
             Room prevRoom = null;
@@ -48,9 +57,8 @@ public abstract class Actor implements Entity {
             } else {
                 prevRoom = rooms.get(0);
             }
-            Logger.invokeObjectMethod(prevRoom, "StepOut", List.of(this));
+            
             prevRoom.StepOut(this);
-            Logger.returnFromMethod(prevRoom, "StepOut", Optional.empty());
         }
 
         return wasSuccessful;
@@ -58,28 +66,27 @@ public abstract class Actor implements Entity {
 
     /**
      * Collects an item from the current location and adds it to the actor's collection.
+     *
      * @param i The item to be collected.
      */
     public void CollectItem(Item i) {
-        Logger.invokeObjectMethod(location, "RemoveItem", List.of(i));
         location.RemoveItem(i);
-        Logger.returnFromMethod(location, "RemoveItem", Optional.empty());
-
         collectedItems.add(i);
     }
 
     /**
      * Drops an item from the actor's collection into the current location.
+     *
      * @param i The item to be dropped.
      */
     public void DropItem(Item i) {
-        Logger.invokeObjectMethod(location, "AddItem", List.of(i));
         location.AddItem(i);
-        IndentedDebugPrinter.getInstance().returnFromMethod(location, "AddItem", Optional.empty());
+        Logger.returnVoid();
     }
 
     /**
      * Adds a drop out protection to the actor.
+     *
      * @param dropOutProtection The drop out protection to be added.
      */
     public void AddDropOutProtection(DropOutProtection dropOutProtection) {
@@ -88,6 +95,7 @@ public abstract class Actor implements Entity {
 
     /**
      * Adds a gas protection to the actor.
+     *
      * @param gasProtection The gas protection to be added.
      */
     public void AddGasProtection(GasProtection gasProtection) {
@@ -96,6 +104,7 @@ public abstract class Actor implements Entity {
 
     /**
      * Retrieves the items collected by the actor.
+     *
      * @return The list of collected items.
      */
     public List<Item> GetItems() {
@@ -104,6 +113,7 @@ public abstract class Actor implements Entity {
 
     /**
      * Retrieves the room where the actor is currently located.
+     *
      * @return The current location of the actor.
      */
     public Room GetLocation() {
@@ -112,17 +122,19 @@ public abstract class Actor implements Entity {
 
     /**
      * Sets the location of the actor to the specified room.
+     *
      * @param r The room to set as the actor's location.
      */
     public void SetLocation(Room r) {
         location = r;
-        Logger.invokeObjectMethod(r, "AddActor", List.of(this));
         r.AddActor(this);
-        Logger.returnFromMethod(r, "AddActor", Optional.empty());
+
+        Logger.returnVoid();
     }
 
     /**
      * Accepts a visitor for visiting the actor.
+     *
      * @param v The visitor to visit the actor.
      */
     public abstract void VisitActor(ActorVisitor v);
@@ -139,9 +151,11 @@ public abstract class Actor implements Entity {
 
     /**
      * Checks if the actor is currently blocked (incapacitated).
+     *
      * @return true if the actor is blocked, false otherwise.
      */
     public boolean IsBlocked() {
+        
         return incapacitated;
     }
 }

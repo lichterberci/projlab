@@ -12,8 +12,6 @@ public class StudentSwitchesRooms extends TwoTeachersOneStudent {
     @Override
     public void runUseCase() {
         super.runUseCase();
-        Logger.invokeObjectMethod(s, "UseDoor", List.of(d));
         result = s.UseDoor(d);
-        Logger.returnFromMethod(s, "UseDoor", Optional.of(result));
     }
 }

@@ -24,6 +24,7 @@ public class IndentedDebugPrinter implements DebugPrinter {
 
     /**
      * Retrieves the singleton instance of IndentedDebugPrinter.
+     *
      * @return The singleton instance of IndentedDebugPrinter.
      */
     public static IndentedDebugPrinter getInstance() {
@@ -34,6 +35,7 @@ public class IndentedDebugPrinter implements DebugPrinter {
 
     /**
      * Resets the singleton instance of IndentedDebugPrinter with a target stream.
+     *
      * @param targetStream The target stream to which debug messages will be printed.
      * @return The reset singleton instance of IndentedDebugPrinter.
      */
@@ -44,6 +46,7 @@ public class IndentedDebugPrinter implements DebugPrinter {
 
     /**
      * Retrieves the name of an object.
+     *
      * @param object The object for which to retrieve the name.
      * @return The name of the object.
      */
@@ -92,7 +95,7 @@ public class IndentedDebugPrinter implements DebugPrinter {
     }
 
     @Override
-    public void invokeObjectMethod(Object callee, List<?> params) {
+    public void invokeMethod(Object callee, List<?> params) {
         Object caller = objectStack.peekLast();
         if (caller == callee) {
             selfInvokeMethod(params);
@@ -108,8 +111,7 @@ public class IndentedDebugPrinter implements DebugPrinter {
         indentation++;
     }
 
-    @Override
-    public void selfInvokeMethod(List<?> params) {
+    private void selfInvokeMethod(List<?> params) {
         Object object = objectStack.peekLast();
         objectStack.offerLast(object);
 
@@ -123,11 +125,21 @@ public class IndentedDebugPrinter implements DebugPrinter {
     }
 
     @Override
-    public void returnFromMethod(Optional<Object> returnValue) {
+    public void returnValue(Object value) {
         indentation--;
 
         printIndentations();
-        outputStream.printf("<-- %s%n", returnValue.map(this::getObjectName).orElse(""));
+        outputStream.printf("<-- %s%n", getObjectName(value));
+
+        objectStack.pollLast();
+    }
+
+    @Override
+    public void returnVoid() {
+        indentation--;
+
+        printIndentations();
+        outputStream.println("<--");
 
         objectStack.pollLast();
     }

@@ -19,16 +19,17 @@ public class Curse extends RoomEffect {
      */
     @Override
     public void TimePassed() {
-        Logger.invokeObjectMethod(location, "GetDoors", List.of());
+        
+        
         List<Door> doors = location.GetDoors();
-        Logger.returnFromMethod(location, "GetDoors", Optional.of(doors));
+        
 
         boolean shouldHide = AskTheUser.decision("Érvényesül-e az átok?");
         if (shouldHide) {
             for (Door door : doors) {
-                Logger.invokeObjectMethod(door, "Hide", List.of());
+                
                 door.Hide();
-                Logger.returnFromMethod(door, "Hide", Optional.empty());
+                
             }
         }
     }

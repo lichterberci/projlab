@@ -11,7 +11,9 @@ import java.util.Optional;
  */
 public class BeerMug extends LivingItem {
 
-    /** A logger for debugging purposes. */
+    /**
+     * A logger for debugging purposes.
+     */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     /**
@@ -20,6 +22,7 @@ public class BeerMug extends LivingItem {
      */
     @Override
     public void TimePassed() {
+        
         // No actions for beer mug on time passage
     }
 
@@ -29,16 +32,17 @@ public class BeerMug extends LivingItem {
      */
     @Override
     public void ApplyCharges() {
+        
         if (!activated) {
             return;
         }
         DropOutProtection dp1 = new DropOutProtection(this, 0);
 
-        Logger.createObject(this, dp1, "dp1");
+        Logger.createObject(dp1, "dp1");
 
-        Logger.invokeObjectMethod(actor, "AddDropOutProtection", List.of(dp1));
+        
         actor.AddDropOutProtection(dp1);
-        Logger.returnFromMethod(actor, "AddDropOutProtection", Optional.empty());
+        
     }
 
     /**
@@ -47,11 +51,12 @@ public class BeerMug extends LivingItem {
      */
     @Override
     public void Use() {
+        
         DropOutProtection dp2 = new DropOutProtection(this, 0);
-        Logger.createObject(this, dp2, "dp2");
+        Logger.createObject(dp2, "dp2");
 
-        Logger.invokeObjectMethod(actor, "AddDropOutProtection", List.of(dp2));
+        
         actor.AddDropOutProtection(dp2);
-        Logger.returnFromMethod(actor, "AddDropOutProtection", Optional.empty());
+        
     }
 }

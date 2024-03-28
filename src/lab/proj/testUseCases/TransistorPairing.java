@@ -11,7 +11,9 @@ import java.util.Optional;
  * This use case involves two teachers and one student.
  */
 public class TransistorPairing implements TestUseCase {
-    /** The logger instance for debugging purposes. */
+    /**
+     * The logger instance for debugging purposes.
+     */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
     protected boolean result;
 
@@ -26,11 +28,11 @@ public class TransistorPairing implements TestUseCase {
         t1 = new Transistor();
         t2 = new Transistor();
 
-        Logger.createObject(IndentedDebugPrinter.MAIN, t1, "t1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, t2, "t2");
+        Logger.createObject(t1, "t1");
+        Logger.createObject(t2, "t2");
 
-        Logger.invokeObjectMethod(t1, "PairWith", List.of(t2));
+        Logger.invokeMethod(t1, "PairWith", List.of(t2));
         t1.PairWith(t2);
-        Logger.returnFromMethod(t1, "PairWith", Optional.empty());
+        Logger.returnVoid();
     }
 }

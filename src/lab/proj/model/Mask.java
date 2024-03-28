@@ -1,7 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.testUseCases.Gas;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +15,7 @@ public class Mask extends LivingItem {
      */
     @Override
     public void TimePassed() {
+        
         // No actions for masks on time passage
     }
 
@@ -26,20 +25,22 @@ public class Mask extends LivingItem {
      */
     @Override
     public void Use() {
+        
         // No specific action for using masks
     }
 
     @Override
     public void ApplyCharges() {
+        
         if (!activated) {
             return;
         }
         GasProtection gp = new GasProtection(this, 0);
 
-        Logger.createObject(this, gp, "gp");
+        Logger.createObject(gp, "gp");
 
-        Logger.invokeObjectMethod(this, actor, "AddGasOutProtection", List.of(gp));
+        
         actor.AddGasProtection(gp);
-        Logger.returnFromMethod(this, actor, "AddGasProtection", Optional.empty());
+        
     }
 }

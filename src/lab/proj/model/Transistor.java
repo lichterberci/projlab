@@ -3,7 +3,6 @@ package lab.proj.model;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -14,7 +13,9 @@ public class Transistor extends Item {
 
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
-    /** The paired transistor. */
+    /**
+     * The paired transistor.
+     */
     private Transistor pair = null;
 
     /**
@@ -22,33 +23,27 @@ public class Transistor extends Item {
      * This method is currently empty.
      */
     public void Drop() {
+
         // Empty method
     }
 
     /**
      * Pairs the transistor with another transistor.
      * This method is currently empty.
+     *
      * @param t The transistor to pair with.
      */
     public void PairWith(Transistor t) {
+
         boolean result = AskTheUser.decision("Párosított már a tranzisztor?");
 
-        if(result){
-            return;
-        }else{
-            Logger.invokeObjectMethod(t, "SetPair", List.of(this));
-            t.SetPair(this);
-            Logger.returnFromMethod(
-                    t,
-                    "SetPair",
-                    Optional.empty());
+        if (result) {
+        } else {
 
-            Logger.invokeObjectMethod(this, "SetPair", List.of(t));
+            t.SetPair(this);
+            
             this.SetPair(t);
-            Logger.returnFromMethod(
-                    this,
-                    "SetPair",
-                    Optional.empty());
+            
         }
     }
 
@@ -58,51 +53,40 @@ public class Transistor extends Item {
      */
     @Override
     public void TimePassed() {
+
         // Empty method
     }
 
-    public void SetPair(Transistor t){
+    public void SetPair(Transistor t) {
+
         this.pair = t;
     }
 
     @Override
-    public void Activate(){
-        if(this.activated){
-            if(this.location != this.actor.location && this.pair != null && this.pair.activated){
-                Room prevLoc = this.actor.location;
+    public void Activate() {
 
-                Logger.invokeObjectMethod(this.location, "StepIn", List.of(this.actor));
+        if (this.activated) {
+            if (this.location != this.actor.location && this.pair != null && this.pair.activated) {
+                Room prevLoc = this.actor.location;
                 boolean success = this.location.StepIn(this.actor);
-                Logger.returnFromMethod(
-                        this.location,
-                        "StepIn",
-                        Optional.of(success));
-                if(success){
-                    Logger.invokeObjectMethod(prevLoc, "StepOut", List.of(this.actor));
+                
+                if (success) {
+
                     prevLoc.StepOut(this.actor);
-                    Logger.returnFromMethod(
-                            prevLoc,
-                            "StepOut",
-                            Optional.empty());
+                    
                 }
-            }else{
-                if(this.pair!=null && this.pair.activated){
-                    Logger.invokeObjectMethod(this.pair, "Activate", List.of());
+            } else {
+                if (this.pair != null && this.pair.activated) {
+
                     this.pair.Activate();
-                    Logger.returnFromMethod(
-                            this.pair,
-                            "Activate",
-                            Optional.empty());
+                    
                 }
             }
-        }else if(this.pair != null){
+        } else if (this.pair != null) {
             this.activated = true;
-            Logger.invokeObjectMethod(this.actor, "DropItem", List.of(this));
+
             this.actor.DropItem(this);
-            Logger.returnFromMethod(
-                    this.actor,
-                    "DropItem",
-                    Optional.empty());
+            
         }
     }
 }

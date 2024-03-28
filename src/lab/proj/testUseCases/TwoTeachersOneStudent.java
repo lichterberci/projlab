@@ -33,47 +33,31 @@ public class TwoTeachersOneStudent implements TestUseCase {
         cm = new Camembert();
         sr = new SlideRule();
 
-        Logger.createObject(IndentedDebugPrinter.MAIN, s, "s");
-        Logger.createObject(IndentedDebugPrinter.MAIN, t1, "t1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, t2, "t2");
-        Logger.createObject(IndentedDebugPrinter.MAIN, r1, "r1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, r2, "r2");
-        Logger.createObject(IndentedDebugPrinter.MAIN, d, "d");
-        Logger.createObject(IndentedDebugPrinter.MAIN, b, "b");
-        Logger.createObject(IndentedDebugPrinter.MAIN, cse, "cse");
-        Logger.createObject(IndentedDebugPrinter.MAIN, cm, "cm");
-        Logger.createObject(IndentedDebugPrinter.MAIN, sr, "sr");
+        Logger.createObject(s, "s");
+        Logger.createObject(t1, "t1");
+        Logger.createObject(t2, "t2");
+        Logger.createObject(r1, "r1");
+        Logger.createObject(r2, "r2");
+        Logger.createObject(d, "d");
+        Logger.createObject(b, "b");
+        Logger.createObject(cse, "cse");
+        Logger.createObject(cm, "cm");
+        Logger.createObject(sr, "sr");
 
-        Logger.invokeObjectMethod(s, "SetLocation", List.of(r1));
         s.SetLocation(r1);
-        Logger.returnFromMethod(s, "SetLocation", Optional.empty());
 
-        Logger.invokeObjectMethod(t1, "SetLocation", List.of(r2));
         t1.SetLocation(r2);
-        Logger.returnFromMethod(t1, "SetLocation", Optional.empty());
 
-        Logger.invokeObjectMethod(t2, "SetLocation", List.of(r2));
         t2.SetLocation(r2);
-        Logger.returnFromMethod(t2, "SetLocation", Optional.empty());
 
-        Logger.invokeObjectMethod(d, "SetRooms", List.of(r1, r2));
         d.SetRooms(r1, r2);
-        Logger.returnFromMethod(d, "SetRooms", Optional.empty());
 
-        Logger.invokeObjectMethod(b, "PickUp", List.of(s));
         boolean beerPickedUp = b.PickUp(s);
-        Logger.returnFromMethod(b, "PickUp", Optional.of(beerPickedUp));
 
-        Logger.invokeObjectMethod(cse, "PickUp", List.of(s));
         boolean csePickedUp = cse.PickUp(s);
-        Logger.returnFromMethod(cse, "PickUp", Optional.of(csePickedUp));
 
-        Logger.invokeObjectMethod(cm, "PickUp", List.of(s));
         boolean camembertPickedUp = cm.PickUp(s);
-        Logger.returnFromMethod(cm, "PickUp", Optional.of(camembertPickedUp));
 
-        Logger.invokeObjectMethod(r2, "AddItem", List.of(sr));
         r2.AddItem(sr);
-        Logger.returnFromMethod(r2, "AddItem", Optional.empty());
     }
 }

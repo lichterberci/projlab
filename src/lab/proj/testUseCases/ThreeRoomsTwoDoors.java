@@ -30,38 +30,26 @@ public class ThreeRoomsTwoDoors implements TestUseCase {
         t = new Towel();
         m = new Mask();
 
-        Logger.createObject(IndentedDebugPrinter.MAIN, r1, "r1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, r3, "r3");
-        Logger.createObject(IndentedDebugPrinter.MAIN, r4, "r4");
-        Logger.createObject(IndentedDebugPrinter.MAIN, d1, "d1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, d2, "d2");
-        Logger.createObject(IndentedDebugPrinter.MAIN, c1, "c1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, g, "g");
-        Logger.createObject(IndentedDebugPrinter.MAIN, t, "t");
-        Logger.createObject(IndentedDebugPrinter.MAIN, m, "m");
+        Logger.createObject(r1, "r1");
+        Logger.createObject(r3, "r3");
+        Logger.createObject(r4, "r4");
+        Logger.createObject(d1, "d1");
+        Logger.createObject(d2, "d2");
+        Logger.createObject(c1, "c1");
+        Logger.createObject(g, "g");
+        Logger.createObject(t, "t");
+        Logger.createObject(m, "m");
 
-        Logger.invokeObjectMethod(d1, "SetRooms", List.of(r1, r3));
         d1.SetRooms(r1, r3);
-        Logger.returnFromMethod(d1, "SetRooms", Optional.empty());
 
-        Logger.invokeObjectMethod(d2, "SetRooms", List.of(r1, r4));
         d2.SetRooms(r1, r4);
-        Logger.returnFromMethod(d2, "SetRooms", Optional.empty());
 
-        Logger.invokeObjectMethod(r1, "AddItem", List.of(t));
         r1.AddItem(t);
-        Logger.returnFromMethod(r1, "AddItem", Optional.empty());
 
-        Logger.invokeObjectMethod(r1, "AddItem", List.of(m));
         r1.AddItem(m);
-        Logger.returnFromMethod(r1, "AddEffect", Optional.empty());
 
-        Logger.invokeObjectMethod(r1, "AddEffect", List.of(c1));
         r1.AddEffect(c1);
-        Logger.returnFromMethod(r1, "AddEffect", Optional.empty());
 
-        Logger.invokeObjectMethod(r1, "AddEffect", List.of(g));
         r1.AddEffect(g);
-        Logger.returnFromMethod(r1, "AddEffect", Optional.empty());
     }
 }

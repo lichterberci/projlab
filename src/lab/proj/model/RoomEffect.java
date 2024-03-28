@@ -6,14 +6,18 @@ package lab.proj.model;
  */
 public abstract class RoomEffect implements Entity {
 
-    /** The location (room) associated with the room effect. */
+    /**
+     * The location (room) associated with the room effect.
+     */
     protected Room location;
 
     /**
      * Sets the location (room) associated with the room effect.
+     *
      * @param r The room to set as the location for the room effect.
      */
     public void SetLocation(Room r) {
+        
         location = r;
     }
 }

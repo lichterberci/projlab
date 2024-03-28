@@ -1,12 +1,14 @@
 package lab.proj.testUseCases;
 
-import lab.proj.model.*;
+import lab.proj.model.GasPoisoning;
+import lab.proj.model.Room;
+import lab.proj.model.Teacher;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.List;
 import java.util.Optional;
 
-public class GasPoisTeacher implements TestUseCase{
+public class GasPoisTeacher implements TestUseCase {
     protected static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     @Override
@@ -15,32 +17,21 @@ public class GasPoisTeacher implements TestUseCase{
         Teacher t2 = new Teacher();
         Room r2 = new Room();
 
-        Logger.createObject(IndentedDebugPrinter.MAIN, t1, "t1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, t2, "t2");
-        Logger.createObject(IndentedDebugPrinter.MAIN, r2, "r1");
+        Logger.createObject(t1, "t1");
+        Logger.createObject(t2, "t2");
+        Logger.createObject(r2, "r1");
 
 
-        Logger.invokeObjectMethod(t1, "SetLocation", List.of(r2));
         t1.SetLocation(r2);
-        Logger.returnFromMethod(t1, "SetLocation", Optional.empty());
 
-        Logger.invokeObjectMethod(t2, "SetLocation", List.of(r2));
         t2.SetLocation(r2);
-        Logger.returnFromMethod(t2, "SetLocation", Optional.empty());
 
 
         GasPoisoning g = new GasPoisoning();
-        Logger.createObject(IndentedDebugPrinter.MAIN, g, "g");
+        Logger.createObject(g, "g");
 
-        Logger.invokeObjectMethod(r2, "AddEffect", List.of(g));
         r2.AddEffect(g);
-        Logger.returnFromMethod(r2, "AddEffect", Optional.empty());
 
-
-        Logger.invokeObjectMethod(r2, "TimePassed", List.of());
         r2.TimePassed();
-        Logger.returnFromMethod(r2, "TimePassed", Optional.empty());
-
-
     }
 }

@@ -6,27 +6,35 @@ package lab.proj.model;
  */
 public abstract class Charge {
 
-    /** The living item that created this charge. */
+    /**
+     * The living item that created this charge.
+     */
     protected final LivingItem creator;
 
-    /** The priority level of this charge. */
+    /**
+     * The priority level of this charge.
+     */
     private final int priority;
 
     /**
      * Constructs a new charge with the specified creator and priority.
-     * @param creator The living item that created this charge.
+     *
+     * @param creator  The living item that created this charge.
      * @param priority The priority level of this charge.
      */
     protected Charge(LivingItem creator, int priority) {
+        
         this.creator = creator;
         this.priority = priority;
     }
 
     /**
      * Retrieves the priority level of this charge.
+     *
      * @return The priority level of this charge.
      */
     int GetPriority() {
+        
         return priority;
     }
 

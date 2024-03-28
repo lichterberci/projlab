@@ -13,8 +13,8 @@ public class RoomMerge extends FourRoomsThreeDoors {
     public void runUseCase() {
         super.runUseCase();
 
-        Logger.invokeObjectMethod(r1, "TimePassed", List.of());
+        Logger.invokeMethod(r1, "TimePassed", List.of());
         r1.TimePassed();
-        Logger.returnFromMethod(r1, "TimePassed", Optional.empty());
+        Logger.returnVoid();
     }
 }

@@ -11,7 +11,9 @@ import java.util.Optional;
  */
 public class Teacher extends Actor {
 
-    /** The logger instance for debugging purposes. */
+    /**
+     * The logger instance for debugging purposes.
+     */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     /**
@@ -19,15 +21,18 @@ public class Teacher extends Actor {
      * This method is currently empty.
      */
     public void Stun() {
+        
         incapacitated = true;
     }
 
     /**
      * Initiates the dropout process for a specific student.
      * This method is currently empty.
+     *
      * @param s The student to be dropped out.
      */
     public void DropOutStudent(Student s) {
+        
         // Empty method
     }
 
@@ -36,17 +41,18 @@ public class Teacher extends Actor {
      * If an actor is droppable, the method calls its `DropOut` method.
      */
     public void DropOutAll() {
+        
         if (incapacitated) {
             return;
         }
-        Logger.invokeObjectMethod(location, "GetActors", List.of());
+        
         List<Actor> actorsInTheRoom = location.GetActors();
-        Logger.returnFromMethod(location, "GetActors", Optional.of(actorsInTheRoom));
+        
 
         for (Actor actor : actorsInTheRoom) {
-            Logger.invokeObjectMethod(actor, "DropOut", List.of());
+            
             actor.DropOut();
-            Logger.returnFromMethod(actor, "DropOut", Optional.empty());
+            
         }
     }
 
@@ -56,18 +62,21 @@ public class Teacher extends Actor {
      */
     @Override
     public void TimePassed() {
+        
         // Empty method
     }
 
     /**
      * Accepts a visitor, allowing it to visit the teacher.
+     *
      * @param v The visitor to be accepted.
      */
     @Override
     public void VisitActor(ActorVisitor v) {
-        Logger.invokeObjectMethod(v, "VisitTeacher", List.of(this));
+        
+        
         v.VisitTeacher(this);
-        Logger.returnFromMethod(v, "VisitTeacher", Optional.empty());
+        
     }
 
     /**
@@ -76,6 +85,7 @@ public class Teacher extends Actor {
      */
     @Override
     public void Shock() {
+        
         incapacitated = true;
     }
 
@@ -85,5 +95,6 @@ public class Teacher extends Actor {
      */
     @Override
     public void DropOut() {
+        
     }
 }

@@ -26,24 +26,24 @@ public class OneTeacherOneStudent implements TestUseCase {
         r2 = new Room();
         d = new Door();
 
-        Logger.createObject(IndentedDebugPrinter.MAIN, r1, "r1");
-        Logger.createObject(IndentedDebugPrinter.MAIN, r2, "r2");
-        Logger.createObject(IndentedDebugPrinter.MAIN, d, "d");
+        Logger.createObject(r1, "r1");
+        Logger.createObject(r2, "r2");
+        Logger.createObject(d, "d");
 
-        Logger.invokeObjectMethod(d, "SetRooms", List.of(r1, r2));
+        Logger.invokeMethod(d, "SetRooms", List.of(r1, r2));
         d.SetRooms(r1, r2);
-        Logger.returnFromMethod(d, "SetRooms", Optional.empty());
+        Logger.returnVoid();
 
-        Logger.createObject(IndentedDebugPrinter.MAIN, s, "s");
+        Logger.createObject(s, "s");
 
-        Logger.invokeObjectMethod(s, "SetLocation", List.of(r1));
+        Logger.invokeMethod(s, "SetLocation", List.of(r1));
         s.SetLocation(r1);
-        Logger.returnFromMethod(s, "SetLocation", Optional.empty());
+        Logger.returnVoid();
 
-        Logger.createObject(IndentedDebugPrinter.MAIN, t1, "t1");
+        Logger.createObject(t1, "t1");
 
-        Logger.invokeObjectMethod(t1, "SetLocation", List.of(r2));
+        Logger.invokeMethod(t1, "SetLocation", List.of(r2));
         t1.SetLocation(r2);
-        Logger.returnFromMethod(t1, "SetLocation", Optional.empty());
+        Logger.returnVoid();
     }
 }

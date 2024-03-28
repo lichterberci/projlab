@@ -9,6 +9,7 @@ public class AskTheUser {
 
     /**
      * Asks the user for a number.
+     *
      * @param question The question to ask.
      * @return The number entered by the user.
      */
@@ -21,6 +22,7 @@ public class AskTheUser {
 
     /**
      * Asks the user for a decision (yes or no).
+     *
      * @param question The question to ask.
      * @return True if the user answers "igen" or "i", false otherwise.
      */

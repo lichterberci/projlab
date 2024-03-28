@@ -13,34 +13,46 @@ import java.util.Optional;
  */
 public abstract class Item implements Entity {
 
-    /** A logger for debugging purposes. */
+    /**
+     * A logger for debugging purposes.
+     */
     protected static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
-    /** Indicates whether the item is activated. */
+    /**
+     * Indicates whether the item is activated.
+     */
     protected boolean activated;
 
-    /** Indicates whether the item is dead. */
+    /**
+     * Indicates whether the item is dead.
+     */
     protected boolean dead;
 
-    /** The room where the item is located. */
+    /**
+     * The room where the item is located.
+     */
     protected Room location;
 
-    /** The actor who picked up the item. */
+    /**
+     * The actor who picked up the item.
+     */
     protected Actor actor;
 
     /**
      * Attempts to pick up the item with the specified actor.
+     *
      * @param a The actor attempting to pick up the item.
      * @return true if the item is successfully picked up, false otherwise.
      */
     public boolean PickUp(Actor a) {
+        
+        
         boolean result = AskTheUser.decision("Felvehető a tárgy?");
         if (result) {
-            Logger.invokeObjectMethod(a, "CollectItem", List.of(this));
+            
             a.CollectItem(this);
-            Logger.returnFromMethod(a, "CollectItem", Optional.empty());
-
-            actor = a;
+            
+actor = a;
             return true;
         } else {
             return false;
@@ -51,26 +63,31 @@ public abstract class Item implements Entity {
      * Drops the item.
      */
     public void Drop() {
-        Logger.invokeObjectMethod(actor, "DropItem", List.of(this));
+        
+        
         actor.DropItem(this);
-        Logger.returnFromMethod(actor, "DropItem", Optional.empty());
+        
 
         actor = null;
     }
 
     /**
      * Sets the location of the item.
+     *
      * @param location The new location of the item.
      */
     public void SetLocation(Room location) {
+        
         this.location = location;
     }
 
     /**
      * Checks if the item is currently picked up by an actor.
+     *
      * @return true if the item is picked up, false otherwise.
      */
     public boolean IsPickedUp() {
+        
         return actor != null;
     }
 
@@ -79,28 +96,31 @@ public abstract class Item implements Entity {
      * This method typically applies some effect associated with the item.
      */
     public void Activate() {
+        
         activated = true;
         var gp = new GasPoisoning();
-        Logger.createObject(this, gp, "gp");
+        Logger.createObject(gp, "gp");
 
-        Logger.invokeObjectMethod(actor, "GetLocation", List.of());
+        
         Room room = actor.GetLocation();
-        Logger.returnFromMethod(actor, "GetLocation", Optional.of(room));
+        
 
-        Logger.invokeObjectMethod(room, "AddEffect", List.of(gp));
+        
         room.AddEffect(gp);
-        Logger.returnFromMethod(room, "AddEffect", Optional.empty());
+        
 
-        Logger.invokeObjectMethod(this, "Drop", Collections.emptyList());
+        
         Drop();
-        Logger.returnFromMethod(this, "Drop", Optional.empty());
+        
     }
 
     /**
      * Checks if the item is activated.
+     *
      * @return true if the item is activated, false otherwise.
      */
     public boolean IsActivated() {
+        
         return activated;
     }
 
@@ -109,6 +129,7 @@ public abstract class Item implements Entity {
      * This method is typically overridden by subclasses to define specific behaviors.
      */
     public void ApplyCharges() {
+        
         // Default implementation does nothing
     }
 }

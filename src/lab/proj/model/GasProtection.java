@@ -11,25 +11,31 @@ import java.util.Optional;
  */
 public class GasProtection extends Charge {
 
-    /** A logger for debugging purposes. */
+    /**
+     * A logger for debugging purposes.
+     */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     /**
      * Constructs a new gas protection charge with the specified creator and priority.
-     * @param creator The living item that created this gas protection.
+     *
+     * @param creator  The living item that created this gas protection.
      * @param priority The priority level of this gas protection.
      */
     public GasProtection(LivingItem creator, int priority) {
+        
         super(creator, priority);
     }
 
     /**
      * Retrieves the priority level of this gas protection.
      * This method overrides the GetPriority method of the Charge class and always returns 0.
+     *
      * @return The priority level of this gas protection.
      */
     @Override
     public int GetPriority() {
+        
         return 0;
     }
 
@@ -39,8 +45,9 @@ public class GasProtection extends Charge {
      */
     @Override
     public void Affect() {
-        Logger.invokeObjectMethod(creator, "Use", Collections.emptyList());
+        
+        
         creator.Use();
-        Logger.returnFromMethod(creator, "Use", Optional.empty());
+        
     }
 }

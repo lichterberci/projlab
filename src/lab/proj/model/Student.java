@@ -30,6 +30,7 @@ public class Student extends Actor {
      * @param c The charge to be removed.
      */
     public void RemoveCharge(Charge c) {
+        
         // Empty method
     }
 
@@ -39,6 +40,7 @@ public class Student extends Actor {
      * @return true if the student has dropped out, false otherwise.
      */
     public boolean IsDroppedOut() {
+        
         return droppedOut;
     }
 
@@ -48,12 +50,13 @@ public class Student extends Actor {
      */
     @Override
     public void TimePassed() {
+        
         gasProtections.clear();
         dropOutProtections.clear();
         for (Item i : collectedItems) {
-            Logger.invokeObjectMethod(i, "ApplyCharges", Collections.emptyList());
+            
             i.ApplyCharges();
-            Logger.returnFromMethod(i, "ApplyCharges", Optional.empty());
+            
         }
     }
 
@@ -64,9 +67,10 @@ public class Student extends Actor {
      */
     @Override
     public void VisitActor(ActorVisitor v) {
-        Logger.invokeObjectMethod(v, "VisitStudent", List.of(this));
+        
+        
         v.VisitStudent(this);
-        Logger.returnFromMethod(v, "VisitStudent", Optional.empty());
+        
     }
 
     /**
@@ -74,13 +78,14 @@ public class Student extends Actor {
      */
     @Override
     public void Shock() {
+        
         if (AskTheUser.decision("Does the player have a mask?")) {
             var gasProtection = gasProtections.stream()
                     .findFirst()
                     .orElseThrow(() -> new IllegalStateException("Student does not have a mask"));
-            Logger.invokeObjectMethod(gasProtection, "Affect", Collections.emptyList());
+            
             gasProtection.Affect();
-            Logger.returnFromMethod(gasProtection, "Affect", Optional.empty());
+            
         }
     }
 
@@ -89,13 +94,14 @@ public class Student extends Actor {
      */
     @Override
     public void DropOut() {
+        
         if (dropOutProtections.isEmpty()) {
             droppedOut = true;
         } else {
             DropOutProtection dropOutProtection = dropOutProtections.get(0);
-            Logger.invokeObjectMethod(dropOutProtection, "Affect", Collections.emptyList());
+            
             dropOutProtection.Affect();
-            Logger.returnFromMethod(dropOutProtection, "Affect", Optional.empty());
+            
             dropOutProtections.remove(0);
         }
     }

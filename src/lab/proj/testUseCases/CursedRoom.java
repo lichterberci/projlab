@@ -12,9 +12,6 @@ public class CursedRoom extends ThreeRoomsTwoDoors {
     @Override
     public void runUseCase() {
         super.runUseCase();
-
-        Logger.invokeObjectMethod(r1, "TimePassed", List.of());
         r1.TimePassed();
-        Logger.returnFromMethod(r1, "TimePassed", Optional.empty());
     }
 }

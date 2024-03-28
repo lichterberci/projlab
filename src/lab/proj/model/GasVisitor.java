@@ -11,30 +11,36 @@ import java.util.Optional;
  */
 public class GasVisitor implements ActorVisitor {
 
-    /** A logger for debugging purposes. */
+    /**
+     * A logger for debugging purposes.
+     */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     /**
      * Defines the behavior of visiting a student actor affected by gas.
      * This method invokes the "Shock" method of the student actor.
+     *
      * @param s The student actor being visited.
      */
     @Override
     public void VisitStudent(Student s) {
-        Logger.invokeObjectMethod(s, "Shock", Collections.emptyList());
+        
+        
         s.Shock();
-        Logger.returnFromMethod(s, "Shock", Optional.empty());
+        
     }
 
     /**
      * Defines the behavior of visiting a teacher actor.
      * This method is currently empty.
+     *
      * @param t The teacher actor being visited.
      */
     @Override
     public void VisitTeacher(Teacher t) {
-        Logger.invokeObjectMethod(this, t, "Shock", Collections.emptyList());
+        
+        
         t.Shock();
-        Logger.returnFromMethod(this, t, "Shock", Optional.empty());
+        
     }
 }
