@@ -9,7 +9,6 @@ public class StudentSwitchesRoomsNoProtection extends OneTeacherOneStudent {
     public void runUseCase() {
         super.runUseCase();
         boolean success = s.UseDoor(d);
-        Logger.returnValue(success);
         t1.DropOutAll();
     }
 }

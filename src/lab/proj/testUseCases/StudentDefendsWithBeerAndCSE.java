@@ -14,16 +14,13 @@ public class StudentDefendsWithBeerAndCSE extends OneTeacherOneStudent {
         BeerMug b = new BeerMug();
         Logger.createObject(b, "b");
         boolean success = b.PickUp(s);
-        Logger.returnValue(success);
         b.Activate();
         CSE cse = new CSE();
         cse.SetLifeTime(1);
         Logger.createObject(cse, "cse");
         success = cse.PickUp(s);
-        Logger.returnValue(success);
         cse.Activate();
         success = s.UseDoor(d);
-        Logger.returnValue(success);
 
         s.TimePassed();
         t1.DropOutAll();

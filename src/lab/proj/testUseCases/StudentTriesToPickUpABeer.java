@@ -21,6 +21,5 @@ public class StudentTriesToPickUpABeer implements TestUseCase {
         s.SetLocation(location);
         location.AddItem(b);
         boolean success = b.PickUp(s);
-        Logger.returnValue(success);
     }
 }
