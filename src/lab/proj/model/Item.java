@@ -100,7 +100,9 @@ public abstract class Item implements Entity {
      * This method typically applies some effect associated with the item.
      */
     public void Activate() {
+        Logger.invokeMethod(this, List.of());
         activated = true;
+        Logger.returnVoid();
     }
 
     /**

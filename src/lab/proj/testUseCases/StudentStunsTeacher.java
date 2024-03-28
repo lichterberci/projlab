@@ -12,10 +12,8 @@ public class StudentStunsTeacher extends OneTeacherOneStudent {
 
         Towel t = new Towel();
         boolean success = t.PickUp(s);
-        Logger.returnValue(success);
 
         success = s.UseDoor(d);
-        Logger.returnValue(success);
 
         s.TimePassed();
     }
