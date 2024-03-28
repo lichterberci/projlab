@@ -88,11 +88,8 @@ public class Student extends Actor {
     public void Shock() {
         Logger.invokeMethod(this, List.of());
 
-        if (AskTheUser.decision("Does the player have a mask?")) {
-            var gasProtection = gasProtections.stream()
-                    .findFirst()
-                    .orElseThrow(() -> new IllegalStateException("Student does not have a mask"));
-
+        if (gasProtections.size() > 0) {
+            var gasProtection = gasProtections.remove(0);
             gasProtection.Affect();
         }
 
