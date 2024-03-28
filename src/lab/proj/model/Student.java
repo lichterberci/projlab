@@ -3,6 +3,7 @@ package lab.proj.model;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,7 +29,11 @@ public class Student extends Actor {
      * @param c The charge to be removed.
      */
     public void RemoveCharge(Charge c) {
-        Logger.invokeMethod(this, List.of(c));        // Empty method
+        Logger.invokeMethod(this, Collections.singletonList(c));
+
+        // Empty method
+
+        Logger.returnVoid();
     }
 
     /**
@@ -38,6 +43,7 @@ public class Student extends Actor {
      */
     public boolean IsDroppedOut() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnValue(droppedOut);
         return droppedOut;
     }
 
@@ -48,13 +54,13 @@ public class Student extends Actor {
     @Override
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
+
         gasProtections.clear();
         dropOutProtections.clear();
-        for (Item i : collectedItems) {
-
+        for (Item i : collectedItems)
             i.ApplyCharges();
 
-        }
+        Logger.returnVoid();
     }
 
     /**
@@ -64,8 +70,11 @@ public class Student extends Actor {
      */
     @Override
     public void VisitActor(ActorVisitor v) {
-        Logger.invokeMethod(this, List.of(v));
+        Logger.invokeMethod(this, Collections.singletonList(v));
+
         v.VisitStudent(this);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -74,14 +83,16 @@ public class Student extends Actor {
     @Override
     public void Shock() {
         Logger.invokeMethod(this, List.of());
+
         if (AskTheUser.decision("Does the player have a mask?")) {
             var gasProtection = gasProtections.stream()
                     .findFirst()
                     .orElseThrow(() -> new IllegalStateException("Student does not have a mask"));
 
             gasProtection.Affect();
-
         }
+
+        Logger.returnVoid();
     }
 
     /**
@@ -90,6 +101,7 @@ public class Student extends Actor {
     @Override
     public void DropOut() {
         Logger.invokeMethod(this, List.of());
+
         if (dropOutProtections.isEmpty()) {
             droppedOut = true;
         } else {
@@ -99,5 +111,7 @@ public class Student extends Actor {
 
             dropOutProtections.remove(0);
         }
+
+        Logger.returnVoid();
     }
 }

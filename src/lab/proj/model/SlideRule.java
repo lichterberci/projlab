@@ -6,5 +6,7 @@ public class SlideRule extends Item {
     @Override
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
+
+        Logger.returnVoid();
     }
 }

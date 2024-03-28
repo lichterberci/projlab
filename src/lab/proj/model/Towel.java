@@ -24,14 +24,21 @@ public class Towel extends LivingItem {
      */
     @Override
     public void TimePassed() {
-        Logger.invokeMethod(this, List.of());        // Empty method
+        Logger.invokeMethod(this, List.of());
+
+        // Empty method
+
+        Logger.returnVoid();
     }
 
     @Override
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
+
         Room r2 = actor.GetLocation();
         r2.VisitActors(v);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -40,6 +47,10 @@ public class Towel extends LivingItem {
      */
     @Override
     public void Use() {
-        Logger.invokeMethod(this, List.of());        // Empty method
+        Logger.invokeMethod(this, List.of());
+
+        // Empty method
+
+        Logger.returnVoid();
     }
 }

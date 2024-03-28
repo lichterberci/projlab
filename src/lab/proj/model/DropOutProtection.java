@@ -33,6 +33,9 @@ public class DropOutProtection extends Charge {
     @Override
     public void Affect() {
         Logger.invokeMethod(this, List.of());
+
         creator.Use();
+
+        Logger.returnVoid();
     }
 }

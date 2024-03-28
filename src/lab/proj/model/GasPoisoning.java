@@ -26,8 +26,11 @@ public class GasPoisoning extends RoomEffect {
     @Override
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
+
         var gv = new GasVisitor();
         Logger.createObject(gv, "gv");
         location.VisitActors(gv);
+
+        Logger.returnVoid();
     }
 }

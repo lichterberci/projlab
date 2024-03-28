@@ -2,6 +2,7 @@ package lab.proj.model;
 
 import lab.proj.utils.IndentedDebugPrinter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,7 +22,10 @@ public class Teacher extends Actor {
      */
     public void Stun() {
         Logger.invokeMethod(this, List.of());
+
         incapacitated = true;
+
+        Logger.returnVoid();
     }
 
     /**
@@ -31,7 +35,11 @@ public class Teacher extends Actor {
      * @param s The student to be dropped out.
      */
     public void DropOutStudent(Student s) {
-        Logger.invokeMethod(this, List.of(s));        // Empty method
+        Logger.invokeMethod(this, Collections.singletonList(s));
+
+        // Empty method
+
+        Logger.returnVoid();
     }
 
     /**
@@ -40,15 +48,12 @@ public class Teacher extends Actor {
      */
     public void DropOutAll() {
         Logger.invokeMethod(this, List.of());
-        if (incapacitated) {
-            return;
-        }
-        List<Actor> actorsInTheRoom = location.GetActors();
-        for (Actor actor : actorsInTheRoom) {
 
-            actor.DropOut();
+        if (!incapacitated)
+            for (Actor actor : location.GetActors())
+                actor.DropOut();
 
-        }
+        Logger.returnVoid();
     }
 
     /**
@@ -57,7 +62,11 @@ public class Teacher extends Actor {
      */
     @Override
     public void TimePassed() {
-        Logger.invokeMethod(this, List.of());        // Empty method
+        Logger.invokeMethod(this, List.of());
+
+        // Empty method
+
+        Logger.returnVoid();
     }
 
     /**
@@ -67,8 +76,11 @@ public class Teacher extends Actor {
      */
     @Override
     public void VisitActor(ActorVisitor v) {
-        Logger.invokeMethod(this, List.of(v));
+        Logger.invokeMethod(this, Collections.singletonList(v));
+
         v.VisitTeacher(this);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -78,7 +90,10 @@ public class Teacher extends Actor {
     @Override
     public void Shock() {
         Logger.invokeMethod(this, List.of());
+
         incapacitated = true;
+
+        Logger.returnVoid();
     }
 
     /**
@@ -88,5 +103,6 @@ public class Teacher extends Actor {
     @Override
     public void DropOut() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnVoid();
     }
 }

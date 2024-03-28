@@ -22,6 +22,8 @@ public class BeerMug extends LivingItem {
     @Override
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());        // No actions for beer mug on time passage
+
+        Logger.returnVoid();
     }
 
     /**
@@ -31,13 +33,17 @@ public class BeerMug extends LivingItem {
     @Override
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
+
         if (!activated) {
             return;
         }
-        DropOutProtection dp1 = new DropOutProtection(this, 0);
 
+        DropOutProtection dp1 = new DropOutProtection(this, 0);
         Logger.createObject(dp1, "dp1");
+
         actor.AddDropOutProtection(dp1);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -47,8 +53,11 @@ public class BeerMug extends LivingItem {
     @Override
     public void Use() {
         Logger.invokeMethod(this, List.of());
+
         DropOutProtection dp2 = new DropOutProtection(this, 0);
         Logger.createObject(dp2, "dp2");
         actor.AddDropOutProtection(dp2);
+
+        Logger.returnVoid();
     }
 }

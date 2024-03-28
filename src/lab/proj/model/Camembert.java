@@ -15,16 +15,20 @@ public class Camembert extends Item {
     @Override
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());        // No actions for Camembert on time passage
+
+        Logger.returnVoid();
     }
 
     @Override
     public void Activate() {
-        super.Activate();
         Logger.invokeMethod(this, List.of());
+
         var gp = new GasPoisoning();
         Logger.createObject(gp, "gp");
         Room room = actor.GetLocation();
         room.AddEffect(gp);
         Drop();
+
+        Logger.returnVoid();
     }
 }

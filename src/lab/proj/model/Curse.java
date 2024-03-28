@@ -21,12 +21,10 @@ public class Curse extends RoomEffect {
         Logger.invokeMethod(this, List.of());
         List<Door> doors = location.GetDoors();
         boolean shouldHide = AskTheUser.decision("Érvényesül-e az átok?");
-        if (shouldHide) {
-            for (Door door : doors) {
-
+        if (shouldHide)
+            for (Door door : doors)
                 door.Hide();
 
-            }
-        }
+        Logger.returnVoid();
     }
 }

@@ -44,6 +44,7 @@ public abstract class Charge {
      */
     int GetPriority() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnValue(priority);
         return priority;
     }
 

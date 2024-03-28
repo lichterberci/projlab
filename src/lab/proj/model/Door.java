@@ -36,7 +36,10 @@ public class Door implements Entity {
      */
     public void Hide() {
         Logger.invokeMethod(this, List.of());
+
         hidden = true;
+
+        Logger.returnVoid();
     }
 
     /**
@@ -44,7 +47,10 @@ public class Door implements Entity {
      */
     public void Show() {
         Logger.invokeMethod(this, List.of());
+
         hidden = false;
+
+        Logger.returnVoid();
     }
 
     /**
@@ -68,7 +74,7 @@ public class Door implements Entity {
                 .orElseThrow(() -> new IllegalStateException("Door connects to the same room on both sides!"));
         boolean wasSuccessful = o.StepIn(a);
 
-
+        Logger.returnValue(wasSuccessful);
         return wasSuccessful;
     }
 
@@ -80,13 +86,14 @@ public class Door implements Entity {
      */
     public void SetRooms(Room r1, Room r2) {
         Logger.invokeMethod(this, List.of(r1, r2));
+
         this.r1 = r1;
         this.r2 = r2;
-
         // Add the door to both rooms        r1.AddDoor(this);
 
-
         r2.AddDoor(this);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -96,6 +103,7 @@ public class Door implements Entity {
      */
     public List<Room> GetRooms() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnValue(List.of(r1, r2));
         return List.of(r1, r2);
     }
 
@@ -107,7 +115,10 @@ public class Door implements Entity {
      */
     public void ChangeRoom(Room r1, Room r2) {
         Logger.invokeMethod(this, List.of(r1, r2));        // Remove the door from the first room and add it to the second room        r1.RemoveDoor(this);
+
         r2.AddDoor(this);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -116,6 +127,10 @@ public class Door implements Entity {
      */
     @Override
     public void TimePassed() {
-        Logger.invokeMethod(this, List.of());        // No actions for doors on time passage
+        Logger.invokeMethod(this, List.of());
+
+        // No actions for doors on time passage
+
+        Logger.returnVoid();
     }
 }

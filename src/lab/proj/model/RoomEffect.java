@@ -2,7 +2,7 @@ package lab.proj.model;
 
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.List;
+import java.util.Collections;
 
 
 /**
@@ -27,7 +27,10 @@ public abstract class RoomEffect implements Entity {
      * @param r The room to set as the location for the room effect.
      */
     public void SetLocation(Room r) {
-        Logger.invokeMethod(this, List.of(r));
+        Logger.invokeMethod(this, Collections.singletonList(r));
+
         location = r;
+
+        Logger.returnVoid();
     }
 }

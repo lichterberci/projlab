@@ -2,6 +2,7 @@ package lab.proj.model;
 
 import lab.proj.utils.IndentedDebugPrinter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public class CSE extends LivingItem {
     }
 
     public CSE(int lifetime) {
-        Logger.invokeMethod(this, List.of(lifetime));
+        Logger.invokeMethod(this, Collections.singletonList(lifetime));
         this.lifetime = lifetime;
     }
 
@@ -28,11 +29,13 @@ public class CSE extends LivingItem {
     @Override
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());        // No actions for CSE on time passage
+        Logger.returnVoid();
     }
 
     @Override
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
+
         if (!activated) {
             return;
         }
@@ -41,6 +44,8 @@ public class CSE extends LivingItem {
             Logger.createObject(dp1, "dpcse" + i);
             actor.AddDropOutProtection(dp1);
         }
+
+        Logger.returnVoid();
     }
 
     /**
@@ -55,10 +60,15 @@ public class CSE extends LivingItem {
             dead = true;
             this.Drop();
         }
+
+        Logger.returnVoid();
     }
 
     public void SetLifeTime(int lifetime) {
-        Logger.invokeMethod(this, List.of(lifetime));
+        Logger.invokeMethod(this, Collections.singletonList(lifetime));
+
         this.lifetime = lifetime;
+
+        Logger.returnVoid();
     }
 }

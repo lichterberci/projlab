@@ -1,6 +1,6 @@
 package lab.proj.model;
 
-import java.util.List;
+import java.util.Collections;
 
 import static lab.proj.model.Item.Logger;
 
@@ -18,7 +18,11 @@ public class TowelVisitor implements ActorVisitor {
      */
     @Override
     public void VisitStudent(Student s) {
-        Logger.invokeMethod(this, List.of(s));        // Empty method
+        Logger.invokeMethod(this, Collections.singletonList(s));
+
+        // Empty method
+
+        Logger.returnVoid();
     }
 
     /**
@@ -29,7 +33,10 @@ public class TowelVisitor implements ActorVisitor {
      */
     @Override
     public void VisitTeacher(Teacher t) {
-        Logger.invokeMethod(this, List.of(t));
+        Logger.invokeMethod(this, Collections.singletonList(t));
+
         t.Stun();
+
+        Logger.returnVoid();
     }
 }

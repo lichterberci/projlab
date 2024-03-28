@@ -3,6 +3,7 @@ package lab.proj.model;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ public class Transistor extends Item {
      * @param t The transistor to pair with.
      */
     public void PairWith(Transistor t) {
-        Logger.invokeMethod(this, List.of(t));
+        Logger.invokeMethod(this, Collections.singletonList(t));
 
         boolean result = AskTheUser.decision("Párosított már a tranzisztor?");
 
@@ -58,12 +59,16 @@ public class Transistor extends Item {
         Logger.invokeMethod(this, List.of());
 
         // Empty method
+
+        Logger.returnVoid();
     }
 
     public void SetPair(Transistor t) {
-        Logger.invokeMethod(this, List.of(t));
+        Logger.invokeMethod(this, Collections.singletonList(t));
 
         this.pair = t;
+
+        Logger.returnVoid();
     }
 
     @Override
@@ -74,24 +79,19 @@ public class Transistor extends Item {
             if (this.location != this.actor.location && this.pair != null && this.pair.activated) {
                 Room prevLoc = this.actor.location;
                 boolean success = this.location.StepIn(this.actor);
-
                 if (success) {
-
                     prevLoc.StepOut(this.actor);
-
                 }
             } else {
                 if (this.pair != null && this.pair.activated) {
-
                     this.pair.Activate();
-
                 }
             }
         } else if (this.pair != null) {
             this.activated = true;
-
             this.actor.DropItem(this);
-
         }
+
+        Logger.returnVoid();
     }
 }

@@ -4,6 +4,7 @@ import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -49,8 +50,11 @@ public class Room implements Entity {
      * @param actor The actor to be added.
      */
     public void AddActor(Actor actor) {
-        Logger.invokeMethod(this, List.of(actor));
+        Logger.invokeMethod(this, Collections.singletonList(actor));
+
         actorsInside.add(actor);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -59,8 +63,11 @@ public class Room implements Entity {
      * @param actor The actor to be removed.
      */
     public void RemoveActor(Actor actor) {
-        Logger.invokeMethod(this, List.of(actor));
+        Logger.invokeMethod(this, Collections.singletonList(actor));
+
         actorsInside.remove(actor);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -70,7 +77,10 @@ public class Room implements Entity {
      */
     public boolean IsFull() {
         Logger.invokeMethod(this, List.of());
+
         boolean roomIsFull = AskTheUser.decision("Tele van a szoba?");
+
+        Logger.returnValue(roomIsFull);
         return roomIsFull;
     }
 
@@ -81,11 +91,13 @@ public class Room implements Entity {
      * @return true if the actor successfully steps into the room, false otherwise.
      */
     public boolean StepIn(Actor a) {
-        Logger.invokeMethod(this, List.of(a));
-        if (IsFull())
-            return false;
+        Logger.invokeMethod(this, Collections.singletonList(a));
 
-        a.SetLocation(this);
+        boolean isFull = IsFull();
+        if (!isFull)
+            a.SetLocation(this);
+
+        Logger.returnValue(isFull);
         return true;
     }
 
@@ -95,8 +107,11 @@ public class Room implements Entity {
      * @param a The actor attempting to step out of the room.
      */
     public void StepOut(Actor a) {
-        Logger.invokeMethod(this, List.of(a));
+        Logger.invokeMethod(this, Collections.singletonList(a));
+
         actorsInside.remove(a);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -106,6 +121,7 @@ public class Room implements Entity {
      */
     public List<Door> GetDoors() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnValue(doors);
         return doors;
     }
 
@@ -116,6 +132,7 @@ public class Room implements Entity {
      */
     public List<Item> GetItems() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnValue(itemsOnTheFloor);
         return itemsOnTheFloor;
     }
 
@@ -125,9 +142,12 @@ public class Room implements Entity {
      * @param i The item to be added.
      */
     public void AddItem(Item i) {
-        Logger.invokeMethod(this, List.of(i));
+        Logger.invokeMethod(this, Collections.singletonList(i));
+
         i.SetLocation(this);
         itemsOnTheFloor.add(i);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -136,9 +156,12 @@ public class Room implements Entity {
      * @param i The item to be removed.
      */
     public void RemoveItem(Item i) {
-        Logger.invokeMethod(this, List.of(i));
+        Logger.invokeMethod(this, Collections.singletonList(i));
+
         i.SetLocation(null);
         itemsOnTheFloor.remove(i);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -146,6 +169,7 @@ public class Room implements Entity {
      */
     public void Merge() {
         Logger.invokeMethod(this, List.of());
+
         if (!actorsInside.isEmpty())
             return;
 
@@ -181,6 +205,8 @@ public class Room implements Entity {
         }
 
         Logger.destroyObject(r2);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -188,6 +214,7 @@ public class Room implements Entity {
      */
     public void Split() {
         Logger.invokeMethod(this, List.of());
+
         var r2 = new Room();
         Logger.createObject(r2, "r2");
 
@@ -222,6 +249,8 @@ public class Room implements Entity {
         var d3 = new Door();
         Logger.createObject(d3, "d3");
         d3.SetRooms(this, r2);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -230,9 +259,11 @@ public class Room implements Entity {
      * @param e The effect to be added.
      */
     public void AddEffect(RoomEffect e) {
-        Logger.invokeMethod(this, List.of(e));
+        Logger.invokeMethod(this, Collections.singletonList(e));
         e.SetLocation(this);
         activeEffects.add(e);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -241,9 +272,12 @@ public class Room implements Entity {
      * @param e The effect to be removed.
      */
     public void RemoveEffect(RoomEffect e) {
-        Logger.invokeMethod(this, List.of(e));
+        Logger.invokeMethod(this, Collections.singletonList(e));
+
         e.SetLocation(null);
         activeEffects.remove(e);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -252,8 +286,11 @@ public class Room implements Entity {
      * @param v The visitor object used to visit actors.
      */
     public void VisitActors(ActorVisitor v) {
-        Logger.invokeMethod(this, List.of(v));
+        Logger.invokeMethod(this, Collections.singletonList(v));
+
         actorsInside.forEach(actor -> actor.VisitActor(v));
+
+        Logger.returnVoid();
     }
 
     /**
@@ -262,8 +299,11 @@ public class Room implements Entity {
      * @param d The door to be added.
      */
     public void AddDoor(Door d) {
-        Logger.invokeMethod(this, List.of(d));
+        Logger.invokeMethod(this, Collections.singletonList(d));
+
         doors.add(d);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -272,8 +312,11 @@ public class Room implements Entity {
      * @param d The door to be removed.
      */
     public void RemoveDoor(Door d) {
-        Logger.invokeMethod(this, List.of(d));
+        Logger.invokeMethod(this, Collections.singletonList(d));
+
         doors.remove(d);
+
+        Logger.returnVoid();
     }
 
     /**
@@ -283,6 +326,7 @@ public class Room implements Entity {
      */
     public List<Actor> GetActors() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnValue(actorsInside);
         return actorsInside;
     }
 
@@ -293,6 +337,7 @@ public class Room implements Entity {
      */
     public int GetCapacity() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnValue(capacity);
         return capacity;
     }
 
@@ -302,8 +347,11 @@ public class Room implements Entity {
      * @param i The new capacity of the room.
      */
     public void SetCapacity(int i) {
-        Logger.invokeMethod(this, List.of(i));
+        Logger.invokeMethod(this, Collections.singletonList(i));
+
         capacity = i;
+
+        Logger.returnVoid();
     }
 
     /**
@@ -313,6 +361,7 @@ public class Room implements Entity {
     @Override
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
+
         boolean shouldMerge = AskTheUser.decision("Akar a szoba egyesülni?");
         if (shouldMerge)
             Merge();
@@ -323,5 +372,7 @@ public class Room implements Entity {
 
         for (RoomEffect effect : activeEffects)
             effect.TimePassed();
+
+        Logger.returnVoid();
     }
 }

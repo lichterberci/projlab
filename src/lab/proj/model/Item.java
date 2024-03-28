@@ -3,6 +3,7 @@ package lab.proj.model;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -43,17 +44,16 @@ public abstract class Item implements Entity {
      * @return true if the item is successfully picked up, false otherwise.
      */
     public boolean PickUp(Actor a) {
-        Logger.invokeMethod(this, List.of(a));
-        boolean result = AskTheUser.decision("Felvehető a tárgy?");
-        if (result) {
+        Logger.invokeMethod(this, Collections.singletonList(a));
 
+        boolean canBePickedUp = AskTheUser.decision("Felvehető a tárgy?");
+        if (canBePickedUp) {
             a.CollectItem(this);
-
             actor = a;
-            return true;
-        } else {
-            return false;
         }
+
+        Logger.returnValue(canBePickedUp);
+        return canBePickedUp;
     }
 
     /**
@@ -61,8 +61,11 @@ public abstract class Item implements Entity {
      */
     public void Drop() {
         Logger.invokeMethod(this, List.of());
+
         actor.DropItem(this);
         actor = null;
+
+        Logger.returnVoid();
     }
 
     /**
@@ -71,8 +74,11 @@ public abstract class Item implements Entity {
      * @param location The new location of the item.
      */
     public void SetLocation(Room location) {
-        Logger.invokeMethod(this, List.of(location));
+        Logger.invokeMethod(this, Collections.singletonList(location));
+
         this.location = location;
+
+        Logger.returnVoid();
     }
 
     /**
@@ -82,7 +88,11 @@ public abstract class Item implements Entity {
      */
     public boolean IsPickedUp() {
         Logger.invokeMethod(this, List.of());
-        return actor != null;
+
+        boolean pickedUp = actor != null;
+
+        Logger.returnValue(pickedUp);
+        return pickedUp;
     }
 
     /**
@@ -90,13 +100,6 @@ public abstract class Item implements Entity {
      * This method typically applies some effect associated with the item.
      */
     public void Activate() {
-        Logger.invokeMethod(this, List.of());
-        activated = true;
-        var gp = new GasPoisoning();
-        Logger.createObject(gp, "gp");
-        Room room = actor.GetLocation();
-        room.AddEffect(gp);
-        Drop();
     }
 
     /**
@@ -106,6 +109,7 @@ public abstract class Item implements Entity {
      */
     public boolean IsActivated() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnValue(activated);
         return activated;
     }
 
@@ -114,6 +118,10 @@ public abstract class Item implements Entity {
      * This method is typically overridden by subclasses to define specific behaviors.
      */
     public void ApplyCharges() {
-        Logger.invokeMethod(this, List.of());        // Default implementation does nothing
+        Logger.invokeMethod(this, List.of());
+
+        // Default implementation does nothing
+
+        Logger.returnVoid();
     }
 }

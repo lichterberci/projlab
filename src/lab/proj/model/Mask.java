@@ -14,7 +14,11 @@ public class Mask extends LivingItem {
      */
     @Override
     public void TimePassed() {
-        Logger.invokeMethod(this, List.of());        // No actions for masks on time passage
+        Logger.invokeMethod(this, List.of());
+
+        // No actions for masks on time passage
+
+        Logger.returnVoid();
     }
 
     /**
@@ -23,18 +27,26 @@ public class Mask extends LivingItem {
      */
     @Override
     public void Use() {
-        Logger.invokeMethod(this, List.of());        // No specific action for using masks
+        Logger.invokeMethod(this, List.of());
+
+        // No specific action for using masks
+
+        Logger.returnVoid();
     }
 
     @Override
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
+
         if (!activated) {
             return;
         }
-        GasProtection gp = new GasProtection(this, 0);
 
+        GasProtection gp = new GasProtection(this, 0);
         Logger.createObject(gp, "gp");
+
         actor.AddGasProtection(gp);
+
+        Logger.returnVoid();
     }
 }

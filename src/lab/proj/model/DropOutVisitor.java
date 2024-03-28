@@ -2,7 +2,7 @@ package lab.proj.model;
 
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.List;
+import java.util.Collections;
 
 /**
  * A class representing a visitor that visits student and teacher actors in the game environment.
@@ -23,7 +23,8 @@ public class DropOutVisitor implements ActorVisitor {
      */
     @Override
     public void VisitStudent(Student s) {
-        Logger.invokeMethod(this, List.of(s));        // No specific behavior defined for visiting student actors
+        Logger.invokeMethod(this, Collections.singletonList(s));        // No specific behavior defined for visiting student actors
+        Logger.returnVoid();
     }
 
     /**
@@ -34,6 +35,7 @@ public class DropOutVisitor implements ActorVisitor {
      */
     @Override
     public void VisitTeacher(Teacher t) {
-        Logger.invokeMethod(this, List.of(t));        // No specific behavior defined for visiting teacher actors
+        Logger.invokeMethod(this, Collections.singletonList(t));        // No specific behavior defined for visiting teacher actors
+        Logger.returnVoid();
     }
 }

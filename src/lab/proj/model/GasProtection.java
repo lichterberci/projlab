@@ -35,6 +35,7 @@ public class GasProtection extends Charge {
     @Override
     public int GetPriority() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnValue(0);
         return 0;
     }
 
@@ -45,6 +46,9 @@ public class GasProtection extends Charge {
     @Override
     public void Affect() {
         Logger.invokeMethod(this, List.of());
+
         creator.Use();
+
+        Logger.returnVoid();
     }
 }
