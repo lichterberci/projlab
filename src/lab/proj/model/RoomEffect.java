@@ -22,7 +22,6 @@ public abstract class RoomEffect implements Entity {
     protected Room location;
 
     public RoomEffect() {
-        Logger.createObject(this);
     }
 
     /**
