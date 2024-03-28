@@ -13,7 +13,6 @@ public class CSE extends LivingItem {
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     public CSE() {
-        Logger.invokeMethod(this, List.of());
         lifetime = 3;
     }
 
