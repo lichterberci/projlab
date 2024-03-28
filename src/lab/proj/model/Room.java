@@ -98,7 +98,7 @@ public class Room implements Entity {
             a.SetLocation(this);
 
         Logger.returnValue(!isFull);
-        return true;
+        return !isFull;
     }
 
     /**
