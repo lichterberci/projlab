@@ -16,11 +16,6 @@ public class CSE extends LivingItem {
         lifetime = 3;
     }
 
-    public CSE(int lifetime) {
-        Logger.invokeMethod(this, Collections.singletonList(lifetime));
-        this.lifetime = lifetime;
-    }
-
     /**
      * Performs actions associated with the passage of time.
      * This method is currently empty for CSE items.
