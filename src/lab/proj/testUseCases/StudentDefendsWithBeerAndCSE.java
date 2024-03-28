@@ -15,7 +15,8 @@ public class StudentDefendsWithBeerAndCSE extends OneTeacherOneStudent {
         boolean success = b.PickUp(s);
         Logger.returnValue(success);
         b.Activate();
-        CSE cse = new CSE(1);
+        CSE cse = new CSE();
+        cse.SetLifeTime(1);
         success = cse.PickUp(s);
         Logger.returnValue(success);
         cse.Activate();

@@ -30,7 +30,7 @@ public class Transistor extends Item {
     public void Drop() {
         Logger.invokeMethod(this, List.of());
 
-        // Empty method
+        Logger.returnVoid();
     }
 
     /**
@@ -52,6 +52,7 @@ public class Transistor extends Item {
             this.SetPair(t);
 
         }
+        Logger.returnVoid();
     }
 
     /**
