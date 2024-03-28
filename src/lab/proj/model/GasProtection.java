@@ -2,8 +2,7 @@ package lab.proj.model;
 
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.Collections;
-import java.util.Optional;
+import java.util.List;
 
 /**
  * A class representing a gas protection charge associated with a living item in the game environment.
@@ -23,8 +22,8 @@ public class GasProtection extends Charge {
      * @param priority The priority level of this gas protection.
      */
     public GasProtection(LivingItem creator, int priority) {
-        
         super(creator, priority);
+        Logger.invokeMethod(this, List.of(creator, priority));
     }
 
     /**
@@ -35,7 +34,7 @@ public class GasProtection extends Charge {
      */
     @Override
     public int GetPriority() {
-        
+        Logger.invokeMethod(this, List.of());
         return 0;
     }
 
@@ -45,9 +44,7 @@ public class GasProtection extends Charge {
      */
     @Override
     public void Affect() {
-        
-        
+        Logger.invokeMethod(this, List.of());
         creator.Use();
-        
     }
 }

@@ -3,9 +3,6 @@ package lab.proj.testUseCases;
 import lab.proj.model.*;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.List;
-import java.util.Optional;
-
 public class FourRoomsThreeDoors implements TestUseCase {
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
     protected Room r1;
@@ -46,33 +43,13 @@ public class FourRoomsThreeDoors implements TestUseCase {
         Logger.createObject(t, "t");
         Logger.createObject(m, "m");
 
-        Logger.invokeMethod(d3, "SetRooms", List.of(r1, r2));
         d3.SetRooms(r1, r2);
-        Logger.returnVoid();
-
-        Logger.invokeMethod(d1, "SetRooms", List.of(r1, r3));
         d1.SetRooms(r1, r3);
-        Logger.returnVoid();
-
-        Logger.invokeMethod(d2, "SetRooms", List.of(r2, r4));
         d2.SetRooms(r2, r4);
-        Logger.returnVoid();
-
-        Logger.invokeMethod(r1, "AddItem", List.of(t));
         r1.AddItem(t);
-        Logger.returnVoid();
-
-        Logger.invokeMethod(r1, "AddItem", List.of(m));
         r1.AddItem(m);
-        Logger.returnVoid();
-
-        Logger.invokeMethod(r2, "AddEffect", List.of(c1));
         r2.AddEffect(c1);
-        Logger.returnVoid();
-
-        Logger.invokeMethod(r1, "AddEffect", List.of(g));
         r1.AddEffect(g);
-        Logger.returnVoid();
     }
 }
 

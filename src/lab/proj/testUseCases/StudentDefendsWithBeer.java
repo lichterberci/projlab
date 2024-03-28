@@ -3,9 +3,6 @@ package lab.proj.testUseCases;
 import lab.proj.model.BeerMug;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.List;
-import java.util.Optional;
-
 public class StudentDefendsWithBeer extends OneTeacherOneStudent {
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 

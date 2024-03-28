@@ -3,7 +3,6 @@ package lab.proj.model;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class representing a towel item in the game environment.
@@ -14,6 +13,7 @@ public class Towel extends LivingItem {
     private final TowelVisitor v;
 
     public Towel() {
+        Logger.invokeMethod(this, List.of());
         v = new TowelVisitor();
         IndentedDebugPrinter.getInstance().createObject(v, "v");
     }
@@ -24,12 +24,12 @@ public class Towel extends LivingItem {
      */
     @Override
     public void TimePassed() {
-        
-        // Empty method
+        Logger.invokeMethod(this, List.of());        // Empty method
     }
 
     @Override
     public void ApplyCharges() {
+        Logger.invokeMethod(this, List.of());
         Room r2 = actor.GetLocation();
         r2.VisitActors(v);
     }
@@ -40,7 +40,6 @@ public class Towel extends LivingItem {
      */
     @Override
     public void Use() {
-        
-        // Empty method
+        Logger.invokeMethod(this, List.of());        // Empty method
     }
 }

@@ -2,9 +2,6 @@ package lab.proj.testUseCases;
 
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.Collections;
-import java.util.Optional;
-
 /**
  * A class representing the usage of a Camembert item in a specific use case.
  * This use case involves two teachers and one student.

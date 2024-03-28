@@ -3,7 +3,6 @@ package lab.proj.model;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class representing a beer mug item in the game environment.
@@ -22,8 +21,7 @@ public class BeerMug extends LivingItem {
      */
     @Override
     public void TimePassed() {
-        
-        // No actions for beer mug on time passage
+        Logger.invokeMethod(this, List.of());        // No actions for beer mug on time passage
     }
 
     /**
@@ -32,17 +30,14 @@ public class BeerMug extends LivingItem {
      */
     @Override
     public void ApplyCharges() {
-        
+        Logger.invokeMethod(this, List.of());
         if (!activated) {
             return;
         }
         DropOutProtection dp1 = new DropOutProtection(this, 0);
 
         Logger.createObject(dp1, "dp1");
-
-        
         actor.AddDropOutProtection(dp1);
-        
     }
 
     /**
@@ -51,12 +46,9 @@ public class BeerMug extends LivingItem {
      */
     @Override
     public void Use() {
-        
+        Logger.invokeMethod(this, List.of());
         DropOutProtection dp2 = new DropOutProtection(this, 0);
         Logger.createObject(dp2, "dp2");
-
-        
         actor.AddDropOutProtection(dp2);
-        
     }
 }

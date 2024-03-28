@@ -3,9 +3,6 @@ package lab.proj.testUseCases;
 import lab.proj.model.*;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.List;
-import java.util.Optional;
-
 public class TwoTeachersOneStudent implements TestUseCase {
     protected static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 

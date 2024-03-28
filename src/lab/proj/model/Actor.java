@@ -4,7 +4,6 @@ import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * An abstract class representing an actor in the game environment.
@@ -48,6 +47,7 @@ public abstract class Actor implements Entity {
      * @return true if the actor successfully goes through the door, false otherwise.
      */
     public boolean UseDoor(Door d) {
+        Logger.invokeMethod(this, List.of(d));
         boolean wasSuccessful = d.GoThrough(location, this);
         if (wasSuccessful) {
             List<Room> rooms = d.GetRooms();
@@ -57,7 +57,7 @@ public abstract class Actor implements Entity {
             } else {
                 prevRoom = rooms.get(0);
             }
-            
+
             prevRoom.StepOut(this);
         }
 
@@ -70,6 +70,7 @@ public abstract class Actor implements Entity {
      * @param i The item to be collected.
      */
     public void CollectItem(Item i) {
+        Logger.invokeMethod(this, List.of(i));
         location.RemoveItem(i);
         collectedItems.add(i);
     }
@@ -80,8 +81,9 @@ public abstract class Actor implements Entity {
      * @param i The item to be dropped.
      */
     public void DropItem(Item i) {
+        Logger.invokeMethod(this, List.of(i));
         location.AddItem(i);
-        Logger.returnVoid();
+
     }
 
     /**
@@ -90,6 +92,7 @@ public abstract class Actor implements Entity {
      * @param dropOutProtection The drop out protection to be added.
      */
     public void AddDropOutProtection(DropOutProtection dropOutProtection) {
+        Logger.invokeMethod(this, List.of(dropOutProtection));
         dropOutProtections.add(dropOutProtection);
     }
 
@@ -99,6 +102,7 @@ public abstract class Actor implements Entity {
      * @param gasProtection The gas protection to be added.
      */
     public void AddGasProtection(GasProtection gasProtection) {
+        Logger.invokeMethod(this, List.of(gasProtection));
         gasProtections.add(gasProtection);
     }
 
@@ -108,6 +112,7 @@ public abstract class Actor implements Entity {
      * @return The list of collected items.
      */
     public List<Item> GetItems() {
+        Logger.invokeMethod(this, List.of());
         return collectedItems;
     }
 
@@ -117,6 +122,7 @@ public abstract class Actor implements Entity {
      * @return The current location of the actor.
      */
     public Room GetLocation() {
+        Logger.invokeMethod(this, List.of());
         return location;
     }
 
@@ -126,10 +132,11 @@ public abstract class Actor implements Entity {
      * @param r The room to set as the actor's location.
      */
     public void SetLocation(Room r) {
+        Logger.invokeMethod(this, List.of(r));
         location = r;
         r.AddActor(this);
 
-        Logger.returnVoid();
+
     }
 
     /**
@@ -155,7 +162,7 @@ public abstract class Actor implements Entity {
      * @return true if the actor is blocked, false otherwise.
      */
     public boolean IsBlocked() {
-        
+        Logger.invokeMethod(this, List.of());
         return incapacitated;
     }
 }

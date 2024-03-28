@@ -3,7 +3,6 @@ package lab.proj.model;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class representing a teacher actor in the game environment.
@@ -21,7 +20,7 @@ public class Teacher extends Actor {
      * This method is currently empty.
      */
     public void Stun() {
-        
+        Logger.invokeMethod(this, List.of());
         incapacitated = true;
     }
 
@@ -32,8 +31,7 @@ public class Teacher extends Actor {
      * @param s The student to be dropped out.
      */
     public void DropOutStudent(Student s) {
-        
-        // Empty method
+        Logger.invokeMethod(this, List.of(s));        // Empty method
     }
 
     /**
@@ -41,18 +39,15 @@ public class Teacher extends Actor {
      * If an actor is droppable, the method calls its `DropOut` method.
      */
     public void DropOutAll() {
-        
+        Logger.invokeMethod(this, List.of());
         if (incapacitated) {
             return;
         }
-        
         List<Actor> actorsInTheRoom = location.GetActors();
-        
-
         for (Actor actor : actorsInTheRoom) {
-            
+
             actor.DropOut();
-            
+
         }
     }
 
@@ -62,8 +57,7 @@ public class Teacher extends Actor {
      */
     @Override
     public void TimePassed() {
-        
-        // Empty method
+        Logger.invokeMethod(this, List.of());        // Empty method
     }
 
     /**
@@ -73,10 +67,8 @@ public class Teacher extends Actor {
      */
     @Override
     public void VisitActor(ActorVisitor v) {
-        
-        
+        Logger.invokeMethod(this, List.of(v));
         v.VisitTeacher(this);
-        
     }
 
     /**
@@ -85,7 +77,7 @@ public class Teacher extends Actor {
      */
     @Override
     public void Shock() {
-        
+        Logger.invokeMethod(this, List.of());
         incapacitated = true;
     }
 
@@ -95,6 +87,6 @@ public class Teacher extends Actor {
      */
     @Override
     public void DropOut() {
-        
+        Logger.invokeMethod(this, List.of());
     }
 }

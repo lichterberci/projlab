@@ -4,10 +4,6 @@ import lab.proj.model.*;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 public class StudentDefendWithCSE implements TestUseCase {
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 

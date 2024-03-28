@@ -3,9 +3,7 @@ package lab.proj.model;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * An abstract class representing an item in the game environment.
@@ -45,14 +43,13 @@ public abstract class Item implements Entity {
      * @return true if the item is successfully picked up, false otherwise.
      */
     public boolean PickUp(Actor a) {
-        
-        
+        Logger.invokeMethod(this, List.of(a));
         boolean result = AskTheUser.decision("Felvehető a tárgy?");
         if (result) {
-            
+
             a.CollectItem(this);
-            
-actor = a;
+
+            actor = a;
             return true;
         } else {
             return false;
@@ -63,11 +60,8 @@ actor = a;
      * Drops the item.
      */
     public void Drop() {
-        
-        
+        Logger.invokeMethod(this, List.of());
         actor.DropItem(this);
-        
-
         actor = null;
     }
 
@@ -77,7 +71,7 @@ actor = a;
      * @param location The new location of the item.
      */
     public void SetLocation(Room location) {
-        
+        Logger.invokeMethod(this, List.of(location));
         this.location = location;
     }
 
@@ -87,7 +81,7 @@ actor = a;
      * @return true if the item is picked up, false otherwise.
      */
     public boolean IsPickedUp() {
-        
+        Logger.invokeMethod(this, List.of());
         return actor != null;
     }
 
@@ -96,22 +90,13 @@ actor = a;
      * This method typically applies some effect associated with the item.
      */
     public void Activate() {
-        
+        Logger.invokeMethod(this, List.of());
         activated = true;
         var gp = new GasPoisoning();
         Logger.createObject(gp, "gp");
-
-        
         Room room = actor.GetLocation();
-        
-
-        
         room.AddEffect(gp);
-        
-
-        
         Drop();
-        
     }
 
     /**
@@ -120,7 +105,7 @@ actor = a;
      * @return true if the item is activated, false otherwise.
      */
     public boolean IsActivated() {
-        
+        Logger.invokeMethod(this, List.of());
         return activated;
     }
 
@@ -129,7 +114,6 @@ actor = a;
      * This method is typically overridden by subclasses to define specific behaviors.
      */
     public void ApplyCharges() {
-        
-        // Default implementation does nothing
+        Logger.invokeMethod(this, List.of());        // Default implementation does nothing
     }
 }

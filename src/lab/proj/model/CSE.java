@@ -3,7 +3,6 @@ package lab.proj.model;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class representing a CSE (Code of Studies and Exams) item in the game environment.
@@ -13,12 +12,12 @@ public class CSE extends LivingItem {
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     public CSE() {
-        
+        Logger.invokeMethod(this, List.of());
         lifetime = 3;
     }
 
     public CSE(int lifetime) {
-        
+        Logger.invokeMethod(this, List.of(lifetime));
         this.lifetime = lifetime;
     }
 
@@ -28,12 +27,12 @@ public class CSE extends LivingItem {
      */
     @Override
     public void TimePassed() {
-        
-        // No actions for CSE on time passage
+        Logger.invokeMethod(this, List.of());        // No actions for CSE on time passage
     }
 
     @Override
     public void ApplyCharges() {
+        Logger.invokeMethod(this, List.of());
         if (!activated) {
             return;
         }
@@ -50,6 +49,7 @@ public class CSE extends LivingItem {
      */
     @Override
     public void Use() {
+        Logger.invokeMethod(this, List.of());
         lifetime--;
         if (lifetime == 0) {
             dead = true;
@@ -58,6 +58,7 @@ public class CSE extends LivingItem {
     }
 
     public void SetLifeTime(int lifetime) {
+        Logger.invokeMethod(this, List.of(lifetime));
         this.lifetime = lifetime;
     }
 }

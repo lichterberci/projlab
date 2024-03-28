@@ -3,9 +3,6 @@ package lab.proj.testUseCases;
 import lab.proj.model.Transistor;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.List;
-import java.util.Optional;
-
 /**
  * A class representing the usage of a Camembert item in a specific use case.
  * This use case involves two teachers and one student.
@@ -31,8 +28,6 @@ public class TransistorPairing implements TestUseCase {
         Logger.createObject(t1, "t1");
         Logger.createObject(t2, "t2");
 
-        Logger.invokeMethod(t1, "PairWith", List.of(t2));
         t1.PairWith(t2);
-        Logger.returnVoid();
     }
 }

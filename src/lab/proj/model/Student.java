@@ -3,9 +3,7 @@ package lab.proj.model;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class representing a student actor in the game environment.
@@ -30,8 +28,7 @@ public class Student extends Actor {
      * @param c The charge to be removed.
      */
     public void RemoveCharge(Charge c) {
-        
-        // Empty method
+        Logger.invokeMethod(this, List.of(c));        // Empty method
     }
 
     /**
@@ -40,7 +37,7 @@ public class Student extends Actor {
      * @return true if the student has dropped out, false otherwise.
      */
     public boolean IsDroppedOut() {
-        
+        Logger.invokeMethod(this, List.of());
         return droppedOut;
     }
 
@@ -50,13 +47,13 @@ public class Student extends Actor {
      */
     @Override
     public void TimePassed() {
-        
+        Logger.invokeMethod(this, List.of());
         gasProtections.clear();
         dropOutProtections.clear();
         for (Item i : collectedItems) {
-            
+
             i.ApplyCharges();
-            
+
         }
     }
 
@@ -67,10 +64,8 @@ public class Student extends Actor {
      */
     @Override
     public void VisitActor(ActorVisitor v) {
-        
-        
+        Logger.invokeMethod(this, List.of(v));
         v.VisitStudent(this);
-        
     }
 
     /**
@@ -78,14 +73,14 @@ public class Student extends Actor {
      */
     @Override
     public void Shock() {
-        
+        Logger.invokeMethod(this, List.of());
         if (AskTheUser.decision("Does the player have a mask?")) {
             var gasProtection = gasProtections.stream()
                     .findFirst()
                     .orElseThrow(() -> new IllegalStateException("Student does not have a mask"));
-            
+
             gasProtection.Affect();
-            
+
         }
     }
 
@@ -94,14 +89,14 @@ public class Student extends Actor {
      */
     @Override
     public void DropOut() {
-        
+        Logger.invokeMethod(this, List.of());
         if (dropOutProtections.isEmpty()) {
             droppedOut = true;
         } else {
             DropOutProtection dropOutProtection = dropOutProtections.get(0);
-            
+
             dropOutProtection.Affect();
-            
+
             dropOutProtections.remove(0);
         }
     }

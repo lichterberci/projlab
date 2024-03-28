@@ -3,7 +3,6 @@ package lab.proj.model;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class representing a gas poisoning room effect in the game environment.
@@ -26,12 +25,9 @@ public class GasPoisoning extends RoomEffect {
      */
     @Override
     public void TimePassed() {
-        
-        
+        Logger.invokeMethod(this, List.of());
         var gv = new GasVisitor();
         Logger.createObject(gv, "gv");
-        
         location.VisitActors(gv);
-        
     }
 }

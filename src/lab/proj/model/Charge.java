@@ -1,10 +1,19 @@
 package lab.proj.model;
 
+import lab.proj.utils.IndentedDebugPrinter;
+
+import java.util.List;
+
 /**
  * An abstract class representing a charge associated with a living item in the game environment.
  * Charges can affect various aspects of the game and are associated with a priority level.
  */
 public abstract class Charge {
+
+    /**
+     * A logger for debugging purposes.
+     */
+    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
     /**
      * The living item that created this charge.
@@ -23,7 +32,7 @@ public abstract class Charge {
      * @param priority The priority level of this charge.
      */
     protected Charge(LivingItem creator, int priority) {
-        
+        Logger.invokeMethod(this, List.of(creator, priority));
         this.creator = creator;
         this.priority = priority;
     }
@@ -34,7 +43,7 @@ public abstract class Charge {
      * @return The priority level of this charge.
      */
     int GetPriority() {
-        
+        Logger.invokeMethod(this, List.of());
         return priority;
     }
 

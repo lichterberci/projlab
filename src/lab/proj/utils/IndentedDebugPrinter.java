@@ -87,9 +87,8 @@ public class IndentedDebugPrinter implements DebugPrinter {
 
     private String getCallerMethodName() {
         List<StackTraceElement> stackTraceElements = Arrays.asList(Thread.currentThread().getStackTrace());
-        stackTraceElements.remove(0);
-        final String currentLogger = stackTraceElements.get(0).getClassName();
-        return stackTraceElements.stream()
+        final String currentLogger = stackTraceElements.get(1).getClassName();
+        return stackTraceElements.stream().skip(1)
                 .filter(ste -> !currentLogger.equals(ste.getClassName()))
                 .findFirst().orElseThrow().getMethodName();
     }

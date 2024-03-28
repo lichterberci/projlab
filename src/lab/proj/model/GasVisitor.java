@@ -2,8 +2,7 @@ package lab.proj.model;
 
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.Collections;
-import java.util.Optional;
+import java.util.List;
 
 /**
  * A class representing a visitor that visits student and teacher actors affected by gas in the game environment.
@@ -24,10 +23,8 @@ public class GasVisitor implements ActorVisitor {
      */
     @Override
     public void VisitStudent(Student s) {
-        
-        
+        Logger.invokeMethod(this, List.of(s));
         s.Shock();
-        
     }
 
     /**
@@ -38,9 +35,7 @@ public class GasVisitor implements ActorVisitor {
      */
     @Override
     public void VisitTeacher(Teacher t) {
-        
-        
+        Logger.invokeMethod(this, List.of(t));
         t.Shock();
-        
     }
 }

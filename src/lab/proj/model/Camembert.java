@@ -1,8 +1,6 @@
 package lab.proj.model;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class representing a Camembert item in the game environment.
@@ -16,27 +14,17 @@ public class Camembert extends Item {
      */
     @Override
     public void TimePassed() {
-        
-        // No actions for Camembert on time passage
+        Logger.invokeMethod(this, List.of());        // No actions for Camembert on time passage
     }
 
     @Override
     public void Activate() {
-        
         super.Activate();
+        Logger.invokeMethod(this, List.of());
         var gp = new GasPoisoning();
         Logger.createObject(gp, "gp");
-
-        
         Room room = actor.GetLocation();
-        
-
-        
         room.AddEffect(gp);
-        
-
-        
         Drop();
-        
     }
 }

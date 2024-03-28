@@ -1,7 +1,6 @@
 package lab.proj.model;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class representing a mask item in the game environment.
@@ -15,8 +14,7 @@ public class Mask extends LivingItem {
      */
     @Override
     public void TimePassed() {
-        
-        // No actions for masks on time passage
+        Logger.invokeMethod(this, List.of());        // No actions for masks on time passage
     }
 
     /**
@@ -25,22 +23,18 @@ public class Mask extends LivingItem {
      */
     @Override
     public void Use() {
-        
-        // No specific action for using masks
+        Logger.invokeMethod(this, List.of());        // No specific action for using masks
     }
 
     @Override
     public void ApplyCharges() {
-        
+        Logger.invokeMethod(this, List.of());
         if (!activated) {
             return;
         }
         GasProtection gp = new GasProtection(this, 0);
 
         Logger.createObject(gp, "gp");
-
-        
         actor.AddGasProtection(gp);
-        
     }
 }

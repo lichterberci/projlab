@@ -1,9 +1,8 @@
 package lab.proj.model;
 
-import lab.proj.utils.IndentedDebugPrinter;
-
 import java.util.List;
-import java.util.Optional;
+
+import static lab.proj.model.Item.Logger;
 
 /**
  * A class representing a visitor specifically for towels in the game environment.
@@ -19,8 +18,7 @@ public class TowelVisitor implements ActorVisitor {
      */
     @Override
     public void VisitStudent(Student s) {
-        
-        // Empty method
+        Logger.invokeMethod(this, List.of(s));        // Empty method
     }
 
     /**
@@ -31,6 +29,7 @@ public class TowelVisitor implements ActorVisitor {
      */
     @Override
     public void VisitTeacher(Teacher t) {
+        Logger.invokeMethod(this, List.of(t));
         t.Stun();
     }
 }

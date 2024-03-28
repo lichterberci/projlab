@@ -4,7 +4,6 @@ import lab.proj.utils.AskTheUser;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class representing a curse effect in the game environment.
@@ -19,17 +18,14 @@ public class Curse extends RoomEffect {
      */
     @Override
     public void TimePassed() {
-        
-        
+        Logger.invokeMethod(this, List.of());
         List<Door> doors = location.GetDoors();
-        
-
         boolean shouldHide = AskTheUser.decision("Érvényesül-e az átok?");
         if (shouldHide) {
             for (Door door : doors) {
-                
+
                 door.Hide();
-                
+
             }
         }
     }

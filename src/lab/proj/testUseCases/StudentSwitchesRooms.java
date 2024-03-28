@@ -2,9 +2,6 @@ package lab.proj.testUseCases;
 
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.List;
-import java.util.Optional;
-
 public class StudentSwitchesRooms extends TwoTeachersOneStudent {
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
     protected boolean result;

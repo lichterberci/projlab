@@ -5,9 +5,6 @@ import lab.proj.model.Room;
 import lab.proj.model.Teacher;
 import lab.proj.utils.IndentedDebugPrinter;
 
-import java.util.List;
-import java.util.Optional;
-
 public class GasPoisTeacher implements TestUseCase {
     protected static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 

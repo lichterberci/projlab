@@ -3,7 +3,6 @@ package lab.proj.model;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class representing a drop out protection charge associated with a living item in the game environment.
@@ -23,8 +22,8 @@ public class DropOutProtection extends Charge {
      * @param priority The priority level of this drop out protection.
      */
     protected DropOutProtection(LivingItem creator, int priority) {
-        
         super(creator, priority);
+        Logger.invokeMethod(this, List.of(creator, priority));
     }
 
     /**
@@ -33,9 +32,7 @@ public class DropOutProtection extends Charge {
      */
     @Override
     public void Affect() {
-        
-        
+        Logger.invokeMethod(this, List.of());
         creator.Use();
-        
     }
 }
