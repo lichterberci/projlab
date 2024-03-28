@@ -42,7 +42,6 @@ public class GasPoisoning extends RoomEffect {
         Logger.invokeMethod(this, List.of());
 
         var gv = new GasVisitor();
-        
         location.VisitActors(gv);
 
         Logger.returnVoid();

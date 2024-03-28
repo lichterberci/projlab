@@ -178,9 +178,10 @@ public class Room implements Entity {
     public void Merge() {
         Logger.invokeMethod(this, List.of());
 
-        if (!actorsInside.isEmpty())
+        if (!actorsInside.isEmpty()) {
+            Logger.returnVoid();
             return;
-
+        }
         Room r2 = null;
         for (Door door : doors) {
             List<Room> doorRooms = door.GetRooms();
@@ -192,8 +193,10 @@ public class Room implements Entity {
             }
         }
 
-        if (r2 == null || !r2.actorsInside.isEmpty())
+        if (r2 == null || !r2.actorsInside.isEmpty()){
+            Logger.returnVoid();
             return;
+        }
 
         CopyOnWriteArrayList<Item> otherRoomsItems = new CopyOnWriteArrayList<>(r2.itemsOnTheFloor);
         for (Item item : otherRoomsItems) {
