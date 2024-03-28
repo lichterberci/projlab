@@ -256,7 +256,6 @@ public class Room implements Entity {
         }
 
         var d3 = new Door();
-        
         d3.SetRooms(this, r2);
 
         Logger.returnVoid();
