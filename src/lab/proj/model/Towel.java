@@ -15,7 +15,6 @@ public class Towel extends LivingItem {
     public Towel() {
         Logger.createObject(this);
         v = new TowelVisitor();
-        Logger.createObject(v);
     }
 
     /**

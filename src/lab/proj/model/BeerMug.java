@@ -57,7 +57,6 @@ public class BeerMug extends LivingItem {
         Logger.invokeMethod(this, List.of());
 
         DropOutProtection dp2 = new DropOutProtection(this, 0);
-        Logger.createObject(dp2);
         actor.AddDropOutProtection(dp2);
 
         Logger.returnVoid();
