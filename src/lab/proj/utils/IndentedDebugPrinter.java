@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  */
 public class IndentedDebugPrinter implements DebugPrinter {
 
-    public static Object MAIN = new Object();
+    public static final Object MAIN = new Object();
     private static IndentedDebugPrinter instance;
     private final PrintStream outputStream;
     private final Map<Object, String> objectNameMap = new HashMap<>();
@@ -74,7 +74,6 @@ public class IndentedDebugPrinter implements DebugPrinter {
     @Override
     public void createObject(Object createdObject) {
         String nameOfCreatedObject = generateNameToObject(createdObject);
-
         Object creator = objectStack.peekLast();
 
         printIndentations();
