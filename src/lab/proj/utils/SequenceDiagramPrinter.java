@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
  */
 public class SequenceDiagramPrinter implements DebugPrinter {
 
-    public static final Object MAIN = new Object();
+    private static final Object MAIN = new Object();
     private static SequenceDiagramPrinter instance;
     private final PrintStream outputPrinter;
     private final List<Object> lifelines;
@@ -38,9 +38,9 @@ public class SequenceDiagramPrinter implements DebugPrinter {
     }
 
     /**
-     * Resets the singleton instance of IndentedDebugPrinter with a target stream.
+     * Resets the singleton instance of SequenceDiagramPrinter with a target stream.
      * @param targetStream The target stream to which debug messages will be printed.
-     * @return The reset singleton instance of IndentedDebugPrinter.
+     * @return The reset singleton instance of SequenceDiagramPrinter.
      */
     public static SequenceDiagramPrinter resetInstance(PrintStream targetStream) {
         instance = new SequenceDiagramPrinter(targetStream);
@@ -50,17 +50,12 @@ public class SequenceDiagramPrinter implements DebugPrinter {
     /**
      * Prints an empty line of lifelines in the sequence diagram.
      */
-    public void printEmptyLineOfLifelines() {
+    private void printEmptyLineOfLifelines() {
         lifelines.forEach(obj -> outputPrinter.print(obj == null ? "       " : "   │   "));
         outputPrinter.println();
     }
 
-    /**
-     * Retrieves the name of an object.
-     *
-     * @param object The object for which to retrieve the name.
-     * @return The name of the object.
-     */
+    @Override
     public String getObjectName(Object object) {
         if (object == null)
             return "null";
@@ -92,8 +87,8 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         IntStream.range(0, lifelines.size())
                 .mapToObj(i -> switch (Integer.signum(Integer.compare(i, indexOfCreator))) {
                     case -1 -> "   │   ";
-                    case 0 -> "   ├───";
-                    case 1 -> "───┼───";
+                    case 0 ->  "   ├───";
+                    case 1 ->  "───┼───";
                     default -> throw new IllegalStateException();
                 })
                 .forEach(outputPrinter::print);
@@ -159,11 +154,11 @@ public class SequenceDiagramPrinter implements DebugPrinter {
 
         String methodName = getCallerMethodName();
 
-        outputPrinter.print("  ");
+        outputPrinter.print(' ');
 
         outputPrinter.print(methodName);
         outputPrinter.print('(');
-        outputPrinter.print(params.stream().map(Object::toString).collect(Collectors.joining(", ")));
+        outputPrinter.print(params.stream().map(this::getObjectName).collect(Collectors.joining(", ")));
         outputPrinter.println(')');
 
         printEmptyLineOfLifelines();
@@ -178,7 +173,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         lifelines.stream()
                 .map(obj -> {
                     if (obj == null) return "       ";
-                    if (obj == object) return "   ├──┬";
+                    if (obj == object) return "   ├──┐";
                     return "   │   ";
                 })
                 .forEach(outputPrinter::print);
@@ -188,7 +183,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         lifelines.stream()
                 .map(obj -> {
                     if (obj == null) return "       ";
-                    if (obj == object) return "   │<─┴";
+                    if (obj == object) return "   │<─┘";
                     return "   │   ";
                 })
                 .forEach(outputPrinter::print);
@@ -255,7 +250,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
                     }
 
                     if (i == indexOfCallee) {
-                        return indexOfCaller > indexOfCallee ? "   │<──" : "──>│  ";
+                        return indexOfCaller > indexOfCallee ? "   │<──" : "──>│   ";
                     }
 
                     if (i == indexOfCaller) {

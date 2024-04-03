@@ -8,10 +8,17 @@ import java.util.List;
 public interface DebugPrinter {
 
     /**
+     * Retrieves the name of an object.
+     *
+     * @param object The object for which to retrieve the name.
+     * @return The name of the object.
+     */
+    String getObjectName(Object object);
+
+    /**
      * Logs the creation of an object.
      *
      * @param createdObject       The object created.
-     * @param nameOfCreatedObject The name of the created object.
      */
     void createObject(Object createdObject);
 

@@ -44,12 +44,7 @@ public class IndentedDebugPrinter implements DebugPrinter {
         return instance;
     }
 
-    /**
-     * Retrieves the name of an object.
-     *
-     * @param object The object for which to retrieve the name.
-     * @return The name of the object.
-     */
+    @Override
     public String getObjectName(Object object) {
         if (object == null)
             return "null";
