@@ -27,6 +27,10 @@ public class Camembert extends Item {
     public void Activate() {
         Logger.invokeMethod(this, List.of());
 
+        if (fake) {
+            Logger.returnVoid();
+            return;
+        }
         activated = true;
 
         var gp = new GasPoisoning();

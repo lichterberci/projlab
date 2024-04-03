@@ -39,6 +39,16 @@ public abstract class Item implements Entity {
 
     private boolean sticky;
 
+    protected final boolean fake;
+
+    protected Item() {
+        this(false);
+    }
+
+    protected Item(boolean fake) {
+        this.fake = fake;
+    }
+
     /**
      * Attempts to pick up the item with the specified actor.
      *
@@ -104,7 +114,10 @@ public abstract class Item implements Entity {
      */
     public void Activate() {
         Logger.invokeMethod(this, List.of());
-        activated = true;
+
+        if (!fake)
+            activated = true;
+
         Logger.returnVoid();
     }
 
@@ -115,6 +128,7 @@ public abstract class Item implements Entity {
      */
     public boolean IsActivated() {
         Logger.invokeMethod(this, List.of());
+
         Logger.returnValue(activated);
         return activated;
     }
@@ -132,6 +146,10 @@ public abstract class Item implements Entity {
     }
 
     public void SetSticky(boolean b) {
+        Logger.invokeMethod(this, Collections.singletonList(b));
+
         sticky = b;
+
+        Logger.returnVoid();
     }
 }

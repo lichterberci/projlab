@@ -13,6 +13,10 @@ public class Purifier extends Item {
     @Override
     public void Activate() {
         Logger.invokeMethod(this, List.of());
+        if (fake) {
+            Logger.returnVoid();
+            return;
+        }
 
         activated = true;
 

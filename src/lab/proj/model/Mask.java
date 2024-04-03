@@ -42,7 +42,8 @@ public class Mask extends LivingItem {
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
 
-        if (!activated) {
+        if (!activated || fake) {
+            Logger.returnVoid();
             return;
         }
 

@@ -32,6 +32,11 @@ public class Transistor extends Item {
     public void PairWith(Transistor t) {
         Logger.invokeMethod(this, Collections.singletonList(t));
 
+        if (fake) {
+            Logger.returnVoid();
+            return;
+        }
+
         boolean result = AskTheUser.decision("Párosított már a tranzisztor?");
 
         if (!result) {
@@ -58,6 +63,11 @@ public class Transistor extends Item {
     public void SetPair(Transistor t) {
         Logger.invokeMethod(this, Collections.singletonList(t));
 
+        if (fake) {
+            Logger.returnVoid();
+            return;
+        }
+
         this.pair = t;
 
         Logger.returnVoid();
@@ -76,6 +86,11 @@ public class Transistor extends Item {
     @Override
     public void Activate() {
         Logger.invokeMethod(this, List.of());
+
+        if (fake) {
+            Logger.returnVoid();
+            return;
+        }
 
         if (this.activated) {
             if (this.location != this.actor.location && this.pair != null && this.pair.activated) {

@@ -35,7 +35,8 @@ public class CSE extends LivingItem {
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
 
-        if (!activated) {
+        if (!activated || fake) {
+            Logger.returnVoid();
             return;
         }
         for (int i = 0; i < lifetime; i++) {
@@ -53,10 +54,14 @@ public class CSE extends LivingItem {
     @Override
     public void Use() {
         Logger.invokeMethod(this, List.of());
+        if (fake) {
+            Logger.returnVoid();
+            return;
+        }
         lifetime--;
         if (lifetime == 0) {
             dead = true;
-            this.Drop();
+            Drop();
         }
 
         Logger.returnVoid();

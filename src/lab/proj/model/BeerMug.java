@@ -41,8 +41,10 @@ public class BeerMug extends LivingItem {
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
 
-        if (!activated)
+        if (!activated || fake) {
+            Logger.returnVoid();
             return;
+        }
 
         DropOutProtection dp1 = new DropOutProtection(this, 0);
         actor.AddDropOutProtection(dp1);
@@ -57,6 +59,11 @@ public class BeerMug extends LivingItem {
     @Override
     public void Use() {
         Logger.invokeMethod(this, List.of());
+
+        if (fake) {
+            Logger.returnVoid();
+            return;
+        }
 
         DropOutProtection dp2 = new DropOutProtection(this, 0);
         actor.AddDropOutProtection(dp2);

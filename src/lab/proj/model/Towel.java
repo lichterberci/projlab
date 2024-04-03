@@ -32,6 +32,11 @@ public class Towel extends LivingItem {
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
 
+        if (fake) {
+            Logger.returnVoid();
+            return;
+        }
+
         Room r2 = actor.GetLocation();
         r2.VisitActors(v);
 
