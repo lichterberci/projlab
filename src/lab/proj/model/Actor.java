@@ -50,18 +50,11 @@ public abstract class Actor implements Entity {
     public boolean UseDoor(Door d) {
         Logger.invokeMethod(this, Collections.singletonList(d));
 
-        boolean wasSuccessful = d.GoThrough(location, this);
-        if (wasSuccessful) {
-            List<Room> rooms = d.GetRooms();
-            Room prevRoom = null;
-            if (rooms.get(0) == location) {
-                prevRoom = rooms.get(1);
-            } else {
-                prevRoom = rooms.get(0);
-            }
+        Room prevRoom = location;
 
+        boolean wasSuccessful = d.GoThrough(location, this);
+        if (wasSuccessful)
             prevRoom.StepOut(this);
-        }
 
         Logger.returnValue(wasSuccessful);
         return wasSuccessful;
@@ -90,6 +83,7 @@ public abstract class Actor implements Entity {
         Logger.invokeMethod(this, Collections.singletonList(i));
 
         location.AddItem(i);
+        collectedItems.remove(i);
 
         Logger.returnVoid();
     }
@@ -138,7 +132,9 @@ public abstract class Actor implements Entity {
      */
     public Room GetLocation() {
         Logger.invokeMethod(this, List.of());
+
         Logger.returnValue(location);
+
         return location;
     }
 
@@ -149,6 +145,7 @@ public abstract class Actor implements Entity {
      */
     public void SetLocation(Room r) {
         Logger.invokeMethod(this, Collections.singletonList(r));
+
         location = r;
         r.AddActor(this);
 
@@ -181,5 +178,15 @@ public abstract class Actor implements Entity {
         Logger.invokeMethod(this, List.of());
         Logger.returnValue(incapacitated);
         return incapacitated;
+    }
+
+    public void GetOut() {
+        if (incapacitated)
+            return;
+
+        List<Door> doors = location.GetDoors();
+        for (Door d : doors)
+            if (d.GoThrough(location, this))
+                break;
     }
 }

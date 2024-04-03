@@ -19,4 +19,12 @@ public interface ActorVisitor {
      * @param t The teacher actor to be visited.
      */
     void VisitTeacher(Teacher t);
+
+
+    /**
+     * Defines the behavior of visiting a cleaning lady actor.
+     *
+     * @param cl The cleaning lady actor to be visited.
+     */
+    void VisitCleaningLady(CleaningLady cl);
 }

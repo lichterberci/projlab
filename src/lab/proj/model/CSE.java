@@ -40,7 +40,7 @@ public class CSE extends LivingItem {
         }
         for (int i = 0; i < lifetime; i++) {
             DropOutProtection dp1 = new DropOutProtection(this, 1);
-            Logger.createObject(dp1);
+            
             actor.AddDropOutProtection(dp1);
         }
 

@@ -27,8 +27,10 @@ public class Camembert extends Item {
     public void Activate() {
         Logger.invokeMethod(this, List.of());
 
+        activated = true;
+
         var gp = new GasPoisoning();
-        Logger.createObject(gp);
+        
         Room room = actor.GetLocation();
         room.AddEffect(gp);
         Drop();

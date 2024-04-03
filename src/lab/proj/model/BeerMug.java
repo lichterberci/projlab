@@ -3,12 +3,15 @@ package lab.proj.model;
 import lab.proj.utils.IndentedDebugPrinter;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * A class representing a beer mug item in the game environment.
  * Beer mugs extend the functionality of living items.
  */
 public class BeerMug extends LivingItem {
+
+    private static final Random random = new Random();
 
     /**
      * A logger for debugging purposes.
@@ -38,9 +41,8 @@ public class BeerMug extends LivingItem {
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
 
-        if (!activated) {
+        if (!activated)
             return;
-        }
 
         DropOutProtection dp1 = new DropOutProtection(this, 0);
         actor.AddDropOutProtection(dp1);
@@ -57,8 +59,10 @@ public class BeerMug extends LivingItem {
         Logger.invokeMethod(this, List.of());
 
         DropOutProtection dp2 = new DropOutProtection(this, 0);
-        Logger.createObject(dp2);
         actor.AddDropOutProtection(dp2);
+
+        int id = random.nextInt(0, actor.GetItems().size());
+        actor.GetItems().get(id).Drop();
 
         Logger.returnVoid();
     }

@@ -24,16 +24,6 @@ public class Transistor extends Item {
     }
 
     /**
-     * Drops the transistor.
-     * This method is currently empty.
-     */
-    public void Drop() {
-        Logger.invokeMethod(this, List.of());
-
-        Logger.returnVoid();
-    }
-
-    /**
      * Pairs the transistor with another transistor.
      * This method is currently empty.
      *
@@ -44,14 +34,11 @@ public class Transistor extends Item {
 
         boolean result = AskTheUser.decision("Párosított már a tranzisztor?");
 
-        if (result) {
-        } else {
-
+        if (!result) {
             t.SetPair(this);
-
             this.SetPair(t);
-
         }
+
         Logger.returnVoid();
     }
 
@@ -77,6 +64,16 @@ public class Transistor extends Item {
     }
 
     @Override
+    public void Drop() {
+        if (pair == null) {
+            super.Drop();
+        } else {
+            Logger.invokeMethod(this, List.of());
+            Logger.returnVoid();
+        }
+    }
+
+    @Override
     public void Activate() {
         Logger.invokeMethod(this, List.of());
 
@@ -87,14 +84,12 @@ public class Transistor extends Item {
                 if (success) {
                     prevLoc.StepOut(this.actor);
                 }
-            } else {
-                if (this.pair != null && this.pair.activated) {
-                    this.pair.Activate();
-                }
+            } else if (this.pair != null && this.pair.activated) {
+                this.pair.Activate();
             }
         } else if (this.pair != null) {
+            this.actor.DropItem(this); // cannot call Drop() directly because it would set its actor to null
             this.activated = true;
-            this.actor.DropItem(this);
         }
 
         Logger.returnVoid();

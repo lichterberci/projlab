@@ -19,6 +19,8 @@ public class Room implements Entity {
      */
     private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
 
+    private static final int STICKY_THRESHOLD = 5;
+
     /**
      * The actors currently inside the room.
      */
@@ -43,6 +45,8 @@ public class Room implements Entity {
      * The capacity of the room.
      */
     private int capacity;
+
+    private int visitorCountSinceLastCleaning;
 
     public Room() {
         Logger.createObject(this);
@@ -249,7 +253,7 @@ public class Room implements Entity {
         }
 
         var d3 = new Door();
-        Logger.createObject(d3);
+        
         d3.SetRooms(this, r2);
 
         Logger.returnVoid();
@@ -295,6 +299,14 @@ public class Room implements Entity {
         Logger.returnVoid();
     }
 
+    public void VisitEffects(RoomEffectVisitor rev) {
+        Logger.invokeMethod(this, Collections.singletonList(rev));
+
+        activeEffects.forEach(re -> re.VisitRoomEffect(rev));
+
+        Logger.returnVoid();
+    }
+
     /**
      * Adds a door to the room.
      *
@@ -317,7 +329,6 @@ public class Room implements Entity {
         Logger.invokeMethod(this, Collections.singletonList(d));
 
         doors.remove(d);
-
 
         Logger.returnVoid();
     }
@@ -376,6 +387,18 @@ public class Room implements Entity {
         for (RoomEffect effect : activeEffects)
             effect.TimePassed();
 
+        RefreshStickyness();
+
         Logger.returnVoid();
+    }
+
+    public void CleanRoom() {
+        visitorCountSinceLastCleaning = 0;
+        RefreshStickyness();
+    }
+
+    private void RefreshStickyness() {
+        for (Item item : itemsOnTheFloor)
+            item.SetSticky(visitorCountSinceLastCleaning > STICKY_THRESHOLD);
     }
 }

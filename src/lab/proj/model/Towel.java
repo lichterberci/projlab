@@ -1,7 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.utils.IndentedDebugPrinter;
-
 import java.util.List;
 
 /**
@@ -15,7 +13,6 @@ public class Towel extends LivingItem {
     public Towel() {
         Logger.createObject(this);
         v = new TowelVisitor();
-        Logger.createObject(v);
     }
 
     /**

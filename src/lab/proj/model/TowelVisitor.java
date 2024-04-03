@@ -43,4 +43,19 @@ public class TowelVisitor implements ActorVisitor {
 
         Logger.returnVoid();
     }
+
+    /**
+     * Defines the behavior of visiting a cleaning lady actor.
+     * This method is currently empty.
+     *
+     * @param cl The teacher actor being visited.
+     */
+    @Override
+    public void VisitCleaningLady(CleaningLady cl) {
+        Logger.invokeMethod(this, Collections.singletonList(cl));
+
+        // Empty.
+
+        Logger.returnVoid();
+    }
 }

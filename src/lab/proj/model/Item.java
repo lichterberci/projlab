@@ -37,6 +37,8 @@ public abstract class Item implements Entity {
      */
     protected Actor actor;
 
+    private boolean sticky;
+
     /**
      * Attempts to pick up the item with the specified actor.
      *
@@ -46,7 +48,7 @@ public abstract class Item implements Entity {
     public boolean PickUp(Actor a) {
         Logger.invokeMethod(this, Collections.singletonList(a));
 
-        boolean canBePickedUp = AskTheUser.decision("Felvehető a tárgy?");
+        boolean canBePickedUp = !(activated || sticky);
         if (canBePickedUp) {
             a.CollectItem(this);
             actor = a;
@@ -58,12 +60,13 @@ public abstract class Item implements Entity {
 
     /**
      * Drops the item.
-     */
+     */ 
     public void Drop() {
         Logger.invokeMethod(this, List.of());
 
         actor.DropItem(this);
         actor = null;
+        activated = false;
 
         Logger.returnVoid();
     }
@@ -126,5 +129,9 @@ public abstract class Item implements Entity {
         // Default implementation does nothing
 
         Logger.returnVoid();
+    }
+
+    public void SetSticky(boolean b) {
+        sticky = b;
     }
 }

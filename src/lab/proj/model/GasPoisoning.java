@@ -2,6 +2,7 @@ package lab.proj.model;
 
 import lab.proj.utils.IndentedDebugPrinter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,6 +24,15 @@ public class GasPoisoning extends RoomEffect {
         Logger.createObject(this);
     }
 
+    @Override
+    public void VisitRoomEffect(RoomEffectVisitor rev) {
+        Logger.invokeMethod(this, Collections.singletonList(rev));
+
+        rev.VisitGasPoisoning(this);
+
+        Logger.returnVoid();
+    }
+
     /**
      * Performs actions associated with the passage of time for the gas poisoning effect.
      * This method visits actors in the location affected by the gas poisoning.
@@ -32,7 +42,7 @@ public class GasPoisoning extends RoomEffect {
         Logger.invokeMethod(this, List.of());
 
         var gv = new GasVisitor();
-        Logger.createObject(gv);
+        
         location.VisitActors(gv);
 
         Logger.returnVoid();

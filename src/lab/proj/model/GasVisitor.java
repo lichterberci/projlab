@@ -36,7 +36,6 @@ public class GasVisitor implements ActorVisitor {
 
     /**
      * Defines the behavior of visiting a teacher actor.
-     * This method is currently empty.
      *
      * @param t The teacher actor being visited.
      */
@@ -45,6 +44,21 @@ public class GasVisitor implements ActorVisitor {
         Logger.invokeMethod(this, Collections.singletonList(t));
 
         t.Shock();
+
+        Logger.returnVoid();
+    }
+
+    /**
+     * Defines the behavior of visiting a cleaning lady actor.
+     * This method is currently empty.
+     *
+     * @param cl The teacher actor being visited.
+     */
+    @Override
+    public void VisitCleaningLady(CleaningLady cl) {
+        Logger.invokeMethod(this, Collections.singletonList(cl));
+
+        // Empty.
 
         Logger.returnVoid();
     }
