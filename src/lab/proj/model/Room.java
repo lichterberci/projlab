@@ -60,6 +60,7 @@ public class Room implements Entity {
     public void AddActor(Actor actor) {
         Logger.invokeMethod(this, Collections.singletonList(actor));
 
+        actor.SetLocation(this);
         actorsInside.add(actor);
 
         Logger.returnVoid();
@@ -103,7 +104,7 @@ public class Room implements Entity {
 
         boolean isFull = IsFull();
         if (!isFull)
-            a.SetLocation(this);
+            AddActor(a);
 
         Logger.returnValue(!isFull);
         return !isFull;
@@ -117,7 +118,7 @@ public class Room implements Entity {
     public void StepOut(Actor a) {
         Logger.invokeMethod(this, Collections.singletonList(a));
 
-        actorsInside.remove(a);
+        RemoveActor(a);
 
         Logger.returnVoid();
     }
@@ -131,17 +132,6 @@ public class Room implements Entity {
         Logger.invokeMethod(this, List.of());
         Logger.returnValue(doors);
         return doors;
-    }
-
-    /**
-     * Retrieves the items on the floor of the room.
-     *
-     * @return A list of items on the floor of the room.
-     */
-    public List<Item> GetItems() {
-        Logger.invokeMethod(this, List.of());
-        Logger.returnValue(itemsOnTheFloor);
-        return itemsOnTheFloor;
     }
 
     /**
@@ -193,7 +183,7 @@ public class Room implements Entity {
             }
         }
 
-        if (r2 == null || !r2.actorsInside.isEmpty()){
+        if (r2 == null || !r2.actorsInside.isEmpty()) {
             Logger.returnVoid();
             return;
         }

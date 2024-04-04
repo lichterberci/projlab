@@ -147,7 +147,6 @@ public abstract class Actor implements Entity {
         Logger.invokeMethod(this, Collections.singletonList(r));
 
         location = r;
-        r.AddActor(this);
 
         Logger.returnVoid();
     }

@@ -66,7 +66,7 @@ public class BeerMug extends LivingItem {
         }
         this.Drop();
 
-        if(actor != null){
+        if (actor != null) {
             DropOutProtection dp2 = new DropOutProtection(this, 0);
             actor.AddDropOutProtection(dp2);
         }

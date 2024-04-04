@@ -14,8 +14,8 @@ public class GasPoisTeacher implements TestUseCase {
         Teacher t2 = new Teacher();
         Room r2 = new Room();
 
-        t1.SetLocation(r2);
-        t2.SetLocation(r2);
+        r2.AddActor(t1);
+        r2.AddActor(t2);
 
         GasPoisoning g = new GasPoisoning();
         r2.AddEffect(g);

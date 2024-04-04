@@ -19,6 +19,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
 
     /**
      * Constructs a SequenceDiagramPrinter with a specified output stream.
+     *
      * @param outputStream The output stream to which the sequence diagrams will be printed.
      */
     public SequenceDiagramPrinter(PrintStream outputStream) {
@@ -29,6 +30,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
 
     /**
      * Retrieves the singleton instance of SequenceDiagramPrinter.
+     *
      * @return The singleton instance of SequenceDiagramPrinter.
      */
     public static SequenceDiagramPrinter getInstance() {
@@ -39,6 +41,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
 
     /**
      * Resets the singleton instance of SequenceDiagramPrinter with a target stream.
+     *
      * @param targetStream The target stream to which debug messages will be printed.
      * @return The reset singleton instance of SequenceDiagramPrinter.
      */
@@ -87,8 +90,8 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         IntStream.range(0, lifelines.size())
                 .mapToObj(i -> switch (Integer.signum(Integer.compare(i, indexOfCreator))) {
                     case -1 -> "   │   ";
-                    case 0 ->  "   ├───";
-                    case 1 ->  "───┼───";
+                    case 0 -> "   ├───";
+                    case 1 -> "───┼───";
                     default -> throw new IllegalStateException();
                 })
                 .forEach(outputPrinter::print);
@@ -192,7 +195,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
 
         outputPrinter.print(methodName);
         outputPrinter.print('(');
-        outputPrinter.print(params.stream().map(Object::toString).collect(Collectors.joining(", ")));
+        outputPrinter.print(params.stream().map(this::getObjectName).collect(Collectors.joining(", ")));
         outputPrinter.println(')');
 
         printEmptyLineOfLifelines();

@@ -1,6 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.utils.AskTheUser;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;

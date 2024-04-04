@@ -18,7 +18,7 @@ public interface DebugPrinter {
     /**
      * Logs the creation of an object.
      *
-     * @param createdObject       The object created.
+     * @param createdObject The object created.
      */
     void createObject(Object createdObject);
 

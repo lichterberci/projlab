@@ -18,7 +18,7 @@ public class UseTransistors extends TransistorPairing {
         r1 = new Room();
         r2 = new Room();
 
-        st.SetLocation(r1);
+        r1.AddActor(st);
 
         r1.AddItem(t1);
         r1.AddItem(t2);
@@ -27,7 +27,7 @@ public class UseTransistors extends TransistorPairing {
         boolean suc2 = t2.PickUp(st);
         if (suc1 && suc2) {
             t1.Activate();
-            st.SetLocation(r2);
+            r2.AddActor(st);
             r1.StepOut(st);
             t2.Activate();
             t2.Activate();

@@ -1,6 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.utils.AskTheUser;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
@@ -16,30 +15,24 @@ public abstract class Item implements Entity {
      * A logger for debugging purposes.
      */
     protected static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
-
+    protected final boolean fake;
     /**
      * Indicates whether the item is activated.
      */
     protected boolean activated;
-
     /**
      * Indicates whether the item is dead.
      */
     protected boolean dead;
-
     /**
      * The room where the item is located.
      */
     protected Room location;
-
     /**
      * The actor who picked up the item.
      */
     protected Actor actor;
-
     private boolean sticky;
-
-    protected final boolean fake;
 
     protected Item() {
         this(false);
@@ -70,7 +63,7 @@ public abstract class Item implements Entity {
 
     /**
      * Drops the item.
-     */ 
+     */
     public void Drop() {
         Logger.invokeMethod(this, List.of());
 

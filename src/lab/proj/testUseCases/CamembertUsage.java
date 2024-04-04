@@ -19,7 +19,7 @@ public class CamembertUsage implements TestUseCase {
         Room r1 = new Room();
         Camembert cm = new Camembert();
 
-        s.SetLocation(r1);
+        r1.AddActor(s);
 
         boolean camembertPickedUp = cm.PickUp(s);
         if (!camembertPickedUp) {

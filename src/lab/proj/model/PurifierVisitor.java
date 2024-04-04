@@ -11,7 +11,7 @@ public class PurifierVisitor implements RoomEffectVisitor {
         Logger.createObject(this);
     }
 
-    public void VisitGasPoisoning(RoomEffect effect){
+    public void VisitGasPoisoning(RoomEffect effect) {
         Logger.invokeMethod(this, Collections.singletonList(effect));
 
         effect.location.RemoveEffect(effect);

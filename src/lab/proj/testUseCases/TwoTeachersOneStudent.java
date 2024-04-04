@@ -30,11 +30,11 @@ public class TwoTeachersOneStudent implements TestUseCase {
         cm = new Camembert();
         sr = new SlideRule();
 
-        s.SetLocation(r1);
+        r1.AddActor(s);
 
-        t1.SetLocation(r2);
+        r2.AddActor(t1);
 
-        t2.SetLocation(r2);
+        r2.AddActor(t2);
 
         d.SetRooms(r1, r2);
 
