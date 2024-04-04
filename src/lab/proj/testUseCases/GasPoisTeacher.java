@@ -3,10 +3,10 @@ package lab.proj.testUseCases;
 import lab.proj.model.GasPoisoning;
 import lab.proj.model.Room;
 import lab.proj.model.Teacher;
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 public class GasPoisTeacher implements TestUseCase {
-    protected static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    protected static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     @Override
     public void runUseCase() {

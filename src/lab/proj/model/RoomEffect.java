@@ -1,6 +1,6 @@
 package lab.proj.model;
 
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
 
@@ -14,7 +14,7 @@ public abstract class RoomEffect implements Entity {
     /**
      * A logger for debugging purposes.
      */
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
      * The location (room) associated with the room effect.

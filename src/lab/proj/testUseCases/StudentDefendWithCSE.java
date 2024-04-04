@@ -2,10 +2,10 @@ package lab.proj.testUseCases;
 
 import lab.proj.model.*;
 import lab.proj.utils.AskTheUser;
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 public class StudentDefendWithCSE implements TestUseCase {
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     @Override
     public void runUseCase() {

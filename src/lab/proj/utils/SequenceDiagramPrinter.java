@@ -94,7 +94,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
                 .forEach(outputPrinter::print);
 
         outputPrinter.print("─> ");
-        outputPrinter.print(nameOfCreatedObject);
+        outputPrinter.printf("%s: %s", nameOfCreatedObject, createdObject.getClass().getSimpleName());
         outputPrinter.println(" <<creates>>");
 
         lifelines.add(createdObject);

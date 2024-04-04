@@ -1,6 +1,6 @@
 package lab.proj.model;
 
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.List;
 import java.util.Random;
@@ -16,7 +16,7 @@ public class BeerMug extends LivingItem {
     /**
      * A logger for debugging purposes.
      */
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     public BeerMug() {
         Logger.createObject(this);
@@ -64,12 +64,12 @@ public class BeerMug extends LivingItem {
             Logger.returnVoid();
             return;
         }
+        this.Drop();
 
-        DropOutProtection dp2 = new DropOutProtection(this, 0);
-        actor.AddDropOutProtection(dp2);
-
-        int id = random.nextInt(0, actor.GetItems().size());
-        actor.GetItems().get(id).Drop();
+        if(actor != null){
+            DropOutProtection dp2 = new DropOutProtection(this, 0);
+            actor.AddDropOutProtection(dp2);
+        }
 
         Logger.returnVoid();
     }

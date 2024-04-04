@@ -2,14 +2,14 @@ package lab.proj;
 
 import lab.proj.testUseCases.TestUseCaseRunner;
 import lab.proj.utils.AskTheUser;
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.List;
 
 
 public class Main {
     public static void main(String[] args) {
-        IndentedDebugPrinter.resetInstance(System.out);
+        SequenceDiagramPrinter.resetInstance(System.out);
 
         final List<String> availableUseCases = TestUseCaseRunner.getAvailableUseCases();
 

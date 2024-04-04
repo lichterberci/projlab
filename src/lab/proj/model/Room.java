@@ -1,7 +1,7 @@
 package lab.proj.model;
 
 import lab.proj.utils.AskTheUser;
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +17,7 @@ public class Room implements Entity {
     /**
      * A logger for debugging purposes.
      */
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     private static final int STICKY_THRESHOLD = 5;
 
@@ -200,22 +200,16 @@ public class Room implements Entity {
 
         CopyOnWriteArrayList<Item> otherRoomsItems = new CopyOnWriteArrayList<>(r2.itemsOnTheFloor);
         for (Item item : otherRoomsItems) {
-
             r2.RemoveItem(item);
-
             AddItem(item);
-
         }
 
         capacity = r2.capacity;
-        // fake it till you make it
-        for (Door door : doors) {
 
+        for (Door door : doors)
             door.Show();
 
-        }
-
-        Logger.destroyObject(r2);
+        Logger.destroyObject(r2); // in reality, it does not die immediately
 
         Logger.returnVoid();
     }

@@ -1,10 +1,10 @@
 package lab.proj.testUseCases;
 
 import lab.proj.model.*;
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 public class TwoTeachersOneStudent implements TestUseCase {
-    protected static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    protected static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     protected Student s;
     protected Teacher t1;

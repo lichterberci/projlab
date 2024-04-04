@@ -1,7 +1,7 @@
 package lab.proj.model;
 
 import lab.proj.utils.AskTheUser;
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Curse extends RoomEffect {
 
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     public Curse() {
         Logger.createObject(this);

@@ -1,6 +1,6 @@
 package lab.proj.model;
 
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Teacher extends Actor {
     /**
      * The logger instance for debugging purposes.
      */
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     public Teacher() {
         Logger.createObject(this);
@@ -22,26 +22,11 @@ public class Teacher extends Actor {
 
     /**
      * Stuns the teacher.
-     * This method is currently empty.
      */
     public void Stun() {
         Logger.invokeMethod(this, List.of());
 
         incapacitated = true;
-
-        Logger.returnVoid();
-    }
-
-    /**
-     * Initiates the dropout process for a specific student.
-     * This method is currently empty.
-     *
-     * @param s The student to be dropped out.
-     */
-    public void DropOutStudent(Student s) {
-        Logger.invokeMethod(this, Collections.singletonList(s));
-
-        // Empty method
 
         Logger.returnVoid();
     }

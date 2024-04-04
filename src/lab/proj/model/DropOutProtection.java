@@ -1,6 +1,6 @@
 package lab.proj.model;
 
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class DropOutProtection extends Charge {
     /**
      * A logger for debugging purposes.
      */
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
      * Constructs a new drop out protection charge with the specified creator and priority.

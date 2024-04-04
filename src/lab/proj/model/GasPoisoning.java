@@ -1,6 +1,6 @@
 package lab.proj.model;
 
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +14,7 @@ public class GasPoisoning extends RoomEffect {
     /**
      * A logger for debugging purposes.
      */
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
     /**
      * The remaining lifetime of the gas poisoning effect.
      */

@@ -1,10 +1,10 @@
 package lab.proj.testUseCases;
 
 import lab.proj.model.*;
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 public class FourRoomsThreeDoors implements TestUseCase {
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
     protected Room r1;
     protected Room r2;
     protected Room r3;

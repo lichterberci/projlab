@@ -2,11 +2,11 @@ package lab.proj.testUseCases;
 
 import lab.proj.model.Room;
 import lab.proj.model.Student;
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 public class UseTransistors extends TransistorPairing {
 
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
     private Student st;
     private Room r1;
     private Room r2;

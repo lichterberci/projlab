@@ -1,7 +1,7 @@
 package lab.proj.model;
 
 import lab.proj.utils.AskTheUser;
-import lab.proj.utils.IndentedDebugPrinter;
+import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class Door implements Entity {
     /**
      * A logger for debugging purposes.
      */
-    private static final IndentedDebugPrinter Logger = IndentedDebugPrinter.getInstance();
+    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
      * Indicates whether the door is hidden or not.
