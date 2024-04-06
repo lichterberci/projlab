@@ -46,7 +46,7 @@ public class Room implements Entity {
      */
     private int capacity;
 
-    private int visitorCountSinceLastCleaning;
+    private int visitorCountSinceLastCleaning = 0;
 
     public Room() {
         Logger.createObject(this);
@@ -62,6 +62,7 @@ public class Room implements Entity {
 
         actor.SetLocation(this);
         actorsInside.add(actor);
+        visitorCountSinceLastCleaning++;
 
         Logger.returnVoid();
     }

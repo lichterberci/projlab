@@ -1,5 +1,6 @@
 package lab.proj.model;
 
+import lab.proj.utils.Randomware;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.List;
@@ -64,7 +65,9 @@ public class BeerMug extends LivingItem {
             Logger.returnVoid();
             return;
         }
-        this.Drop();
+
+        Item item = Randomware.Choice(actor.GetItems());
+        item.Drop();
 
         if (actor != null) {
             DropOutProtection dp2 = new DropOutProtection(this, 0);

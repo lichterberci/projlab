@@ -1,6 +1,7 @@
 package lab.proj.model;
 
 import lab.proj.utils.AskTheUser;
+import lab.proj.utils.Randomware;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
@@ -34,7 +35,7 @@ public class Curse extends RoomEffect {
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
         List<Door> doors = location.GetDoors();
-        boolean shouldHide = AskTheUser.decision("Érvényesül-e az átok?");
+        boolean shouldHide = Randomware.Decision();
         if (shouldHide)
             for (Door door : doors)
                 door.Hide();
