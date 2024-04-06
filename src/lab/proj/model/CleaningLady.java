@@ -25,7 +25,11 @@ public class CleaningLady extends Actor {
 
     @Override
     public void Shock() {
+        Logger.invokeMethod(this, List.of());
 
+        // Empty.
+
+        Logger.returnVoid();
     }
 
     @Override

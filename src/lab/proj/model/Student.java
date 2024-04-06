@@ -26,20 +26,6 @@ public class Student extends Actor {
     }
 
     /**
-     * Removes a charge from the student.
-     * This method is currently empty.
-     *
-     * @param c The charge to be removed.
-     */
-    public void RemoveCharge(Charge c) {
-        Logger.invokeMethod(this, Collections.singletonList(c));
-
-        // Empty method
-
-        Logger.returnVoid();
-    }
-
-    /**
      * Checks if the student has dropped out.
      *
      * @return true if the student has dropped out, false otherwise.
