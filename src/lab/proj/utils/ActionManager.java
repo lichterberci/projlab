@@ -1,5 +1,7 @@
 package lab.proj.utils;
 
+import lab.proj.model.BeerMug;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -18,9 +20,8 @@ public class ActionManager {
 			try {
 				objectsInGame.put(
 						objectName,
-						getClass()
-								.getClassLoader()
-								.loadClass(className)
+						BeerMug.class.getClassLoader()
+								.loadClass("lab.proj.model.%s".formatted(className))
 								.getConstructor()
 								.newInstance()
 				);
@@ -33,14 +34,49 @@ public class ActionManager {
 		}
 
 		if (objectsInGame.containsKey(objectName)) {
-			Object object = objectsInGame.get(objectName);
+			final Object object = objectsInGame.get(objectName);
+
+			final List<Object> parsedArgs = args.stream()
+					.map(arg -> {
+						try {
+							return Integer.parseInt(arg);
+						} catch (NumberFormatException e) {
+							try {
+								return Double.parseDouble(arg);
+							} catch (NumberFormatException e2) {
+
+								if (arg.equals("null")) {
+									return null;
+								}
+
+								if (arg.equals("true")) {
+									return true;
+								}
+
+								if (arg.equals("false")) {
+									return false;
+								}
+
+								if (objectsInGame.containsKey(arg)) {
+									return objectsInGame.get(arg);
+								}
+
+								return arg; // string
+							}
+						}
+					})
+					.toList();
 
 			try {
-				Arrays.stream(object.getClass().getDeclaredMethods())
+				Arrays.stream(object.getClass().getMethods())
 						.filter(method -> method.getName().equals(actionName))
 						.findFirst()
+						.map(method -> {
+							method.setAccessible(true);
+							return method;
+						})
 						.orElseThrow(() -> new NoSuchMethodException("Method not found: %s".formatted(actionName)))
-						.invoke(object, args);
+						.invoke(object, parsedArgs.toArray());
 			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 				throw new RuntimeException(e);
 			}
