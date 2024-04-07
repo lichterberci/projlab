@@ -68,6 +68,18 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         return objectNameMap.getOrDefault(object, object.toString());
     }
 
+    public boolean isObjectCreated(String name) {
+        return objectNameMap.containsValue(name);
+    }
+
+    public Object getObject(String name) {
+        return objectNameMap.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(name))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElseThrow();
+    }
+
     private String generateNameToObject(Object createdObject) {
         String originalName = createdObject.getClass().getSimpleName();
         StringBuilder newName = new StringBuilder();

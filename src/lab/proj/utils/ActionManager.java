@@ -7,24 +7,16 @@ import java.util.*;
 
 public class ActionManager {
 
-	private final Map<String, Object> objectsInGame;
-
-	public ActionManager() {
-		objectsInGame = new HashMap<>();
-	}
+	private final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
 	public void performAction(String objectName, String actionName, List<String> args) {
-		if (actionName.equals("create") && args.size() == 1 && !objectsInGame.containsKey(objectName)) {
-			String className = args.get(0);
-
+		if (actionName.equals("create")) {
 			try {
-				objectsInGame.put(
-						objectName,
-						BeerMug.class.getClassLoader()
-								.loadClass("lab.proj.model.%s".formatted(className))
-								.getConstructor()
-								.newInstance()
-				);
+				// the constructor will create the object in the logger
+				BeerMug.class.getClassLoader()
+						.loadClass("lab.proj.model.%s".formatted(objectName))
+						.getConstructor()
+						.newInstance();
 			} catch (InstantiationException | IllegalAccessException | InvocationTargetException |
 			         NoSuchMethodException | ClassNotFoundException e) {
 				throw new RuntimeException(e);
@@ -33,8 +25,8 @@ public class ActionManager {
 			return;
 		}
 
-		if (objectsInGame.containsKey(objectName)) {
-			final Object object = objectsInGame.get(objectName);
+		if (Logger.isObjectCreated(objectName)) {
+			final Object object = Logger.getObject(objectName);
 
 			final List<Object> parsedArgs = args.stream()
 					.map(arg -> {
@@ -57,8 +49,8 @@ public class ActionManager {
 									return false;
 								}
 
-								if (objectsInGame.containsKey(arg)) {
-									return objectsInGame.get(arg);
+								if (Logger.isObjectCreated(arg)) {
+									return Logger.getObject(arg);
 								}
 
 								return arg; // string
