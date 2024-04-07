@@ -43,8 +43,8 @@ public class ActionManager {
 			return;
 		}
 
-		if (objects.containsKey(arg0)) {
-			callMethodOnObject(arg0, arg1, args);
+		if (objects.containsKey(arg1)) {
+			callMethodOnObject(arg1, arg0, args);
 			return;
 		}
 
