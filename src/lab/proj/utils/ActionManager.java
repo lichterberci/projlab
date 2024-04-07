@@ -8,7 +8,7 @@ public class ActionManager {
 	private final Map<String, Object> objectsInGame;
 
 	public ActionManager() {
-		this.objectsInGame = Map.of("controller", gameController);
+		objectsInGame = new HashMap<>();
 	}
 
 	public void performAction(String objectName, String actionName, List<String> args) {
