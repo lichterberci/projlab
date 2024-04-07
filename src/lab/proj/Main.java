@@ -5,6 +5,8 @@ import lab.proj.utils.ActionManager;
 import lab.proj.utils.AskTheUser;
 import lab.proj.utils.SequenceDiagramPrinter;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +25,7 @@ public class Main {
 //        int selectedUseCase = AskTheUser.number(question) - 1;
 //        TestUseCaseRunner.runTest(selectedUseCase);
 
-        SequenceDiagramPrinter.resetInstance(System.out);
+        SequenceDiagramPrinter.resetInstance(new PrintStream(OutputStream.nullOutputStream()));
 
         ActionManager actionManager = new ActionManager();
 
