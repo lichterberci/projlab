@@ -31,6 +31,6 @@ public class Randomware {
      * @return a random number between [from; to] (inclusive)
      */
     public static int Number(int from, int to) {
-        return (random.nextInt() % (to - from + 1)) + from;
+        return (random.nextInt(to + 1) + from;
     }
 }
