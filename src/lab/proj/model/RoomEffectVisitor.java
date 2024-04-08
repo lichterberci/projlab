@@ -1,7 +1,7 @@
 package lab.proj.model;
 
 public interface RoomEffectVisitor {
-    void VisitGasPoisoning(RoomEffect effect);
+    void VisitGasPoisoning(GasPoisoning gp);
 
-    void VisitCurse(RoomEffect effect);
+    void VisitCurse(Curse c);
 }
