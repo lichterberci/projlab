@@ -1,8 +1,12 @@
 package lab.proj.controller;
 
+import lab.proj.model.Actor;
 import lab.proj.model.Entity;
+import lab.proj.model.Room;
+import lab.proj.model.Student;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 public class GameManager {
@@ -11,7 +15,10 @@ public class GameManager {
 
 	private boolean isRunning;
 	private boolean isWon;
-	private Set<Entity> entities;
+
+	private Set<Room> rooms;
+	private List<Student> students;
+	private List<Actor> nonPlayerCharacters;
 
 	private GameManager() {
 		ResetGame();
@@ -45,6 +52,17 @@ public class GameManager {
 	private void ResetGame() {
 		isRunning = false;
 		isWon = false;
-		entities = Collections.emptySet();
+	}
+
+	private void CalculateLayout() {
+
+	}
+
+	public boolean isRunning() {
+		return isRunning;
+	}
+
+	public boolean isWon() {
+		return isWon;
 	}
 }
