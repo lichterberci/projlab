@@ -11,16 +11,16 @@ public class PurifierVisitor implements RoomEffectVisitor {
         Logger.createObject(this);
     }
 
-    public void VisitGasPoisoning(RoomEffect effect) {
-        Logger.invokeMethod(this, Collections.singletonList(effect));
+    public void VisitGasPoisoning(GasPoisoning gp) {
+        Logger.invokeMethod(this, Collections.singletonList(gp));
 
-        effect.location.RemoveEffect(effect);
+        gp.location.RemoveEffect(gp);
 
         Logger.returnVoid();
     }
 
-    public void VisitCurse(RoomEffect effect) {
-        Logger.invokeMethod(this, Collections.singletonList(effect));
+    public void VisitCurse(Curse c) {
+        Logger.invokeMethod(this, Collections.singletonList(c));
 
         // Empty.
 
