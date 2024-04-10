@@ -1,6 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.utils.AskTheUser;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
@@ -37,9 +36,7 @@ public class Transistor extends Item {
             return;
         }
 
-        boolean result = AskTheUser.decision("Párosított már a tranzisztor?");
-
-        if (!result) {
+        if (pair == null) {
             t.SetPair(this);
             this.SetPair(t);
         }

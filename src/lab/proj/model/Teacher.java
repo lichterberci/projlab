@@ -81,6 +81,7 @@ public class Teacher extends Actor {
         Logger.invokeMethod(this, List.of());
 
         incapacitated = true;
+        collectedItems.forEach(Item::Drop);
 
         Logger.returnVoid();
     }

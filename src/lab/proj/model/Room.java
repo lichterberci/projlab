@@ -1,11 +1,9 @@
 package lab.proj.model;
 
-import lab.proj.utils.AskTheUser;
+import lab.proj.utils.Randomware;
 import lab.proj.utils.SequenceDiagramPrinter;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -14,13 +12,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class Room implements Entity {
 
+    public static final float MERGE_LIKELIHOOD = 0.2f;
+    public static final float SPLIT_LIKELIHOOD = 0.1f;
     /**
      * A logger for debugging purposes.
      */
     private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
-
     private static final int STICKY_THRESHOLD = 5;
-
     /**
      * The actors currently inside the room.
      */
@@ -80,6 +78,15 @@ public class Room implements Entity {
         Logger.returnVoid();
     }
 
+    public boolean IsEmpty() {
+        Logger.invokeMethod(this, List.of());
+
+        boolean roomIsEmpty = actorsInside.isEmpty();
+
+        Logger.returnValue(roomIsEmpty);
+        return roomIsEmpty;
+    }
+
     /**
      * Checks if the room is at full capacity.
      *
@@ -88,7 +95,7 @@ public class Room implements Entity {
     public boolean IsFull() {
         Logger.invokeMethod(this, List.of());
 
-        boolean roomIsFull = AskTheUser.decision("Tele van a szoba?");
+        boolean roomIsFull = actorsInside.size() >= capacity;
 
         Logger.returnValue(roomIsFull);
         return roomIsFull;
@@ -163,28 +170,36 @@ public class Room implements Entity {
         Logger.returnVoid();
     }
 
-    /**
-     * Merges the room with another room.
-     */
-    public void Merge() {
+    private void Merge() {
         Logger.invokeMethod(this, List.of());
 
-        if (!actorsInside.isEmpty()) {
-            Logger.returnVoid();
-            return;
-        }
         Room r2 = null;
+
         for (Door door : doors) {
             List<Room> doorRooms = door.GetRooms();
             Room otherRoom = (doorRooms.get(0) == this) ? doorRooms.get(doorRooms.size() - 1) : doorRooms.get(0);
-            boolean chooseThis = AskTheUser.decision(String.format("A %s szobával egyesüljön?", Logger.getObjectName(otherRoom)));
+            boolean chooseThis = IsFull() && !otherRoom.IsFull();
             if (chooseThis) {
                 r2 = otherRoom;
                 break;
             }
         }
 
-        if (r2 == null || !r2.actorsInside.isEmpty()) {
+        if (r2 != null)
+            Merge(r2);
+
+        Logger.returnVoid();
+    }
+
+    /**
+     * Merges the room with another room.
+     *
+     * @param r2
+     */
+    public void Merge(Room r2) {
+        Logger.invokeMethod(this, List.of());
+
+        if (!IsEmpty() || !r2.IsEmpty()) {
             Logger.returnVoid();
             return;
         }
@@ -208,13 +223,14 @@ public class Room implements Entity {
     /**
      * Splits the room into two separate rooms.
      */
-    public void Split() {
+    public void Split(Set<Item> itemsToPass, Set<RoomEffect> effectsToPass, Set<Door> doorsToPass) {
         Logger.invokeMethod(this, List.of());
 
         var r2 = new Room();
+
         CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);
         for (Item item : currentItems) {
-            boolean shouldPass = AskTheUser.decision(String.format("Atkerül-e a %s tárgy az új szobába?", Logger.getObjectName(item)));
+            boolean shouldPass = itemsToPass.contains(item);
             if (shouldPass) {
                 RemoveItem(item);
                 r2.AddItem(item);
@@ -223,7 +239,7 @@ public class Room implements Entity {
 
         CopyOnWriteArrayList<RoomEffect> currentEffects = new CopyOnWriteArrayList<>(activeEffects);
         for (RoomEffect effect : currentEffects) {
-            boolean shouldPass = AskTheUser.decision(String.format("Atkerül-e a %s effekt az új szobába?", Logger.getObjectName(effect)));
+            boolean shouldPass = effectsToPass.contains(effect);
             if (shouldPass) {
                 RemoveEffect(effect);
                 r2.AddEffect(effect);
@@ -235,7 +251,7 @@ public class Room implements Entity {
 
         CopyOnWriteArrayList<Door> currentDoors = new CopyOnWriteArrayList<>(doors);
         for (Door door : currentDoors) {
-            boolean shouldPass = AskTheUser.decision(String.format("Atkerül-e a %s ajtó az új szobába?", Logger.getObjectName(door)));
+            boolean shouldPass = doorsToPass.contains(door);
             if (shouldPass)
                 door.ChangeRoom(this, r2);
         }
@@ -363,13 +379,17 @@ public class Room implements Entity {
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
 
-        boolean shouldMerge = AskTheUser.decision("Akar a szoba egyesülni?");
+        boolean shouldMerge = Randomware.Decision(MERGE_LIKELIHOOD);
         if (shouldMerge)
             Merge();
 
-        boolean shouldSplit = AskTheUser.decision("Akar a szoba szétválni?");
-        if (shouldSplit)
-            Split();
+        boolean shouldSplit = Randomware.Decision(SPLIT_LIKELIHOOD);
+        if (shouldSplit) {
+            Set<Item> itemsToPass = new HashSet<>(Randomware.Subset(itemsOnTheFloor));
+            Set<RoomEffect> effectsToPass = new HashSet<>(Randomware.Subset(activeEffects));
+            Set<Door> doorsToPass = new HashSet<>(Randomware.Subset(doors));
+            Split(itemsToPass, effectsToPass, doorsToPass);
+        }
 
         for (RoomEffect effect : activeEffects)
             effect.TimePassed();

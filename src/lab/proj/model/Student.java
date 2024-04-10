@@ -73,20 +73,20 @@ public class Student extends Actor {
     public void Shock() {
         Logger.invokeMethod(this, List.of());
 
-        if (gasProtections.size() > 0) {
-            var gasProtection = gasProtections.remove(0);
-            gasProtection.Affect();
-        } else {
+        if (gasProtections.isEmpty()) {
             collectedItems.forEach(Item::Drop);
             dropOutProtections.clear();
             gasProtections.clear();
+        } else {
+            var gasProtection = gasProtections.remove(0);
+            gasProtection.Affect();
         }
 
         Logger.returnVoid();
     }
 
     /**
-     * Initiates the process of dropping out, potentially applying dropout protection.
+     * Initiates the process of dropping out, potentially applying drop-out protection.
      */
     @Override
     public void DropOut() {
@@ -95,11 +95,8 @@ public class Student extends Actor {
         if (dropOutProtections.isEmpty()) {
             droppedOut = true;
         } else {
-            DropOutProtection dropOutProtection = dropOutProtections.get(0);
-
+            var dropOutProtection = dropOutProtections.remove(0);
             dropOutProtection.Affect();
-
-            dropOutProtections.remove(0);
         }
 
         Logger.returnVoid();

@@ -13,7 +13,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
     private static final Object MAIN = new Object();
     private static SequenceDiagramPrinter instance;
     private final PrintStream outputPrinter;
-    private final List<Object> lifelines;
+    private final List<Object> lifelines = new ArrayList<>();
     private final Map<Object, String> objectNameMap = new HashMap<>();
     private final Deque<Object> objectStack = new ArrayDeque<>();
 
@@ -25,7 +25,6 @@ public class SequenceDiagramPrinter implements DebugPrinter {
     public SequenceDiagramPrinter(PrintStream outputStream) {
         this.outputPrinter = outputStream;
         objectStack.offerLast(MAIN);
-        lifelines = new ArrayList<>();
     }
 
     /**
@@ -83,9 +82,14 @@ public class SequenceDiagramPrinter implements DebugPrinter {
     private String generateNameToObject(Object createdObject) {
         String originalName = createdObject.getClass().getSimpleName();
         StringBuilder newName = new StringBuilder();
-        for (int i = 0; i < originalName.length(); i++)
-            if (Character.isUpperCase(originalName.charAt(i)))
-                newName.append(Character.toLowerCase(originalName.charAt(i)));
+        if (originalName.equals("Towel"))
+            newName.append("tw");
+        else if (originalName.equals("Transistor"))
+            newName.append("tr");
+        else
+            for (int i = 0; i < originalName.length(); i++)
+                if (Character.isUpperCase(originalName.charAt(i)))
+                    newName.append(Character.toLowerCase(originalName.charAt(i)));
         String nameOfCreatedObject = newName.toString() + 1;
         for (int id = 2; objectNameMap.containsValue(nameOfCreatedObject); id++)
             nameOfCreatedObject = newName.toString() + id;

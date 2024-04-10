@@ -13,20 +13,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-//        SequenceDiagramPrinter.resetInstance(System.out);
-//
-//        final List<String> availableUseCases = TestUseCaseRunner.getAvailableUseCases();
-//
-//        StringBuilder questionBuilder = new StringBuilder("Melyik Use-Case-t futtassuk?\n");
-//        for (int i = 1; i <= availableUseCases.size(); i++)
-//            questionBuilder.append(String.format("\t%d. %s%n", i, availableUseCases.get(i - 1)));
-//        String question = questionBuilder.toString();
-//
-//        int selectedUseCase = AskTheUser.number(question) - 1;
-//        TestUseCaseRunner.runTest(selectedUseCase);
-
+        // Suppress output from debug printer
         SequenceDiagramPrinter.resetInstance(new PrintStream(OutputStream.nullOutputStream()));
 
+        testModel();
+    }
+
+    private static void testModel() {
         ActionManager actionManager = new ActionManager();
 
         try (Scanner scanner = new Scanner(System.in)) {
@@ -49,5 +42,19 @@ public class Main {
                 }
             }
         }
+    }
+
+    private static void testUseCases() {
+        SequenceDiagramPrinter.resetInstance(System.out);
+
+        final List<String> availableUseCases = TestUseCaseRunner.getAvailableUseCases();
+
+        StringBuilder questionBuilder = new StringBuilder("Melyik Use-Case-t futtassuk?\n");
+        for (int i = 1; i <= availableUseCases.size(); i++)
+            questionBuilder.append(String.format("\t%d. %s%n", i, availableUseCases.get(i - 1)));
+        String question = questionBuilder.toString();
+
+        int selectedUseCase = AskTheUser.number(question) - 1;
+        TestUseCaseRunner.runTest(selectedUseCase);
     }
 }

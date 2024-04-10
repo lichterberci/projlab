@@ -1,6 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.utils.AskTheUser;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.List;
@@ -30,6 +29,8 @@ public class Door implements Entity {
      * The second room connected by the door.
      */
     private Room r2;
+
+    boolean unidirect;
 
     public Door() {
         Logger.createObject(this);
@@ -66,12 +67,12 @@ public class Door implements Entity {
      */
     public boolean GoThrough(Room r, Actor a) {
         Logger.invokeMethod(this, List.of(r, a));
-        boolean doorIsHidden = AskTheUser.decision("El van rejtve az ajtó?");
 
-        if (doorIsHidden) {
+        if (hidden) {
             Logger.returnValue(false);
             return false;
         }
+
         // Find the other room connected by the door
         Room o = GetRooms().stream()
                 .filter(candidate -> candidate != r)
@@ -114,13 +115,21 @@ public class Door implements Entity {
     /**
      * Changes the rooms connected by the door.
      *
-     * @param r1 The new first room connected by the door.
-     * @param r2 The new second room connected by the door.
+     * @param oldRoom The new first room connected by the door.
+     * @param newRoom The new second room connected by the door.
      */
-    public void ChangeRoom(Room r1, Room r2) {
-        Logger.invokeMethod(this, List.of(r1, r2));        // Remove the door from the first room and add it to the second room        r1.RemoveDoor(this);
+    public void ChangeRoom(Room oldRoom, Room newRoom) {
+        Logger.invokeMethod(this, List.of(oldRoom, newRoom));
 
-        r2.AddDoor(this);
+        if (this.r1 == oldRoom)
+            this.r1 = newRoom;
+        else if (this.r2 == oldRoom)
+            this.r2 = newRoom;
+        else
+            throw new IllegalStateException("Old room is not a side of door");
+
+        oldRoom.RemoveDoor(this);
+        newRoom.AddDoor(this);
 
         Logger.returnVoid();
     }

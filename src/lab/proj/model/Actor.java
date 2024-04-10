@@ -180,6 +180,8 @@ public abstract class Actor implements Entity {
     }
 
     public void GetOut() {
+        Logger.invokeMethod(this, List.of());
+
         if (incapacitated)
             return;
 
@@ -187,5 +189,7 @@ public abstract class Actor implements Entity {
         for (Door d : doors)
             if (d.GoThrough(location, this))
                 break;
+
+        Logger.returnVoid();
     }
 }

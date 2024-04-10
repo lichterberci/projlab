@@ -1,5 +1,6 @@
 package lab.proj.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -7,6 +8,7 @@ public class Randomware {
 
     private static final int DEFAULT_SEED = 0;
     private static final Random random = new Random(DEFAULT_SEED);
+
     private Randomware() {
     }
 
@@ -19,8 +21,20 @@ public class Randomware {
         return collection.get(choiceIndex);
     }
 
+    public static <T> List<T> Subset(List<T> collection) {
+        List<T> subset = new ArrayList<>();
+        for (T item : collection)
+            if (Decision())
+                subset.add(item);
+        return subset;
+    }
+
     public static boolean Decision() {
         return random.nextBoolean();
+    }
+
+    public static boolean Decision(float likelihood) {
+        return random.nextInt() % (int) (likelihood * 100.0f) == 0;
     }
 
     /**

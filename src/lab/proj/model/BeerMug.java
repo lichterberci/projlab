@@ -3,16 +3,14 @@ package lab.proj.model;
 import lab.proj.utils.Randomware;
 import lab.proj.utils.SequenceDiagramPrinter;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /**
  * A class representing a beer mug item in the game environment.
  * Beer mugs extend the functionality of living items.
  */
 public class BeerMug extends LivingItem {
-
-    private static final Random random = new Random();
 
     /**
      * A logger for debugging purposes.
@@ -36,7 +34,7 @@ public class BeerMug extends LivingItem {
 
     /**
      * Applies charges associated with the beer mug.
-     * This method adds a drop out protection for the associated actor.
+     * This method adds drop-out protection for the associated actor.
      */
     @Override
     public void ApplyCharges() {
@@ -55,23 +53,31 @@ public class BeerMug extends LivingItem {
 
     /**
      * Performs the action of using the beer mug.
-     * This method adds a drop out protection for the associated actor.
+     * This method adds drop-out protection for the associated actor.
      */
     @Override
     public void Use() {
         Logger.invokeMethod(this, List.of());
+
+        Item item = Randomware.Choice(actor.GetItems());
+        UseWithSpecificDropCandidate(item);
+
+        Logger.returnVoid();
+    }
+
+    public void UseWithSpecificDropCandidate(Item dropCandidate) {
+        Logger.invokeMethod(this, Collections.singletonList(dropCandidate));
 
         if (fake) {
             Logger.returnVoid();
             return;
         }
 
-        Item item = Randomware.Choice(actor.GetItems());
-        item.Drop();
+        dropCandidate.Drop();
 
         if (actor != null) {
-            DropOutProtection dp2 = new DropOutProtection(this, 0);
-            actor.AddDropOutProtection(dp2);
+            DropOutProtection dop2 = new DropOutProtection(this, 0);
+            actor.AddDropOutProtection(dop2);
         }
 
         Logger.returnVoid();
