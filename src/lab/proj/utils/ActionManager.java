@@ -4,6 +4,8 @@ import lab.proj.model.BeerMug;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -64,7 +66,9 @@ public class ActionManager {
 			superClass = superClass.getSuperclass();
 		}
 
-		fields.forEach(field -> {
+		fields.stream()
+				.sorted((f1, f2) -> String.CASE_INSENSITIVE_ORDER.compare(f1.getName(), f2.getName()))
+				.forEach(field -> {
 					try {
 						field.setAccessible(true);
 
@@ -165,17 +169,26 @@ public class ActionManager {
 				})
 				.toList();
 
+        Method methodToCall;
+
 		try {
-			Arrays.stream(object.getClass().getMethods())
-					.filter(method -> method.getName().equals(methodName))
-					.findFirst()
-					.map(method -> {
-						method.setAccessible(true);
-						return method;
-					})
-					.orElseThrow(() -> new NoSuchMethodException("Method not found: %s".formatted(methodName)))
-					.invoke(object, parsedArgs.toArray());
-		} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            methodToCall = Arrays.stream(object.getClass().getMethods())
+                    .filter(method -> method.getName().equals(methodName))
+                    .findFirst()
+                    .map(method -> {
+                        method.setAccessible(true);
+                        return method;
+                    })
+                    .orElseThrow(() -> new NoSuchMethodException("Method not found: %s".formatted(methodName)));
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
+
+//        final Map<Parameter, List<Object>> parameter
+
+		try {
+			methodToCall.invoke(object, parsedArgs.toArray());
+		} catch (IllegalAccessException | InvocationTargetException e) {
 			throw new RuntimeException(e);
 		}
 	}
