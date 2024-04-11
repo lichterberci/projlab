@@ -21,12 +21,13 @@ public class ActionManager {
             newName.append("tw");
         else if (originalName.equals("Transistor"))
             newName.append("tr");
-        else
+        else {
             for (int i = 0; i < originalName.length(); i++)
                 if (Character.isUpperCase(originalName.charAt(i)))
                     newName.append(Character.toLowerCase(originalName.charAt(i)));
+        }
         String nameOfCreatedObject = newName.toString() + 1;
-        for (int id = 2; objects.containsValue(nameOfCreatedObject); id++)
+        for (int id = 2; objects.containsKey(nameOfCreatedObject); id++)
             nameOfCreatedObject = newName.toString() + id;
         return nameOfCreatedObject;
     }
@@ -191,7 +192,7 @@ public class ActionManager {
                	 parsedArgs.stream().collect(Collectors.groupingBy(Object::getClass))
                 : Collections.emptyMap();
 
-        final List<HashSet<Object>> collectedObjectParameters = parameterBinding.isEmpty() ?
+	    final List<HashSet<Object>> collectedObjectParameters = parameterBinding.isEmpty() ?
                 Collections.emptyList()
                 : Arrays.stream(methodToCall.getParameters())
 						.map(param -> {
@@ -199,11 +200,18 @@ public class ActionManager {
                                       //      .getActualTypeArguments()[0]);
 //                                    final ParameterizedType parameterizedType = (ParameterizedType) param.getParameterizedType().getClass().getGenericSuperclass();
                                     ParameterizedType parameterizedType = (ParameterizedType) param.getParameterizedType();
-                                    Class<?> templateParameter = (Class<?>) parameterizedType.getActualTypeArguments()[0];
+									Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+
+									if (actualTypeArguments == null || actualTypeArguments.length == 0) {
+										throw new RuntimeException("No actual type arguments found");
+									}
+
+									Class<?> templateParameter = (Class<?>) actualTypeArguments[0];
 
                                     return new HashSet<>(
-                                            parameterBinding.get(
-                                                    templateParameter// we assume it to be a Set<something>
+                                            parameterBinding.getOrDefault(
+                                                    templateParameter,
+		                                            Collections.emptyList()
                                             )
                                     );
                                 }
