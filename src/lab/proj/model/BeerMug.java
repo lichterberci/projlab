@@ -27,7 +27,9 @@ public class BeerMug extends LivingItem {
      */
     @Override
     public void TimePassed() {
-        Logger.invokeMethod(this, List.of());        // No actions for beer mug on time passage
+        Logger.invokeMethod(this, List.of());
+
+        // No actions for beer mug on time passage
 
         Logger.returnVoid();
     }
@@ -40,7 +42,7 @@ public class BeerMug extends LivingItem {
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
 
-        if (!activated || fake) {
+        if (fake || !activated || actor == null) {
             Logger.returnVoid();
             return;
         }
@@ -59,7 +61,7 @@ public class BeerMug extends LivingItem {
     public void Use() {
         Logger.invokeMethod(this, List.of());
 
-        Item item = Randomware.Choice(actor.GetItems());
+        Item item = actor != null ? Randomware.Choice(actor.GetItems()) : null;
         UseWithSpecificDropCandidate(item);
 
         Logger.returnVoid();
@@ -68,17 +70,15 @@ public class BeerMug extends LivingItem {
     public void UseWithSpecificDropCandidate(Item dropCandidate) {
         Logger.invokeMethod(this, Collections.singletonList(dropCandidate));
 
-        if (fake) {
+        if (fake || actor == null || dropCandidate == null) {
             Logger.returnVoid();
             return;
         }
 
         dropCandidate.Drop();
 
-        if (actor != null) {
-            DropOutProtection dop2 = new DropOutProtection(this, 0);
-            actor.AddDropOutProtection(dop2);
-        }
+        DropOutProtection dop2 = new DropOutProtection(this, 0);
+        actor.AddDropOutProtection(dop2);
 
         Logger.returnVoid();
     }
