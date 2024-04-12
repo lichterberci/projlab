@@ -25,8 +25,8 @@ public class OneTeacherOneStudent implements TestUseCase {
 
         d.SetRooms(r1, r2);
 
-        r1.AddActor(s);
+        s.SetLocation(r1);
 
-        r2.AddActor(t1);
+        t1.SetLocation(r2);
     }
 }

@@ -16,11 +16,11 @@ public class Gas implements TestUseCase {
         var t1 = new Teacher();
         var gprot = new GasProtection(mask, 0);
 
-        room.AddActor(st);
-        room.AddActor(t1);
+        st.SetLocation(room);
+        t1.SetLocation(room);
         boolean result = mask.PickUp(st);
         mask.Activate();
-        room.AddEffect(g);
+        g.SetLocation(room);
         st.TimePassed();
         room.TimePassed();
         t1.DropOutAll();

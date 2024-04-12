@@ -15,7 +15,7 @@ public class StudentDefendWithCSE implements TestUseCase {
         d.SetRooms(r1, r2);
 
         Student s = new Student();
-        r1.AddActor(s);
+        s.SetLocation(r1);
 
         CSE cse = new CSE();
         boolean csePickedUp = cse.PickUp(s);
@@ -32,10 +32,10 @@ public class StudentDefendWithCSE implements TestUseCase {
         cse.Activate();
 
         Teacher t1 = new Teacher();
-        r2.AddActor(t1);
+        t1.SetLocation(r2);
 
         Teacher t2 = new Teacher();
-        r2.AddActor(t2);
+        t2.SetLocation(r2);
 
         boolean success = s.UseDoor(d);
         s.TimePassed();

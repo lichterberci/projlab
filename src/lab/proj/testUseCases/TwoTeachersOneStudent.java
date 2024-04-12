@@ -30,11 +30,11 @@ public class TwoTeachersOneStudent implements TestUseCase {
         cm = new Camembert();
         sr = new SlideRule();
 
-        r1.AddActor(s);
+        s.SetLocation(r1);
 
-        r2.AddActor(t1);
+        t1.SetLocation(r2);
 
-        r2.AddActor(t2);
+        t2.SetLocation(r2);
 
         d.SetRooms(r1, r2);
 
@@ -44,6 +44,6 @@ public class TwoTeachersOneStudent implements TestUseCase {
 
         boolean camembertPickedUp = cm.PickUp(s);
 
-        r2.AddItem(sr);
+        sr.SetLocation(r2);
     }
 }

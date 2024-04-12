@@ -84,7 +84,7 @@ public abstract class Actor implements Entity {
     public void DropItem(Item i) {
         Logger.invokeMethod(this, Collections.singletonList(i));
 
-        location.AddItem(i);
+        i.SetLocation(location);
         collectedItems.remove(i);
 
         Logger.returnVoid();

@@ -31,12 +31,12 @@ public class ThreeRoomsTwoDoors implements TestUseCase {
 
         d2.SetRooms(r1, r4);
 
-        r1.AddItem(t);
+        t.SetLocation(r1);
 
-        r1.AddItem(m);
+        m.SetLocation(r1);
 
-        r1.AddEffect(c1);
+        c1.SetLocation(r1);
 
-        r1.AddEffect(g);
+        g.SetLocation(r1);
     }
 }

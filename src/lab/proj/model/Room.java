@@ -204,12 +204,10 @@ public class Room implements Entity {
         }
 
         CopyOnWriteArrayList<Item> otherRoomsItems = new CopyOnWriteArrayList<>(r2.itemsOnTheFloor);
-        for (Item item : otherRoomsItems) {
-            r2.RemoveItem(item);
-            AddItem(item);
-        }
+        for (Item item : otherRoomsItems)
+            item.SetLocation(this);
 
-        capacity = r2.capacity;
+        capacity = Math.max(capacity, r2.capacity);
 
         for (Door door : doors)
             door.Show();
@@ -231,19 +229,15 @@ public class Room implements Entity {
         CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);
         for (Item item : currentItems) {
             boolean shouldPass = itemsToPass.contains(item);
-            if (shouldPass) {
-                RemoveItem(item);
-                r2.AddItem(item);
-            }
+            if (shouldPass)
+                item.SetLocation(r2);
         }
 
         CopyOnWriteArrayList<RoomEffect> currentEffects = new CopyOnWriteArrayList<>(activeEffects);
         for (RoomEffect effect : currentEffects) {
             boolean shouldPass = effectsToPass.contains(effect);
-            if (shouldPass) {
-                RemoveEffect(effect);
-                r2.AddEffect(effect);
-            }
+            if (shouldPass)
+                effect.SetLocation(r2);
         }
 
         for (Door door : doors)

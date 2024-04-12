@@ -34,10 +34,10 @@ public class FourRoomsThreeDoors implements TestUseCase {
         d3.SetRooms(r1, r2);
         d1.SetRooms(r1, r3);
         d2.SetRooms(r2, r4);
-        r1.AddItem(t);
-        r1.AddItem(m);
-        r2.AddEffect(c1);
-        r1.AddEffect(g);
+        t.SetLocation(r1);
+        m.SetLocation(r1);
+        c1.SetLocation(r2);
+        g.SetLocation(r1);
     }
 }
 

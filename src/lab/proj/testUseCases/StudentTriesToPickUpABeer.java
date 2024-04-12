@@ -13,8 +13,8 @@ public class StudentTriesToPickUpABeer implements TestUseCase {
         Student s = new Student();
         BeerMug b = new BeerMug();
         Room location = new Room();
-        location.AddActor(s);
-        location.AddItem(b);
+        s.SetLocation(location);
+        b.SetLocation(location);
         boolean success = b.PickUp(s);
     }
 }
