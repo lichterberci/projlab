@@ -34,7 +34,7 @@ public class Randomware {
     }
 
     public static boolean Decision(float likelihood) {
-        return random.nextInt() % (int) (likelihood * 100.0f) == 0;
+        return random.nextFloat() <= likelihood;
     }
 
     /**
