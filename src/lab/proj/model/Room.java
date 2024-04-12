@@ -404,12 +404,20 @@ public class Room implements Entity {
     }
 
     public void CleanRoom() {
+        Logger.invokeMethod(this, List.of());
+
         visitorCountSinceLastCleaning = 0;
         RefreshStickyness();
+
+        Logger.returnVoid();
     }
 
     private void RefreshStickyness() {
+        Logger.invokeMethod(this, List.of());
+
         for (Item item : itemsOnTheFloor)
             item.SetSticky(visitorCountSinceLastCleaning > STICKY_THRESHOLD);
+
+        Logger.returnVoid();
     }
 }
