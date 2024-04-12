@@ -1,6 +1,7 @@
 package lab.proj.model;
 
 import lab.proj.controller.GameManager;
+import lab.proj.utils.ExcludeFromStatus;
 import lab.proj.utils.Randomware;
 import lab.proj.utils.SequenceDiagramPrinter;
 
