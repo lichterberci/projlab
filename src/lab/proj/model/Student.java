@@ -1,5 +1,6 @@
 package lab.proj.model;
 
+import lab.proj.controller.GameManager;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
@@ -100,6 +101,15 @@ public class Student extends Actor {
             var dropOutProtection = dropOutProtections.poll();
             dropOutProtection.Affect();
         }
+
+        Logger.returnVoid();
+    }
+
+    @Override
+    public void NotifyStudentWin(Item item) {
+        Logger.invokeMethod(this, List.of());
+
+        GameManager.GetInstance().Win();
 
         Logger.returnVoid();
     }

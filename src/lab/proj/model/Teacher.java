@@ -1,5 +1,6 @@
 package lab.proj.model;
 
+import lab.proj.controller.GameManager;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
@@ -93,6 +94,15 @@ public class Teacher extends Actor {
     @Override
     public void DropOut() {
         Logger.invokeMethod(this, List.of());
+        Logger.returnVoid();
+    }
+
+    @Override
+    public void NotifyStudentWin(Item item) {
+        Logger.invokeMethod(this, List.of());
+
+        item.Drop();
+
         Logger.returnVoid();
     }
 }

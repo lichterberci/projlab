@@ -1,5 +1,6 @@
 package lab.proj.model;
 
+import lab.proj.controller.GameManager;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
@@ -69,5 +70,14 @@ public class CleaningLady extends Actor {
 
         Logger.returnValue(wasSuccessful);
         return wasSuccessful;
+    }
+
+    @Override
+    public void NotifyStudentWin(Item item) {
+        Logger.invokeMethod(this, List.of());
+
+        // Empty.
+
+        Logger.returnVoid();
     }
 }
