@@ -59,7 +59,6 @@ public class Room implements Entity {
     public void AddActor(Actor actor) {
         Logger.invokeMethod(this, Collections.singletonList(actor));
 
-        actor.SetLocation(this);
         actorsInside.add(actor);
         visitorCountSinceLastCleaning++;
 
@@ -151,7 +150,6 @@ public class Room implements Entity {
     public void AddItem(Item i) {
         Logger.invokeMethod(this, Collections.singletonList(i));
 
-        i.SetLocation(this);
         itemsOnTheFloor.add(i);
 
         Logger.returnVoid();
@@ -165,7 +163,6 @@ public class Room implements Entity {
     public void RemoveItem(Item i) {
         Logger.invokeMethod(this, Collections.singletonList(i));
 
-        i.SetLocation(null);
         itemsOnTheFloor.remove(i);
 
         Logger.returnVoid();
@@ -271,7 +268,7 @@ public class Room implements Entity {
      */
     public void AddEffect(RoomEffect e) {
         Logger.invokeMethod(this, Collections.singletonList(e));
-        e.SetLocation(this);
+
         activeEffects.add(e);
 
         Logger.returnVoid();
@@ -285,7 +282,6 @@ public class Room implements Entity {
     public void RemoveEffect(RoomEffect e) {
         Logger.invokeMethod(this, Collections.singletonList(e));
 
-        e.SetLocation(null);
         activeEffects.remove(e);
 
         Logger.returnVoid();

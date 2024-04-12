@@ -92,6 +92,10 @@ public class Door implements Entity {
      */
     public void SetRooms(Room r1, Room r2) {
         Logger.invokeMethod(this, List.of(r1, r2));
+        if (this.r1 != null)
+            this.r1.RemoveDoor(this);
+        if (this.r2 != null)
+            this.r2.RemoveDoor(this);
 
         this.r1 = r1;
         this.r2 = r2;

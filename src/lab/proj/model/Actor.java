@@ -147,9 +147,10 @@ public abstract class Actor implements Entity {
      */
     public void SetLocation(Room r) {
         Logger.invokeMethod(this, Collections.singletonList(r));
-
+        if (location != null)
+            location.RemoveActor(this);
         location = r;
-
+        location.AddActor(this);
         Logger.returnVoid();
     }
 

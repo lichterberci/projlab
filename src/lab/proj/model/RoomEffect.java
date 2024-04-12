@@ -29,7 +29,10 @@ public abstract class RoomEffect implements Entity {
     public void SetLocation(Room r) {
         Logger.invokeMethod(this, Collections.singletonList(r));
 
+        if (location != null)
+            location.RemoveEffect(this);
         location = r;
+        location.AddEffect(this);
 
         Logger.returnVoid();
     }
