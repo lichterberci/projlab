@@ -31,8 +31,11 @@ public abstract class RoomEffect implements Entity {
 
         if (location != null)
             location.RemoveEffect(this);
+
         location = r;
-        location.AddEffect(this);
+
+        if (location != null)
+            location.AddEffect(this);
 
         Logger.returnVoid();
     }

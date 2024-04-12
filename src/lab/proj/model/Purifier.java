@@ -20,10 +20,9 @@ public class Purifier extends Item {
 
         activated = true;
 
-        Room room = actor.GetLocation();
-
-        room.VisitEffects(new PurifierVisitor());
         Drop();
+        location.VisitEffects(new PurifierVisitor());
+        dead = true;
 
         Logger.returnVoid();
     }

@@ -113,7 +113,7 @@ public class Room implements Entity {
 
         boolean isFull = IsFull();
         if (!isFull)
-            AddActor(a);
+            a.SetLocation(this);
 
         Logger.returnValue(!isFull);
         return !isFull;
@@ -171,14 +171,17 @@ public class Room implements Entity {
 
     private void Merge() {
         Logger.invokeMethod(this, List.of());
+        if (!IsEmpty())
+        {
+            Logger.returnVoid();
+            return;
+        }
 
         Room r2 = null;
-
         for (Door door : doors) {
             List<Room> doorRooms = door.GetRooms();
             Room otherRoom = (doorRooms.get(0) == this) ? doorRooms.get(doorRooms.size() - 1) : doorRooms.get(0);
-            boolean chooseThis = IsFull() && !otherRoom.IsFull();
-            if (chooseThis) {
+            if (otherRoom.IsEmpty()) {
                 r2 = otherRoom;
                 break;
             }
@@ -203,12 +206,20 @@ public class Room implements Entity {
             return;
         }
 
+        capacity = Math.max(capacity, r2.capacity);
+
         CopyOnWriteArrayList<Item> otherRoomsItems = new CopyOnWriteArrayList<>(r2.itemsOnTheFloor);
         for (Item item : otherRoomsItems)
             item.SetLocation(this);
 
-        capacity = Math.max(capacity, r2.capacity);
+        CopyOnWriteArrayList<RoomEffect> otherRoomsEffects = new CopyOnWriteArrayList<>(r2.activeEffects);
+        for (RoomEffect effect : otherRoomsEffects)
+            effect.SetLocation(this);
 
+        CopyOnWriteArrayList<Door> otherRoomsDoors = new CopyOnWriteArrayList<>(r2.doors);
+        for(Door door : otherRoomsDoors)
+            if(!door.GetRooms().contains(this))
+                door.ChangeRoom(r2, this);
         for (Door door : doors)
             door.Show();
 
@@ -223,7 +234,7 @@ public class Room implements Entity {
     public void Split(Set<Item> itemsToPass, Set<RoomEffect> effectsToPass, Set<Door> doorsToPass) {
         Logger.invokeMethod(this, List.of());
 
-//        var r2 = new Room();
+//      var r2 = new Room();
         var r2 = GameManager.GetInstance().CreateRoom();
 
         CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);

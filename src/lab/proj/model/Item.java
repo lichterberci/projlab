@@ -84,7 +84,8 @@ public abstract class Item implements Entity {
         if (this.location != null)
             this.location.RemoveItem(this);
         this.location = location;
-        location.AddItem(this);
+        if (this.location != null)
+            location.AddItem(this);
         Logger.returnVoid();
     }
 

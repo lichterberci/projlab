@@ -35,9 +35,9 @@ public class Camembert extends Item {
 
         var gp = new GasPoisoning();
 
-        Room room = actor.GetLocation();
-        room.AddEffect(gp);
         Drop();
+        gp.SetLocation(location);
+        dead = true;
 
         Logger.returnVoid();
     }

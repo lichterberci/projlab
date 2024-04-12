@@ -111,8 +111,11 @@ public class Door implements Entity {
 
         this.r1 = r1;
         this.r2 = r2;
-        r1.AddDoor(this);
-        r2.AddDoor(this);
+
+        if (this.r1 != null)
+            this.r1.AddDoor(this);
+        if (this.r2 != null)
+            this.r2.AddDoor(this);
 
         Logger.returnVoid();
     }
