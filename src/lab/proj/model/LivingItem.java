@@ -16,4 +16,15 @@ public abstract class LivingItem extends Item {
      * Each subclass must implement this method to define the specific action.
      */
     public abstract void Use();
+
+    @Override
+    public void TimePassed() {
+        lifetime--;
+
+        if (lifetime <= 0) {
+            dead = true;
+            Drop();
+        }
+    }
+
 }

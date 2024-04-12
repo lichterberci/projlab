@@ -46,8 +46,10 @@ public class Student extends Actor {
 
         gasProtections.clear();
         dropOutProtections.clear();
-        for (Item i : collectedItems)
+        for (Item i : collectedItems) {
             i.ApplyCharges();
+            i.TimePassed();
+        }
 
         Logger.returnVoid();
     }

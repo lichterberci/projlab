@@ -1,5 +1,6 @@
 package lab.proj.model;
 
+import lab.proj.controller.GameManager;
 import lab.proj.utils.Randomware;
 import lab.proj.utils.SequenceDiagramPrinter;
 
@@ -226,7 +227,8 @@ public class Room implements Entity {
     public void Split(Set<Item> itemsToPass, Set<RoomEffect> effectsToPass, Set<Door> doorsToPass) {
         Logger.invokeMethod(this, List.of());
 
-        var r2 = new Room();
+//        var r2 = new Room();
+        var r2 = GameManager.GetInstance().CreateRoom();
 
         CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);
         for (Item item : currentItems) {
