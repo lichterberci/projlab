@@ -80,7 +80,7 @@ public class Student extends Actor {
             dropOutProtections.clear();
             gasProtections.clear();
         } else {
-            var gasProtection = gasProtections.remove(0);
+            var gasProtection = gasProtections.poll();
             gasProtection.Affect();
         }
 
@@ -97,7 +97,7 @@ public class Student extends Actor {
         if (dropOutProtections.isEmpty()) {
             droppedOut = true;
         } else {
-            var dropOutProtection = dropOutProtections.remove(0);
+            var dropOutProtection = dropOutProtections.poll();
             dropOutProtection.Affect();
         }
 

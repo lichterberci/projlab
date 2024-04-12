@@ -2,9 +2,7 @@ package lab.proj.model;
 
 import lab.proj.utils.SequenceDiagramPrinter;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * An abstract class representing an actor in the game environment.
@@ -34,12 +32,16 @@ public abstract class Actor implements Entity {
     /**
      * Gas protections possessed by the actor.
      */
-    protected List<GasProtection> gasProtections = new ArrayList<>();
+    protected PriorityQueue<GasProtection> gasProtections = new PriorityQueue<>(
+            Comparator.comparing(GasProtection::GetPriority)
+    );
 
     /**
      * Drop out protections possessed by the actor.
      */
-    protected List<DropOutProtection> dropOutProtections = new ArrayList<>();
+    protected PriorityQueue<DropOutProtection> dropOutProtections = new PriorityQueue<>(
+            Comparator.comparing(DropOutProtection::GetPriority)
+    );
 
     /**
      * Attempts to use a door to move to another room.
@@ -96,7 +98,7 @@ public abstract class Actor implements Entity {
     public void AddDropOutProtection(DropOutProtection dropOutProtection) {
         Logger.invokeMethod(this, Collections.singletonList(dropOutProtection));
 
-        dropOutProtections.add(dropOutProtection);
+        dropOutProtections.offer(dropOutProtection);
 
         Logger.returnVoid();
     }
@@ -109,7 +111,7 @@ public abstract class Actor implements Entity {
     public void AddGasProtection(GasProtection gasProtection) {
         Logger.invokeMethod(this, Collections.singletonList(gasProtection));
 
-        gasProtections.add(gasProtection);
+        gasProtections.offer(gasProtection);
 
         Logger.returnVoid();
     }
