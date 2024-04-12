@@ -16,11 +16,6 @@ public class Door implements Entity {
     private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
-     * Indicates whether the door is hidden or not.
-     */
-    private boolean hidden;
-
-    /**
      * The first room connected by the door.
      */
     private Room r1;
@@ -30,7 +25,15 @@ public class Door implements Entity {
      */
     private Room r2;
 
-    boolean unidirect;
+    /**
+     * Indicates whether the door is hidden or not.
+     */
+    private boolean hidden = false;
+
+    /**
+     * Indicates whether the door is directed towards r2 or not.
+     */
+    private boolean oneWay = false;
 
     public Door() {
         Logger.createObject(this);
@@ -58,6 +61,15 @@ public class Door implements Entity {
         Logger.returnVoid();
     }
 
+    // TODO: Make a command for in the interpreter
+    public void SetOneWay() {
+        oneWay = true;
+    }
+
+    public void SetTwoWay() {
+        oneWay = false;
+    }
+
     /**
      * Attempts to go through the door from the specified room with the given actor.
      *
@@ -68,7 +80,7 @@ public class Door implements Entity {
     public boolean GoThrough(Room r, Actor a) {
         Logger.invokeMethod(this, List.of(r, a));
 
-        if (hidden) {
+        if (hidden || (oneWay && r != r1)) {
             Logger.returnValue(false);
             return false;
         }

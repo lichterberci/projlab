@@ -37,6 +37,7 @@ public class GameManager {
     public void Win() {
         isRunning = false;
         isWon = true;
+        System.out.println("Win!");
     }
 
     public void Lose() {
@@ -52,7 +53,7 @@ public class GameManager {
         isRunning = false;
         isWon = false;
         turnCounter = 0;
-        currentActor = GetNextActorForTurn();
+        //currentActor = GetNextActorForTurn();
     }
 
     private void CalculateLayout() {
@@ -67,7 +68,7 @@ public class GameManager {
         return isWon;
     }
 
-    public void DropoutStudent(Student student) {
+    public void DropOutStudent(Student student) {
         students.remove(student);
     }
 
@@ -103,6 +104,4 @@ public class GameManager {
 
         return result;
     }
-
-
 }

@@ -7,25 +7,19 @@ import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.lang.reflect.ParameterizedType;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 
 public class Main {
     public static void main(String[] args) {
-//         Suppress output from debug printer
-        SequenceDiagramPrinter.resetInstance(new PrintStream(OutputStream.nullOutputStream()));
-
         testModel();
-
     }
 
     private static void testModel() {
+        // Suppress output from debug printer
+        SequenceDiagramPrinter.resetInstance(new PrintStream(OutputStream.nullOutputStream()));
+
         ActionManager actionManager = new ActionManager();
 
         try (Scanner scanner = new Scanner(System.in)) {

@@ -195,4 +195,6 @@ public abstract class Actor implements Entity {
 
         Logger.returnVoid();
     }
+
+    public abstract void NotifyStudentWin(Item item);
 }

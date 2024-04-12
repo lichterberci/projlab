@@ -14,4 +14,16 @@ public class SlideRule extends Item {
 
         Logger.returnVoid();
     }
+
+    @Override
+    public boolean PickUp(Actor a) {
+        Logger.invokeMethod(this, List.of(a));
+
+        boolean success = super.PickUp(a);
+        if (success)
+            a.NotifyStudentWin(this);
+
+        Logger.returnValue(success);
+        return success;
+    }
 }
