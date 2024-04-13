@@ -102,7 +102,7 @@ public class GameManager {
     public Door CreateDoor() {
         Door result = new Door();
 
-        entities.add(result);
+//        entities.add(result);
 
         return result;
     }

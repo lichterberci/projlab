@@ -8,7 +8,7 @@ import java.util.List;
  * A class representing a door in the game environment.
  * Doors connect two rooms and can be hidden or shown.
  */
-public class Door implements Entity {
+public class Door {
 
     /**
      * A logger for debugging purposes.
@@ -149,19 +149,6 @@ public class Door implements Entity {
 
         oldRoom.RemoveDoor(this);
         newRoom.AddDoor(this);
-
-        Logger.returnVoid();
-    }
-
-    /**
-     * Performs actions associated with the passage of time.
-     * This method is currently empty for doors.
-     */
-    @Override
-    public void TimePassed() {
-        Logger.invokeMethod(this, List.of());
-
-        // No actions for doors on time passage
 
         Logger.returnVoid();
     }
