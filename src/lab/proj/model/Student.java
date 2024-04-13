@@ -77,7 +77,7 @@ public class Student extends Actor {
         Logger.invokeMethod(this, List.of());
 
         if (gasProtections.isEmpty()) {
-            collectedItems.forEach(Item::Drop);
+            DropAllItems();
             dropOutProtections.clear();
             gasProtections.clear();
         } else {

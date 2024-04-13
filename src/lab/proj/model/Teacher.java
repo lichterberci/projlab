@@ -4,6 +4,7 @@ import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A class representing a teacher actor in the game environment.
@@ -74,14 +75,13 @@ public class Teacher extends Actor {
 
     /**
      * Reacts to being shocked.
-     * This method is currently empty.
      */
     @Override
     public void Shock() {
         Logger.invokeMethod(this, List.of());
 
         incapacitated = true;
-        collectedItems.forEach(Item::Drop);
+        DropAllItems();
 
         Logger.returnVoid();
     }

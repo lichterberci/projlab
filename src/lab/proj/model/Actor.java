@@ -3,6 +3,7 @@ package lab.proj.model;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * An abstract class representing an actor in the game environment.
@@ -90,6 +91,10 @@ public abstract class Actor implements Entity {
         Logger.returnVoid();
     }
 
+    public void DropAllItems() {
+        new CopyOnWriteArrayList<>(collectedItems).forEach(Item::Drop);
+    }
+
     /**
      * Adds a drop out protection to the actor.
      *
@@ -134,9 +139,7 @@ public abstract class Actor implements Entity {
      */
     public Room GetLocation() {
         Logger.invokeMethod(this, List.of());
-
         Logger.returnValue(location);
-
         return location;
     }
 
@@ -147,11 +150,13 @@ public abstract class Actor implements Entity {
      */
     public void SetLocation(Room r) {
         Logger.invokeMethod(this, Collections.singletonList(r));
+
         if (location != null)
             location.RemoveActor(this);
         location = r;
         if (location != null)
             location.AddActor(this);
+
         Logger.returnVoid();
     }
 

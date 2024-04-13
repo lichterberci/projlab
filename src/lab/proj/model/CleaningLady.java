@@ -4,6 +4,7 @@ import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CleaningLady extends Actor {
 
@@ -64,8 +65,7 @@ public class CleaningLady extends Actor {
 
         boolean wasSuccessful = super.UseDoor(d);
         if (wasSuccessful)
-            for (Actor a : this.location.GetActors())
-                a.GetOut();
+            new CopyOnWriteArrayList<>(location.GetActors()).forEach(Actor::GetOut);
 
         Logger.returnValue(wasSuccessful);
         return wasSuccessful;
