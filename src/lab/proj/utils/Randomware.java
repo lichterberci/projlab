@@ -17,6 +17,8 @@ public class Randomware {
     }
 
     public static <T> T Choice(List<T> collection) {
+        if (collection.isEmpty())
+            return null;
         int choiceIndex = random.nextInt(collection.size());
         return collection.get(choiceIndex);
     }

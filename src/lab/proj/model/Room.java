@@ -170,21 +170,22 @@ public class Room implements Entity {
 
     private void Merge() {
         Logger.invokeMethod(this, List.of());
+
         if (!IsEmpty()) {
             Logger.returnVoid();
             return;
         }
 
-        Room r2 = null;
+        List<Room> candidates = new ArrayList<>();
+
         for (Door door : doors) {
             List<Room> doorRooms = door.GetRooms();
             Room otherRoom = (doorRooms.get(0) == this) ? doorRooms.get(doorRooms.size() - 1) : doorRooms.get(0);
-            if (otherRoom.IsEmpty()) {
-                r2 = otherRoom;
-                break;
-            }
+            if (otherRoom.IsEmpty())
+                candidates.add(otherRoom);
         }
 
+        Room r2 = Randomware.Choice(candidates);
         if (r2 != null)
             Merge(r2);
 
@@ -218,6 +219,7 @@ public class Room implements Entity {
         for (Door door : otherRoomsDoors)
             if (!door.GetRooms().contains(this))
                 door.ChangeRoom(r2, this);
+
         for (Door door : doors)
             door.Show();
 
@@ -226,38 +228,51 @@ public class Room implements Entity {
         Logger.returnVoid();
     }
 
+    private void Split() {
+        Logger.invokeMethod(this, List.of());
+
+        if (!IsEmpty()) {
+            Logger.returnVoid();
+            return;
+        }
+
+        Set<Item> itemsToPass = new HashSet<>(Randomware.Subset(itemsOnTheFloor));
+        Set<RoomEffect> effectsToPass = new HashSet<>(Randomware.Subset(activeEffects));
+        Set<Door> doorsToPass = new HashSet<>(Randomware.Subset(doors));
+        Split(itemsToPass, effectsToPass, doorsToPass);
+
+        Logger.returnVoid();
+    }
+
     /**
      * Splits the room into two separate rooms.
+     *
+     * @param itemsToPass
+     * @param effectsToPass
+     * @param doorsToPass
      */
     public void Split(Set<Item> itemsToPass, Set<RoomEffect> effectsToPass, Set<Door> doorsToPass) {
         Logger.invokeMethod(this, List.of());
 
-//      var r2 = new Room();
         var r2 = GameManager.GetInstance().CreateRoom();
 
         CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);
-        for (Item item : currentItems) {
-            boolean shouldPass = itemsToPass.contains(item);
-            if (shouldPass)
+        for (Item item : currentItems)
+            if (itemsToPass.contains(item))
                 item.SetLocation(r2);
-        }
 
         CopyOnWriteArrayList<RoomEffect> currentEffects = new CopyOnWriteArrayList<>(activeEffects);
-        for (RoomEffect effect : currentEffects) {
-            boolean shouldPass = effectsToPass.contains(effect);
-            if (shouldPass)
+        for (RoomEffect effect : currentEffects)
+            if (effectsToPass.contains(effect))
                 effect.SetLocation(r2);
-        }
 
         for (Door door : doors)
             door.Show();
 
         CopyOnWriteArrayList<Door> currentDoors = new CopyOnWriteArrayList<>(doors);
-        for (Door door : currentDoors) {
-            boolean shouldPass = doorsToPass.contains(door);
-            if (shouldPass)
+        for (Door door : currentDoors)
+            if (doorsToPass.contains(door))
                 door.ChangeRoom(this, r2);
-        }
 
         var d3 = new Door();
         d3.SetRooms(this, r2);
@@ -386,12 +401,8 @@ public class Room implements Entity {
             Merge();
 
         boolean shouldSplit = Randomware.Decision(SPLIT_LIKELIHOOD);
-        if (shouldSplit) {
-            Set<Item> itemsToPass = new HashSet<>(Randomware.Subset(itemsOnTheFloor));
-            Set<RoomEffect> effectsToPass = new HashSet<>(Randomware.Subset(activeEffects));
-            Set<Door> doorsToPass = new HashSet<>(Randomware.Subset(doors));
-            Split(itemsToPass, effectsToPass, doorsToPass);
-        }
+        if (shouldSplit)
+            Split();
 
         for (RoomEffect effect : activeEffects)
             effect.TimePassed();
