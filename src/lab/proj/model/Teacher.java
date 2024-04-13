@@ -1,21 +1,13 @@
 package lab.proj.model;
 
-import lab.proj.utils.SequenceDiagramPrinter;
-
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A class representing a teacher actor in the game environment.
  * Teachers can perform actions such as stunning students and initiating dropout processes.
  */
 public class Teacher extends Actor {
-
-    /**
-     * The logger instance for debugging purposes.
-     */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     public Teacher() {
         Logger.createObject(this);
@@ -69,19 +61,6 @@ public class Teacher extends Actor {
         Logger.invokeMethod(this, Collections.singletonList(v));
 
         v.VisitTeacher(this);
-
-        Logger.returnVoid();
-    }
-
-    /**
-     * Reacts to being shocked.
-     */
-    @Override
-    public void Shock() {
-        Logger.invokeMethod(this, List.of());
-
-        incapacitated = true;
-        DropAllItems();
 
         Logger.returnVoid();
     }

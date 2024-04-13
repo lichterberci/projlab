@@ -11,9 +11,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public abstract class Actor implements Entity {
     /**
-     * A logger for debugging purposes.
+     * The logger instance for debugging purposes.
      */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
+    protected static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
      * Indicates whether the actor is incapacitated or not.
@@ -168,9 +168,16 @@ public abstract class Actor implements Entity {
     public abstract void VisitActor(ActorVisitor v);
 
     /**
-     * Performs an action representing the actor being shocked.
+     * Reacts to being shocked.
      */
-    public abstract void Shock();
+    public void Shock() {
+        Logger.invokeMethod(this, List.of());
+
+        incapacitated = true;
+        DropAllItems();
+
+        Logger.returnVoid();
+    }
 
     /**
      * Performs an action representing the actor dropping out.
