@@ -2,6 +2,8 @@ package lab.proj.controller;
 
 import lab.proj.model.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,12 +14,12 @@ public class GameManager {
     private boolean isRunning;
     private boolean isWon;
 
-    private Set<Room> rooms;
-    private List<Student> students;
-    private List<Actor> nonPlayerCharacters;
-    private Set<Entity> entities;
-    private int turnCounter;
-    private Actor currentActor;
+    private final Set<Room> rooms = new HashSet<>();
+    private final List<Student> students = new ArrayList<>();
+    private final List<Actor> nonPlayerCharacters = new ArrayList<>();
+    private final Set<Entity> entities = new HashSet<>();
+    private int turnCounter = 0;
+    private Actor currentActor = null;
 
     private GameManager() {
         ResetGame();
