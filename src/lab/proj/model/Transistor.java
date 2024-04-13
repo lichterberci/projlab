@@ -89,19 +89,19 @@ public class Transistor extends Item {
             return;
         }
 
-        if (this.activated) {
-            if (this.location != this.actor.location && this.pair != null && this.pair.activated) {
-                Room prevLoc = this.actor.location;
-                boolean success = this.location.StepIn(this.actor);
+        if (activated) {
+            if (location != actor.location && pair != null && pair.activated) {
+                Room prevLoc = actor.location;
+                boolean success = location.StepIn(actor);
                 if (success) {
-                    prevLoc.StepOut(this.actor);
+                    prevLoc.StepOut(actor);
                 }
-            } else if (this.pair != null && this.pair.activated) {
-                this.pair.Activate();
+            } else if (pair != null && pair.activated) {
+                pair.Activate();
             }
-        } else if (this.pair != null) {
-            this.actor.DropItem(this); // cannot call Drop() directly because it would set its actor to null
-            this.activated = true;
+        } else if (pair != null) {
+            actor.DropItem(this); // cannot call Drop() directly because it would set its actor to null
+            activated = true;
         }
 
         Logger.returnVoid();

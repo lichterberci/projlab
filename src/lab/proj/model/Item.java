@@ -81,11 +81,13 @@ public abstract class Item implements Entity {
      */
     public void SetLocation(Room location) {
         Logger.invokeMethod(this, Collections.singletonList(location));
+
         if (this.location != null)
             this.location.RemoveItem(this);
         this.location = location;
         if (this.location != null)
-            location.AddItem(this);
+            this.location.AddItem(this);
+
         Logger.returnVoid();
     }
 

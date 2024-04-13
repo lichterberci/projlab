@@ -1,7 +1,6 @@
 package lab.proj.model;
 
 import lab.proj.controller.GameManager;
-import lab.proj.utils.ExcludeFromStatus;
 import lab.proj.utils.Randomware;
 import lab.proj.utils.SequenceDiagramPrinter;
 
@@ -113,7 +112,7 @@ public class Room implements Entity {
 
         boolean isFull = IsFull();
         if (!isFull)
-            a.SetLocation(this);
+            a.SetLocation(this); // if we do this, why would we need StepOut?
 
         Logger.returnValue(!isFull);
         return !isFull;
@@ -171,8 +170,7 @@ public class Room implements Entity {
 
     private void Merge() {
         Logger.invokeMethod(this, List.of());
-        if (!IsEmpty())
-        {
+        if (!IsEmpty()) {
             Logger.returnVoid();
             return;
         }
@@ -217,8 +215,8 @@ public class Room implements Entity {
             effect.SetLocation(this);
 
         CopyOnWriteArrayList<Door> otherRoomsDoors = new CopyOnWriteArrayList<>(r2.doors);
-        for(Door door : otherRoomsDoors)
-            if(!door.GetRooms().contains(this))
+        for (Door door : otherRoomsDoors)
+            if (!door.GetRooms().contains(this))
                 door.ChangeRoom(r2, this);
         for (Door door : doors)
             door.Show();

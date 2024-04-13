@@ -150,7 +150,7 @@ public abstract class Actor implements Entity {
         if (location != null)
             location.RemoveActor(this);
         location = r;
-        if (this.location != null)
+        if (location != null)
             location.AddActor(this);
         Logger.returnVoid();
     }
