@@ -13,13 +13,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class Room implements Entity {
 
-    public static final float MERGE_LIKELIHOOD = 0.2f;
-    public static final float SPLIT_LIKELIHOOD = 0.1f;
+    private static final float MERGE_LIKELIHOOD = 0.2f;
+    private static final float SPLIT_LIKELIHOOD = 0.1f;
     /**
      * A logger for debugging purposes.
      */
     private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
     private static final int STICKY_THRESHOLD = 5;
+    private static final int DEFAULT_CAPACITY = 3;
     /**
      * The actors currently inside the room.
      */
@@ -43,7 +44,7 @@ public class Room implements Entity {
     /**
      * The capacity of the room.
      */
-    private int capacity;
+    private int capacity = DEFAULT_CAPACITY;
 
     private int visitorCountSinceLastCleaning = 0;
 
@@ -314,7 +315,7 @@ public class Room implements Entity {
     public void VisitActors(ActorVisitor v) {
         Logger.invokeMethod(this, Collections.singletonList(v));
 
-        actorsInside.forEach(actor -> actor.VisitActor(v));
+        new CopyOnWriteArrayList<>(actorsInside).forEach(actor -> actor.VisitActor(v));
 
         Logger.returnVoid();
     }
@@ -322,7 +323,7 @@ public class Room implements Entity {
     public void VisitEffects(RoomEffectVisitor rev) {
         Logger.invokeMethod(this, Collections.singletonList(rev));
 
-        activeEffects.forEach(re -> re.VisitRoomEffect(rev));
+        new CopyOnWriteArrayList<>(activeEffects).forEach(re -> re.VisitRoomEffect(rev));
 
         Logger.returnVoid();
     }
