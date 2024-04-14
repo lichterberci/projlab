@@ -252,6 +252,11 @@ public class Room implements Entity {
     public void Split(Set<Item> itemsToPass, Set<RoomEffect> effectsToPass, Set<Door> doorsToPass) {
         Logger.invokeMethod(this, List.of());
 
+        if (!IsEmpty()) {
+            Logger.returnVoid();
+            return;
+        }
+
         var r2 = GameManager.GetInstance().CreateRoom();
 
         CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);
