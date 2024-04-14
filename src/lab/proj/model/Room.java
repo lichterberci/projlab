@@ -428,8 +428,6 @@ public class Room implements Entity {
         for (RoomEffect effect : activeEffects)
             effect.TimePassed();
 
-        itemsOnTheFloor.forEach(Item::TimePassed);
-
         RefreshStickyness();
 
         Logger.returnVoid();
