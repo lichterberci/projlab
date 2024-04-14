@@ -14,7 +14,8 @@ public class PurifierVisitor implements RoomEffectVisitor {
     public void VisitGasPoisoning(GasPoisoning gp) {
         Logger.invokeMethod(this, Collections.singletonList(gp));
 
-        gp.location.RemoveEffect(gp);
+        gp.location.GetActors().forEach(a -> a.incapacitated = false);
+        gp.SetLocation(null);
 
         Logger.returnVoid();
     }
