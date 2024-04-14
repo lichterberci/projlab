@@ -61,7 +61,6 @@ public class Door {
         Logger.returnVoid();
     }
 
-    // TODO: Make a command for in the interpreter
     public void SetOneWay() {
         oneWay = true;
     }
@@ -104,6 +103,7 @@ public class Door {
      */
     public void SetRooms(Room r1, Room r2) {
         Logger.invokeMethod(this, List.of(r1, r2));
+
         if (this.r1 != null)
             this.r1.RemoveDoor(this);
         if (this.r2 != null)
