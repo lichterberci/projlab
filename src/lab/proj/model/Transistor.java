@@ -32,22 +32,9 @@ public class Transistor extends Item {
         }
 
         if (pair == null) {
-            tr.SetPair(this);
-            this.SetPair(tr);
+            tr.pair = this;
+            this.pair = tr;
         }
-
-        Logger.returnVoid();
-    }
-
-    public void SetPair(Transistor tr) {
-        Logger.invokeMethod(this, Collections.singletonList(tr));
-
-        if (fake) {
-            Logger.returnVoid();
-            return;
-        }
-
-        this.pair = tr;
 
         Logger.returnVoid();
     }
