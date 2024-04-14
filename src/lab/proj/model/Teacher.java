@@ -1,13 +1,14 @@
 package lab.proj.model;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * A class representing a teacher actor in the game environment.
  * Teachers can perform actions such as stunning students and initiating dropout processes.
  */
 public class Teacher extends Actor {
+
+    private Set<Actor> alreadyDroppedOut = new HashSet<>();
 
     public Teacher() {
         Logger.createObject(this);
@@ -33,7 +34,10 @@ public class Teacher extends Actor {
 
         if (!incapacitated)
             for (Actor actor : location.GetActors())
-                actor.DropOut();
+                if (!alreadyDroppedOut.contains(actor))
+                    actor.DropOut();
+
+        alreadyDroppedOut = new HashSet<>(location.GetActors());
 
         Logger.returnVoid();
     }
