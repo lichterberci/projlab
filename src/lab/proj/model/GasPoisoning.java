@@ -15,6 +15,7 @@ public class GasPoisoning extends RoomEffect {
      * The remaining lifetime of the gas poisoning effect.
      */
     private int lifetime;
+    private final GasVisitor gv = new GasVisitor();
 
     public GasPoisoning() {
         Logger.createObject(this);
@@ -37,7 +38,6 @@ public class GasPoisoning extends RoomEffect {
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
 
-        var gv = new GasVisitor(); // TODO: make it a field
         location.VisitActors(gv);
 
         Logger.returnVoid();
