@@ -27,19 +27,6 @@ public class GasProtection extends Charge {
     }
 
     /**
-     * Retrieves the priority level of this gas protection.
-     * This method overrides the GetPriority method of the Charge class and always returns 0.
-     *
-     * @return The priority level of this gas protection.
-     */
-    @Override
-    public int GetPriority() {
-        Logger.invokeMethod(this, List.of());
-        Logger.returnValue(0);
-        return 0;
-    }
-
-    /**
      * Affects the behavior of the associated living item.
      * This method invokes the "Use" method of the creator living item.
      */
