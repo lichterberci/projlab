@@ -1,7 +1,6 @@
 package lab.proj.model;
 
 import lab.proj.controller.GameManager;
-import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.Collections;
 import java.util.List;
@@ -101,7 +100,7 @@ public class Student extends Actor {
     }
 
     @Override
-    public void NotifyStudentWin(Item item) {
+    public void NotifyStudentWin(SlideRule sr) {
         Logger.invokeMethod(this, List.of());
 
         GameManager.GetInstance().Win();

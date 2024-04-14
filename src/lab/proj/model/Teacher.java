@@ -63,10 +63,10 @@ public class Teacher extends Actor {
     }
 
     @Override
-    public void NotifyStudentWin(Item item) {
+    public void NotifyStudentWin(SlideRule sr) {
         Logger.invokeMethod(this, List.of());
 
-        item.Drop();
+        sr.Drop();
 
         Logger.returnVoid();
     }
