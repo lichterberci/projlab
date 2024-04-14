@@ -16,7 +16,7 @@ public class Room implements Entity {
     private static final float MERGE_LIKELIHOOD = 0.2f;
     private static final float SPLIT_LIKELIHOOD = 0.1f;
     private static final int STICKY_THRESHOLD = 5;
-    private static final int DEFAULT_CAPACITY = 3;
+    private static final int DEFAULT_CAPACITY = 5;
 
     /**
      * The actors currently inside the room.

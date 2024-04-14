@@ -1,18 +1,16 @@
 package lab.proj.model;
 
-import lab.proj.utils.SequenceDiagramPrinter;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CleaningLady extends Actor {
 
-    private final PurifierVisitor rev;
+    private final PurifierVisitor pv;
 
     public CleaningLady() {
         Logger.createObject(this);
-        rev = new PurifierVisitor();
+        pv = new PurifierVisitor();
     }
 
     @Override
@@ -44,7 +42,7 @@ public class CleaningLady extends Actor {
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
 
-        location.VisitEffects(rev);
+        location.VisitEffects(pv);
         location.CleanRoom();
 
         Logger.returnVoid();
@@ -72,7 +70,7 @@ public class CleaningLady extends Actor {
     }
 
     @Override
-    public void NotifyStudentWin(Item item) {
+    public void NotifyStudentWin(SlideRule sr) {
         Logger.invokeMethod(this, List.of());
 
         // Empty.
