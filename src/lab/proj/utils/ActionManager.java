@@ -78,7 +78,7 @@ public class ActionManager {
                         Object value = field.get(object);
 
                         if (field.getAnnotation(ExcludeFromStatus.class) != null
-                                || field.getType().equals(SequenceDiagramPrinter.class)) {
+                                || Modifier.isStatic(field.getModifiers())) {
                             return;
                         }
 
