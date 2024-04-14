@@ -14,6 +14,7 @@ public abstract class Actor implements Entity {
      * The logger instance for debugging purposes.
      */
     protected static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
+    private static final int MAX_ITEMS = 5;
 
     /**
      * Indicates whether the actor is incapacitated or not.
@@ -68,13 +69,17 @@ public abstract class Actor implements Entity {
      *
      * @param i The item to be collected.
      */
-    public void CollectItem(Item i) {
+    public boolean CollectItem(Item i) {
         Logger.invokeMethod(this, Collections.singletonList(i));
 
-        location.RemoveItem(i);
-        collectedItems.add(i);
+        boolean canBeCollected = collectedItems.size() < MAX_ITEMS;
+        if (canBeCollected) {
+            location.RemoveItem(i);
+            collectedItems.add(i);
+        }
 
-        Logger.returnVoid();
+        Logger.returnValue(canBeCollected);
+        return canBeCollected;
     }
 
     /**

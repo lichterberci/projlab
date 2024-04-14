@@ -15,7 +15,7 @@ public abstract class Item implements Entity {
      * A logger for debugging purposes.
      */
     protected static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
-    protected final boolean fake;
+    protected boolean fake = false;
     /**
      * Indicates whether the item is activated.
      */
@@ -34,14 +34,6 @@ public abstract class Item implements Entity {
     protected Actor actor;
     private boolean sticky;
 
-    protected Item() {
-        this(false);
-    }
-
-    protected Item(boolean fake) {
-        this.fake = fake;
-    }
-
     /**
      * Attempts to pick up the item with the specified actor.
      *
@@ -52,10 +44,8 @@ public abstract class Item implements Entity {
         Logger.invokeMethod(this, Collections.singletonList(a));
 
         boolean canBePickedUp = !(dead || activated || sticky);
-        if (canBePickedUp) {
-            a.CollectItem(this);
+        if (canBePickedUp && a.CollectItem(this))
             actor = a;
-        }
 
         Logger.returnValue(canBePickedUp);
         return canBePickedUp;
@@ -103,6 +93,20 @@ public abstract class Item implements Entity {
 
         Logger.returnValue(pickedUp);
         return pickedUp;
+    }
+
+    public void SetFake() {
+        Logger.invokeMethod(this, List.of());
+
+        fake = true;
+
+        Logger.returnVoid();
+    }
+
+    public boolean IsFake() {
+        Logger.invokeMethod(this, List.of());
+        Logger.returnValue(fake);
+        return fake;
     }
 
     /**
