@@ -10,7 +10,6 @@ import java.util.List;
  * CSE items extend the functionality of living items.
  */
 public class CSE extends LivingItem {
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     public CSE() {
         this(3);
@@ -19,16 +18,6 @@ public class CSE extends LivingItem {
     public CSE(int lifetime) {
         Logger.createObject(this);
         this.lifetime = lifetime;
-    }
-
-    /**
-     * Performs actions associated with the passage of time.
-     * This method is currently empty for CSE items.
-     */
-    @Override
-    public void TimePassed() {
-        Logger.invokeMethod(this, List.of());        // No actions for CSE on time passage
-        Logger.returnVoid();
     }
 
     @Override

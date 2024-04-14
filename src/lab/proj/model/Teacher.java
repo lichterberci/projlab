@@ -39,19 +39,6 @@ public class Teacher extends Actor {
     }
 
     /**
-     * Performs actions associated with the passage of time for the teacher.
-     * This method is currently empty.
-     */
-    @Override
-    public void TimePassed() {
-        Logger.invokeMethod(this, List.of());
-
-        // Empty method
-
-        Logger.returnVoid();
-    }
-
-    /**
      * Accepts a visitor, allowing it to visit the teacher.
      *
      * @param v The visitor to be accepted.

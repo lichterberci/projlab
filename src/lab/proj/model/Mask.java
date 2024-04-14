@@ -13,19 +13,6 @@ public class Mask extends LivingItem {
     }
 
     /**
-     * Performs actions associated with the passage of time.
-     * This method is currently empty for masks.
-     */
-    @Override
-    public void TimePassed() {
-        Logger.invokeMethod(this, List.of());
-
-        // No actions for masks on time passage
-
-        Logger.returnVoid();
-    }
-
-    /**
      * Performs the action of using the mask.
      * This method is currently empty for masks.
      */
@@ -47,7 +34,7 @@ public class Mask extends LivingItem {
             return;
         }
 
-        GasProtection gp = new GasProtection(this, 0);
+        var gp = new GasProtection(this, 0);
         actor.AddGasProtection(gp);
 
         Logger.returnVoid();

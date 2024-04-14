@@ -8,24 +8,11 @@ import java.util.List;
  */
 public class Towel extends LivingItem {
 
-    private final TowelVisitor v;
+    private final TowelVisitor tv;
 
     public Towel() {
         Logger.createObject(this);
-        v = new TowelVisitor();
-    }
-
-    /**
-     * Performs actions associated with the passage of time for the towel.
-     * This method is currently empty.
-     */
-    @Override
-    public void TimePassed() {
-        Logger.invokeMethod(this, List.of());
-
-        // Empty method
-
-        Logger.returnVoid();
+        tv = new TowelVisitor();
     }
 
     @Override
@@ -38,7 +25,7 @@ public class Towel extends LivingItem {
         }
 
         Room r2 = actor.GetLocation();
-        r2.VisitActors(v);
+        r2.VisitActors(tv);
 
         Logger.returnVoid();
     }

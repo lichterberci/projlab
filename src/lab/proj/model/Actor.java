@@ -1,7 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.utils.SequenceDiagramPrinter;
-
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -10,10 +8,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * This class implements the basic functionalities and properties of an actor.
  */
 public abstract class Actor implements Entity {
-    /**
-     * The logger instance for debugging purposes.
-     */
-    protected static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
+
     private static final int MAX_ITEMS = 5;
 
     /**

@@ -8,8 +8,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CleaningLady extends Actor {
 
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
-
     private final PurifierVisitor rev;
 
     public CleaningLady() {
@@ -45,8 +43,10 @@ public class CleaningLady extends Actor {
     @Override
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
+
         location.VisitEffects(rev);
         location.CleanRoom();
+
         Logger.returnVoid();
     }
 

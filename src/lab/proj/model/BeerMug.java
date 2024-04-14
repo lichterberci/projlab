@@ -12,26 +12,8 @@ import java.util.List;
  */
 public class BeerMug extends LivingItem {
 
-    /**
-     * A logger for debugging purposes.
-     */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
-
     public BeerMug() {
         Logger.createObject(this);
-    }
-
-    /**
-     * Performs actions associated with the passage of time.
-     * This method is currently empty for beer mugs.
-     */
-    @Override
-    public void TimePassed() {
-        Logger.invokeMethod(this, List.of());
-
-        // No actions for beer mug on time passage
-
-        Logger.returnVoid();
     }
 
     /**

@@ -13,11 +13,6 @@ import java.util.List;
 public class Student extends Actor {
 
     /**
-     * A logger for debugging purposes.
-     */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
-
-    /**
      * Indicates whether the student has dropped out.
      */
     private boolean droppedOut;

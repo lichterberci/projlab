@@ -12,18 +12,22 @@ import java.util.List;
 public abstract class Item implements Entity {
 
     /**
-     * A logger for debugging purposes.
+     * Indicates whether the item is fake.
      */
-    protected static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
     protected boolean fake = false;
-    /**
-     * Indicates whether the item is activated.
-     */
-    protected boolean activated;
     /**
      * Indicates whether the item is dead.
      */
-    protected boolean dead;
+    protected boolean dead = false;
+    /**
+     * Indicates whether the item is activated.
+     */
+    protected boolean activated = false;
+    /**
+     * Indicates whether the item is sticky.
+     */
+    private boolean sticky = false;
+
     /**
      * The room where the item is located.
      */
@@ -32,7 +36,6 @@ public abstract class Item implements Entity {
      * The actor who picked up the item.
      */
     protected Actor actor;
-    private boolean sticky;
 
     /**
      * Attempts to pick up the item with the specified actor.

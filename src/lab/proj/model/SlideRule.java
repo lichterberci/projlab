@@ -10,15 +10,6 @@ public class SlideRule extends Item {
     }
 
     @Override
-    public void TimePassed() {
-        Logger.invokeMethod(this, List.of());
-
-        // Empty.
-
-        Logger.returnVoid();
-    }
-
-    @Override
     public boolean PickUp(Actor a) {
         Logger.invokeMethod(this, Collections.singletonList(a));
 

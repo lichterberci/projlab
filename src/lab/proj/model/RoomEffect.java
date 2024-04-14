@@ -12,11 +12,6 @@ import java.util.Collections;
 public abstract class RoomEffect implements Entity {
 
     /**
-     * A logger for debugging purposes.
-     */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
-
-    /**
      * The location (room) associated with the room effect.
      */
     protected Room location;

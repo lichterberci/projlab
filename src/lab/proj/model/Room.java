@@ -15,12 +15,9 @@ public class Room implements Entity {
 
     private static final float MERGE_LIKELIHOOD = 0.2f;
     private static final float SPLIT_LIKELIHOOD = 0.1f;
-    /**
-     * A logger for debugging purposes.
-     */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
     private static final int STICKY_THRESHOLD = 5;
     private static final int DEFAULT_CAPACITY = 3;
+
     /**
      * The actors currently inside the room.
      */
@@ -389,6 +386,24 @@ public class Room implements Entity {
         Logger.returnVoid();
     }
 
+    private void RefreshStickyness() {
+        Logger.invokeMethod(this, List.of());
+
+        for (Item item : itemsOnTheFloor)
+            item.SetSticky(visitorCountSinceLastCleaning > STICKY_THRESHOLD);
+
+        Logger.returnVoid();
+    }
+
+    public void CleanRoom() {
+        Logger.invokeMethod(this, List.of());
+
+        visitorCountSinceLastCleaning = 0;
+        RefreshStickyness();
+
+        Logger.returnVoid();
+    }
+
     /**
      * Performs actions associated with the passage of time for the room.
      * This method checks if the room should split and updates active effects.
@@ -411,24 +426,6 @@ public class Room implements Entity {
         itemsOnTheFloor.forEach(Item::TimePassed);
 
         RefreshStickyness();
-
-        Logger.returnVoid();
-    }
-
-    public void CleanRoom() {
-        Logger.invokeMethod(this, List.of());
-
-        visitorCountSinceLastCleaning = 0;
-        RefreshStickyness();
-
-        Logger.returnVoid();
-    }
-
-    private void RefreshStickyness() {
-        Logger.invokeMethod(this, List.of());
-
-        for (Item item : itemsOnTheFloor)
-            item.SetSticky(visitorCountSinceLastCleaning > STICKY_THRESHOLD);
 
         Logger.returnVoid();
     }

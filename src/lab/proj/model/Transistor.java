@@ -1,7 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.utils.SequenceDiagramPrinter;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -10,8 +8,6 @@ import java.util.List;
  * Transistors can be paired with other transistors and are subject to the passage of time.
  */
 public class Transistor extends Item {
-
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
      * The paired transistor.
@@ -24,12 +20,11 @@ public class Transistor extends Item {
 
     /**
      * Pairs the transistor with another transistor.
-     * This method is currently empty.
      *
-     * @param t The transistor to pair with.
+     * @param tr The transistor to pair with.
      */
-    public void PairWith(Transistor t) {
-        Logger.invokeMethod(this, Collections.singletonList(t));
+    public void PairWith(Transistor tr) {
+        Logger.invokeMethod(this, Collections.singletonList(tr));
 
         if (fake) {
             Logger.returnVoid();
@@ -37,35 +32,22 @@ public class Transistor extends Item {
         }
 
         if (pair == null) {
-            t.SetPair(this);
-            this.SetPair(t);
+            tr.SetPair(this);
+            this.SetPair(tr);
         }
 
         Logger.returnVoid();
     }
 
-    /**
-     * Performs actions associated with the passage of time for the transistor.
-     * This method is currently empty.
-     */
-    @Override
-    public void TimePassed() {
-        Logger.invokeMethod(this, List.of());
-
-        // Empty method
-
-        Logger.returnVoid();
-    }
-
-    public void SetPair(Transistor t) {
-        Logger.invokeMethod(this, Collections.singletonList(t));
+    public void SetPair(Transistor tr) {
+        Logger.invokeMethod(this, Collections.singletonList(tr));
 
         if (fake) {
             Logger.returnVoid();
             return;
         }
 
-        this.pair = t;
+        this.pair = tr;
 
         Logger.returnVoid();
     }

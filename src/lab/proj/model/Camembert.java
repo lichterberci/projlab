@@ -12,17 +12,6 @@ public class Camembert extends Item {
         Logger.createObject(this);
     }
 
-    /**
-     * Performs actions associated with the passage of time.
-     * This method is currently empty for Camembert items.
-     */
-    @Override
-    public void TimePassed() {
-        Logger.invokeMethod(this, List.of());        // No actions for Camembert on time passage
-
-        Logger.returnVoid();
-    }
-
     @Override
     public void Activate() {
         Logger.invokeMethod(this, List.of());

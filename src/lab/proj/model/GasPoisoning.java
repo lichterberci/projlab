@@ -12,10 +12,6 @@ import java.util.List;
 public class GasPoisoning extends RoomEffect {
 
     /**
-     * A logger for debugging purposes.
-     */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
-    /**
      * The remaining lifetime of the gas poisoning effect.
      */
     private int lifetime;
@@ -41,7 +37,7 @@ public class GasPoisoning extends RoomEffect {
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
 
-        var gv = new GasVisitor();
+        var gv = new GasVisitor(); // TODO: make it a field
         location.VisitActors(gv);
 
         Logger.returnVoid();

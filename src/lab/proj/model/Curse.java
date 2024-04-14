@@ -12,8 +12,6 @@ import java.util.List;
  */
 public class Curse extends RoomEffect {
 
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
-
     public Curse() {
         Logger.createObject(this);
     }
@@ -33,10 +31,10 @@ public class Curse extends RoomEffect {
     @Override
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
-        List<Door> doors = location.GetDoors();
+
         boolean shouldHide = Randomware.Decision();
         if (shouldHide)
-            for (Door door : doors)
+            for (Door door : location.GetDoors())
                 door.Hide();
 
         Logger.returnVoid();
