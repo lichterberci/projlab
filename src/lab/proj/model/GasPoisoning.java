@@ -14,7 +14,7 @@ public class GasPoisoning extends RoomEffect {
     /**
      * The remaining lifetime of the gas poisoning effect.
      */
-    private int lifetime;
+    private int lifetime = 3;
     private final GasVisitor gv = new GasVisitor();
 
     public GasPoisoning() {
@@ -39,6 +39,11 @@ public class GasPoisoning extends RoomEffect {
         Logger.invokeMethod(this, List.of());
 
         location.VisitActors(gv);
+
+        if (--lifetime <= 0) {
+            location.GetActors().forEach(a -> a.incapacitated = false);
+            SetLocation(null);
+        }
 
         Logger.returnVoid();
     }

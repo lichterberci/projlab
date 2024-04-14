@@ -1,5 +1,7 @@
 package lab.proj.model;
 
+import java.util.List;
+
 /**
  * An abstract class representing a living item in the game environment.
  * Living items extend the functionality of basic items and have a limited lifetime.
@@ -19,12 +21,14 @@ public abstract class LivingItem extends Item {
 
     @Override
     public void TimePassed() {
-        lifetime--;
+        Logger.invokeMethod(this, List.of());
 
-        if (lifetime <= 0) {
+        if (--lifetime <= 0) {
             dead = true;
             Drop();
         }
+
+        Logger.returnVoid();
     }
 
 }
