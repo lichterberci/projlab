@@ -26,27 +26,26 @@ public class Transistor extends Item {
     public void PairWith(Transistor tr) {
         Logger.invokeMethod(this, Collections.singletonList(tr));
 
-        if (fake) {
+        if (fake || pair != null) {
             Logger.returnVoid();
             return;
         }
 
-        if (pair == null) {
-            tr.pair = this;
-            this.pair = tr;
-        }
+        tr.pair = this;
+        this.pair = tr;
 
         Logger.returnVoid();
     }
 
     @Override
     public void Drop() {
+        Logger.invokeMethod(this, List.of());
+
         if (pair == null) {
             super.Drop();
-        } else {
-            Logger.invokeMethod(this, List.of());
-            Logger.returnVoid();
         }
+
+        Logger.returnVoid();
     }
 
     @Override
@@ -59,13 +58,17 @@ public class Transistor extends Item {
         }
 
         if (activated) {
-            if (location != actor.location && pair != null && pair.activated) {
+            if(location != actor.location && pair.location != actor.location){
+                Logger.returnVoid();
+                return;
+            }
+            if (location != actor.location && pair.activated) {
                 Room prevLoc = actor.location;
                 boolean success = location.StepIn(actor);
                 if (success) {
                     prevLoc.StepOut(actor);
                 }
-            } else if (pair != null && pair.activated) {
+            } else if (pair.activated) {
                 pair.Activate();
             }
         } else if (pair != null) {

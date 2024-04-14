@@ -16,10 +16,10 @@ public class DropOutProtection extends Charge {
     private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
-     * Constructs a new drop out protection charge with the specified creator and priority.
+     * Constructs a new drop-out protection charge with the specified creator and priority.
      *
      * @param creator  The living item that created this drop out protection.
-     * @param priority The priority level of this drop out protection.
+     * @param priority The priority level of this drops out protection.
      */
     public DropOutProtection(LivingItem creator, int priority) {
         super(creator, priority);
