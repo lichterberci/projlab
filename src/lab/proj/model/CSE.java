@@ -20,6 +20,19 @@ public class CSE extends LivingItem {
         this.lifetime = lifetime;
     }
 
+    /**
+     * Performs actions associated with the passage of time.
+     * This method is currently empty for CSE items.
+     */
+    @Override
+    public void TimePassed() {
+        Logger.invokeMethod(this, List.of());
+
+        // Overrides LivingItem's TimePassed implementation.
+
+        Logger.returnVoid();
+    }
+
     @Override
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
