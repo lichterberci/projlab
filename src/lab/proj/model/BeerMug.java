@@ -43,7 +43,8 @@ public class BeerMug extends LivingItem {
     public void Use() {
         Logger.invokeMethod(this, List.of());
 
-        Item item = actor != null ? Randomware.Choice(actor.GetItems()) : null;
+        // Under normal circumstances, it cannot cause exception since `actor` will always have at least this `BeerMug`.
+        Item item = actor.GetItems().get(0);
         UseWithSpecificDropCandidate(item);
 
         Logger.returnVoid();
