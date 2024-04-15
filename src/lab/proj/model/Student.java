@@ -4,6 +4,7 @@ import lab.proj.controller.GameManager;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A class representing a student actor in the game environment.
@@ -41,7 +42,8 @@ public class Student extends Actor {
 
         gasProtections.clear();
         dropOutProtections.clear();
-        for (Item i : collectedItems) {
+
+        for (Item i : new CopyOnWriteArrayList<>(collectedItems)) {
             i.ApplyCharges();
             i.TimePassed();
         }

@@ -425,7 +425,7 @@ public class Room implements Entity {
         if (shouldSplit)
             Split();
 
-        for (RoomEffect effect : activeEffects)
+        for (RoomEffect effect : new CopyOnWriteArrayList<>(activeEffects))
             effect.TimePassed();
 
         RefreshStickyness();
