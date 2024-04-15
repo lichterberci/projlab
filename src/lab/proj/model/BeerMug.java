@@ -29,8 +29,8 @@ public class BeerMug extends LivingItem {
             return;
         }
 
-        DropOutProtection dp1 = new DropOutProtection(this, 0);
-        actor.AddDropOutProtection(dp1);
+        DropOutProtection dop = new DropOutProtection(this, 0);
+        actor.AddDropOutProtection(dop);
 
         Logger.returnVoid();
     }
@@ -60,8 +60,10 @@ public class BeerMug extends LivingItem {
 
         dropCandidate.Drop();
 
-        DropOutProtection dop2 = new DropOutProtection(this, 0);
-        actor.AddDropOutProtection(dop2);
+        if (dropCandidate != this) {
+            DropOutProtection dop = new DropOutProtection(this, 0);
+            actor.AddDropOutProtection(dop);
+        }
 
         Logger.returnVoid();
     }

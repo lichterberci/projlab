@@ -8,10 +8,12 @@ import java.util.List;
  */
 public abstract class LivingItem extends Item {
 
+    private static final int DEFAULT_LIFETIME = 5;
+
     /**
      * The remaining lifetime of the living item.
      */
-    protected int lifetime;
+    protected int lifetime = DEFAULT_LIFETIME;
 
     /**
      * Performs the action associated with using the living item.
