@@ -46,8 +46,8 @@ public abstract class Item implements Entity {
     public boolean PickUp(Actor a) {
         Logger.invokeMethod(this, Collections.singletonList(a));
 
-        boolean canBePickedUp = !(dead || activated || sticky);
-        if (canBePickedUp && a.CollectItem(this))
+        boolean canBePickedUp = !(dead || activated || sticky) && a.CollectItem(this);
+        if (canBePickedUp)
             actor = a;
 
         Logger.returnValue(canBePickedUp);
@@ -110,6 +110,20 @@ public abstract class Item implements Entity {
         Logger.invokeMethod(this, List.of());
         Logger.returnValue(fake);
         return fake;
+    }
+
+    public void SetDead() {
+        Logger.invokeMethod(this, List.of());
+
+        dead = true;
+
+        Logger.returnVoid();
+    }
+
+    public boolean IsDead() {
+        Logger.invokeMethod(this, List.of());
+        Logger.returnValue(dead);
+        return dead;
     }
 
     /**

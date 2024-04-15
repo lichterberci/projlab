@@ -4,6 +4,10 @@ import java.util.List;
 
 public class Purifier extends Item {
 
+    public Purifier() {
+        Logger.createObject(this);
+    }
+
     @Override
     public void Activate() {
         Logger.invokeMethod(this, List.of());
