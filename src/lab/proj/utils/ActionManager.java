@@ -57,7 +57,7 @@ public class ActionManager {
     }
 
     private void printStatusOfObject(String arg1) {
-        final Object object = objects.get(arg1);
+        final Object object = SequenceDiagramPrinter.getInstance().getObject(arg1); // TODO: this is horrible, but works
 
         final Set<Field> fields = new HashSet<>(List.of(object.getClass().getDeclaredFields()));
 
@@ -122,12 +122,12 @@ public class ActionManager {
                                                                 .orElseThrow();
                                                     }
 
-                                                    return element.toString();
+                                                    return SequenceDiagramPrinter.getInstance().getObjectName(object); // BURN, BURN, BURN
                                                 })
                                                 .collect(Collectors.joining(", ", "[", "]"));
                                     }
 
-                                    return value.toString();
+                                    return SequenceDiagramPrinter.getInstance().getObjectName(value);
                                 });
 
                         System.out.printf("%s: %s%n", field.getName(), stringRepresentationOfValue);
