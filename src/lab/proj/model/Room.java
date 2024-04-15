@@ -204,10 +204,13 @@ public class Room implements Entity {
         }
 
         capacity = Math.max(capacity, r2.capacity);
+        visitorCountSinceLastCleaning = 0;
 
         CopyOnWriteArrayList<Item> otherRoomsItems = new CopyOnWriteArrayList<>(r2.itemsOnTheFloor);
         for (Item item : otherRoomsItems)
             item.SetLocation(this);
+
+        RefreshStickyness(); // ensure that no items are sticky after the merge
 
         CopyOnWriteArrayList<RoomEffect> otherRoomsEffects = new CopyOnWriteArrayList<>(r2.activeEffects);
         for (RoomEffect effect : otherRoomsEffects)
@@ -257,12 +260,15 @@ public class Room implements Entity {
             return;
         }
 
-        var r2 = GameManager.GetInstance().CreateRoom();
+        var r2 = new Room();
+        r2.capacity = capacity;
 
         CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);
         for (Item item : currentItems)
             if (itemsToPass.contains(item))
                 item.SetLocation(r2);
+
+        r2.RefreshStickyness(); // ensure that no items are sticky after the merge in r2
 
         CopyOnWriteArrayList<RoomEffect> currentEffects = new CopyOnWriteArrayList<>(activeEffects);
         for (RoomEffect effect : currentEffects)
