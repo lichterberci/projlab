@@ -41,6 +41,7 @@ public class GasPoisoning extends RoomEffect {
         location.VisitActors(gv);
 
         if (--lifetime <= 0) {
+            lifetime = 0;
             location.GetActors().forEach(a -> a.incapacitated = false);
             SetLocation(null);
         }

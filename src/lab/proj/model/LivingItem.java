@@ -24,6 +24,7 @@ public abstract class LivingItem extends Item {
         Logger.invokeMethod(this, List.of());
 
         if (--lifetime <= 0) {
+            lifetime = 0;
             dead = true;
             Drop();
         }

@@ -56,12 +56,14 @@ public class CSE extends LivingItem {
     @Override
     public void Use() {
         Logger.invokeMethod(this, List.of());
+
         if (fake) {
             Logger.returnVoid();
             return;
         }
-        lifetime--;
-        if (lifetime == 0) {
+
+        if (--lifetime <= 0) {
+            lifetime = 0;
             dead = true;
             Drop();
         }
