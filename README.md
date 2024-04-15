@@ -11,3 +11,4 @@
 - [x] A gasProtectionből a getPriority-t vegyük ki pls.... az nagyon nem oda való
 - [x] Nincs megcsinálva, hogy csak 5 tárgy lehet valakiné
 - [x] Legyen parancs a szoba egyenirányítására.
+- [x] A tárgyak a keletkező szobában nem lesznek ragacsosak.
