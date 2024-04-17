@@ -8,29 +8,7 @@ import java.util.stream.Collectors;
 
 public class ActionManager {
 
-    private final Map<String, Object> objects;
-
-    public ActionManager() {
-        objects = new HashMap<>();
-    }
-
-    private String generateNameToObject(Object createdObject) {
-        String originalName = createdObject.getClass().getSimpleName();
-        StringBuilder newName = new StringBuilder();
-        if (originalName.equals("Towel"))
-            newName.append("tw");
-        else if (originalName.equals("Transistor"))
-            newName.append("tr");
-        else {
-            for (int i = 0; i < originalName.length(); i++)
-                if (Character.isUpperCase(originalName.charAt(i)))
-                    newName.append(Character.toLowerCase(originalName.charAt(i)));
-        }
-        String nameOfCreatedObject = newName.toString() + 1;
-        for (int id = 2; objects.containsKey(nameOfCreatedObject); id++)
-            nameOfCreatedObject = newName.toString() + id;
-        return nameOfCreatedObject;
-    }
+    private final ObjectRegistry registry = SequenceDiagramPrinter.getInstance().registry;
 
     public void performAction(String arg0, String arg1, List<String> args) {
         if (arg0.equals("Create")) {
@@ -48,16 +26,16 @@ public class ActionManager {
             return;
         }
 
-        if (objects.containsKey(arg1)) {
+        if (registry.GetObject(arg1) != null) {
             callMethodOnObject(arg1, arg0, args);
             return;
         }
 
-        throw new IllegalArgumentException("Object not found: %s".formatted(arg0));
+        throw new IllegalArgumentException("Object not found: %s".formatted(arg1));
     }
 
     private void printStatusOfObject(String arg1) {
-        final Object object = SequenceDiagramPrinter.getInstance().getObject(arg1); // TODO: this is horrible, but works
+        final Object object = registry.GetObject(arg1);
 
         final Set<Field> fields = new HashSet<>(List.of(object.getClass().getDeclaredFields()));
 
@@ -82,54 +60,7 @@ public class ActionManager {
                             return;
                         }
 
-                        String stringRepresentationOfValue = objects.entrySet().stream()
-                                .filter(entry -> entry.getValue() == value)
-                                .map(Map.Entry::getKey)
-                                .findFirst()
-                                .orElseGet(() -> {
-                                    if (value == null) {
-                                        return "null";
-                                    }
-
-                                    if (field.getType().equals(List.class)
-                                            || field.getType().equals(ArrayList.class)
-                                            || field.getType().equals(LinkedList.class)
-                                            || field.getType().isArray()
-                                    ) {
-                                        final List<?> list = field.getType().isArray() ?
-                                                Arrays.stream((Object[]) value).toList()
-                                                : (List<?>) value;
-
-                                        if (list.isEmpty()) {
-                                            return "[]";
-                                        }
-
-                                        return list.stream()
-                                                .map(element -> {
-                                                    if (element == null) {
-                                                        return "null";
-                                                    }
-
-                                                    if (element.getClass().equals(String.class)) {
-                                                        return "\"%s\"".formatted(element);
-                                                    }
-
-                                                    if (objects.containsValue(element)) {
-                                                        return objects.entrySet().stream()
-                                                                .filter(entry -> entry.getValue() == element)
-                                                                .map(Map.Entry::getKey)
-                                                                .findFirst()
-                                                                .orElseThrow();
-                                                    }
-
-                                                    return SequenceDiagramPrinter.getInstance().getObjectName(object); // BURN, BURN, BURN
-                                                })
-                                                .collect(Collectors.joining(", ", "[", "]"));
-                                    }
-
-                                    return SequenceDiagramPrinter.getInstance().getObjectName(value);
-                                });
-
+                        String stringRepresentationOfValue = registry.ResolveObject(value);
                         System.out.printf("%s: %s%n", field.getName(), stringRepresentationOfValue);
                     } catch (IllegalAccessException e) {
                         System.err.println(e.getMessage());
@@ -139,7 +70,7 @@ public class ActionManager {
     }
 
     private void callMethodOnObject(String objectName, String methodName, List<String> args) {
-        final Object object = objects.get(objectName);
+        final Object object = registry.GetObject(objectName);
 
         final List<Object> parsedArgs = args.stream()
                 .map(arg -> {
@@ -149,7 +80,6 @@ public class ActionManager {
                         try {
                             return Double.parseDouble(arg);
                         } catch (NumberFormatException e2) {
-
                             if (arg.equals("null")) {
                                 return null;
                             }
@@ -162,11 +92,7 @@ public class ActionManager {
                                 return false;
                             }
 
-                            if (objects.containsKey(arg)) {
-                                return objects.get(arg);
-                            }
-
-                            return arg; // string
+                            return registry.GetObject(arg);
                         }
                     }
                 })
@@ -196,9 +122,6 @@ public class ActionManager {
                 Collections.emptyList()
                 : Arrays.stream(methodToCall.getParameters())
                 .map(param -> {
-                            //System.out.println(((ParameterizedType)param.getType().getClass().getGenericSuperclass())
-                            //      .getActualTypeArguments()[0]);
-//                                    final ParameterizedType parameterizedType = (ParameterizedType) param.getParameterizedType().getClass().getGenericSuperclass();
                             ParameterizedType parameterizedType = (ParameterizedType) param.getParameterizedType();
                             Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
 
@@ -216,7 +139,6 @@ public class ActionManager {
                             );
                         }
                 ).toList();
-
         try {
             methodToCall.invoke(object, collectedObjectParameters.isEmpty() ? parsedArgs.toArray()
                     : collectedObjectParameters.toArray());
@@ -233,11 +155,9 @@ public class ActionManager {
                     .getConstructor()
                     .newInstance();
 
-            String nameOfObject = generateNameToObject(newObject);
+            String nameOfObject = registry.GetName(newObject);
 
             System.out.printf("Object created: %s%n", nameOfObject);
-
-            objects.put(nameOfObject, newObject);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException | ClassNotFoundException e) {
             throw new RuntimeException(e);

@@ -14,7 +14,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
     private static SequenceDiagramPrinter instance;
     private final PrintStream outputPrinter;
     private final List<Object> lifelines = new ArrayList<>();
-    private final Map<Object, String> objectNameMap = new HashMap<>();
+    protected final ObjectRegistry registry = new PascalCaseObjectRegistry();
     private final Deque<Object> objectStack = new ArrayDeque<>();
 
     /**
@@ -59,46 +59,16 @@ public class SequenceDiagramPrinter implements DebugPrinter {
 
     @Override
     public String getObjectName(Object object) {
-        if (object == null)
-            return "null";
-        if (object instanceof Collection<?> collection)
-            return String.format("[%s]",
-                    collection.stream().map(this::getObjectName).collect(Collectors.joining(", ")));
-        return objectNameMap.getOrDefault(object, object.toString());
-    }
-
-    public boolean isObjectCreated(String name) {
-        return objectNameMap.containsValue(name);
+        return registry.ResolveObject(object);
     }
 
     public Object getObject(String name) {
-        return objectNameMap.entrySet().stream()
-                .filter(entry -> entry.getValue().equals(name))
-                .map(Map.Entry::getKey)
-                .findFirst()
-                .orElseThrow();
-    }
-
-    private String generateNameToObject(Object createdObject) {
-        String originalName = createdObject.getClass().getSimpleName();
-        StringBuilder newName = new StringBuilder();
-        if (originalName.equals("Towel"))
-            newName.append("tw");
-        else if (originalName.equals("Transistor"))
-            newName.append("tr");
-        else
-            for (int i = 0; i < originalName.length(); i++)
-                if (Character.isUpperCase(originalName.charAt(i)))
-                    newName.append(Character.toLowerCase(originalName.charAt(i)));
-        String nameOfCreatedObject = newName.toString() + 1;
-        for (int id = 2; objectNameMap.containsValue(nameOfCreatedObject); id++)
-            nameOfCreatedObject = newName.toString() + id;
-        return nameOfCreatedObject;
+        return registry.GetObject(name);
     }
 
     @Override
     public void createObject(Object createdObject) {
-        String nameOfCreatedObject = generateNameToObject(createdObject);
+        String nameOfCreatedObject = registry.RegisterObject(createdObject);
         Object creator = objectStack.peekLast();
 
         final int indexOfCreator = lifelines.indexOf(creator);
@@ -119,8 +89,6 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         lifelines.add(createdObject);
 
         printEmptyLineOfLifelines();
-
-        objectNameMap.put(createdObject, nameOfCreatedObject);
     }
 
     @Override
@@ -148,7 +116,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
 
         printEmptyLineOfLifelines();
 
-        objectNameMap.remove(destroyedObject);
+        registry.UnregisterObject(destroyedObject);
     }
 
     private String getCallerMethodName() {
