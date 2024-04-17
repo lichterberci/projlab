@@ -1,5 +1,6 @@
 package lab.proj.model;
 
+import lab.proj.utils.DebugPrinter;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface Entity {
 
-    SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
+    DebugPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
      * Performs actions associated with the passage of time.

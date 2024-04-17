@@ -1,5 +1,6 @@
 package lab.proj.model;
 
+import lab.proj.utils.DebugPrinter;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class Door {
     /**
      * A logger for debugging purposes.
      */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
+    protected static final DebugPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
      * The first room connected by the door.

@@ -4,10 +4,9 @@ import lab.proj.model.Door;
 import lab.proj.model.Room;
 import lab.proj.model.Student;
 import lab.proj.model.Teacher;
-import lab.proj.utils.SequenceDiagramPrinter;
 
 public class OneTeacherOneStudent implements TestUseCase {
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
+
 
     protected Student s;
     protected Teacher t1;

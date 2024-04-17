@@ -10,14 +10,12 @@ import java.util.Set;
 public class GameManager {
 
     private static GameManager instance;
-
-    private boolean isRunning;
-    private boolean isWon;
-
     private final Set<Room> rooms = new HashSet<>();
     private final List<Student> students = new ArrayList<>();
     private final List<Actor> nonPlayerCharacters = new ArrayList<>();
     private final Set<Entity> entities = new HashSet<>();
+    private boolean isRunning;
+    private boolean isWon;
     private int turnCounter = 0;
     private Actor currentActor = null;
 

@@ -2,8 +2,6 @@ package lab.proj.model;
 
 import java.util.Collections;
 
-import static lab.proj.model.Item.Logger;
-
 /**
  * A class representing a visitor specifically for towels in the game environment.
  * Towel visitors can visit both students and teachers.

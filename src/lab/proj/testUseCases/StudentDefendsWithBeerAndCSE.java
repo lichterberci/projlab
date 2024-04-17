@@ -2,10 +2,9 @@ package lab.proj.testUseCases;
 
 import lab.proj.model.BeerMug;
 import lab.proj.model.CSE;
-import lab.proj.utils.SequenceDiagramPrinter;
 
 public class StudentDefendsWithBeerAndCSE extends OneTeacherOneStudent {
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
+
 
     @Override
     public void runUseCase() {

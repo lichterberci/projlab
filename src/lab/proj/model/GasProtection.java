@@ -1,7 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.utils.SequenceDiagramPrinter;
-
 import java.util.List;
 
 /**
@@ -9,11 +7,6 @@ import java.util.List;
  * Gas protections can affect the behavior of the associated living item.
  */
 public class GasProtection extends Charge {
-
-    /**
-     * A logger for debugging purposes.
-     */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
      * Constructs a new gas protection charge with the specified creator and priority.

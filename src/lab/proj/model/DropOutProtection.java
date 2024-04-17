@@ -1,19 +1,12 @@
 package lab.proj.model;
 
-import lab.proj.utils.SequenceDiagramPrinter;
-
 import java.util.List;
 
 /**
- * A class representing a drop out protection charge associated with a living item in the game environment.
+ * A class representing a drop-out protection charge associated with a living item in the game environment.
  * Drop out protections can affect the behavior of the associated living item.
  */
 public class DropOutProtection extends Charge {
-
-    /**
-     * A logger for debugging purposes.
-     */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
      * Constructs a new drop-out protection charge with the specified creator and priority.

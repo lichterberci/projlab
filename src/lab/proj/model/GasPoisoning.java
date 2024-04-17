@@ -1,7 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.utils.SequenceDiagramPrinter;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -11,11 +9,11 @@ import java.util.List;
  */
 public class GasPoisoning extends RoomEffect {
 
+    private final GasVisitor gv = new GasVisitor();
     /**
      * The remaining lifetime of the gas poisoning effect.
      */
     private int lifetime = 3;
-    private final GasVisitor gv = new GasVisitor();
 
     public GasPoisoning() {
         Logger.createObject(this);

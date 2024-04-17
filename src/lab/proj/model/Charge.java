@@ -1,5 +1,6 @@
 package lab.proj.model;
 
+import lab.proj.utils.DebugPrinter;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public abstract class Charge {
     /**
      * A logger for debugging purposes.
      */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
+    protected static final DebugPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**
      * The living item that created this charge.

@@ -1,7 +1,6 @@
 package lab.proj.testUseCases;
 
 import lab.proj.model.Transistor;
-import lab.proj.utils.SequenceDiagramPrinter;
 
 /**
  * A class representing the usage of a Camembert item in a specific use case.
@@ -11,7 +10,7 @@ public class TransistorPairing implements TestUseCase {
     /**
      * The logger instance for debugging purposes.
      */
-    private static final SequenceDiagramPrinter Logger = SequenceDiagramPrinter.getInstance();
+
     protected boolean result;
 
     protected Transistor t1;

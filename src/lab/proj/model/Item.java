@@ -1,7 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.utils.SequenceDiagramPrinter;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -24,11 +22,6 @@ public abstract class Item implements Entity {
      */
     protected boolean activated = false;
     /**
-     * Indicates whether the item is sticky.
-     */
-    private boolean sticky = false;
-
-    /**
      * The room where the item is located.
      */
     protected Room location;
@@ -36,6 +29,10 @@ public abstract class Item implements Entity {
      * The actor who picked up the item.
      */
     protected Actor actor;
+    /**
+     * Indicates whether the item is sticky.
+     */
+    private boolean sticky = false;
 
     /**
      * Attempts to pick up the item with the specified actor.

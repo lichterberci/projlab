@@ -189,37 +189,37 @@ public class ActionManager {
 
         final Map<Class<?>, List<Object>> parameterBinding = Arrays.stream(methodToCall.getParameters())
                 .allMatch(param -> param.getType().equals(Set.class)) ?
-               	 parsedArgs.stream().collect(Collectors.groupingBy(Object::getClass))
+                parsedArgs.stream().collect(Collectors.groupingBy(Object::getClass))
                 : Collections.emptyMap();
 
-	    final List<HashSet<Object>> collectedObjectParameters = parameterBinding.isEmpty() ?
+        final List<HashSet<Object>> collectedObjectParameters = parameterBinding.isEmpty() ?
                 Collections.emptyList()
                 : Arrays.stream(methodToCall.getParameters())
-						.map(param -> {
-                                    //System.out.println(((ParameterizedType)param.getType().getClass().getGenericSuperclass())
-                                      //      .getActualTypeArguments()[0]);
+                .map(param -> {
+                            //System.out.println(((ParameterizedType)param.getType().getClass().getGenericSuperclass())
+                            //      .getActualTypeArguments()[0]);
 //                                    final ParameterizedType parameterizedType = (ParameterizedType) param.getParameterizedType().getClass().getGenericSuperclass();
-                                    ParameterizedType parameterizedType = (ParameterizedType) param.getParameterizedType();
-									Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+                            ParameterizedType parameterizedType = (ParameterizedType) param.getParameterizedType();
+                            Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
 
-									if (actualTypeArguments == null || actualTypeArguments.length == 0) {
-										throw new RuntimeException("No actual type arguments found");
-									}
+                            if (actualTypeArguments == null || actualTypeArguments.length == 0) {
+                                throw new RuntimeException("No actual type arguments found");
+                            }
 
-									Class<?> templateParameter = (Class<?>) actualTypeArguments[0];
+                            Class<?> templateParameter = (Class<?>) actualTypeArguments[0];
 
-                                    return new HashSet<>(
-                                            parameterBinding.getOrDefault(
-                                                    templateParameter,
-		                                            Collections.emptyList()
-                                            )
-                                    );
-                                }
-						).toList();
+                            return new HashSet<>(
+                                    parameterBinding.getOrDefault(
+                                            templateParameter,
+                                            Collections.emptyList()
+                                    )
+                            );
+                        }
+                ).toList();
 
         try {
             methodToCall.invoke(object, collectedObjectParameters.isEmpty() ? parsedArgs.toArray()
-					: collectedObjectParameters.toArray());
+                    : collectedObjectParameters.toArray());
         } catch (IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
