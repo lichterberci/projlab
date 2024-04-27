@@ -11,6 +11,7 @@ import java.util.Set;
  */
 public class Teacher extends Actor {
 
+    private boolean stunned = false;
     private Set<Actor> alreadyDroppedOut = new HashSet<>();
 
     public Teacher() {
@@ -23,9 +24,17 @@ public class Teacher extends Actor {
     public void Stun() {
         Logger.invokeMethod(this, List.of());
 
-        incapacitated = true;
+        stunned = true;
 
         Logger.returnVoid();
+    }
+
+    @Override
+    public boolean IsBlocked() {
+        Logger.invokeMethod(this, List.of());
+        boolean isBlocked = super.IsBlocked() || stunned;
+        Logger.returnValue(isBlocked);
+        return isBlocked;
     }
 
     /**
@@ -35,7 +44,7 @@ public class Teacher extends Actor {
     public void DropOutAll() {
         Logger.invokeMethod(this, List.of());
 
-        if (!incapacitated)
+        if (!IsBlocked())
             for (Actor actor : location.GetActors())
                 if (!alreadyDroppedOut.contains(actor))
                     actor.DropOut();

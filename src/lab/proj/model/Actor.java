@@ -185,7 +185,7 @@ public abstract class Actor implements Entity {
     public abstract void DropOut();
 
     /**
-     * Checks if the actor is currently blocked (incapacitated).
+     * Checks if the actor is currently blocked.
      *
      * @return true if the actor is blocked, false otherwise.
      */
@@ -198,7 +198,7 @@ public abstract class Actor implements Entity {
     public void GetOut() {
         Logger.invokeMethod(this, List.of());
 
-        if (incapacitated)
+        if (IsBlocked())
             return;
 
         List<Door> doors = location.GetDoors();
