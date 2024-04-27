@@ -19,29 +19,8 @@ public class Main {
     private static void testModel() {
         // Suppress output from debug printer
         SequenceDiagramPrinter.resetInstance(new PrintStream(OutputStream.nullOutputStream()));
-
-        ActionManager actionManager = new ActionManager();
-
-        try (Scanner scanner = new Scanner(System.in)) {
-            while (true) {
-                String inputLine = scanner.nextLine();
-
-                if (inputLine.equals("exit")) {
-                    break;
-                }
-
-                String[] parts = inputLine.split(" ");
-                String objectName = parts[0];
-                String actionName = parts[1];
-                List<String> arguments = List.of(parts).subList(2, parts.length);
-
-                try {
-                    actionManager.performAction(objectName, actionName, arguments);
-                } catch (Exception e) {
-                    System.out.println("Hiba történt: " + e.getMessage());
-                }
-            }
-        }
+        // Run interpreter loop
+        new ActionManager(System.in, System.out).runCommandInterpreter();
     }
 
     private static void testUseCases() {

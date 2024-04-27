@@ -37,7 +37,6 @@ public class GameManager {
     public void Win() {
         isRunning = false;
         isWon = true;
-        System.out.println("Win!");
     }
 
     public void Lose() {
@@ -49,7 +48,7 @@ public class GameManager {
         ResetGame();
     }
 
-    private void ResetGame() {
+    public void ResetGame() {
         isRunning = false;
         isWon = false;
         turnCounter = 0;

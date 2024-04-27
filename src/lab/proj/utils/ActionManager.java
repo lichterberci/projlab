@@ -1,16 +1,31 @@
 package lab.proj.utils;
 
+import lab.proj.controller.GameManager;
 import lab.proj.model.BeerMug;
 
+import java.io.*;
 import java.lang.reflect.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class ActionManager {
 
     private final ObjectRegistry registry = SequenceDiagramPrinter.getInstance().registry;
+    private Scanner scanner;
+    private PrintWriter writer;
 
-    public void performAction(String arg0, String arg1, List<String> args) {
+    public ActionManager(InputStream input, OutputStream output) {
+        this.scanner = new Scanner(input);
+        this.writer = new PrintWriter(output, true);
+    }
+
+    private void performAction(String arg0, String arg1, List<String> args) {
+        if (arg0.equals("RunTests")) {
+            runAllTestCasesBatched(arg1);
+            return;
+        }
+
         if (arg0.equals("Create")) {
             createObject(arg1);
             return;
@@ -32,6 +47,80 @@ public class ActionManager {
         }
 
         throw new IllegalArgumentException("Object not found: %s".formatted(arg1));
+    }
+
+    private void runAllTestCasesBatched(String sourceDirectoryName) {
+        File sourceDirectory = new File(sourceDirectoryName);
+        String[] filenameList = sourceDirectory.list();
+        if (filenameList == null || filenameList.length == 0)
+            return;
+
+        Map<File, File> inputOutputMap = Arrays.stream(filenameList)
+                .filter(s -> s.startsWith("input"))
+                .map(inputName -> Map.entry(
+                        new File(sourceDirectoryName, inputName),
+                        new File(sourceDirectoryName, inputName.replace("input", "output"))
+                ))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        int success = 0, fail = 0, error = 0; // ++;--;??
+
+        int id = 1;
+
+        for (Map.Entry<File, File> testCase : inputOutputMap.entrySet()) {
+            try (
+                    InputStream testInput = new FileInputStream(testCase.getKey());
+                    InputStream testExpected = new FileInputStream(testCase.getValue());
+                    ByteArrayOutputStream testOutput = new ByteArrayOutputStream()
+            ) {
+                SequenceDiagramPrinter.resetInstance(new PrintStream(OutputStream.nullOutputStream()));
+                GameManager.GetInstance().ResetGame();
+                new ActionManager(testInput, testOutput).runCommandInterpreter();
+
+                String expectedOutput = new String(testExpected.readAllBytes(), StandardCharsets.UTF_8).trim();
+                String actualOutput = testOutput.toString(StandardCharsets.UTF_8).replace("\r\n", "\n").trim();
+
+                if (actualOutput.equals(expectedOutput)) {
+                    success++;
+                    writer.printf("Test %d - OK%n", id);
+                } else {
+                    fail++;
+                    writer.printf("Test %d - FAIL%n", id);
+                }
+            } catch (IOException e) {
+                error++;
+                writer.printf("Test %d - ERROR%n", id);
+            }
+
+            id++;
+        }
+
+        writer.printf("%d / %d / %d (SUCCESS/FAIL/ERROR)%n", success, fail, error);
+    }
+
+    public void runCommandInterpreter() {
+        while (scanner.hasNextLine()) {
+            String inputLine = scanner.nextLine();
+
+            if (inputLine.isBlank())
+                continue;
+
+            if (inputLine.equals("exit"))
+                break;
+
+            String[] parts = inputLine.split(" ");
+            String objectName = parts[0];
+            String actionName = parts[1];
+            List<String> arguments = List.of(parts).subList(2, parts.length);
+
+            try {
+                performAction(objectName, actionName, arguments);
+                if (GameManager.GetInstance().isWon())
+                    writer.println("Win!");
+            } catch (Exception e) {
+                writer.println("Hiba történt: " + e.getMessage());
+            }
+        }
     }
 
     private void printStatusOfObject(String arg1) {
@@ -61,9 +150,8 @@ public class ActionManager {
                         }
 
                         String stringRepresentationOfValue = registry.ResolveObject(value);
-                        System.out.printf("%s: %s%n", field.getName(), stringRepresentationOfValue);
+                        writer.printf("%s: %s%n", field.getName(), stringRepresentationOfValue);
                     } catch (IllegalAccessException e) {
-                        System.err.println(e.getMessage());
                         throw new RuntimeException(e);
                     }
                 });
@@ -157,7 +245,7 @@ public class ActionManager {
 
             String nameOfObject = registry.GetName(newObject);
 
-            System.out.printf("Object created: %s%n", nameOfObject);
+            writer.printf("Object created: %s%n", nameOfObject);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException | ClassNotFoundException e) {
             throw new RuntimeException(e);

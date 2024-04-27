@@ -58,4 +58,9 @@ public abstract class ObjectRegistry {
     }
 
     protected abstract String GenerateNameToObject(Object object);
+
+    public void Clear() {
+        nameToObject.clear();
+        objectToName.clear();
+    }
 }

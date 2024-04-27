@@ -12,7 +12,7 @@ public class SequenceDiagramPrinter implements DebugPrinter {
 
     private static final Object MAIN = new Object();
     private static SequenceDiagramPrinter instance;
-    private final PrintStream outputPrinter;
+    private PrintStream outputPrinter;
     private final List<Object> lifelines = new ArrayList<>();
     protected final ObjectRegistry registry = new PascalCaseObjectRegistry();
     private final Deque<Object> objectStack = new ArrayDeque<>();
@@ -45,7 +45,11 @@ public class SequenceDiagramPrinter implements DebugPrinter {
      * @return The reset singleton instance of SequenceDiagramPrinter.
      */
     public static SequenceDiagramPrinter resetInstance(PrintStream targetStream) {
-        instance = new SequenceDiagramPrinter(targetStream);
+        instance = getInstance();
+        instance.outputPrinter = targetStream;
+        instance.lifelines.clear();
+        instance.registry.Clear();
+        instance.objectStack.clear();
         return instance;
     }
 
