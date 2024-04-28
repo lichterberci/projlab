@@ -9,7 +9,7 @@ ARTIFACT="projlab.jar"
 
 # Compile source files
 echo "Compiling..."
-javac -d $OUT_DIR $(find . -type f -iname "*.java")
+javac -d $OUT_DIR $(find $SRC_DIR -type f -not -path "$SRC_DIR/lab/proj/testUseCases/*" -iname "*.java")
 
 # Check if compilation was successful
 if [ $? -eq 0 ]; then

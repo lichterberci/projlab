@@ -1,1 +1,1 @@
-find src -type f -iname "*.java" -exec stat -c "%n,%s,%y" {} \;| awk -F/ '{print $NF}'
+find src -type f -not -path "src/lab/proj/testUseCases/*" -iname "*.java" -exec stat -c "%n,%s,%y" {} \;| awk -F/ '{print $NF}'
