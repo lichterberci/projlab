@@ -1,0 +1,19 @@
+
+Create Room
+Create Room
+Create Door
+SetRooms d1 r1 r2
+Create Student
+SetLocation s1 r1
+Create Student
+SetLocation s2 r1
+Create Teacher
+SetLocation t1 r1
+Create CleaningLady
+SetLocation cl1 r2
+UseDoor cl1 d1
+Status t1
+Status s1
+Status s2
+Status r1
+Status r2

@@ -1,0 +1,13 @@
+
+Create Room
+Create GasPoisoning
+SetLocation gp1 r1
+TimePassed r1
+TimePassed r1
+TimePassed r1
+TimePassed r1
+TimePassed r1
+TimePassed r1
+TimePassed r1
+TimePassed r1
+Status r1

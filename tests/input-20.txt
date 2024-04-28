@@ -1,0 +1,11 @@
+
+Create Room
+Create Room
+Create Room
+Create Door
+Create GasPoisoning
+SetRooms d1 r1 r2
+SetLocation gp1 r2
+Merge r1 r2
+Status r1
+Status r3

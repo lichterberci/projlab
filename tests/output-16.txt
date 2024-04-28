@@ -1,0 +1,19 @@
+
+Object created: r1
+Object created: r2
+Object created: d1
+Object created: d2
+Object created: d3
+Object created: c1
+hidden: true
+oneWay: false
+r1: r1
+r2: r2
+hidden: true
+oneWay: false
+r1: r1
+r2: r2
+hidden: true
+oneWay: false
+r1: r1
+r2: r2

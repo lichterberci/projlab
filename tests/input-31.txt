@@ -1,0 +1,8 @@
+
+Create Room
+Create Student
+SetLocation s1 r1
+Create Teacher
+SetLocation t1 r1
+DropOutAll t1
+Status s1

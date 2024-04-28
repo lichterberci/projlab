@@ -1,0 +1,24 @@
+
+Object created: r1
+Object created: r2
+Object created: d1
+Object created: cse1
+Object created: bm1
+activeEffects: []
+actorsInside: []
+capacity: 5
+doors: [r1]
+itemsOnTheFloor: [cse1, bm1]
+visitorCountSinceLastCleaning: 0
+activeEffects: []
+actorsInside: []
+capacity: 5
+doors: [d1]
+itemsOnTheFloor: []
+visitorCountSinceLastCleaning: 0
+activeEffects: []
+actorsInside: []
+capacity: 5
+doors: [d1, r3]
+itemsOnTheFloor: []
+visitorCountSinceLastCleaning: 0

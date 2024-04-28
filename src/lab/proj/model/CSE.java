@@ -49,22 +49,12 @@ public class CSE extends LivingItem {
 
     /**
      * Performs the action of using the CSE item.
-     * This method is currently empty for CSE items.
      */
     @Override
     public void Use() {
         Logger.invokeMethod(this, List.of());
 
-        if (fake) {
-            Logger.returnVoid();
-            return;
-        }
-
-        if (--lifetime <= 0) {
-            lifetime = 0;
-            dead = true;
-            Drop();
-        }
+        Age();
 
         Logger.returnVoid();
     }

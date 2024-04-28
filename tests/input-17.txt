@@ -1,0 +1,13 @@
+
+Create Room
+Create Room
+Create Door
+Create CSE
+Create BeerMug
+SetRooms d1 r1 r2
+SetLocation cse1 r1
+SetLocation bm1 r1
+Split r1 d1 cse1
+Status r1
+Status r2
+Status r3

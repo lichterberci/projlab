@@ -1,0 +1,22 @@
+
+Object created: r1
+Object created: s1
+Object created: c1
+collectedItems: [c1]
+dropOutProtections: []
+droppedOut: false
+gasProtections: []
+incapacitated: false
+location: r1
+activated: false
+actor: s1
+dead: false
+fake: true
+location: null
+sticky: false
+activeEffects: []
+actorsInside: [s1]
+capacity: 5
+doors: []
+itemsOnTheFloor: []
+visitorCountSinceLastCleaning: 1

@@ -1,0 +1,18 @@
+
+Object created: r1
+Object created: tr1
+Object created: tr2
+Object created: s1
+activated: false
+actor: s1
+dead: false
+fake: false
+location: null
+pair: tr2
+sticky: false
+collectedItems: [tr1, tr2]
+dropOutProtections: []
+droppedOut: false
+gasProtections: []
+incapacitated: false
+location: r1

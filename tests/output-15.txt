@@ -1,0 +1,17 @@
+
+Object created: r1
+Object created: s1
+Object created: cm1
+Object created: m1
+collectedItems: [m1]
+dropOutProtections: []
+droppedOut: false
+gasProtections: []
+incapacitated: false
+location: r1
+activated: false
+actor: null
+dead: true
+fake: false
+location: r1
+sticky: false

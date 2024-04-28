@@ -1,0 +1,27 @@
+
+Create Room
+Create Room
+Create Door
+SetTwoWay d1
+SetRooms d1 r1 r2
+Create Student
+Create Teacher
+Create Teacher
+SetLocation s1 r1
+SetLocation t1 r2
+SetLocation t2 r2
+Create BeerMug
+Create Transistor
+Create Transistor
+PickUp tr1 s1
+PickUp tr2 s1
+PickUp bm1 s1
+Activate bm1
+UseDoor s1 d1
+TimePassed s1
+DropOutAll t1
+DropOutAll t2
+Status s1
+Status bm1
+Status tr1
+Status tr2

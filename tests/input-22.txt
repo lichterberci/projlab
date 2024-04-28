@@ -1,0 +1,23 @@
+
+Create Room
+Create Room
+Create Door
+SetTwoWay d1
+SetRooms d1 r1 r2
+Create Student
+Create Teacher
+SetLocation s1 r1
+SetLocation t1 r2
+Create BeerMug
+SetFake bm1
+Create CSE
+PickUp bm1 s1
+PickUp cse1 s1
+Activate bm1
+Activate cse1
+UseDoor s1 d1
+TimePassed s1
+DropOutAll t1
+Status s1
+Status bm1
+Status cse1

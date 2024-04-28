@@ -1,0 +1,12 @@
+
+Create Room
+Create Transistor
+Create Transistor
+Create Student
+SetLocation s1 r1
+PickUp tr1 s1
+PickUp tr2 s1
+PairWith tr1 tr2
+Drop tr1
+Status tr1
+Status s1

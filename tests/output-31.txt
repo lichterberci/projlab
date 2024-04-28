@@ -1,0 +1,10 @@
+
+Object created: r1
+Object created: s1
+Object created: t1
+collectedItems: []
+dropOutProtections: []
+droppedOut: true
+gasProtections: []
+incapacitated: false
+location: r1

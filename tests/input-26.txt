@@ -1,0 +1,12 @@
+
+Create Room
+Create Student
+SetLocation s1 r1
+Create Camembert
+SetFake c1
+PickUp c1 s1
+Activate c1
+TimePassed r1
+Status s1
+Status c1
+Status r1

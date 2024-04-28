@@ -1,0 +1,14 @@
+
+Create Room
+Create Student
+SetLocation s1 r1
+Create Camembert
+PickUp cm1 s1
+Create Mask
+PickUp m1 s1
+Activate m1
+TimePassed s1
+Activate cm1
+TimePassed r1
+Status s1
+Status cm1

@@ -1,0 +1,20 @@
+
+Object created: r1
+Object created: r2
+Object created: tr1
+Object created: tr2
+Object created: s1
+activated: false
+actor: s1
+dead: false
+fake: false
+location: null
+pair: tr2
+sticky: false
+activated: false
+actor: s1
+dead: false
+fake: false
+location: null
+pair: tr1
+sticky: false

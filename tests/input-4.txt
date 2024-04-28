@@ -1,0 +1,15 @@
+
+Create Room
+Create Room
+SetCapacity r1 1
+Create Door
+SetTwoWay d1
+SetRooms d1 r1 r2
+Create Student
+Create Student
+SetLocation s1 r2
+SetLocation s2 r1
+UseDoor s1 d1
+Status s1
+Status r2
+Status r1

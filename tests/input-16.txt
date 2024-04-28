@@ -1,0 +1,15 @@
+
+Create Room
+Create Room
+Create Door
+Create Door
+Create Door
+SetRooms d1 r1 r2
+SetRooms d2 r1 r2
+SetRooms d3 r1 r2
+Create Curse
+SetLocation c1 r1
+TimePassed c1
+Status d1
+Status d2
+Status d3

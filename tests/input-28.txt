@@ -1,0 +1,22 @@
+
+Create Room
+Create Room
+Create Door
+SetRooms d1 r1 r2
+Create Student
+SetLocation s1 r1
+Create Teacher
+SetLocation t1 r2
+Create BeerMug
+PickUp bm1 s1
+Activate bm1
+TimePassed s1
+TimePassed s1
+TimePassed s1
+TimePassed s1
+TimePassed s1
+TimePassed s1
+Status bm1
+Status s1
+UseDoor t1 d1
+Status s1

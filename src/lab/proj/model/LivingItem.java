@@ -15,6 +15,23 @@ public abstract class LivingItem extends Item {
      */
     protected int lifetime = DEFAULT_LIFETIME;
 
+    protected final void Age() {
+        Logger.invokeMethod(this, List.of());
+
+        if (fake) {
+            Logger.returnVoid();
+            return;
+        }
+
+        if (--lifetime <= 0) {
+            lifetime = 0;
+            dead = true;
+            Drop();
+        }
+
+        Logger.returnVoid();
+    }
+
     /**
      * Performs the action associated with using the living item.
      * Each subclass must implement this method to define the specific action.
@@ -25,11 +42,7 @@ public abstract class LivingItem extends Item {
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());
 
-        if (--lifetime <= 0) {
-            lifetime = 0;
-            dead = true;
-            Drop();
-        }
+        Age();
 
         Logger.returnVoid();
     }

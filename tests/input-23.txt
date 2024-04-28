@@ -1,0 +1,9 @@
+
+Create Room
+Create Student
+SetLocation s1 r1
+Create SlideRule
+SetLocation sr1 r1
+SetFake sr1
+PickUp sr1 s1
+Status s1

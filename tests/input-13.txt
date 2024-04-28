@@ -1,0 +1,13 @@
+
+Create Room
+Create Room
+Create GasPoisoning
+SetLocation gp1 r2
+Create Door
+SetTwoWay d1
+SetRooms d1 r1 r2
+Create Teacher
+SetLocation t1 r1
+UseDoor t1 d1
+TimePassed gp1
+Status t1

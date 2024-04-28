@@ -1,0 +1,28 @@
+
+Object created: r1
+Object created: r2
+Object created: d1
+Object created: s1
+Object created: t1
+Object created: bm1
+Object created: cse1
+collectedItems: [cse1]
+dropOutProtections: [dop3, dop2]
+droppedOut: false
+gasProtections: []
+incapacitated: false
+location: r2
+activated: false
+actor: null
+dead: true
+fake: true
+lifetime: 0
+location: r2
+sticky: false
+activated: true
+actor: s1
+dead: false
+fake: false
+lifetime: 2
+location: null
+sticky: false

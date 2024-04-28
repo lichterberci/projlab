@@ -1,0 +1,9 @@
+
+Object created: r1
+Object created: gp1
+activeEffects: []
+actorsInside: []
+capacity: 5
+doors: []
+itemsOnTheFloor: []
+visitorCountSinceLastCleaning: 0

@@ -51,6 +51,7 @@ public abstract class ObjectRegistry {
 
             return collection.stream()
                     .map(this::ResolveObject)
+                    .sorted()
                     .collect(Collectors.joining(", ", "[", "]"));
         }
 

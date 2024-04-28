@@ -1,0 +1,15 @@
+
+Create Room
+Create Student
+SetLocation s1 r1
+SetLocation s1 r1
+SetLocation s1 r1
+SetLocation s1 r1
+SetLocation s1 r1
+SetLocation s1 r1
+Create BeerMug
+SetLocation bm1 r1
+TimePassed r1
+PickUp bm1 s1
+Status bm1
+Status s1

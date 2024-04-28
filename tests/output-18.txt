@@ -1,0 +1,23 @@
+
+Object created: r1
+Object created: r2
+Object created: d1
+Object created: gp1
+activeEffects: [gp1]
+actorsInside: []
+capacity: 5
+doors: [r1]
+itemsOnTheFloor: []
+visitorCountSinceLastCleaning: 0
+activeEffects: []
+actorsInside: []
+capacity: 5
+doors: [d1]
+itemsOnTheFloor: []
+visitorCountSinceLastCleaning: 0
+activeEffects: []
+actorsInside: []
+capacity: 5
+doors: [d1, r3]
+itemsOnTheFloor: []
+visitorCountSinceLastCleaning: 0
