@@ -65,9 +65,12 @@ public class ActionManager {
 
         int success = 0, fail = 0, error = 0; // ++;--;??
 
-        int id = 1;
-
         for (Map.Entry<File, File> testCase : inputOutputMap.entrySet()) {
+            TestCase testConclusion = new TestCase(
+                    Integer.parseInt(testCase.getKey().getName()
+                            .replace("input-", "")
+                            .replace(".txt", "")));
+
             try (
                     InputStream testInput = new FileInputStream(testCase.getKey());
                     InputStream testExpected = new FileInputStream(testCase.getValue());
@@ -77,22 +80,24 @@ public class ActionManager {
                 GameManager.GetInstance().ResetGame();
                 new ActionManager(testInput, testOutput).runCommandInterpreter();
 
-                String expectedOutput = new String(testExpected.readAllBytes(), StandardCharsets.UTF_8).trim();
-                String actualOutput = testOutput.toString(StandardCharsets.UTF_8).replace("\r\n", "\n").trim();
+                String expectedOutput = new String(testExpected.readAllBytes(), StandardCharsets.UTF_8)
+                        .replace("\r\n", "\n").trim();
+                String actualOutput = testOutput.toString(StandardCharsets.UTF_8)
+                        .replace("\r\n", "\n").trim();
 
                 if (actualOutput.equals(expectedOutput)) {
+                    testConclusion.Success();
                     success++;
-                    writer.printf("Test %d - OK%n", id);
                 } else {
+                    testConclusion.Fail();
                     fail++;
-                    writer.printf("Test %d - FAIL%n", id);
                 }
             } catch (IOException e) {
+                testConclusion.Error();
                 error++;
-                writer.printf("Test %d - ERROR%n", id);
             }
 
-            id++;
+            testConclusion.Report(writer);
         }
 
         writer.printf("%d / %d / %d (SUCCESS/FAIL/ERROR)%n", success, fail, error);
