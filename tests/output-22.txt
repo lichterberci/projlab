@@ -6,18 +6,18 @@ Object created: s1
 Object created: t1
 Object created: bm1
 Object created: cse1
-collectedItems: [cse1]
-dropOutProtections: [dop3, dop2]
+collectedItems: [bm1, cse1]
+dropOutProtections: [dop2, dop3]
 droppedOut: false
 gasProtections: []
 incapacitated: false
 location: r2
 activated: false
-actor: null
-dead: true
+actor: s1
+dead: false
 fake: true
-lifetime: 0
-location: r2
+lifetime: 5
+location: null
 sticky: false
 activated: true
 actor: s1

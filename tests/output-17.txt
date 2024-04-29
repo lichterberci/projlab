@@ -7,8 +7,8 @@ Object created: bm1
 activeEffects: []
 actorsInside: []
 capacity: 5
-doors: [r1]
-itemsOnTheFloor: [cse1, bm1]
+doors: [d2]
+itemsOnTheFloor: [bm1, cse1]
 visitorCountSinceLastCleaning: 0
 activeEffects: []
 actorsInside: []
@@ -19,6 +19,6 @@ visitorCountSinceLastCleaning: 0
 activeEffects: []
 actorsInside: []
 capacity: 5
-doors: [d1, r3]
+doors: [d1, d2]
 itemsOnTheFloor: []
 visitorCountSinceLastCleaning: 0

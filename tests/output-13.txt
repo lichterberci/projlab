@@ -10,3 +10,4 @@ dropOutProtections: []
 gasProtections: []
 incapacitated: true
 location: r2
+stunned: false

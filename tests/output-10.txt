@@ -7,16 +7,16 @@ Object created: t1
 Object created: bm1
 Object created: cse1
 collectedItems: [cse1]
-dropOutProtections: []
+dropOutProtections: [dop2, dop3, dop4]
 droppedOut: false
 gasProtections: []
 incapacitated: false
 location: r2
 activated: false
 actor: null
-dead: true
+dead: false
 fake: false
-lifetime: -1
+lifetime: 4
 location: r2
 sticky: false
 activated: true

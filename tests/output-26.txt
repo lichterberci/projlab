@@ -1,8 +1,8 @@
 
 Object created: r1
 Object created: s1
-Object created: c1
-collectedItems: [c1]
+Object created: cm1
+collectedItems: [cm1]
 dropOutProtections: []
 droppedOut: false
 gasProtections: []

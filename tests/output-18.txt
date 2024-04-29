@@ -6,7 +6,7 @@ Object created: gp1
 activeEffects: [gp1]
 actorsInside: []
 capacity: 5
-doors: [r1]
+doors: [d2]
 itemsOnTheFloor: []
 visitorCountSinceLastCleaning: 0
 activeEffects: []
@@ -18,6 +18,6 @@ visitorCountSinceLastCleaning: 0
 activeEffects: []
 actorsInside: []
 capacity: 5
-doors: [d1, r3]
+doors: [d1, d2]
 itemsOnTheFloor: []
 visitorCountSinceLastCleaning: 0

@@ -9,6 +9,7 @@ SetRooms d2 r1 r2
 SetRooms d3 r1 r2
 Create Curse
 SetLocation c1 r1
+SetSeed 0
 TimePassed c1
 Status d1
 Status d2
