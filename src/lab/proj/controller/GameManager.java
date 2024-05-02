@@ -1,11 +1,13 @@
 package lab.proj.controller;
 
 import lab.proj.model.*;
+import lab.proj.ui.GameUI;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class GameManager {
 
@@ -13,11 +15,12 @@ public class GameManager {
     private final Set<Room> rooms = new HashSet<>();
     private final List<Student> students = new ArrayList<>();
     private final List<Actor> nonPlayerCharacters = new ArrayList<>();
-    private final Set<Entity> entities = new HashSet<>();
     private boolean isRunning;
     private boolean isWon;
     private int turnCounter = 0;
     private Actor currentActor = null;
+
+    private GameUI gameUI;
 
     private GameManager() {
         ResetGame();
@@ -32,6 +35,7 @@ public class GameManager {
 
     public void StartGame() {
         isRunning = true;
+        gameUI = new GameUI();
     }
 
     public void Win() {
@@ -77,11 +81,27 @@ public class GameManager {
         nonPlayerCharacters.forEach(Actor::TimePassed);
 
         turnCounter++;
-        currentActor = GetNextActorForTurn();
+        currentActor = GetNextActorForTurn(turnCounter);
+
+        if (turnCounter % 2 == 0) {
+            // only draw UI if it is the turn of a student
+            gameUI.UpdateUI(ActorsInOrder(), currentActor.GetLocation(), (Student)currentActor);
+        } else {
+            // TODO: implement AI logic
+            EndTurn();
+        }
     }
 
-    private Actor GetNextActorForTurn() {
-        return turnCounter % 2 == 0 ? students.get(turnCounter / 2) : nonPlayerCharacters.get(turnCounter / 2);
+    private List<Actor> ActorsInOrder() {
+        return IntStream.range(turnCounter, turnCounter + students.size() + nonPlayerCharacters.size())
+                               .mapToObj(this::GetNextActorForTurn)
+                               .toList();
+    }
+
+    private Actor GetNextActorForTurn(int n) {
+        return n % 2 == 0 ?
+                students.get((n / 2) % students.size())
+                : nonPlayerCharacters.get((n / 2) % nonPlayerCharacters.size());
     }
 
     public Room CreateRoom() {
@@ -100,6 +120,30 @@ public class GameManager {
         Door result = new Door();
 
 //        entities.add(result);
+
+        return result;
+    }
+
+    public Student CreateStudent() {
+        Student result = new Student();
+
+        students.add(result);
+
+        return result;
+    }
+
+    public CleaningLady CreateCleaningLady() {
+        CleaningLady result = new CleaningLady();
+
+        nonPlayerCharacters.add(result);
+
+        return result;
+    }
+
+    public Teacher CreateTeacher() {
+        Teacher result = new Teacher();
+
+        nonPlayerCharacters.add(result);
 
         return result;
     }
