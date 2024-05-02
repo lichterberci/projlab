@@ -1,7 +1,7 @@
 package lab.proj.controller;
 
 import lab.proj.model.*;
-import lab.proj.ui.GameUI;
+import lab.proj.ui.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,6 +21,7 @@ public class GameManager {
     private Actor currentActor = null;
 
     private GameUI gameUI;
+    private ResultUI resultUI;
 
     private GameManager() {
         ResetGame();
@@ -41,11 +42,15 @@ public class GameManager {
     public void Win() {
         isRunning = false;
         isWon = true;
+        resultUI = new ResultUI();
+        resultUI.SetResult("Students Win!");
     }
 
     public void Lose() {
         isRunning = false;
         isWon = false;
+        resultUI = new ResultUI();
+        resultUI.SetResult("Teachers Win!");
     }
 
     public void Restart() {

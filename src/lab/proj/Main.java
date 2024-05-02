@@ -57,6 +57,7 @@ public class Main {
         r.AddActor(t);
         GameManager.GetInstance().StartGame();
         GameManager.GetInstance().EndTurn();
+        GameManager.GetInstance().Win();
     }
 
 //    private static void testUseCases() {

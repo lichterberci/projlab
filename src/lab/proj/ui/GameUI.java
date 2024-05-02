@@ -17,7 +17,8 @@ public class GameUI {
 	public GameUI() {
 		frame = new JFrame("Game");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 600);
+		frame.getContentPane().setPreferredSize(new Dimension(800, 600));
+		frame.pack();
 		frame.setLayout(null);
 		frame.setVisible(true);
 

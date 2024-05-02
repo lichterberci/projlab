@@ -12,10 +12,10 @@ public class ActorTurnIndicatorComponent implements UIComponent {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		int topX = (int) (0.8f * targetFrame.getWidth());
-		int topY = (int) (0.0f * targetFrame.getHeight());
-		int width = (int) (0.2f * targetFrame.getWidth());
-		int height = (int) (1.0f * targetFrame.getHeight());
+		int topX = (int) (0.8f * targetFrame.getContentPane().getWidth());
+		int topY = (int) (0.0f * targetFrame.getContentPane().getHeight());
+		int width = (int) (0.2f * targetFrame.getContentPane().getWidth());
+		int height = (int) (1.0f * targetFrame.getContentPane().getHeight());
 
 		for (Drawable actor : actors) {
 			JPanel actorPanel = new JPanel();
