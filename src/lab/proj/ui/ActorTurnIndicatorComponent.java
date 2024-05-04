@@ -6,16 +6,15 @@ import java.util.List;
 
 public class ActorTurnIndicatorComponent implements UIComponent {
 	private List<Drawable> actors;
-
 	@Override
-	public void Draw(JFrame targetFrame) {
+	public void Draw(JFrame target) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		int topX = (int) (0.8f * targetFrame.getContentPane().getWidth());
-		int topY = (int) (0.0f * targetFrame.getContentPane().getHeight());
-		int width = (int) (0.2f * targetFrame.getContentPane().getWidth());
-		int height = (int) (1.0f * targetFrame.getContentPane().getHeight());
+		int topX = (int) (0.8f * target.getContentPane().getWidth());
+		int topY = (int) (0.0f * target.getContentPane().getHeight());
+		int width = (int) (0.2f * target.getContentPane().getWidth());
+		int height = (int) (1.0f * target.getContentPane().getHeight());
 
 		for (Drawable actor : actors) {
 			JPanel actorPanel = new JPanel();
@@ -33,7 +32,7 @@ public class ActorTurnIndicatorComponent implements UIComponent {
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-		targetFrame.add(scrollPane);
+		target.add(scrollPane);
 	}
 	
 	public void SetActors(List<Drawable> actors) {

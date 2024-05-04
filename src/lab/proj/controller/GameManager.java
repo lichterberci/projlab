@@ -3,6 +3,7 @@ package lab.proj.controller;
 import lab.proj.model.*;
 import lab.proj.ui.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +20,7 @@ public class GameManager {
     private boolean isWon;
     private int turnCounter = 0;
     private Actor currentActor = null;
-
+    private MenuUI menuUI;
     private GameUI gameUI;
     private ResultUI resultUI;
 
@@ -34,14 +35,22 @@ public class GameManager {
         return instance;
     }
 
+    public void StartMenu() {
+        menuUI = new MenuUI();
+        menuUI.UpdateUI(students);
+    }
+
     public void StartGame() {
         isRunning = true;
+        menuUI.Close();
         gameUI = new GameUI();
+        EndTurn();
     }
 
     public void Win() {
         isRunning = false;
         isWon = true;
+        gameUI.Close();
         resultUI = new ResultUI();
         resultUI.SetResult("Students Win!");
     }
@@ -49,6 +58,7 @@ public class GameManager {
     public void Lose() {
         isRunning = false;
         isWon = false;
+        gameUI.Close();
         resultUI = new ResultUI();
         resultUI.SetResult("Teachers Win!");
     }
@@ -129,11 +139,11 @@ public class GameManager {
         return result;
     }
 
-    public Student CreateStudent() {
-        Student result = new Student();
+    public Student CreateStudent(String name) {
+        Student result = new Student(name);
 
         students.add(result);
-
+        menuUI.UpdateUI(students);
         return result;
     }
 

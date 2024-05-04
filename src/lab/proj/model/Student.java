@@ -18,6 +18,12 @@ public class Student extends Actor {
     private boolean droppedOut;
 
     public Student() {
+        this.name = "Student";
+        Logger.createObject(this);
+    }
+
+    public Student(String name) {
+        this.name = name;
         Logger.createObject(this);
     }
 

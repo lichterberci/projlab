@@ -11,6 +11,12 @@ import java.util.Set;
  */
 public class Teacher extends Actor {
 
+    private static final String[] TEACHER_LIST = new String[] { "Kiss Bálint",  "Szirmay-Kalos László",  "Rupp Tünde",  "Arató Péter",  "Balla Katalin",  "Benyó Balázs",  "Csébfalvi Balázs",  "Ercsényi András",  "Faragó Szabolcs",  "Fördős Gergely",  "Gincsainé Dr",  "Goldschmidt Balázs",  "Gyenes Zoltán",  "Harmati István",  "Hodosi Hajnalka",  "Homlok József",  "Horváth István",  "Horváth Tamás",  "Kacsó Ágota",  "Kertész Zsolt",  "Ketler Tamás",  "Kiss Andrea",  "Kondorosi Károly",  "Kovács Kálmán",  "Lantos Béla",  "Ludmány Balázs",  "Mohácsi Zsófia",  "Pilászy György",  "Rácz György",  "Risztics Péter",  "Salvi Péter",  "Simon Balázs",  "Somogyi Péter",  "Szántó Mátyás",  "Szeberényi Imre",  "Szécsi László",  "Szemenyei Márton",  "Szlávecz Ákos",  "Vaitkus Márton",  "Vajta László",  "Vámos Gábor",  "Várady Tamás"};
+    private static final List<String> teacherListInOrder = new ArrayList<>(List.of(TEACHER_LIST));
+    private static int nextTeacherNameIndex = 0;
+    static {
+        Collections.shuffle(teacherListInOrder);
+    }
     private boolean stunned = false;
     private Set<Actor> alreadyDroppedOut = new HashSet<>();
 

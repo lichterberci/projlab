@@ -42,4 +42,9 @@ public class GameUI {
 		frame.revalidate();
 		frame.repaint();
 	}
+
+	public void Close() {
+		frame.setVisible(false);
+		frame.dispose();
+	}
 }
