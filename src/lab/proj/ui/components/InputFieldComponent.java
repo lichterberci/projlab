@@ -7,8 +7,7 @@ import lab.proj.ui.screens.MenuScreen;
 import javax.swing.*;
 import java.awt.*;
 
-public class InputFieldComponent implements UIComponent {
-
+public class InputFieldComponent implements Component {
     @Override
     public void Draw(JComponent target) {
         int topX = (int) (0.05f * target.getWidth());

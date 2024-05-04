@@ -24,19 +24,11 @@ public class Main {
 //        new ActionManager(System.in, System.out).runCommandInterpreter();
 
         GameManager.GetInstance().ResetGame();
-        Room r1 = GameManager.GetInstance().CreateRoom();
-        Room r2 = GameManager.GetInstance().CreateRoom();
-        Room r3 = GameManager.GetInstance().CreateRoom();
-        GameManager.GetInstance().CreateStudent("Berci").SetLocation(r1);
-        GameManager.GetInstance().CreateStudent("Dani").SetLocation(r1);
-        GameManager.GetInstance().CreateStudent("Karesz").SetLocation(r1);
-        GameManager.GetInstance().CreateStudent("Soma").SetLocation(r1);
-        GameManager.GetInstance().CreateStudent("Zoli").SetLocation(r1);
-        GameManager.GetInstance().CreateTeacher().SetLocation(r2);
-        GameManager.GetInstance().CreateTeacher().SetLocation(r2);
-        GameManager.GetInstance().CreateTeacher().SetLocation(r2);
-        GameManager.GetInstance().CreateTeacher().SetLocation(r2);
-        GameManager.GetInstance().CreateCleaningLady().SetLocation(r3);
+        GameManager.GetInstance().CreateStudent("Berci");
+        GameManager.GetInstance().CreateStudent("Dani");
+        GameManager.GetInstance().CreateStudent("Karesz");
+        GameManager.GetInstance().CreateStudent("Soma");
+        GameManager.GetInstance().CreateStudent("Zoli");
 
         Application.GetInstance().NavigateToMenu();
         MenuScreen.GetInstance().UpdateUI(GameManager.GetInstance().GetStudents());

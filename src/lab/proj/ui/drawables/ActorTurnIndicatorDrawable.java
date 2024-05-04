@@ -14,27 +14,22 @@ public class ActorTurnIndicatorDrawable implements Drawable {
 	}
 
 	@Override
-	public void Draw(JComponent drawTarget) {
-
+	public void Draw(JComponent target) {
 		String effectText = "";
-
 		if (actor.IsBlocked()) effectText += "blocked";
 
 		JLabel label = new JLabel("%s%s".formatted(actor.GetName(), effectText.isEmpty() ? "" : " (%s)".formatted(effectText)));
 		label.setHorizontalTextPosition(SwingConstants.CENTER);
 		label.setVerticalTextPosition(SwingConstants.CENTER);
-		label.setMinimumSize(new Dimension(30, 20));
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setVerticalAlignment(SwingConstants.CENTER);
+		label.setOpaque(true);
 		label.setForeground(Application.DarkText);
+//		label.setBackground(Application.Light);
+		label.setBackground(Color.getHSBColor(getHueColorFromHashCode(actor.hashCode()), 0.8f, 0.9f));
+		label.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Application.Border));
+		label.setPreferredSize(new Dimension((int) (target.getMinimumSize().getWidth() * 0.9f), (int) (target.getMinimumSize().getHeight() * 0.8f)));
 
-		JPanel actorPanel = new JPanel();
-		actorPanel.add(label);
-//		actorPanel.setBackground(Application.Light);
-		actorPanel.setBackground(Color.getHSBColor(getHueColorFromHashCode(actor.hashCode()), 0.8f, 0.9f));
-		actorPanel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Application.Border));
-		actorPanel.setAlignmentX(0.5f);
-		actorPanel.setAlignmentY(0.5f);
-		actorPanel.setPreferredSize(new Dimension((int) (drawTarget.getMinimumSize().getWidth() * 0.9f), (int) (drawTarget.getMinimumSize().getHeight() * 0.8f)));
-
-		drawTarget.add(actorPanel);
+		target.add(label);
 	}
 }

@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class ActorTurnIndicatorComponent implements UIComponent {
+public class ActorTurnIndicatorComponent implements  Component {
 	private List<Drawable> actors;
 	@Override
 	public void Draw(JComponent target) {
@@ -23,7 +23,8 @@ public class ActorTurnIndicatorComponent implements UIComponent {
 		for (Drawable actor : actors) {
 			JPanel actorPanel = new JPanel();
 			actorPanel.setOpaque(false);
-			actorPanel.setMinimumSize(new Dimension((int) (width * 0.9), 50));
+			actorPanel.setMinimumSize(new Dimension((int) (width * 0.9), (int) (height * 0.1)));
+			actorPanel.setMinimumSize(new Dimension((int) (width * 0.9), (int) (height * 0.1)));
 			actor.Draw(actorPanel);
 
 			panel.add(actorPanel);
@@ -32,6 +33,7 @@ public class ActorTurnIndicatorComponent implements UIComponent {
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setBounds(topX, topY, width, height);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Application.Border));
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		scrollPane.setOpaque(false);
 

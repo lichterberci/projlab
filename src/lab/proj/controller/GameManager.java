@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 public class GameManager {
 
     private static GameManager instance;
-    private final Set<Room> rooms = new HashSet<>();
+    private final List<Room> rooms = new ArrayList<>();
     private final List<Student> students = new ArrayList<>();
     private final List<Actor> nonPlayerCharacters = new ArrayList<>();
     private boolean isRunning;
@@ -34,8 +34,9 @@ public class GameManager {
     }
 
     public void StartGame() {
+        GameSetup();
         isRunning = true;
-        EndTurn();
+        currentActor = GetNextActorForTurn(turnCounter);
         GameScreen.GetInstance().UpdateUI(ActorsInOrder(),
                 currentActor.GetLocation(),
                 (Student)currentActor);
@@ -55,19 +56,42 @@ public class GameManager {
         ResultScreen.GetInstance().SetResult("Teachers win!");
     }
 
-    public void Restart() {
-        ResetGame();
-    }
-
     public void ResetGame() {
         isRunning = false;
         isWon = false;
         turnCounter = 0;
-//        currentActor = GetNextActorForTurn(turnCounter);
+    }
+
+    private void GameSetup() {
+        CalculateLayout();
+        int i = 0;
+        for (Student student : students) {
+            student.SetLocation(rooms.get(0));
+            if (i < 3)
+                CreateTeacher().SetLocation(rooms.get(5));
+            else
+                CreateCleaningLady().SetLocation(rooms.get(4));
+            i = (i+1) % 4;
+        }
     }
 
     private void CalculateLayout() {
-        // TODO: set up rooms
+        Room r1 = CreateRoom();
+        Room r2 = CreateRoom();
+        Room r3 = CreateRoom();
+        Room r4 = CreateRoom();
+        Room r5 = CreateRoom();
+        Room r6 = CreateRoom();
+
+        CreateDoor().SetRooms(r1, r2);
+        CreateDoor().SetRooms(r2, r3);
+        CreateDoor().SetRooms(r3, r6);
+        CreateDoor().SetRooms(r6, r5);
+        CreateDoor().SetRooms(r5, r4);
+        CreateDoor().SetRooms(r4, r1);
+        Door d = CreateDoor();
+        d.SetRooms(r2, r5);
+        d.SetOneWay();
     }
 
     public boolean isRunning() {
@@ -88,8 +112,8 @@ public class GameManager {
         nonPlayerCharacters.forEach(Actor::TimePassed);
 
         turnCounter++;
-        currentActor = GetNextActorForTurn(turnCounter);
-
+        currentActor = GetNextActorForTurn(turnCounter)
+;
         if (turnCounter % 2 == 0) {
             // only draw UI if it is the turn of a student
             GameScreen.GetInstance().UpdateUI(ActorsInOrder(),

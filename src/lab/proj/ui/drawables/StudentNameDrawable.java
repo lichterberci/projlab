@@ -10,7 +10,7 @@ public class StudentNameDrawable implements Drawable {
     private final Student student;
     public StudentNameDrawable(Student student) { this.student = student; }
     @Override
-    public void Draw(JComponent drawTarget) {
+    public void Draw(JComponent target) {
         JLabel label = new JLabel(student.GetName());
         label.setHorizontalTextPosition(SwingConstants.CENTER);
         label.setVerticalTextPosition(SwingConstants.CENTER);
@@ -20,10 +20,8 @@ public class StudentNameDrawable implements Drawable {
         label.setForeground(Application.DarkText);
         label.setBackground(Application.Light);
         label.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
-        label.setAlignmentX(0.5f);
-        label.setAlignmentY(0.5f);
-        label.setPreferredSize(new Dimension((int) (drawTarget.getMinimumSize().getWidth() * 0.9f), (int) (drawTarget.getMinimumSize().getHeight() * 0.8f)));
+        label.setPreferredSize(new Dimension((int) (target.getMinimumSize().getWidth() * 0.9f), (int) (target.getMinimumSize().getHeight() * 0.8f)));
 
-        drawTarget.add(label);
+        target.add(label);
     }
 }

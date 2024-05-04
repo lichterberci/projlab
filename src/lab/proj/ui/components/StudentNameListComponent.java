@@ -7,9 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class StudentNameListComponent implements UIComponent {
-
+public class StudentNameListComponent implements Component{
     private List<Drawable> students;
+
     @Override
     public void Draw(JComponent target) {
         int topX = (int) (0.05f * target.getWidth());
@@ -25,6 +25,7 @@ public class StudentNameListComponent implements UIComponent {
             JPanel studentPanel = new JPanel();
             studentPanel.setOpaque(false);
             studentPanel.setMinimumSize(new Dimension((int) (width * 0.9), (int) (height * 0.15)));
+            studentPanel.setMaximumSize(new Dimension((int) (width * 0.9), (int) (height * 0.15)));
             student.Draw(studentPanel);
 
             panel.add(studentPanel);

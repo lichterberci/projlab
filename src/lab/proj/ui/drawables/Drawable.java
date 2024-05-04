@@ -5,9 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public interface Drawable {
-	void Draw(JComponent drawTarget);
-
-
+	void Draw(JComponent target);
 	default float getHueColorFromHashCode(int hashCode) {
         try {
             MessageDigest hashAlg = MessageDigest.getInstance("SHA-512");
