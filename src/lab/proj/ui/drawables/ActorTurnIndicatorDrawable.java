@@ -22,14 +22,15 @@ public class ActorTurnIndicatorDrawable implements Drawable {
 
 		if (actor.IsBlocked()) effectText += "blocked";
 
-		JLabel label = new JLabel("actor%s".formatted(effectText.isEmpty() ? "" : " (%s)".formatted(effectText)));
+		JLabel label = new JLabel("%s%s".formatted(actor.GetName(), effectText.isEmpty() ? "" : " (%s)".formatted(effectText)));
 		label.setHorizontalTextPosition(SwingConstants.CENTER);
 		label.setVerticalTextPosition(SwingConstants.CENTER);
 		label.setMinimumSize(new Dimension(30, 20));
 
 		JPanel actorPanel = new JPanel();
 		actorPanel.add(label);
-		actorPanel.setBackground(Color.decode("#d0d0d0"));
+//		actorPanel.setBackground(Color.decode("#d0d0d0"));
+		actorPanel.setBackground(Color.getHSBColor(getHueColorFromHashCode(actor.hashCode()), 0.8f, 0.9f));
 		actorPanel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLACK));
 		actorPanel.setAlignmentX(0.5f);
 		actorPanel.setAlignmentY(0.5f);

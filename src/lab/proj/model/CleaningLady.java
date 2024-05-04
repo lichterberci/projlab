@@ -1,16 +1,25 @@
 package lab.proj.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CleaningLady extends Actor {
 
+    private static final String[] CLEANING_LADY_NAMES = {"Általános Anna", "Balzsam Beáta", "Bútor Boglárka", "Csap Csilla", "Dísz Dóra", "Edény Edit", "Ecet Enikő", "Eszköz Eszter", "Gőz Gizella", "Izzító Ibolya", "Izzó Ilona", "Javító Judit", "Jutalom Julianna", "Keverő Katalin", "Kézi Klári", "Lé Luca", "Mopp Margit", "Moppos Mária", "Nedves Nikolett", "Porszívó Piroska", "Ragacs Renáta", "Rendszer Réka", "Szikra Szilvia", "Szivacs Zsuzsa", "Törölgető Teréz", "Villany Veronika", "Alapos Anikó", "Ápoló Andrea", "Zsír Zsófia"};
+    private static final List<String> cleaningLadyNamesInOrder = new ArrayList<>(List.of(CLEANING_LADY_NAMES));
+    static {
+        Collections.shuffle(cleaningLadyNamesInOrder);
+    }
+    private static int nextIndexOfCleaningLadyName = 0;
     private final PurifierVisitor pv;
 
     public CleaningLady() {
         Logger.createObject(this);
         pv = new PurifierVisitor();
+        this.name = cleaningLadyNamesInOrder.get(nextIndexOfCleaningLadyName);
+        nextIndexOfCleaningLadyName = (nextIndexOfCleaningLadyName + 1) % cleaningLadyNamesInOrder.size();
     }
 
     @Override

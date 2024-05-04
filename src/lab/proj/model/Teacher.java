@@ -1,9 +1,6 @@
 package lab.proj.model;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A class representing a teacher actor in the game environment.
@@ -22,6 +19,8 @@ public class Teacher extends Actor {
 
     public Teacher() {
         Logger.createObject(this);
+        this.name = teacherListInOrder.get(nextTeacherNameIndex);
+        nextTeacherNameIndex = (nextTeacherNameIndex + 1) % teacherListInOrder.size();
     }
 
     /**

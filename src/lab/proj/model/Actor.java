@@ -40,6 +40,8 @@ public abstract class Actor implements Entity {
             Comparator.comparing(DropOutProtection::GetPriority)
     );
 
+    protected String name;
+
     /**
      * Attempts to use a door to move to another room.
      *
@@ -210,4 +212,8 @@ public abstract class Actor implements Entity {
     }
 
     public abstract void NotifyStudentWin(SlideRule sr);
+
+    public String GetName() {
+        return this.name;
+    }
 }
