@@ -1,4 +1,4 @@
-package lab.proj.ui;
+package lab.proj.ui.drawables;
 
 import javax.swing.JComponent;
 import java.security.MessageDigest;

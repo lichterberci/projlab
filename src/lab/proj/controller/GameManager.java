@@ -1,9 +1,10 @@
 package lab.proj.controller;
 
 import lab.proj.model.*;
-import lab.proj.ui.*;
+import lab.proj.ui.Application;
+import lab.proj.ui.screens.GameScreen;
+import lab.proj.ui.screens.ResultScreen;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,9 +21,6 @@ public class GameManager {
     private boolean isWon;
     private int turnCounter = 0;
     private Actor currentActor = null;
-    private MenuUI menuUI;
-    private GameUI gameUI;
-    private ResultUI resultUI;
 
     private GameManager() {
         ResetGame();
@@ -35,32 +33,26 @@ public class GameManager {
         return instance;
     }
 
-    public void StartMenu() {
-        menuUI = new MenuUI();
-        menuUI.UpdateUI(students);
-    }
-
     public void StartGame() {
         isRunning = true;
-        menuUI.Close();
-        gameUI = new GameUI();
         EndTurn();
+        GameScreen.GetInstance().UpdateUI(ActorsInOrder(),
+                currentActor.GetLocation(),
+                (Student)currentActor);
     }
 
     public void Win() {
         isRunning = false;
         isWon = true;
-        gameUI.Close();
-        resultUI = new ResultUI();
-        resultUI.SetResult("Students Win!");
+        Application.GetInstance().NavigateToResult();
+        ResultScreen.GetInstance().SetResult("Students win!");
     }
 
     public void Lose() {
         isRunning = false;
         isWon = false;
-        gameUI.Close();
-        resultUI = new ResultUI();
-        resultUI.SetResult("Teachers Win!");
+        Application.GetInstance().NavigateToResult();
+        ResultScreen.GetInstance().SetResult("Teachers win!");
     }
 
     public void Restart() {
@@ -71,7 +63,7 @@ public class GameManager {
         isRunning = false;
         isWon = false;
         turnCounter = 0;
-        //currentActor = GetNextActorForTurn();
+//        currentActor = GetNextActorForTurn(turnCounter);
     }
 
     private void CalculateLayout() {
@@ -100,7 +92,10 @@ public class GameManager {
 
         if (turnCounter % 2 == 0) {
             // only draw UI if it is the turn of a student
-            gameUI.UpdateUI(ActorsInOrder(), currentActor.GetLocation(), (Student)currentActor);
+            GameScreen.GetInstance().UpdateUI(ActorsInOrder(),
+                    currentActor.GetLocation(),
+                    (Student)currentActor);
+
         } else {
             // TODO: implement AI logic
             EndTurn();
@@ -143,7 +138,6 @@ public class GameManager {
         Student result = new Student(name);
 
         students.add(result);
-        menuUI.UpdateUI(students);
         return result;
     }
 
@@ -161,5 +155,9 @@ public class GameManager {
         nonPlayerCharacters.add(result);
 
         return result;
+    }
+
+    public List<Student> GetStudents() {
+        return students;
     }
 }

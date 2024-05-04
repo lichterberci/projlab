@@ -1,4 +1,6 @@
-package lab.proj.ui;
+package lab.proj.ui.components;
+
+import lab.proj.ui.drawables.Drawable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,14 +9,14 @@ import java.util.List;
 public class ActorTurnIndicatorComponent implements UIComponent {
 	private List<Drawable> actors;
 	@Override
-	public void Draw(JFrame target) {
+	public void Draw(JComponent target) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		int topX = (int) (0.8f * target.getContentPane().getWidth());
-		int topY = (int) (0.0f * target.getContentPane().getHeight());
-		int width = (int) (0.2f * target.getContentPane().getWidth());
-		int height = (int) (1.0f * target.getContentPane().getHeight());
+		int topX = (int) (0.8f * target.getWidth());
+		int topY = (int) (0.0f * target.getHeight());
+		int width = (int) (0.2f * target.getWidth());
+		int height = (int) (1.0f * target.getHeight());
 
 		for (Drawable actor : actors) {
 			JPanel actorPanel = new JPanel();

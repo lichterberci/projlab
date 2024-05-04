@@ -1,8 +1,6 @@
 package lab.proj.ui.drawables;
 
 import lab.proj.model.Student;
-import lab.proj.ui.Drawable;
-import lab.proj.ui.StudentNameListComponent;
 
 import javax.swing.*;
 import java.awt.*;

@@ -4,6 +4,8 @@ import lab.proj.controller.GameManager;
 import lab.proj.model.Room;
 import lab.proj.model.Student;
 import lab.proj.model.Teacher;
+import lab.proj.ui.Application;
+import lab.proj.ui.screens.MenuScreen;
 import lab.proj.utils.ActionManager;
 import lab.proj.utils.SequenceDiagramPrinter;
 import java.io.OutputStream;
@@ -22,7 +24,6 @@ public class Main {
 //        new ActionManager(System.in, System.out).runCommandInterpreter();
 
         GameManager.GetInstance().ResetGame();
-        GameManager.GetInstance().StartMenu();
         Room r1 = GameManager.GetInstance().CreateRoom();
         Room r2 = GameManager.GetInstance().CreateRoom();
         Room r3 = GameManager.GetInstance().CreateRoom();
@@ -36,9 +37,9 @@ public class Main {
         GameManager.GetInstance().CreateTeacher().SetLocation(r2);
         GameManager.GetInstance().CreateTeacher().SetLocation(r2);
         GameManager.GetInstance().CreateCleaningLady().SetLocation(r3);
-        //GameManager.GetInstance().StartGame();
-        //GameManager.GetInstance().EndTurn();
-        //GameManager.GetInstance().Win();
+
+        Application.GetInstance().NavigateToMenu();
+        MenuScreen.GetInstance().UpdateUI(GameManager.GetInstance().GetStudents());
     }
 
 //    private static void testUseCases() {

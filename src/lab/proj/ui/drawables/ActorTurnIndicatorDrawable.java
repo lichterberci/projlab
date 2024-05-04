@@ -1,11 +1,8 @@
 package lab.proj.ui.drawables;
 
 import lab.proj.model.Actor;
-import lab.proj.ui.Drawable;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 public class ActorTurnIndicatorDrawable implements Drawable {
