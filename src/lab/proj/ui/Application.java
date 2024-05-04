@@ -11,9 +11,15 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Application {
+	public static final Color Dark = new Color(75, 75, 75);
+	public static final Color Light = new Color(200, 200, 200);
+	public static final Color Background = new Color(175, 175, 175);
+	public static final Color DarkText = new Color(0,0,0);
+	public static final Color LightText = new Color(255, 255, 255);
+	public static final Color Border = new Color(0,0,0);
+
 	private final JFrame frame;
 	private final JPanel canvas;
-
 	private static Application instance;
 
 	public static Application GetInstance() {
@@ -23,20 +29,19 @@ public class Application {
 	}
 
 	private Application() {
-		frame = new JFrame("Best game ever created");
+		frame = new JFrame("THE SLIDE RULE");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
-		frame.setPreferredSize(new Dimension(800, 600));
+		frame.getContentPane().setPreferredSize(new Dimension(800, 600));
+		frame.pack();
+		frame.setBackground(Background);
 
 		canvas = new JPanel();
 		canvas.setLayout(null);
-		canvas.setLocation(0, 0);
-		canvas.setPreferredSize(new Dimension(800, 600));
+		canvas.setBounds(0, 0, 800, 600);
+		canvas.setOpaque(false);
 
 		frame.add(canvas);
-
-//		frame.pack();
-		frame.setBackground(Color.decode("#f0f0f0"));
 		frame.setVisible(true);
 	}
 

@@ -41,17 +41,18 @@ public class MenuScreen {
         studentNames.Draw(canvas);
 
         JButton playButton = new JButton("Play");
+        playButton.setBackground(Application.Dark);
+        playButton.setForeground(Application.LightText);
 
         playButton.addActionListener(actionEvent -> {
-	        GameManager.GetInstance().StartGame();
             Application.GetInstance().NavigateToGame();
+	        GameManager.GetInstance().StartGame();
         });
 
-        int topX = (int) (0.15f * canvas.getWidth());
-        int topY = (int) (0.85f * canvas.getHeight());
-        int width = (int) (0.7f * canvas.getWidth());
-        int height = (int) (0.1f * canvas.getHeight());
-
+        int topX = (int) (0.05f * canvas.getWidth());
+        int topY = (int) (0.9f * canvas.getHeight());
+        int width = (int) (0.9f * canvas.getWidth());
+        int height = (int) (0.05f * canvas.getHeight());
         playButton.setBounds(topX, topY, width, height);
 
         canvas.add(playButton);

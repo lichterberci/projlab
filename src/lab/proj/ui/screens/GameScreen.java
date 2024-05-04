@@ -41,5 +41,8 @@ public class GameScreen {
 		actorComponent.SetActors(turnIndicatorDrawables);
 
 		actorComponent.Draw(canvas);
+
+		canvas.revalidate();
+		canvas.repaint();
 	}
 }

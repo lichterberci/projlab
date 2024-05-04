@@ -28,10 +28,10 @@ public class ResultScreen {
         JLabel text = new JLabel(result, SwingConstants.CENTER);
         text.setBounds((int)(width * 0.05), (int)(height * 0.1), (int)(width * 0.9), (int)(height * 0.8));
         text.setFont(text.getFont().deriveFont(width * 0.12f));
-        text.setForeground(Color.WHITE);
+        text.setForeground(Application.LightText);
         text.setOpaque(true);
-        text.setBackground(Color.decode("#c0c0c0"));
-        text.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+        text.setBackground(Application.Dark);
+        text.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
 
         canvas.add(text);
         canvas.revalidate();

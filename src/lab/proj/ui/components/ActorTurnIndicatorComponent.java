@@ -1,5 +1,6 @@
 package lab.proj.ui.components;
 
+import lab.proj.ui.Application;
 import lab.proj.ui.drawables.Drawable;
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ public class ActorTurnIndicatorComponent implements UIComponent {
 	public void Draw(JComponent target) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setBackground(Application.Dark);
 
 		int topX = (int) (0.8f * target.getWidth());
 		int topY = (int) (0.0f * target.getHeight());
@@ -20,19 +22,18 @@ public class ActorTurnIndicatorComponent implements UIComponent {
 
 		for (Drawable actor : actors) {
 			JPanel actorPanel = new JPanel();
-
+			actorPanel.setOpaque(false);
 			actorPanel.setMinimumSize(new Dimension((int) (width * 0.9), 50));
 			actor.Draw(actorPanel);
-
-			actorPanel.setBackground(Color.decode("#808080"));
 
 			panel.add(actorPanel);
 		}
 
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setBounds(topX, topY, width, height);
-		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		scrollPane.setBorder(BorderFactory.createLineBorder(Application.Border));
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setOpaque(false);
 
 		target.add(scrollPane);
 	}
