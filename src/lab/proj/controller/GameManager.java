@@ -1,14 +1,11 @@
 package lab.proj.controller;
 
 import lab.proj.model.*;
-import lab.proj.ui.Application;
 import lab.proj.ui.screens.GameScreen;
 import lab.proj.ui.screens.ResultScreen;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.IntStream;
 
 public class GameManager {
@@ -37,23 +34,19 @@ public class GameManager {
         GameSetup();
         isRunning = true;
         currentActor = GetNextActorForTurn(turnCounter);
-        GameScreen.GetInstance().UpdateUI(ActorsInOrder(),
-                currentActor.GetLocation(),
-                (Student)currentActor);
+        Application.GetInstance().RenderGameScreen();
     }
 
     public void Win() {
         isRunning = false;
         isWon = true;
-        Application.GetInstance().NavigateToResult();
-        ResultScreen.GetInstance().SetResult("Students win!");
+        Application.GetInstance().RenderResultScreen();
     }
 
     public void Lose() {
         isRunning = false;
         isWon = false;
-        Application.GetInstance().NavigateToResult();
-        ResultScreen.GetInstance().SetResult("Teachers win!");
+        Application.GetInstance().RenderResultScreen();
     }
 
     public void ResetGame() {
@@ -116,17 +109,14 @@ public class GameManager {
 ;
         if (turnCounter % 2 == 0) {
             // only draw UI if it is the turn of a student
-            GameScreen.GetInstance().UpdateUI(ActorsInOrder(),
-                    currentActor.GetLocation(),
-                    (Student)currentActor);
-
+            Application.GetInstance().RenderGameScreen();
         } else {
             // TODO: implement AI logic
             EndTurn();
         }
     }
 
-    private List<Actor> ActorsInOrder() {
+    public List<Actor> ActorsInOrder() {
         return IntStream.range(turnCounter, turnCounter + students.size() + nonPlayerCharacters.size())
                                .mapToObj(this::GetNextActorForTurn)
                                .toList();

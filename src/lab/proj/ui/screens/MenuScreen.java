@@ -2,61 +2,87 @@ package lab.proj.ui.screens;
 
 import lab.proj.controller.GameManager;
 import lab.proj.model.Student;
-import lab.proj.ui.Application;
+import lab.proj.controller.Application;
 import lab.proj.ui.drawables.Drawable;
 import lab.proj.ui.components.InputFieldComponent;
 import lab.proj.ui.components.StudentNameListComponent;
 import lab.proj.ui.drawables.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class MenuScreen {
-    private final JComponent canvas;
     private final InputFieldComponent input;
     private final StudentNameListComponent studentNames;
+    private List<StudentNameDrawable> students;
 
-    private static MenuScreen instance;
-    public static MenuScreen GetInstance() {
-        if (instance == null)
-            instance = new MenuScreen();
-        return instance;
-    }
-
-    private MenuScreen() {
-        this.canvas = Application.GetInstance().GetCanvas();
+    public MenuScreen() {
         input = new InputFieldComponent();
         studentNames = new StudentNameListComponent();
     }
 
-    public void UpdateUI(List<Student> studentList) {
+    public void Render() {
+        JComponent canvas = Application.GetInstance().GetCanvas();
         canvas.removeAll();
 
-        input.Draw(canvas);
+        RenderInput(canvas);
+        RenderStudents(canvas);
+        RenderPlay(canvas);
 
-        List<Drawable> studentDrawables = studentList.stream()
-                .map(student -> (Drawable) new StudentNameDrawable(student))
-                .toList();
-        studentNames.SetStudents(studentDrawables);
-        studentNames.Draw(canvas);
-
-        JButton playButton = new JButton("Play");
-        playButton.setBackground(Application.Dark);
-        playButton.setForeground(Application.LightText);
-
-        playButton.addActionListener(actionEvent -> {
-            Application.GetInstance().NavigateToGame();
-	        GameManager.GetInstance().StartGame();
-        });
-
-        int topX = (int) (0.05f * canvas.getWidth());
-        int topY = (int) (0.9f * canvas.getHeight());
-        int width = (int) (0.9f * canvas.getWidth());
-        int height = (int) (0.05f * canvas.getHeight());
-        playButton.setBounds(topX, topY, width, height);
-
-        canvas.add(playButton);
         canvas.revalidate();
         canvas.repaint();
+    }
+
+    public void SetStudents(List<StudentNameDrawable> students) {
+        this.students = students;
+    }
+
+    private void RenderInput(JComponent canvas) {
+        JPanel inputPanel = new JPanel();
+        inputPanel.setBounds((int) (0.05f * canvas.getWidth()),
+                (int) (0.05f * canvas.getHeight()),
+                (int) (0.9f * canvas.getWidth()),
+                (int) (0.05f * canvas.getHeight()));
+        inputPanel.setOpaque(false);
+        input.Draw(inputPanel);
+        canvas.add(inputPanel);
+    }
+
+    private void RenderStudents(JComponent canvas) {
+        JPanel studentsPanel = new JPanel();
+        studentsPanel.setBounds((int) (0.05f * canvas.getWidth()),
+                (int) (0.15f * canvas.getHeight()),
+                (int) (0.9f * canvas.getWidth()),
+                (int) (0.7f * canvas.getHeight()));
+        studentNames.SetStudents(students);
+        studentNames.Draw(studentsPanel);
+
+        JScrollPane studentsScrollPane = new JScrollPane(studentsPanel);
+        studentsScrollPane.setBounds((int) (0.05f * canvas.getWidth()),
+                (int) (0.15f * canvas.getHeight()),
+                (int) (0.9f * canvas.getWidth()),
+                (int) (0.7f * canvas.getHeight()));
+        studentsScrollPane.setBorder(BorderFactory.createLineBorder(Application.Border));
+        studentsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        studentsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        studentsScrollPane.setOpaque(false);
+        canvas.add(studentsScrollPane);
+    }
+
+    private void RenderPlay(JComponent canvas) {
+        JButton playButton = new JButton("Play");
+        playButton.setBounds((int) (0.05f * canvas.getWidth()),
+                (int) (0.9f * canvas.getHeight()),
+                (int) (0.9f * canvas.getWidth()),
+                (int) (0.05f * canvas.getHeight()));
+        playButton.addActionListener(actionEvent -> {
+            GameManager.GetInstance().StartGame();
+            Application.GetInstance().RenderGameScreen();
+        });
+        playButton.setBackground(Application.Dark);
+        playButton.setForeground(Application.LightText);
+        playButton.setFont(playButton.getFont().deriveFont(playButton.getHeight() * 0.4f));
+        canvas.add(playButton);
     }
 }

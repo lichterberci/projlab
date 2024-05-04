@@ -1,14 +1,12 @@
-package lab.proj.ui;
+package lab.proj.controller;
 
 import lab.proj.model.Student;
-import lab.proj.ui.screens.GameScreen;
-import lab.proj.ui.screens.MenuScreen;
-import lab.proj.ui.screens.ResultScreen;
+import lab.proj.ui.drawables.*;
+import lab.proj.ui.screens.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 public class Application {
 	public static final Color Dark = new Color(75, 75, 75);
@@ -20,6 +18,10 @@ public class Application {
 
 	private final JFrame frame;
 	private final JPanel canvas;
+	private final MenuScreen menu;
+	private final GameScreen game;
+	private final ResultScreen result;
+
 	private static Application instance;
 
 	public static Application GetInstance() {
@@ -43,19 +45,36 @@ public class Application {
 
 		frame.add(canvas);
 		frame.setVisible(true);
+		menu = new MenuScreen();
+		game = new GameScreen();
+		result = new ResultScreen();
 	}
 
-	public void NavigateToMenu() {
+	public void RenderMenuScreen() {
 		frame.setTitle("THE SLIDE RULE - MENU");
-		MenuScreen.GetInstance().UpdateUI(Collections.emptyList());
+		java.util.List<StudentNameDrawable> studentDrawables =
+				GameManager.GetInstance().GetStudents()
+				.stream()
+				.map(StudentNameDrawable::new)
+				.toList();
+		menu.SetStudents(studentDrawables);
+		menu.Render();
 	}
 
-	public void NavigateToGame() {
+	public void RenderGameScreen() {
 		frame.setTitle("THE SLIDE RULE - GAME");
+		List<ActorTurnIndicatorDrawable> actorIndicators =
+				GameManager.GetInstance().ActorsInOrder().stream()
+				.map(ActorTurnIndicatorDrawable::new)
+				.toList();
+		game.SetActorIndicators(actorIndicators);
+		game.Render();
 	}
 
-	public void NavigateToResult() {
+	public void RenderResultScreen() {
 		frame.setTitle("THE SLIDE RULE - END");
+		result.SetResult(GameManager.GetInstance().isWon()? "Students win!" : "Teachers win!");
+		result.Render();
 	}
 
 	public JComponent GetCanvas() {

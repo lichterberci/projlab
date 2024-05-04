@@ -1,7 +1,7 @@
 package lab.proj.ui.drawables;
 
 import lab.proj.model.Actor;
-import lab.proj.ui.Application;
+import lab.proj.controller.Application;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +28,9 @@ public class ActorTurnIndicatorDrawable implements Drawable {
 //		label.setBackground(Application.Light);
 		label.setBackground(Color.getHSBColor(getHueColorFromHashCode(actor.hashCode()), 0.8f, 0.9f));
 		label.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Application.Border));
-		label.setPreferredSize(new Dimension((int) (target.getMinimumSize().getWidth() * 0.9f), (int) (target.getMinimumSize().getHeight() * 0.8f)));
+		label.setPreferredSize(new Dimension(
+				(int) (target.getMinimumSize().getWidth() * 0.9f),
+				(int) (target.getMinimumSize().getHeight() * 0.8f)));
 
 		target.add(label);
 	}

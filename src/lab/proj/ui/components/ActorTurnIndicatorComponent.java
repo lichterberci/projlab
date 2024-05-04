@@ -1,6 +1,7 @@
 package lab.proj.ui.components;
 
-import lab.proj.ui.Application;
+import lab.proj.controller.Application;
+import lab.proj.ui.drawables.ActorTurnIndicatorDrawable;
 import lab.proj.ui.drawables.Drawable;
 
 import javax.swing.*;
@@ -8,7 +9,7 @@ import java.awt.*;
 import java.util.List;
 
 public class ActorTurnIndicatorComponent implements  Component {
-	private List<Drawable> actors;
+	private List<ActorTurnIndicatorDrawable> actors;
 	@Override
 	public void Draw(JComponent target) {
 		JPanel panel = new JPanel();
@@ -40,7 +41,7 @@ public class ActorTurnIndicatorComponent implements  Component {
 		target.add(scrollPane);
 	}
 	
-	public void SetActors(List<Drawable> actors) {
+	public void SetActors(List<ActorTurnIndicatorDrawable> actors) {
 		this.actors = actors;
 	}
 }

@@ -1,40 +1,43 @@
 package lab.proj.ui.screens;
 
-import lab.proj.ui.Application;
+import lab.proj.controller.Application;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ResultScreen {
-    private final JComponent canvas;
+    private final JLabel label;
+    private String result;
 
-    private static ResultScreen instance;
-    public static ResultScreen GetInstance() {
-        if (instance == null)
-            instance = new ResultScreen();
-        return instance;
+    public ResultScreen() {
+        label = new JLabel();
+        label.setOpaque(true);
+        label.setBackground(Application.Dark);
+        label.setForeground(Application.LightText);
+        label.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setVerticalAlignment(SwingConstants.CENTER);
     }
+    public void Render() {
+        JComponent canvas = Application.GetInstance().GetCanvas();
+        canvas.removeAll();
 
-    private ResultScreen() {
-        this.canvas = Application.GetInstance().GetCanvas();
+        RenderText(canvas);
+
+        canvas.revalidate();
+        canvas.repaint();
     }
 
     public void SetResult(String result) {
-        canvas.removeAll();
+        this.result = result;
+    }
 
-        int width = canvas.getWidth();
-        int height = canvas.getHeight();
-
-        JLabel text = new JLabel(result, SwingConstants.CENTER);
-        text.setBounds((int)(width * 0.05), (int)(height * 0.1), (int)(width * 0.9), (int)(height * 0.8));
-        text.setFont(text.getFont().deriveFont(width * 0.12f));
-        text.setForeground(Application.LightText);
-        text.setOpaque(true);
-        text.setBackground(Application.Dark);
-        text.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
-
-        canvas.add(text);
-        canvas.revalidate();
-        canvas.repaint();
+    private void RenderText(JComponent canvas) {
+        label.setBounds((int)(canvas.getWidth() * 0.05),
+                (int)(canvas.getHeight() * 0.1),
+                (int)(canvas.getWidth() * 0.9),
+                (int)(canvas.getHeight() * 0.8));
+        label.setFont(label.getFont().deriveFont(label.getHeight() * 0.22f));
+        label.setText(result);
+        canvas.add(label);
     }
 }

@@ -1,46 +1,45 @@
 package lab.proj.ui.components;
 
 import lab.proj.controller.GameManager;
-import lab.proj.ui.Application;
+import lab.proj.controller.Application;
 import lab.proj.ui.screens.MenuScreen;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class InputFieldComponent implements Component {
-    @Override
-    public void Draw(JComponent target) {
-        int topX = (int) (0.05f * target.getWidth());
-        int topY = (int) (0.05f * target.getHeight());
-        int width = (int) (0.9f * target.getWidth());
-        int height = (int) (0.05f * target.getHeight());
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        panel.setBounds(topX, topY, width, height);
-        panel.setOpaque(false);
+    private final JLabel label;
+    private final JTextField nameField;
+    private final JButton addButton;
 
-        JButton addButton = new JButton("+");
-        JTextField nameField = new JTextField();
-        JLabel label = new JLabel("Student Name: ");
+    public InputFieldComponent() {
+        label = new JLabel("Student Name: ");
+        label.setForeground(Application.DarkText);
+        label.setOpaque(false);
+
+        nameField = new JTextField();
+        nameField.setForeground(Application.DarkText);
+        nameField.setBackground(Application.Light);
+
+        addButton = new JButton("+");
+        addButton.setForeground(Application.LightText);
+        addButton.setBackground(Application.Dark);
         addButton.addActionListener(actionEvent -> {
             String name = nameField.getText();
             GameManager.GetInstance().CreateStudent(name);
-            MenuScreen.GetInstance().UpdateUI(GameManager.GetInstance().GetStudents());
+            Application.GetInstance().RenderMenuScreen();
             nameField.setText("");
         });
-        addButton.setBackground(Application.Dark);
-        addButton.setForeground(Application.LightText);
+    }
 
-        nameField.setBackground(Application.Light);
-        nameField.setForeground(Application.DarkText);
-
-        label.setOpaque(false);
-        label.setForeground(Application.DarkText);
-
-        panel.add(addButton, BorderLayout.EAST);
-        panel.add(nameField, BorderLayout.CENTER);
-        panel.add(label, BorderLayout.WEST);
-
-        target.add(panel);
+    @Override
+    public void Draw(JComponent target) {
+        target.setLayout(new BorderLayout());
+        addButton.setFont(addButton.getFont().deriveFont(target.getHeight() * 0.8f));
+        nameField.setFont(nameField.getFont().deriveFont(target.getHeight() * 0.5f));
+        label.setFont(label.getFont().deriveFont(target.getHeight() * 0.5f));
+        target.add(addButton, BorderLayout.EAST);
+        target.add(nameField, BorderLayout.CENTER);
+        target.add(label, BorderLayout.WEST);
     }
 }

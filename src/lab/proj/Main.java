@@ -1,15 +1,8 @@
 package lab.proj;
 
 import lab.proj.controller.GameManager;
-import lab.proj.model.Room;
-import lab.proj.model.Student;
-import lab.proj.model.Teacher;
-import lab.proj.ui.Application;
+import lab.proj.controller.Application;
 import lab.proj.ui.screens.MenuScreen;
-import lab.proj.utils.ActionManager;
-import lab.proj.utils.SequenceDiagramPrinter;
-import java.io.OutputStream;
-import java.io.PrintStream;
 
 
 public class Main {
@@ -24,14 +17,13 @@ public class Main {
 //        new ActionManager(System.in, System.out).runCommandInterpreter();
 
         GameManager.GetInstance().ResetGame();
-        GameManager.GetInstance().CreateStudent("Berci");
+        GameManager.GetInstance().CreateStudent("Berci").Shock();
         GameManager.GetInstance().CreateStudent("Dani");
         GameManager.GetInstance().CreateStudent("Karesz");
         GameManager.GetInstance().CreateStudent("Soma");
         GameManager.GetInstance().CreateStudent("Zoli");
 
-        Application.GetInstance().NavigateToMenu();
-        MenuScreen.GetInstance().UpdateUI(GameManager.GetInstance().GetStudents());
+        Application.GetInstance().RenderMenuScreen();
     }
 
 //    private static void testUseCases() {
