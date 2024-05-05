@@ -1,5 +1,7 @@
 package lab.proj.model;
 
+import lab.proj.controller.GameManager;
+
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -54,8 +56,10 @@ public abstract class Actor implements Entity {
         Room prevRoom = location;
 
         boolean wasSuccessful = d.GoThrough(location, this);
-        if (wasSuccessful)
+        if (wasSuccessful) {
             prevRoom.StepOut(this);
+            GameManager.GetInstance().EndTurn();
+        }
 
         Logger.returnValue(wasSuccessful);
         return wasSuccessful;
@@ -73,6 +77,7 @@ public abstract class Actor implements Entity {
         if (canBeCollected) {
             location.RemoveItem(i);
             collectedItems.add(i);
+            GameManager.GetInstance().EndTurn();
         }
 
         Logger.returnValue(canBeCollected);

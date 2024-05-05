@@ -436,4 +436,8 @@ public class Room implements Entity {
 
         Logger.returnVoid();
     }
+
+    public List<Item> GetItemsOnTheFloor() {
+        return this.itemsOnTheFloor;
+    }
 }

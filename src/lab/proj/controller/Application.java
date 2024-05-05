@@ -93,6 +93,8 @@ public class Application {
 				inventoryItems.add(new InventoryItemDrawable(null));
 		}
 		game.SetInventoryItems(inventoryItems);
+		game.SetItemsInRoom(room.GetActors().stream().map(ActorRoomDrawable::new).map(ad -> (Drawable) ad).toList());
+		game.SetItemsInRoom(room.GetItemsOnTheFloor().stream().map(ItemRoomDrawable::new).map(id -> (Drawable) id).toList());
 		game.Render();
 	}
 

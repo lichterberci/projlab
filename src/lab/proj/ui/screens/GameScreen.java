@@ -5,9 +5,7 @@ import lab.proj.model.Actor;
 import lab.proj.model.Room;
 import lab.proj.model.Student;
 import lab.proj.controller.Application;
-import lab.proj.ui.components.ActorTurnIndicatorComponent;
-import lab.proj.ui.components.DoorsComponent;
-import lab.proj.ui.components.InventoryComponent;
+import lab.proj.ui.components.*;
 import lab.proj.ui.drawables.DoorDrawable;
 import lab.proj.ui.drawables.Drawable;
 import lab.proj.ui.drawables.ActorTurnIndicatorDrawable;
@@ -21,6 +19,8 @@ public class GameScreen implements Screen {
 	private final ActorTurnIndicatorComponent actorComponent;
 	private final DoorsComponent doorsComponent;
 	private final InventoryComponent inventoryComponent;
+	private final ActorRoomDisplayComponent actorRoomDisplayComponent;
+	private final ItemRoomDisplayComponent itemRoomDisplayComponent;
 
 	public GameScreen() {
 		endTurnButton = new JButton("End Turn");
@@ -30,6 +30,16 @@ public class GameScreen implements Screen {
 		actorComponent = new ActorTurnIndicatorComponent();
 		doorsComponent = new DoorsComponent();
 		inventoryComponent = new InventoryComponent();
+		actorRoomDisplayComponent = new ActorRoomDisplayComponent();
+		itemRoomDisplayComponent = new ItemRoomDisplayComponent();
+	}
+
+	public void SetItemsInRoom(List<Drawable> items) {
+		itemRoomDisplayComponent.SetDrawables(items);
+	}
+
+	public void SetActorsInRoom(List<Drawable> actors) {
+		actorRoomDisplayComponent.SetDrawables(actors);
 	}
 
 	public void SetActorIndicators(List<Drawable> actorIndicators) {
@@ -53,6 +63,8 @@ public class GameScreen implements Screen {
 		RenderActorIndicators(canvas);
 		RenderDoors(canvas);
 		RenderInventory(canvas);
+		RenderActorsInRoom(canvas);
+		RenderItemsOnTheFloor(canvas);
 
 		canvas.revalidate();
 		canvas.repaint();
@@ -116,5 +128,42 @@ public class GameScreen implements Screen {
 		inventoryPanel.setOpaque(false);
 		inventoryComponent.Draw(inventoryPanel);
 		canvas.add(inventoryPanel);
+	}
+
+	private void RenderActorsInRoom(JComponent canvas) {
+		JPanel actorsPanel = new JPanel();
+		actorsPanel.setLayout(null);
+		actorRoomDisplayComponent.Draw(actorsPanel);
+
+		JScrollPane actorsScrollPane = new JScrollPane(actorsPanel);
+		actorsScrollPane.setBounds((int) (0.1 * canvas.getWidth()),
+				(int) (0.1f * canvas.getHeight()),
+				(int) (0.55f * canvas.getWidth()),
+				(int) (0.7f * canvas.getHeight()));
+		actorsScrollPane.setBorder(BorderFactory.createLineBorder(Application.Border));
+		actorsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		actorsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		actorsScrollPane.setOpaque(false);
+		canvas.add(actorsScrollPane);
+	}
+
+	public void RenderItemsOnTheFloor(JComponent canvas) {
+		JPanel itemsPanel = new JPanel();
+		itemsPanel.setBounds((int) (0.15f * canvas.getWidth()),
+				(int) (0.1f * canvas.getHeight()),
+				(int) (0.55f * canvas.getWidth()),
+				(int) (0.7f * canvas.getHeight()));
+		itemRoomDisplayComponent.Draw(itemsPanel);
+
+		JScrollPane itemsScrollPane = new JScrollPane(itemsPanel);
+		itemsScrollPane.setBounds((int) (0.15f * canvas.getWidth()),
+				(int) (0.1f * canvas.getHeight()),
+				(int) (0.55f * canvas.getWidth()),
+				(int) (0.7f * canvas.getHeight()));
+		itemsScrollPane.setBorder(BorderFactory.createLineBorder(Application.Border));
+		itemsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		itemsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		itemsScrollPane.setOpaque(false);
+		canvas.add(itemsScrollPane);
 	}
 }

@@ -114,7 +114,11 @@ public class SequenceDiagramPrinter implements DebugPrinter {
                 })
                 .forEach(outputPrinter::print);
 
-        lifelines.set(lifelines.indexOf(destroyedObject), null);
+        int index = lifelines.indexOf(destroyedObject);
+
+        if (index == -1) return;
+
+        lifelines.set(index, null);
 
         outputPrinter.println();
 
