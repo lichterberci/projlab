@@ -83,6 +83,9 @@ public class GameManager {
         Door d = CreateDoor();
         d.SetRooms(r2, r5);
         d.SetOneWay();
+        new Curse().SetLocation(r2);
+        new SlideRule().SetLocation(r3);
+        new CSE().SetLocation(r1);
     }
 
     public boolean isRunning() {

@@ -371,6 +371,12 @@ public class Room implements Entity {
         return actorsInside;
     }
 
+    public List<RoomEffect> GetEffects() {
+        Logger.invokeMethod(this, List.of());
+        Logger.returnValue(activeEffects);
+        return activeEffects;
+    }
+
     /**
      * Retrieves the capacity of the room.
      *

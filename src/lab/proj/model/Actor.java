@@ -128,6 +128,17 @@ public abstract class Actor implements Entity {
         Logger.returnVoid();
     }
 
+
+    public List<Charge> GetCharges() {
+        Logger.invokeMethod(this, List.of());
+
+        List<Charge> charges = new ArrayList<>(dropOutProtections);
+        charges.addAll(gasProtections);
+
+        Logger.returnValue(charges);
+        return charges;
+    }
+
     /**
      * Retrieves the items collected by the actor.
      *

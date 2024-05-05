@@ -15,7 +15,7 @@ public class ActorRoomDrawable implements Drawable {
 	public ActorRoomDrawable(Actor actor) {
 		this.actor = actor;
 		panel = new JPanel();
-		label = new JLabel(actor.GetName());
+		label = new JLabel();
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setVerticalAlignment(SwingConstants.CENTER);
 		label.setForeground(Application.DarkText);
@@ -28,6 +28,7 @@ public class ActorRoomDrawable implements Drawable {
 		panel.setPreferredSize(new Dimension(
 				(int) (target.getMinimumSize().getWidth() * 0.9f),
 				(int) (target.getMinimumSize().getHeight() * 0.9f)));
+		label.setText(actor.GetName());
 		label.setFont(label.getFont().deriveFont((float) (target.getMinimumSize().getHeight() * 0.3f)));
 		target.add(panel);
 	}

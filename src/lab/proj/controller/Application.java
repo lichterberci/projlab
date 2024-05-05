@@ -76,6 +76,8 @@ public class Application {
  		game.SetInventoryItems(Convert(inventory, InventoryItemDrawable::new));
 		game.SetActorsInRoom(Convert(room.GetActors(), ActorRoomDrawable::new));
 		game.SetItemsInRoom(Convert(room.GetItemsOnTheFloor(), item -> new ItemRoomDrawable(item, currentActor)));
+		game.SetRoomEffects(Convert(room.GetEffects(), RoomEffectDrawable::new));
+		game.SetCharges(Convert(currentActor.GetCharges(), ChargeDrawable::new));
 
 		game.Render();
 	}
