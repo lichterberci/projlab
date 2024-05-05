@@ -1,8 +1,6 @@
 package lab.proj.controller;
 
 import lab.proj.model.*;
-import lab.proj.ui.screens.GameScreen;
-import lab.proj.ui.screens.ResultScreen;
 
 import java.util.ArrayList;
 import java.util.List;

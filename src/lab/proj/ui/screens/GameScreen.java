@@ -7,28 +7,41 @@ import lab.proj.model.Student;
 import lab.proj.controller.Application;
 import lab.proj.ui.components.ActorTurnIndicatorComponent;
 import lab.proj.ui.components.DoorsComponent;
+import lab.proj.ui.components.InventoryComponent;
 import lab.proj.ui.drawables.DoorDrawable;
 import lab.proj.ui.drawables.Drawable;
 import lab.proj.ui.drawables.ActorTurnIndicatorDrawable;
+import lab.proj.ui.drawables.InventoryItemDrawable;
 
 import javax.swing.*;
 import java.util.List;
 
 public class GameScreen implements Screen {
+	private final JButton endTurnButton;
 	private final ActorTurnIndicatorComponent actorComponent;
 	private final DoorsComponent doorsComponent;
+	private final InventoryComponent inventoryComponent;
 
 	public GameScreen() {
+		endTurnButton = new JButton("End Turn");
+		endTurnButton.addActionListener(actionEvent -> GameManager.GetInstance().EndTurn());
+		endTurnButton.setBackground(Application.Dark);
+		endTurnButton.setForeground(Application.LightText);
 		actorComponent = new ActorTurnIndicatorComponent();
 		doorsComponent = new DoorsComponent();
+		inventoryComponent = new InventoryComponent();
 	}
 
-	public void SetActorIndicators(List<ActorTurnIndicatorDrawable> actorIndicators) {
-		actorComponent.SetActors(actorIndicators);
+	public void SetActorIndicators(List<Drawable> actorIndicators) {
+		actorComponent.SetDrawables(actorIndicators);
 	}
 
-	public void SetDoors(List<DoorDrawable> doors) {
-		doorsComponent.SetDoors(doors);
+	public void SetDoors(List<Drawable> doors) {
+		doorsComponent.SetDrawables(doors);
+	}
+
+	public void SetInventoryItems(List<Drawable> items) {
+		inventoryComponent.SetDrawables(items);
 	}
 
 	@Override
@@ -39,20 +52,17 @@ public class GameScreen implements Screen {
 		RenderEndTurn(canvas);
 		RenderActorIndicators(canvas);
 		RenderDoors(canvas);
+		RenderInventory(canvas);
 
 		canvas.revalidate();
 		canvas.repaint();
 	}
 
 	private void RenderEndTurn(JComponent canvas) {
-		JButton endTurnButton = new JButton("End Turn");
 		endTurnButton.setBounds((int) (0.35f * canvas.getWidth()),
 				(int) (0.02f * canvas.getHeight()),
 				(int) (0.15f * canvas.getWidth()),
 				(int) (0.05f * canvas.getHeight()));
-		endTurnButton.addActionListener(actionEvent -> GameManager.GetInstance().EndTurn());
-		endTurnButton.setBackground(Application.Dark);
-		endTurnButton.setForeground(Application.LightText);
 		endTurnButton.setFont(endTurnButton.getFont().deriveFont(endTurnButton.getHeight() * 0.6f));
 		canvas.add(endTurnButton);
 	}
@@ -95,5 +105,16 @@ public class GameScreen implements Screen {
 		doorsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		doorsScrollPane.setOpaque(false);
 		canvas.add(doorsScrollPane);
+	}
+
+	private void RenderInventory(JComponent canvas) {
+		JPanel inventoryPanel = new JPanel();
+		inventoryPanel.setBounds((int) (0.30f * canvas.getWidth()),
+				(int) (0.91f * canvas.getHeight()),
+				(int) (0.25f * canvas.getWidth()),
+				(int) (0.05f * canvas.getHeight()));
+		inventoryPanel.setOpaque(false);
+		inventoryComponent.Draw(inventoryPanel);
+		canvas.add(inventoryPanel);
 	}
 }

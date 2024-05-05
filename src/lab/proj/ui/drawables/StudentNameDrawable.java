@@ -23,7 +23,7 @@ public class StudentNameDrawable implements Drawable {
 
     @Override
     public void Draw(JComponent target) {
-        label.setText(student.GetName());
+        label.setText(student != null ? student.GetName() : "");
         label.setPreferredSize(new Dimension(
                 (int) (target.getMinimumSize().getWidth() * 0.9f),
                 (int) (target.getMinimumSize().getHeight() * 0.8f)));

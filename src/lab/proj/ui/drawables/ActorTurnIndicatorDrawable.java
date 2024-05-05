@@ -29,11 +29,12 @@ public class ActorTurnIndicatorDrawable implements Drawable {
 	@Override
 	public void Draw(JComponent target) {
 		String effectText = "";
-		if (actor.IsBlocked()) {
+		if (actor != null && actor.IsBlocked()) {
 			effectText = "shocked";
 			label.setForeground(Application.InvalidText);
 		}
-		label.setText("<html><center>%s%s</center></html>".formatted(actor.GetName(), effectText.isEmpty() ? "" : "<br>(%s)".formatted(effectText)));
+		label.setText("<html><center>%s%s</center></html>".formatted(actor != null ? actor.GetName() : "",
+				effectText.isEmpty() ? "" : "<br>(%s)".formatted(effectText)));
 		label.setPreferredSize(new Dimension(
 				(int) (target.getMinimumSize().getWidth() * 0.9f),
 				(int) (target.getMinimumSize().getHeight() * 0.8f)));

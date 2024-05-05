@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public abstract class Actor implements Entity {
 
-    private static final int MAX_ITEMS = 5;
+    public static final int MAX_ITEMS = 5;
 
     /**
      * Indicates whether the actor is incapacitated or not.

@@ -8,6 +8,7 @@ import lab.proj.ui.screens.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -58,10 +59,11 @@ public class Application {
 
 	public void RenderMenuScreen() {
 		frame.setTitle("THE SLIDE RULE - MENU");
-		java.util.List<StudentNameDrawable> studentDrawables =
+		java.util.List<Drawable> studentDrawables =
 				GameManager.GetInstance().GetStudents()
 				.stream()
 				.map(StudentNameDrawable::new)
+				.map(snd -> (Drawable) snd)
 				.toList();
 		menu.SetStudents(studentDrawables);
 		menu.Render();
@@ -77,12 +79,20 @@ public class Application {
 				.map(ActorTurnIndicatorDrawable::new)
 				.toList();
 		actorIndicators.get(0).Selected();
-		game.SetActorIndicators(actorIndicators);
-		List<DoorDrawable> doors = room.GetDoors()
+		game.SetActorIndicators(actorIndicators.stream().map(atid -> (Drawable) atid).toList());
+		List<Drawable> doors = room.GetDoors()
 				.stream()
-				.map(door -> new DoorDrawable(door, currentActor))
+				.map(door -> (Drawable) new DoorDrawable(door, currentActor))
 				.toList();
 		game.SetDoors(doors);
+		List<Drawable> inventoryItems = new ArrayList<>();
+		for (int i = 0; i < Actor.MAX_ITEMS; i++) {
+			if (i < currentActor.GetItems().size())
+				inventoryItems.add(new InventoryItemDrawable(currentActor.GetItems().get(i)));
+			else
+				inventoryItems.add(new InventoryItemDrawable(null));
+		}
+		game.SetInventoryItems(inventoryItems);
 		game.Render();
 	}
 

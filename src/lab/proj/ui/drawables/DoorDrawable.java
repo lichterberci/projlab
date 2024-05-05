@@ -23,11 +23,12 @@ public class DoorDrawable implements Drawable {
         button.setBackground(Application.Light);
         button.setOpaque(true);
         button.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
-        button.addActionListener(actionEvent -> actor.UseDoor(door));
+        if (door != null && actor != null)
+            button.addActionListener(actionEvent -> actor.UseDoor(door));
     }
     @Override
     public void Draw(JComponent target) {
-        button.setEnabled(door.Useable(actor));
+        button.setEnabled(door != null && actor != null && door.Useable(actor));
         button.setPreferredSize(new Dimension(
                 (int) (target.getMinimumSize().getWidth() * 0.9f),
                 (int) (target.getMinimumSize().getHeight() * 0.8f)));
