@@ -108,6 +108,8 @@ public class GameManager {
         currentActor = GetNextActorForTurn(turnCounter)
 ;
         if (turnCounter % 2 == 0) {
+            if (currentActor.IsBlocked())
+                EndTurn();
             // only draw UI if it is the turn of a student
             Application.GetInstance().RenderGameScreen();
         } else {

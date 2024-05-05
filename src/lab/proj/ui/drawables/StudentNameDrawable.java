@@ -9,6 +9,7 @@ import java.awt.*;
 public class StudentNameDrawable implements Drawable {
     private final JLabel label;
     private final Student student;
+
     public StudentNameDrawable(Student student) {
         this.student = student;
         label = new JLabel();

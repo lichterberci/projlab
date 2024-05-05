@@ -12,16 +12,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class MenuScreen {
+public class MenuScreen implements Screen {
     private final InputFieldComponent input;
     private final StudentNameListComponent studentNames;
-    private List<StudentNameDrawable> students;
 
     public MenuScreen() {
         input = new InputFieldComponent();
         studentNames = new StudentNameListComponent();
     }
 
+    public void SetStudents(List<StudentNameDrawable> students) {
+        studentNames.SetStudents(students);
+    }
+
+    @Override
     public void Render() {
         JComponent canvas = Application.GetInstance().GetCanvas();
         canvas.removeAll();
@@ -32,10 +36,6 @@ public class MenuScreen {
 
         canvas.revalidate();
         canvas.repaint();
-    }
-
-    public void SetStudents(List<StudentNameDrawable> students) {
-        this.students = students;
     }
 
     private void RenderInput(JComponent canvas) {
@@ -55,7 +55,6 @@ public class MenuScreen {
                 (int) (0.15f * canvas.getHeight()),
                 (int) (0.9f * canvas.getWidth()),
                 (int) (0.7f * canvas.getHeight()));
-        studentNames.SetStudents(students);
         studentNames.Draw(studentsPanel);
 
         JScrollPane studentsScrollPane = new JScrollPane(studentsPanel);

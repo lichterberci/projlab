@@ -3,6 +3,7 @@ package lab.proj.model;
 import lab.proj.utils.DebugPrinter;
 import lab.proj.utils.SequenceDiagramPrinter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -70,6 +71,16 @@ public class Door {
         oneWay = false;
     }
 
+    public boolean Useable(Actor a) {
+        Logger.invokeMethod(this, Collections.singletonList(a));
+        if (hidden || (oneWay && a.GetLocation() != r1)) {
+            Logger.returnValue(false);
+            return false;
+        }
+        Logger.returnValue(true);
+        return true;
+    }
+
     /**
      * Attempts to go through the door from the specified room with the given actor.
      *
@@ -80,7 +91,7 @@ public class Door {
     public boolean GoThrough(Room r, Actor a) {
         Logger.invokeMethod(this, List.of(r, a));
 
-        if (hidden || (oneWay && r != r1)) {
+        if (!Useable(a)) {
             Logger.returnValue(false);
             return false;
         }

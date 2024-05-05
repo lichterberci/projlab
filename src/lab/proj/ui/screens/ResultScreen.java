@@ -4,9 +4,8 @@ import lab.proj.controller.Application;
 
 import javax.swing.*;
 
-public class ResultScreen {
+public class ResultScreen implements Screen {
     private final JLabel label;
-    private String result;
 
     public ResultScreen() {
         label = new JLabel();
@@ -17,6 +16,12 @@ public class ResultScreen {
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setVerticalAlignment(SwingConstants.CENTER);
     }
+
+    public void SetResult(String result) {
+        label.setText(result);
+    }
+
+    @Override
     public void Render() {
         JComponent canvas = Application.GetInstance().GetCanvas();
         canvas.removeAll();
@@ -27,17 +32,12 @@ public class ResultScreen {
         canvas.repaint();
     }
 
-    public void SetResult(String result) {
-        this.result = result;
-    }
-
     private void RenderText(JComponent canvas) {
         label.setBounds((int)(canvas.getWidth() * 0.05),
                 (int)(canvas.getHeight() * 0.1),
                 (int)(canvas.getWidth() * 0.9),
                 (int)(canvas.getHeight() * 0.8));
         label.setFont(label.getFont().deriveFont(label.getHeight() * 0.22f));
-        label.setText(result);
         canvas.add(label);
     }
 }

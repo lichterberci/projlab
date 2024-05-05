@@ -12,33 +12,21 @@ public class ActorTurnIndicatorComponent implements  Component {
 	private List<ActorTurnIndicatorDrawable> actors;
 	@Override
 	public void Draw(JComponent target) {
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setBackground(Application.Dark);
+		target.setBackground(Application.Dark);
+		target.setLayout(new BoxLayout(target, BoxLayout.Y_AXIS));
 
-		int topX = (int) (0.8f * target.getWidth());
-		int topY = (int) (0.0f * target.getHeight());
-		int width = (int) (0.2f * target.getWidth());
-		int height = (int) (1.0f * target.getHeight());
-
-		for (Drawable actor : actors) {
+		for (ActorTurnIndicatorDrawable actor : actors) {
+			Dimension size = new Dimension(
+					(int) (target.getWidth() * 0.9),
+					(int) (target.getHeight() * 0.1));
 			JPanel actorPanel = new JPanel();
+			actorPanel.setMinimumSize(size);
+			actorPanel.setMinimumSize(size);
 			actorPanel.setOpaque(false);
-			actorPanel.setMinimumSize(new Dimension((int) (width * 0.9), (int) (height * 0.1)));
-			actorPanel.setMinimumSize(new Dimension((int) (width * 0.9), (int) (height * 0.1)));
 			actor.Draw(actorPanel);
 
-			panel.add(actorPanel);
+			target.add(actorPanel);
 		}
-
-		JScrollPane scrollPane = new JScrollPane(panel);
-		scrollPane.setBounds(topX, topY, width, height);
-		scrollPane.setBorder(BorderFactory.createLineBorder(Application.Border));
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setOpaque(false);
-
-		target.add(scrollPane);
 	}
 	
 	public void SetActors(List<ActorTurnIndicatorDrawable> actors) {

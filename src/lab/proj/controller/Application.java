@@ -1,5 +1,7 @@
 package lab.proj.controller;
 
+import lab.proj.model.Actor;
+import lab.proj.model.Room;
 import lab.proj.model.Student;
 import lab.proj.ui.drawables.*;
 import lab.proj.ui.screens.*;
@@ -14,7 +16,11 @@ public class Application {
 	public static final Color Background = new Color(175, 175, 175);
 	public static final Color DarkText = new Color(0,0,0);
 	public static final Color LightText = new Color(255, 255, 255);
+	public static final Color InvalidText = new Color(150, 150, 150);
 	public static final Color Border = new Color(0,0,0);
+
+	private static final int windowWidth = 1200;
+	private static  final int windowHeight = 600;
 
 	private final JFrame frame;
 	private final JPanel canvas;
@@ -34,13 +40,13 @@ public class Application {
 		frame = new JFrame("THE SLIDE RULE");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
-		frame.getContentPane().setPreferredSize(new Dimension(800, 600));
+		frame.getContentPane().setPreferredSize(new Dimension(windowWidth, windowHeight));
 		frame.pack();
 		frame.setBackground(Background);
 
 		canvas = new JPanel();
 		canvas.setLayout(null);
-		canvas.setBounds(0, 0, 800, 600);
+		canvas.setBounds(0, 0, windowWidth, windowHeight);
 		canvas.setOpaque(false);
 
 		frame.add(canvas);
@@ -63,11 +69,20 @@ public class Application {
 
 	public void RenderGameScreen() {
 		frame.setTitle("THE SLIDE RULE - GAME");
-		List<ActorTurnIndicatorDrawable> actorIndicators =
-				GameManager.GetInstance().ActorsInOrder().stream()
+		List<Actor> actorsInOrder = GameManager.GetInstance().ActorsInOrder();
+		Actor currentActor = actorsInOrder.get(0);
+		Room room = currentActor.GetLocation();
+		List<ActorTurnIndicatorDrawable> actorIndicators = actorsInOrder
+				.stream()
 				.map(ActorTurnIndicatorDrawable::new)
 				.toList();
+		actorIndicators.get(0).Selected();
 		game.SetActorIndicators(actorIndicators);
+		List<DoorDrawable> doors = room.GetDoors()
+				.stream()
+				.map(door -> new DoorDrawable(door, currentActor))
+				.toList();
+		game.SetDoors(doors);
 		game.Render();
 	}
 
