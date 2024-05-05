@@ -1,15 +1,15 @@
 package lab.proj.controller;
 
-import lab.proj.model.Actor;
-import lab.proj.model.Room;
-import lab.proj.model.Student;
+import lab.proj.model.*;
 import lab.proj.ui.drawables.*;
 import lab.proj.ui.screens.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 
 public class Application {
 	public static final Color Dark = new Color(75, 75, 75);
@@ -59,13 +59,7 @@ public class Application {
 
 	public void RenderMenuScreen() {
 		frame.setTitle("THE SLIDE RULE - MENU");
-		java.util.List<Drawable> studentDrawables =
-				GameManager.GetInstance().GetStudents()
-				.stream()
-				.map(StudentNameDrawable::new)
-				.map(snd -> (Drawable) snd)
-				.toList();
-		menu.SetStudents(studentDrawables);
+		menu.SetStudents(Convert(GameManager.GetInstance().GetStudents(), StudentNameDrawable::new));
 		menu.Render();
 	}
 
@@ -74,27 +68,15 @@ public class Application {
 		List<Actor> actorsInOrder = GameManager.GetInstance().ActorsInOrder();
 		Actor currentActor = actorsInOrder.get(0);
 		Room room = currentActor.GetLocation();
-		List<ActorTurnIndicatorDrawable> actorIndicators = actorsInOrder
-				.stream()
-				.map(ActorTurnIndicatorDrawable::new)
-				.toList();
-		actorIndicators.get(0).Selected();
-		game.SetActorIndicators(actorIndicators.stream().map(atid -> (Drawable) atid).toList());
-		List<Drawable> doors = room.GetDoors()
-				.stream()
-				.map(door -> (Drawable) new DoorDrawable(door, currentActor))
-				.toList();
-		game.SetDoors(doors);
-		List<Drawable> inventoryItems = new ArrayList<>();
-		for (int i = 0; i < Actor.MAX_ITEMS; i++) {
-			if (i < currentActor.GetItems().size())
-				inventoryItems.add(new InventoryItemDrawable(currentActor.GetItems().get(i)));
-			else
-				inventoryItems.add(new InventoryItemDrawable(null));
-		}
-		game.SetInventoryItems(inventoryItems);
-		game.SetItemsInRoom(room.GetActors().stream().map(ActorRoomDrawable::new).map(ad -> (Drawable) ad).toList());
-		game.SetItemsInRoom(room.GetItemsOnTheFloor().stream().map(ItemRoomDrawable::new).map(id -> (Drawable) id).toList());
+
+		game.SetActorIndicators(Convert(actorsInOrder, actor -> new ActorTurnIndicatorDrawable(actor, actor == currentActor)));
+		game.SetDoors(Convert(room.GetDoors(), door -> new DoorDrawable(door, currentActor)));
+		List<Item> inventory = new ArrayList<>(currentActor.GetItems());
+		inventory.addAll(Collections.nCopies(Actor.MAX_ITEMS-inventory.size(), null));
+ 		game.SetInventoryItems(Convert(inventory, InventoryItemDrawable::new));
+		game.SetActorsInRoom(Convert(room.GetActors(), ActorRoomDrawable::new));
+		game.SetItemsInRoom(Convert(room.GetItemsOnTheFloor(), item -> new ItemRoomDrawable(item, currentActor)));
+
 		game.Render();
 	}
 
@@ -106,5 +88,9 @@ public class Application {
 
 	public JComponent GetCanvas() {
 		return canvas;
+	}
+
+	private <B, D extends Drawable> List<Drawable> Convert(List<B> from, Function<B, D> gen) {
+		return from.stream().map(gen).map(ed -> (Drawable) ed).toList();
 	}
 }

@@ -34,14 +34,6 @@ public class GameScreen implements Screen {
 		itemRoomDisplayComponent = new ItemRoomDisplayComponent();
 	}
 
-	public void SetItemsInRoom(List<Drawable> items) {
-		itemRoomDisplayComponent.SetDrawables(items);
-	}
-
-	public void SetActorsInRoom(List<Drawable> actors) {
-		actorRoomDisplayComponent.SetDrawables(actors);
-	}
-
 	public void SetActorIndicators(List<Drawable> actorIndicators) {
 		actorComponent.SetDrawables(actorIndicators);
 	}
@@ -52,6 +44,14 @@ public class GameScreen implements Screen {
 
 	public void SetInventoryItems(List<Drawable> items) {
 		inventoryComponent.SetDrawables(items);
+	}
+
+	public void SetItemsInRoom(List<Drawable> items) {
+		itemRoomDisplayComponent.SetDrawables(items);
+	}
+
+	public void SetActorsInRoom(List<Drawable> actors) {
+		actorRoomDisplayComponent.SetDrawables(actors);
 	}
 
 	@Override
@@ -132,37 +132,40 @@ public class GameScreen implements Screen {
 
 	private void RenderActorsInRoom(JComponent canvas) {
 		JPanel actorsPanel = new JPanel();
-		actorsPanel.setLayout(null);
+		actorsPanel.setBounds((int) (0.15f * canvas.getWidth()),
+				(int) (0.1f * canvas.getHeight()),
+				(int) (0.2f * canvas.getWidth()),
+				(int) (0.7f * canvas.getHeight()));
 		actorRoomDisplayComponent.Draw(actorsPanel);
 
 		JScrollPane actorsScrollPane = new JScrollPane(actorsPanel);
-		actorsScrollPane.setBounds((int) (0.1 * canvas.getWidth()),
+		actorsScrollPane.setBounds((int) (0.15f * canvas.getWidth()),
 				(int) (0.1f * canvas.getHeight()),
-				(int) (0.55f * canvas.getWidth()),
+				(int) (0.2f * canvas.getWidth()),
 				(int) (0.7f * canvas.getHeight()));
-		actorsScrollPane.setBorder(BorderFactory.createLineBorder(Application.Border));
+		actorsScrollPane.setBorder(BorderFactory.createEmptyBorder());
 		actorsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		actorsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		actorsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		actorsScrollPane.setOpaque(false);
 		canvas.add(actorsScrollPane);
 	}
 
 	public void RenderItemsOnTheFloor(JComponent canvas) {
 		JPanel itemsPanel = new JPanel();
-		itemsPanel.setBounds((int) (0.15f * canvas.getWidth()),
+		itemsPanel.setBounds((int) (0.5f * canvas.getWidth()),
 				(int) (0.1f * canvas.getHeight()),
-				(int) (0.55f * canvas.getWidth()),
+				(int) (0.2f * canvas.getWidth()),
 				(int) (0.7f * canvas.getHeight()));
 		itemRoomDisplayComponent.Draw(itemsPanel);
 
 		JScrollPane itemsScrollPane = new JScrollPane(itemsPanel);
-		itemsScrollPane.setBounds((int) (0.15f * canvas.getWidth()),
+		itemsScrollPane.setBounds((int) (0.5f * canvas.getWidth()),
 				(int) (0.1f * canvas.getHeight()),
-				(int) (0.55f * canvas.getWidth()),
+				(int) (0.2f * canvas.getWidth()),
 				(int) (0.7f * canvas.getHeight()));
-		itemsScrollPane.setBorder(BorderFactory.createLineBorder(Application.Border));
+		itemsScrollPane.setBorder(BorderFactory.createEmptyBorder());
 		itemsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		itemsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		itemsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		itemsScrollPane.setOpaque(false);
 		canvas.add(itemsScrollPane);
 	}

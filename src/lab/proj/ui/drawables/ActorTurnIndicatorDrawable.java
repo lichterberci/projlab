@@ -10,7 +10,7 @@ public class ActorTurnIndicatorDrawable implements Drawable {
 	private final JLabel label;
 	private final Actor actor;
 
-	public ActorTurnIndicatorDrawable(Actor actor) {
+	public ActorTurnIndicatorDrawable(Actor actor, boolean selected) {
 		this.actor = actor;
 		label = new JLabel();
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -19,11 +19,10 @@ public class ActorTurnIndicatorDrawable implements Drawable {
 		label.setBackground(Application.Light);
 //		label.setBackground(Color.getHSBColor(getHueColorFromHashCode(actor.hashCode()), 0.8f, 0.9f));
 		label.setOpaque(true);
-		label.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
-	}
-
-	public void Selected() {
-		label.setBorder(BorderFactory.createDashedBorder(Application.Border, 2f, 12f, 6f, false));
+		if (selected)
+			label.setBorder(BorderFactory.createDashedBorder(Application.Border, 2f, 12f, 6f, false));
+		else
+			label.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
 	}
 
 	@Override
