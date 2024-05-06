@@ -3,7 +3,6 @@ package lab.proj.ui.drawables;
 import lab.proj.controller.Application;
 import lab.proj.model.Actor;
 import lab.proj.model.Door;
-import lab.proj.model.Room;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +27,7 @@ public class DoorDrawable implements Drawable {
     }
     @Override
     public void Draw(JComponent target) {
-        button.setEnabled(door != null && actor != null && door.Useable(actor));
+        button.setEnabled(door != null && actor != null && door.Usable(actor));
         button.setPreferredSize(new Dimension(
                 (int) (target.getMinimumSize().getWidth() * 0.9f),
                 (int) (target.getMinimumSize().getHeight() * 0.8f)));

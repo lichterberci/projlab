@@ -71,14 +71,11 @@ public class Door {
         oneWay = false;
     }
 
-    public boolean Useable(Actor a) {
+    public boolean Usable(Actor a) {
         Logger.invokeMethod(this, Collections.singletonList(a));
-        if (hidden || (oneWay && a.GetLocation() != r1)) {
-            Logger.returnValue(false);
-            return false;
-        }
-        Logger.returnValue(true);
-        return true;
+        boolean usable = !(hidden || (oneWay && a.GetLocation() != r1));
+        Logger.returnValue(usable);
+        return usable;
     }
 
     /**
@@ -91,7 +88,7 @@ public class Door {
     public boolean GoThrough(Room r, Actor a) {
         Logger.invokeMethod(this, List.of(r, a));
 
-        if (!Useable(a)) {
+        if (!Usable(a)) {
             Logger.returnValue(false);
             return false;
         }

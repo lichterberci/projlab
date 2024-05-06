@@ -202,6 +202,20 @@ public abstract class Actor implements Entity {
      */
     public abstract void DropOut();
 
+    public boolean HasDropOutProtection() {
+        Logger.invokeMethod(this, List.of());
+        boolean hasProtection = !dropOutProtections.isEmpty();
+        Logger.returnValue(hasProtection);
+        return  hasProtection;
+    }
+
+    public boolean HasGasProtection() {
+        Logger.invokeMethod(this, List.of());
+        boolean hasProtection = !gasProtections.isEmpty();
+        Logger.returnValue(hasProtection);
+        return  hasProtection;
+    }
+
     /**
      * Checks if the actor is currently blocked.
      *

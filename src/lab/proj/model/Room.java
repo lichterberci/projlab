@@ -377,6 +377,10 @@ public class Room implements Entity {
         return activeEffects;
     }
 
+    public List<Item> GetItemsOnTheFloor() {
+        return this.itemsOnTheFloor;
+    }
+
     /**
      * Retrieves the capacity of the room.
      *
@@ -441,9 +445,5 @@ public class Room implements Entity {
         RefreshStickyness();
 
         Logger.returnVoid();
-    }
-
-    public List<Item> GetItemsOnTheFloor() {
-        return this.itemsOnTheFloor;
     }
 }
