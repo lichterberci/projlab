@@ -8,30 +8,26 @@ import lab.proj.model.RoomEffect;
 import javax.swing.*;
 import java.awt.*;
 
-public class RoomEffectDrawable implements Drawable {
+public class RoomEffectDrawable extends Drawable {
 
-    private final JPanel panel;
-    private final JLabel label;
+    private final JPanel panel = new JPanel();
+    private final JLabel label = new JLabel();
     private final RoomEffect effect;
 
     public RoomEffectDrawable(RoomEffect effect) {
         this.effect = effect;
-        panel = new JPanel();
-        panel.setBackground(Application.Dark);
-        label = new JLabel();
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setVerticalAlignment(SwingConstants.CENTER);
-        label.setForeground(Application.DarkText);
+        SetDefaults(panel, Application.DarkText, Application.Dark);
+        SetDefaults(label, Application.DarkText);
         panel.add(label);
     }
 
     @Override
     public void Draw(JComponent target) {
-        panel.setPreferredSize(new Dimension(
-                (int) (target.getMinimumSize().getWidth() * 0.9f),
-                (int) (target.getMinimumSize().getHeight() * 0.9f)));
-        label.setText(effect.getClass().getName());
-        label.setFont(label.getFont().deriveFont((float) (target.getMinimumSize().getHeight() * 0.3f)));
+        if (effect != null) {
+            label.setText(effect.getClass().getSimpleName());
+        }
+        SetRelativeSizes(panel, target, 0.3);
+        SetRelativeSizes(label, target, 0.3);
         target.add(panel);
     }
 }
