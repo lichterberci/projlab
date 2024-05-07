@@ -77,10 +77,10 @@ public class GameScreen implements Screen {
 
 		RenderEndTurn(canvas);
 		RenderComponent(actorComponent, canvas, 0.85, 0.0, 0.15, 1.0);
-		RenderComponent(doorsComponent, canvas, 0.15, 0.8, 0.55, 0.1);
+		RenderComponent(doorsComponent, canvas, 0.15, 0.75, 0.55, 0.15);
 		RenderComponent(inventoryComponent, canvas, 0.3, 0.91, 0.25, 0.05);
-		RenderComponent(actorRoomDisplayComponent, canvas, 0.15, 0.1, 0.2, 0.7);
-		RenderComponent(itemRoomDisplayComponent, canvas, 0.5, 0.1, 0.2, 0.7);
+		RenderComponent(actorRoomDisplayComponent, canvas, 0.15, 0.1, 0.2, 0.65);
+		RenderComponent(itemRoomDisplayComponent, canvas, 0.5, 0.1, 0.2, 0.65);
 		RenderComponent(roomEffectComponent, canvas, 0, 0.9, 0.2, 0.1);
 		RenderComponent(chargeComponent, canvas, 0.65, 0.9, 0.2, 0.1);
 

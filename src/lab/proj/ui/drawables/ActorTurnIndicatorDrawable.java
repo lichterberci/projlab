@@ -28,8 +28,8 @@ public class ActorTurnIndicatorDrawable extends Drawable {
 				effectText = "shocked";
 				label.setForeground(Application.InvalidText);
 			}
-			label.setText("<html><center>%s%s</center></html>".formatted(actor.GetName(),
-					effectText.isEmpty() ? "" : "<br>(%s)".formatted(effectText)));
+			label.setText("<html><center>%s<br>%s%s</center></html>".formatted(actor.GetName(),
+					actor.GetLocation().GetName(), effectText.isEmpty() ? "" : " (%s)".formatted(effectText)));
 		}
 		SetRelativeSizes(label, target,0.2);
 		target.add(label);

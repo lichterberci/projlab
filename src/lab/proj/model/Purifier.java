@@ -1,5 +1,7 @@
 package lab.proj.model;
 
+import lab.proj.controller.GameManager;
+
 import java.util.List;
 
 public class Purifier extends Item {
@@ -23,6 +25,7 @@ public class Purifier extends Item {
         location.VisitEffects(new PurifierVisitor());
         dead = true;
 
+        GameManager.GetInstance().EndTurn();
         Logger.returnVoid();
     }
 }

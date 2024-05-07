@@ -23,6 +23,7 @@ public class InventoryItemDrawable extends Drawable {
                         item.Activate();
                     else if (SwingUtilities.isRightMouseButton(e))
                         item.Drop();
+                    Application.GetInstance().RenderGameScreen();
                 }
             });
     }

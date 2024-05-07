@@ -1,5 +1,7 @@
 package lab.proj.model;
 
+import lab.proj.controller.GameManager;
+
 import java.util.List;
 
 /**
@@ -27,7 +29,7 @@ public class Camembert extends Item {
         Drop();
         gp.SetLocation(location);
         dead = true;
-
+        GameManager.GetInstance().EndTurn();
         Logger.returnVoid();
     }
 }

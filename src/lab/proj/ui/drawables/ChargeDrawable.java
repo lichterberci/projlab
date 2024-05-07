@@ -25,8 +25,8 @@ public class ChargeDrawable extends Drawable {
         if (charge != null) {
             label.setText(charge.getClass().getSimpleName());
         }
-        SetRelativeSizes(panel, target, 0.3);
-        SetRelativeSizes(label, target, 0.3);
+        SetRelativeSizes(panel, target, 0.15);
+        SetRelativeSizes(label, target, 0.15);
         target.add(panel);
     }
 }

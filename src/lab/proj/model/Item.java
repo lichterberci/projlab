@@ -1,5 +1,7 @@
 package lab.proj.model;
 
+import lab.proj.controller.GameManager;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -130,8 +132,10 @@ public abstract class Item implements Entity {
     public void Activate() {
         Logger.invokeMethod(this, List.of());
 
-        if (!fake)
+        if (!fake) {
             activated = true;
+            GameManager.GetInstance().EndTurn();
+        }
 
         Logger.returnVoid();
     }

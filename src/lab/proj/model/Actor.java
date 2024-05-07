@@ -77,7 +77,6 @@ public abstract class Actor implements Entity {
         if (canBeCollected) {
             location.RemoveItem(i);
             collectedItems.add(i);
-            GameManager.GetInstance().EndTurn();
         }
 
         Logger.returnValue(canBeCollected);
@@ -132,8 +131,11 @@ public abstract class Actor implements Entity {
     public List<Charge> GetCharges() {
         Logger.invokeMethod(this, List.of());
 
-        List<Charge> charges = new ArrayList<>(dropOutProtections);
-        charges.addAll(gasProtections);
+        List<Charge> charges = new ArrayList<>();
+        if (!dropOutProtections.isEmpty())
+            charges.add(dropOutProtections.peek());
+        if (!gasProtections.isEmpty())
+            charges.add(gasProtections.peek());
 
         Logger.returnValue(charges);
         return charges;

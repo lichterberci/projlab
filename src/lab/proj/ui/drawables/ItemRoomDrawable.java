@@ -17,7 +17,10 @@ public class ItemRoomDrawable extends Drawable{
 		SetDefaults(button, Application.DarkText, Application.Background);
 		button.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
 		if (item != null && actor != null)
-			button.addActionListener(actionEvent -> item.PickUp(actor));
+			button.addActionListener(actionEvent -> {
+				item.PickUp(actor);
+				Application.GetInstance().RenderGameScreen();
+			});
 	}
 
 	@Override

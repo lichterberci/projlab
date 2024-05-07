@@ -12,6 +12,6 @@ public class ChargeComponent extends Component {
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setOpaque(false);
 
-        AddDrawables(0.4, 1.0, panel);
+        AddDrawables(0.4, 0.9, panel);
     }
 }

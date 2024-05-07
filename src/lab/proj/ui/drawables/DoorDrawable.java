@@ -3,12 +3,13 @@ package lab.proj.ui.drawables;
 import lab.proj.controller.Application;
 import lab.proj.model.Actor;
 import lab.proj.model.Door;
+import lab.proj.model.Room;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class DoorDrawable extends Drawable {
-    private final JButton button = new JButton("Door");
+    private final JButton button = new JButton();
     private final Door door;
     private final Actor actor;
 
@@ -24,6 +25,12 @@ public class DoorDrawable extends Drawable {
     public void Draw(JComponent target) {
         if (door != null && actor != null) {
             button.setEnabled(door.Usable(actor));
+            String otherRoom = door.GetRooms().stream()
+                    .filter(room -> room != actor.GetLocation())
+                    .findFirst()
+                    .map(Room::GetName)
+                    .orElse("");
+            button.setText("<html><center>Door<br>%s</center></html>".formatted(otherRoom));
         } else {
             button.setEnabled(false);
         }

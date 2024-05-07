@@ -16,6 +16,8 @@ public class Room implements Entity {
     private static final int STICKY_THRESHOLD = 5;
     private static final int DEFAULT_CAPACITY = 5;
 
+    private static int id = 1;
+    private String name;
     /**
      * The actors currently inside the room.
      */
@@ -44,9 +46,14 @@ public class Room implements Entity {
     private int visitorCountSinceLastCleaning = 0;
 
     public Room() {
+        this.name = "K-5" + (id < 10? "0" + id++ : id++);
         Logger.createObject(this);
     }
 
+    public Room(String name) {
+        this.name = name;
+        Logger.createObject(this);
+    }
     /**
      * Adds an actor to the room.
      *
@@ -445,5 +452,9 @@ public class Room implements Entity {
         RefreshStickyness();
 
         Logger.returnVoid();
+    }
+
+    public String GetName() {
+        return name;
     }
 }

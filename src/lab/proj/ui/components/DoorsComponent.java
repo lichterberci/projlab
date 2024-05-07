@@ -11,6 +11,6 @@ public class DoorsComponent extends Component {
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setBackground(Application.Dark);
 
-        AddDrawables(0.25, 0.9, panel);
+        AddDrawables(0.25, 0.75, panel);
     }
 }

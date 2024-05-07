@@ -26,8 +26,8 @@ public class RoomEffectDrawable extends Drawable {
         if (effect != null) {
             label.setText(effect.getClass().getSimpleName());
         }
-        SetRelativeSizes(panel, target, 0.3);
-        SetRelativeSizes(label, target, 0.3);
+        SetRelativeSizes(panel, target, 0.15);
+        SetRelativeSizes(label, target, 0.15);
         target.add(panel);
     }
 }

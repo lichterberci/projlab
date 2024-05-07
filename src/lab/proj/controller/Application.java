@@ -64,6 +64,10 @@ public class Application {
 	}
 
 	public void RenderGameScreen() {
+		if (!GameManager.GetInstance().isRunning()) {
+			RenderResultScreen();
+			return;
+		}
 		frame.setTitle("THE SLIDE RULE - GAME");
 		List<Actor> actorsInOrder = GameManager.GetInstance().ActorsInOrder();
 		Actor currentActor = actorsInOrder.get(0);
