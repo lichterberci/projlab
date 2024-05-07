@@ -2,10 +2,8 @@ package lab.proj.ui.drawables;
 
 import lab.proj.controller.Application;
 import lab.proj.model.Charge;
-import lab.proj.model.RoomEffect;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ChargeDrawable extends Drawable {
 

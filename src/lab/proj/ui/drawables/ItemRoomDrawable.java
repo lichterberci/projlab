@@ -5,8 +5,6 @@ import lab.proj.model.Actor;
 import lab.proj.model.Item;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Dimension;
 
 public class ItemRoomDrawable extends Drawable{
 	private final JButton button = new JButton();

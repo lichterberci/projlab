@@ -4,8 +4,6 @@ import lab.proj.controller.Application;
 import lab.proj.model.Actor;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Dimension;
 
 public class ActorRoomDrawable extends Drawable {
 	private final JPanel panel = new JPanel();

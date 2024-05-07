@@ -4,7 +4,6 @@ import lab.proj.model.Actor;
 import lab.proj.controller.Application;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ActorTurnIndicatorDrawable extends Drawable {
 	private final JLabel label = new JLabel();

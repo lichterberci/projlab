@@ -1,7 +1,5 @@
 package lab.proj.ui.components;
 
-import lab.proj.controller.Application;
-
 import javax.swing.*;
 
 public class RoomEffectComponent extends Component {

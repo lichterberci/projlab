@@ -17,7 +17,7 @@ public class Room implements Entity {
     private static final int DEFAULT_CAPACITY = 5;
 
     private static int id = 1;
-    private String name;
+    private final String name;
     /**
      * The actors currently inside the room.
      */
@@ -198,7 +198,7 @@ public class Room implements Entity {
     /**
      * Merges the room with another room.
      *
-     * @param r2
+     * @param r2 The room consumed by the merge
      */
     public void Merge(Room r2) {
         Logger.invokeMethod(this, List.of());
@@ -253,9 +253,9 @@ public class Room implements Entity {
     /**
      * Splits the room into two separate rooms.
      *
-     * @param itemsToPass
-     * @param effectsToPass
-     * @param doorsToPass
+     * @param itemsToPass The items put in the new room
+     * @param effectsToPass The effects put on the new room
+     * @param doorsToPass The doors put in the new room
      */
     public void Split(Set<Item> itemsToPass, Set<RoomEffect> effectsToPass, Set<Door> doorsToPass) {
         Logger.invokeMethod(this, List.of());

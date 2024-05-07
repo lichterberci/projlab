@@ -2,7 +2,6 @@ package lab.proj;
 
 import lab.proj.controller.GameManager;
 import lab.proj.controller.Application;
-import lab.proj.ui.screens.MenuScreen;
 
 
 public class Main {

@@ -4,7 +4,6 @@ import lab.proj.controller.Application;
 import lab.proj.model.Item;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 

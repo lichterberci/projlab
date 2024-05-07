@@ -1,21 +1,11 @@
 package lab.proj.ui.screens;
 
 import lab.proj.controller.GameManager;
-import lab.proj.model.Actor;
-import lab.proj.model.Room;
-import lab.proj.model.Student;
 import lab.proj.controller.Application;
 import lab.proj.ui.components.*;
-import lab.proj.ui.components.Component;
-import lab.proj.ui.drawables.DoorDrawable;
 import lab.proj.ui.drawables.Drawable;
-import lab.proj.ui.drawables.ActorTurnIndicatorDrawable;
-import lab.proj.ui.drawables.InventoryItemDrawable;
-import org.w3c.dom.css.Rect;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
 import java.util.List;
 
 public class GameScreen implements Screen {

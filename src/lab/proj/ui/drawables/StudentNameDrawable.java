@@ -4,7 +4,6 @@ import lab.proj.model.Student;
 import lab.proj.controller.Application;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class StudentNameDrawable extends Drawable {
     private final JLabel label = new JLabel();

@@ -6,7 +6,6 @@ import lab.proj.model.Door;
 import lab.proj.model.Room;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class DoorDrawable extends Drawable {
     private final JButton button = new JButton();
