@@ -52,7 +52,7 @@ public class MenuScreen implements Screen {
         canvas.removeAll();
 
         RenderInput(canvas);
-        RenderStudents(canvas);
+        RenderComponent(studentNames, canvas, 0.05, 0.15, 0.9, 0.7);
         RenderPlay(canvas);
 
         canvas.revalidate();
@@ -61,10 +61,7 @@ public class MenuScreen implements Screen {
 
     private void RenderInput(JComponent canvas) {
         JPanel inputPanel = new JPanel();
-        inputPanel.setBounds((int) (0.05f * canvas.getWidth()),
-                (int) (0.05f * canvas.getHeight()),
-                (int) (0.9f * canvas.getWidth()),
-                (int) (0.05f * canvas.getHeight()));
+        SizeJComponent(inputPanel, canvas, 0.05, 0.05, 0.9, 0.05);
         inputPanel.setOpaque(false);
         inputPanel.setLayout(new BorderLayout());
         addButton.setFont(addButton.getFont().deriveFont(inputPanel.getHeight() * 0.8f));
@@ -76,31 +73,8 @@ public class MenuScreen implements Screen {
         canvas.add(inputPanel);
     }
 
-    private void RenderStudents(JComponent canvas) {
-        JPanel studentsPanel = new JPanel();
-        studentsPanel.setBounds((int) (0.05f * canvas.getWidth()),
-                (int) (0.15f * canvas.getHeight()),
-                (int) (0.9f * canvas.getWidth()),
-                (int) (0.7f * canvas.getHeight()));
-        studentNames.Draw(studentsPanel);
-
-        JScrollPane studentsScrollPane = new JScrollPane(studentsPanel);
-        studentsScrollPane.setBounds((int) (0.05f * canvas.getWidth()),
-                (int) (0.15f * canvas.getHeight()),
-                (int) (0.9f * canvas.getWidth()),
-                (int) (0.7f * canvas.getHeight()));
-        studentsScrollPane.setBorder(BorderFactory.createLineBorder(Application.Border));
-        studentsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        studentsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        studentsScrollPane.setOpaque(false);
-        canvas.add(studentsScrollPane);
-    }
-
     private void RenderPlay(JComponent canvas) {
-        playButton.setBounds((int) (0.05f * canvas.getWidth()),
-                (int) (0.9f * canvas.getHeight()),
-                (int) (0.9f * canvas.getWidth()),
-                (int) (0.05f * canvas.getHeight()));
+        SizeJComponent(playButton, canvas, 0.05, 0.9, 0.9, 0.05);
         playButton.setFont(playButton.getFont().deriveFont(playButton.getHeight() * 0.4f));
         canvas.add(playButton);
     }

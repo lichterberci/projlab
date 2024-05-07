@@ -6,9 +6,11 @@ import javax.swing.*;
 public class DoorsComponent extends Component {
     @Override
     public void Draw(JComponent target) {
-        target.setLayout(new BoxLayout(target, BoxLayout.X_AXIS));
-        target.setBackground(Application.Dark);
+        JPanel panel = MakePanelInScroll(target, BorderFactory.createLineBorder(Application.Border),
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setBackground(Application.Dark);
 
-        AddDrawables(0.25, 0.9, target);
+        AddDrawables(0.25, 0.9, panel);
     }
 }

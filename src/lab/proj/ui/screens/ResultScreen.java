@@ -33,10 +33,7 @@ public class ResultScreen implements Screen {
     }
 
     private void RenderText(JComponent canvas) {
-        label.setBounds((int)(canvas.getWidth() * 0.05),
-                (int)(canvas.getHeight() * 0.1),
-                (int)(canvas.getWidth() * 0.9),
-                (int)(canvas.getHeight() * 0.8));
+        SizeJComponent(label, canvas, 0.05, 0.1, 0.9, 0.8);
         label.setFont(label.getFont().deriveFont(label.getHeight() * 0.22f));
         canvas.add(label);
     }
