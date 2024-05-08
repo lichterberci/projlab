@@ -8,42 +8,39 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class ItemDrawable <ItemType extends Item> extends Drawable{
+public class ItemDrawable extends Drawable{
 	private final JButton button = new JButton();
-	private final ItemType item;
-	private final String itemName;
+	private final Item item;
+	private final String name;
 
-	public ItemDrawable(ItemType item, String name, Optional<Consumer<ItemType>> onBtnLftClick, Optional<Consumer<ItemType>> onBtnRgtClick) {
+	public ItemDrawable(Item item, String name, MouseListener ml) {
 		this.item = item;
-		itemName = name;
+		this.name = name;
 		SetDefaults(button, Application.DarkText, Application.Background);
 		button.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
-		if (item != null) {
-			button.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					if (SwingUtilities.isLeftMouseButton(e)) {
-						onBtnLftClick.ifPresent(consumer -> consumer.accept(item));
-					} else if (SwingUtilities.isRightMouseButton(e)) {
-						onBtnRgtClick.ifPresent(consumer -> consumer.accept(item));
-					}
-				}
-			});
-
-		}
+		if (ml != null)
+			button.addMouseListener(ml);
 	}
 
 	@Override
 	public void Draw(JComponent target) {
+		boolean isEnabled = false;
 		if (item != null) {
-			button.setText(itemName);
+			button.setText(name);
 			if (item.IsDead() || item.IsSticky() || item.IsActivated())
 				button.setFont(button.getFont().deriveFont(Font.ITALIC));
+			else
+				isEnabled = true;
 			button.setBackground(getColorFromHashCode(item.hashCode()));
 		}
+		if (!isEnabled)
+			Arrays.stream(button.getMouseListeners()).forEach(button::removeMouseListener);
+
 		SetRelativeSizes(button, target, 0.3);
 		target.add(button);
 	}

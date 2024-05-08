@@ -1,18 +1,17 @@
 package lab.proj.ui.drawables;
 
 import lab.proj.controller.Application;
-import lab.proj.model.Charge;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.IOException;
 
-public class ChargeDrawable extends Drawable {
+public class StatusDrawable extends Drawable {
 
     private final JPanel panel = new JPanel();
     private final JLabel label = new JLabel();
 
-    public ChargeDrawable(String spriteResourcePath) {
+    public StatusDrawable(String spriteResourcePath) {
         SetDefaults(panel, Application.DarkText, Application.Dark);
         SetDefaults(label, Application.DarkText);
         try {

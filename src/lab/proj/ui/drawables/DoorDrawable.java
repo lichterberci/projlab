@@ -35,7 +35,7 @@ public class DoorDrawable extends Drawable {
         }
         button.setForeground(isEnabled ? Application.DarkText : Application.InvalidText);
         if (!isEnabled)
-            Arrays.stream(button.getActionListeners()).forEach(button::removeActionListener);
+            Arrays.stream(button.getMouseListeners()).forEach(button::removeMouseListener);
 
         SetRelativeSizes(button, target, 0.3);
         target.add(button);
