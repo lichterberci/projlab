@@ -4,20 +4,16 @@ import lab.proj.model.*;
 import lab.proj.ui.drawables.*;
 import lab.proj.ui.screens.*;
 import lab.proj.ui.visitors.EffectDrawableVisitor;
-import lab.proj.ui.visitors.ItemFloorDrawableVisitor;
-import lab.proj.ui.visitors.ItemInventoryDrawableVisitor;
+import lab.proj.ui.visitors.ItemDrawableVisitor;
+import lab.proj.ui.visitors.InventoryItemDrawableVisitor;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -102,26 +98,13 @@ public class Application {
 					}
 				})),
 			GameScreen.ComponentNames.Doors);
- 		game.SetDrawables(Convert(inventory,item -> {
-				    var visitor = new ItemInventoryDrawableVisitor();
-					if (item != null)
-						item.VisitItem(visitor);
-					return visitor.getDrawable();
-			    }),
+ 		game.SetDrawables(Convert(inventory,item -> new InventoryItemDrawableVisitor().Visit(item)),
 				GameScreen.ComponentNames.Inventory);
 		game.SetDrawables(Convert(room.GetActors(), ActorDrawable::new),
 				GameScreen.ComponentNames.Actors);
-		game.SetDrawables(Convert(room.GetItemsOnTheFloor(), item -> {
-					var visitor = new ItemFloorDrawableVisitor();
-					item.VisitItem(visitor);
-					return visitor.getDrawable();
-				}),
+		game.SetDrawables(Convert(room.GetItemsOnTheFloor(), item -> new ItemDrawableVisitor().Visit(item)),
 				GameScreen.ComponentNames.Items);
-		game.SetDrawables(Convert(room.GetEffects(), effect -> {
-					var visitor = new EffectDrawableVisitor();
-					effect.VisitRoomEffect(visitor);
-					return visitor.getDrawable();
-				}),
+		game.SetDrawables(Convert(room.GetEffects(), effect -> new EffectDrawableVisitor().Visit(effect)),
 				GameScreen.ComponentNames.Effects);
 		game.SetDrawables(Convert(
 				Stream.of(
@@ -130,7 +113,7 @@ public class Application {
 					)
 						.filter(path -> !path.isEmpty())
 						.toList(),
-					ChargeDrawable::new
+					StatusDrawable::new
 				),
 				GameScreen.ComponentNames.Charges);
 

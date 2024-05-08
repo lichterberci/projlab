@@ -7,36 +7,43 @@ import lab.proj.model.Item;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Arrays;
 
 public class InventoryItemDrawable extends Drawable {
     private final JButton button = new JButton();
     private final Item item;
-    public InventoryItemDrawable(Item item) {
+    private final String name;
+    public InventoryItemDrawable(Item item, String name, MouseListener ml) {
         this.item = item;
+        this.name = name;
         SetDefaults(button, Application.DarkText, Application.Light);
         button.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
-        if (item != null)
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    if (SwingUtilities.isLeftMouseButton(e)) {
-                        item.Activate();
-                        GameManager.GetInstance().EndTurn();
-                    }
-                    else if (SwingUtilities.isRightMouseButton(e))
-                        item.Drop();
-                    Application.GetInstance().RenderGameScreen();
-                }
-            });
+        if (ml != null)
+            button.addMouseListener(ml);
+//                    new MouseAdapter() {
+//                @Override
+//                public void mouseClicked(MouseEvent e) {
+//                    if (SwingUtilities.isLeftMouseButton(e)) {
+//                        item.Activate();
+//                        GameManager.GetInstance().EndTurn();
+//                    }
+//                    else if (SwingUtilities.isRightMouseButton(e))
+//                        item.Drop();
+//                    Application.GetInstance().RenderGameScreen();
+//                }
+//            }
     }
     @Override
     public void Draw(JComponent target) {
+        boolean isEnabled = false;
         if (item != null) {
-            button.setText(item.toString());
-            button.setEnabled(true);
-        } else {
-            button.setEnabled(false);
+            button.setText(name);
+            isEnabled = true;
         }
+        if (!isEnabled)
+            Arrays.stream(button.getMouseListeners()).forEach(button::removeMouseListener);
+
         SetRelativeSizes(button, target, 0.5, 1.0, 1.0);
         target.add(button);
     }
