@@ -5,11 +5,11 @@ import lab.proj.controller.Application;
 
 import javax.swing.*;
 
-public class ActorTurnIndicatorDrawable extends Drawable {
+public class TurnIndicatorDrawable extends Drawable {
 	private final JLabel label = new JLabel();
 	private final Actor actor;
 
-	public ActorTurnIndicatorDrawable(Actor actor, boolean selected) {
+	public TurnIndicatorDrawable(Actor actor, boolean selected) {
 		this.actor = actor;
 		SetDefaults(label, Application.DarkText, Application.Light);
 		if (selected)

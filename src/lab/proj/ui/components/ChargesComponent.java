@@ -2,7 +2,7 @@ package lab.proj.ui.components;
 
 import javax.swing.*;
 
-public class RoomEffectComponent extends Component {
+public class ChargesComponent extends Component {
     @Override
     public void Draw(JComponent target) {
         JPanel panel = MakePanelInScroll(target, BorderFactory.createEmptyBorder(),

@@ -23,18 +23,12 @@ public class ResultScreen implements Screen {
 
     @Override
     public void Render() {
-        JComponent canvas = Application.GetInstance().GetCanvas();
-        canvas.removeAll();
-
-        RenderText(canvas);
-
-        canvas.revalidate();
-        canvas.repaint();
+        RenderText();
     }
 
-    private void RenderText(JComponent canvas) {
-        SizeJComponent(label, canvas, 0.05, 0.1, 0.9, 0.8);
+    private void RenderText() {
+        SizeJComponent(label, 0.05, 0.1, 0.9, 0.8);
         label.setFont(label.getFont().deriveFont(label.getHeight() * 0.22f));
-        canvas.add(label);
+        Application.GetInstance().GetCanvas().add(label);
     }
 }

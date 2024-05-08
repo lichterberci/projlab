@@ -5,13 +5,13 @@ import lab.proj.model.RoomEffect;
 
 import javax.swing.*;
 
-public class RoomEffectDrawable extends Drawable {
+public class EffectDrawable extends Drawable {
 
     private final JPanel panel = new JPanel();
     private final JLabel label = new JLabel();
     private final RoomEffect effect;
 
-    public RoomEffectDrawable(RoomEffect effect) {
+    public EffectDrawable(RoomEffect effect) {
         this.effect = effect;
         SetDefaults(panel, Application.DarkText, Application.Dark);
         SetDefaults(label, Application.DarkText);

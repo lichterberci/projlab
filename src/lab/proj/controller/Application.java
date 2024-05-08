@@ -60,36 +60,50 @@ public class Application {
 	public void RenderMenuScreen() {
 		frame.setTitle("THE SLIDE RULE - MENU");
 		menu.SetStudents(Convert(GameManager.GetInstance().GetStudents(), StudentNameDrawable::new));
+
+		canvas.removeAll();
 		menu.Render();
+		canvas.revalidate();
+		canvas.repaint();
 	}
 
 	public void RenderGameScreen() {
-		if (!GameManager.GetInstance().isRunning()) {
-			RenderResultScreen();
-			return;
-		}
 		frame.setTitle("THE SLIDE RULE - GAME");
 		List<Actor> actorsInOrder = GameManager.GetInstance().ActorsInOrder();
 		Actor currentActor = actorsInOrder.get(0);
 		Room room = currentActor.GetLocation();
-
-		game.SetActorIndicators(Convert(actorsInOrder, actor -> new ActorTurnIndicatorDrawable(actor, actor == currentActor)));
-		game.SetDoors(Convert(room.GetDoors(), door -> new DoorDrawable(door, currentActor)));
 		List<Item> inventory = new ArrayList<>(currentActor.GetItems());
 		inventory.addAll(Collections.nCopies(Actor.MAX_ITEMS-inventory.size(), null));
- 		game.SetInventoryItems(Convert(inventory, InventoryItemDrawable::new));
-		game.SetActorsInRoom(Convert(room.GetActors(), ActorRoomDrawable::new));
-		game.SetItemsInRoom(Convert(room.GetItemsOnTheFloor(), item -> new ItemRoomDrawable(item, currentActor)));
-		game.SetRoomEffects(Convert(room.GetEffects(), RoomEffectDrawable::new));
-		game.SetCharges(Convert(currentActor.GetCharges(), ChargeDrawable::new));
 
+		game.SetDrawables(Convert(actorsInOrder, actor -> new TurnIndicatorDrawable(actor, actor == currentActor)),
+				GameScreen.ComponentNames.TurnIndicator);
+		game.SetDrawables(Convert(room.GetDoors(), door -> new DoorDrawable(door, currentActor)),
+				GameScreen.ComponentNames.Doors);
+ 		game.SetDrawables(Convert(inventory, InventoryItemDrawable::new),
+				GameScreen.ComponentNames.Inventory);
+		game.SetDrawables(Convert(room.GetActors(), ActorDrawable::new),
+				GameScreen.ComponentNames.Actors);
+		game.SetDrawables(Convert(room.GetItemsOnTheFloor(), item -> new ItemDrawable(item, currentActor)),
+				GameScreen.ComponentNames.Items);
+		game.SetDrawables(Convert(room.GetEffects(), EffectDrawable::new),
+				GameScreen.ComponentNames.Effects);
+		game.SetDrawables(Convert(currentActor.GetCharges(), ChargeDrawable::new),
+				GameScreen.ComponentNames.Charges);
+
+		canvas.removeAll();
 		game.Render();
+		canvas.revalidate();
+		canvas.repaint();
 	}
 
 	public void RenderResultScreen() {
 		frame.setTitle("THE SLIDE RULE - END");
 		result.SetResult(GameManager.GetInstance().isWon()? "Students win!" : "Teachers win!");
+
+		canvas.removeAll();
 		result.Render();
+		canvas.revalidate();
+		canvas.repaint();
 	}
 
 	public JComponent GetCanvas() {

@@ -1,23 +1,25 @@
 package lab.proj.ui.drawables;
 
 import lab.proj.controller.Application;
+import lab.proj.controller.GameManager;
 import lab.proj.model.Actor;
 import lab.proj.model.Item;
 
 import javax.swing.*;
 
-public class ItemRoomDrawable extends Drawable{
+public class ItemDrawable extends Drawable{
 	private final JButton button = new JButton();
 	private final Item item;
 
-	public ItemRoomDrawable(Item item, Actor actor) {
+	public ItemDrawable(Item item, Actor actor) {
 		this.item = item;
 		SetDefaults(button, Application.DarkText, Application.Background);
 		button.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
 		if (item != null && actor != null)
 			button.addActionListener(actionEvent -> {
 				item.PickUp(actor);
-				Application.GetInstance().RenderGameScreen();
+				if (GameManager.GetInstance().isRunning())
+					Application.GetInstance().RenderGameScreen();
 			});
 	}
 

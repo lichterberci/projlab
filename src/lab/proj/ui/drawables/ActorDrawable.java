@@ -5,12 +5,12 @@ import lab.proj.model.Actor;
 
 import javax.swing.*;
 
-public class ActorRoomDrawable extends Drawable {
+public class ActorDrawable extends Drawable {
 	private final JPanel panel = new JPanel();
 	private final JLabel label = new JLabel();
  	private final Actor actor;
 
-	public ActorRoomDrawable(Actor actor) {
+	public ActorDrawable(Actor actor) {
 		this.actor = actor;
 		SetDefaults(label, Application.DarkText);
 		panel.add(label);

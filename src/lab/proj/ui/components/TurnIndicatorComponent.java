@@ -3,7 +3,7 @@ package lab.proj.ui.components;
 import lab.proj.controller.Application;
 import javax.swing.*;
 
-public class ActorTurnIndicatorComponent extends Component {
+public class TurnIndicatorComponent extends Component {
 	@Override
 	public void Draw(JComponent target) {
 		JPanel panel = MakePanelInScroll(target, BorderFactory.createLineBorder(Application.Border),

@@ -2,7 +2,7 @@ package lab.proj.ui.screens;
 
 import lab.proj.controller.GameManager;
 import lab.proj.controller.Application;
-import lab.proj.ui.components.StudentNameListComponent;
+import lab.proj.ui.components.StudentListComponent;
 import lab.proj.ui.drawables.*;
 
 import javax.swing.*;
@@ -13,7 +13,7 @@ public class MenuScreen implements Screen {
     private final JLabel label;
     private final JTextField nameField;
     private final JButton addButton;
-    private final StudentNameListComponent studentNames;
+    private final StudentListComponent studentList;
     private final JButton playButton;
 
     public MenuScreen() {
@@ -32,7 +32,7 @@ public class MenuScreen implements Screen {
             Application.GetInstance().RenderMenuScreen();
             nameField.setText("");
         });
-        studentNames = new StudentNameListComponent();
+        studentList = new StudentListComponent();
         playButton = new JButton("Play");
         playButton.addActionListener(actionEvent -> {
             GameManager.GetInstance().StartGame();
@@ -43,25 +43,19 @@ public class MenuScreen implements Screen {
     }
 
     public void SetStudents(List<Drawable> students) {
-        studentNames.SetDrawables(students);
+        studentList.SetDrawables(students);
     }
 
     @Override
     public void Render() {
-        JComponent canvas = Application.GetInstance().GetCanvas();
-        canvas.removeAll();
-
-        RenderInput(canvas);
-        RenderComponent(studentNames, canvas, 0.05, 0.15, 0.9, 0.7);
-        RenderPlay(canvas);
-
-        canvas.revalidate();
-        canvas.repaint();
+        RenderInput();
+        RenderComponent(studentList, 0.05, 0.15, 0.9, 0.7);
+        RenderPlay();
     }
 
-    private void RenderInput(JComponent canvas) {
+    private void RenderInput() {
         JPanel inputPanel = new JPanel();
-        SizeJComponent(inputPanel, canvas, 0.05, 0.05, 0.9, 0.05);
+        SizeJComponent(inputPanel, 0.05, 0.05, 0.9, 0.05);
         inputPanel.setOpaque(false);
         inputPanel.setLayout(new BorderLayout());
         addButton.setFont(addButton.getFont().deriveFont(inputPanel.getHeight() * 0.8f));
@@ -70,12 +64,12 @@ public class MenuScreen implements Screen {
         inputPanel.add(addButton, BorderLayout.EAST);
         inputPanel.add(nameField, BorderLayout.CENTER);
         inputPanel.add(label, BorderLayout.WEST);
-        canvas.add(inputPanel);
+        Application.GetInstance().GetCanvas().add(inputPanel);
     }
 
-    private void RenderPlay(JComponent canvas) {
-        SizeJComponent(playButton, canvas, 0.05, 0.9, 0.9, 0.05);
+    private void RenderPlay() {
+        SizeJComponent(playButton, 0.05, 0.9, 0.9, 0.05);
         playButton.setFont(playButton.getFont().deriveFont(playButton.getHeight() * 0.4f));
-        canvas.add(playButton);
+        Application.GetInstance().GetCanvas().add(playButton);
     }
 }
