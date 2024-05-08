@@ -11,13 +11,13 @@ import java.util.List;
 
 public class GameScreen implements Screen {
 	public enum ComponentNames {
-		TurnIndicator,
-		Doors,
-		Inventory,
 		Actors,
 		Items,
+		Doors,
+		Inventory,
 		Effects,
-		Charges
+		Charges,
+		TurnIndicator
 	}
 	private final JButton endTurnButton;
 	private final EnumMap<ComponentNames, Component> components = new EnumMap<>(ComponentNames.class);
@@ -30,13 +30,13 @@ public class GameScreen implements Screen {
 		endTurnButton.setBackground(Application.Dark);
 		endTurnButton.setForeground(Application.LightText);
 
-		components.put(ComponentNames.TurnIndicator, new TurnIndicatorComponent());
-		components.put(ComponentNames.Doors, new DoorsComponent());
-		components.put(ComponentNames.Inventory, new InventoryComponent());
 		components.put(ComponentNames.Actors, new ActorsComponent());
 		components.put(ComponentNames.Items, new ItemsComponent());
-		components.put(ComponentNames.Effects, new EffectsComponent());
-		components.put(ComponentNames.Charges, new ChargesComponent());
+		components.put(ComponentNames.Doors, new DoorsComponent());
+		components.put(ComponentNames.Inventory, new InventoryComponent());
+		components.put(ComponentNames.Effects, new StatusComponent());
+		components.put(ComponentNames.Charges, new StatusComponent());
+		components.put(ComponentNames.TurnIndicator, new TurnIndicatorComponent());
 	}
 
 	public void SetDrawables(List<Drawable> drawables, ComponentNames component) {

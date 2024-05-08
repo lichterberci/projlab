@@ -32,7 +32,7 @@ public class InventoryItemDrawable extends Drawable {
     @Override
     public void Draw(JComponent target) {
         if (item != null) {
-            button.setText(item.getClass().getSimpleName());
+            button.setText(item.toString());
             button.setEnabled(true);
         } else {
             button.setEnabled(false);

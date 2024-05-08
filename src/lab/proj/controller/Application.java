@@ -11,6 +11,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -80,16 +82,26 @@ public class Application {
 
 	public void RenderGameScreen() {
 		frame.setTitle("THE SLIDE RULE - GAME");
+		GameManager gm = GameManager.GetInstance();
 		List<Actor> actorsInOrder = GameManager.GetInstance().ActorsInOrder();
-		Actor currentActor = actorsInOrder.get(0);
-		Room room = currentActor.GetLocation();
-		List<Item> inventory = new ArrayList<>(currentActor.GetItems());
+		Room room = gm.GetCurrentActor().GetLocation();
+		List<Item> inventory = new ArrayList<>(gm.GetCurrentActor().GetItems());
 		inventory.addAll(Collections.nCopies(Actor.MAX_ITEMS-inventory.size(), null));
 
-		game.SetDrawables(Convert(actorsInOrder, actor -> new TurnIndicatorDrawable(actor, actor == currentActor)),
+		game.SetDrawables(Convert(actorsInOrder, actor -> new TurnIndicatorDrawable(actor, actor == gm.GetCurrentActor())),
 				GameScreen.ComponentNames.TurnIndicator);
-		game.SetDrawables(Convert(room.GetDoors(), door -> new DoorDrawable(door, currentActor)),
-				GameScreen.ComponentNames.Doors);
+		game.SetDrawables(Convert(room.GetDoors(),
+			door -> new DoorDrawable(door,
+				new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if (SwingUtilities.isLeftMouseButton(e)) {
+							GameManager.GetInstance().GetCurrentActor().UseDoor(door);
+							GameManager.GetInstance().EndTurn();
+						}
+					}
+				})),
+			GameScreen.ComponentNames.Doors);
  		game.SetDrawables(Convert(inventory,item -> {
 				    var visitor = new ItemInventoryDrawableVisitor();
 					if (item != null)
@@ -113,8 +125,8 @@ public class Application {
 				GameScreen.ComponentNames.Effects);
 		game.SetDrawables(Convert(
 				Stream.of(
-					currentActor.HasGasProtection() ? GAS_PROTECTION_SPRITE_PATH : "",
-						currentActor.HasDropOutProtection() ? DROP_OUT_PROTECTION_SPRITE_PATH : ""
+						gm.GetCurrentActor().HasGasProtection() ? GAS_PROTECTION_SPRITE_PATH : "",
+						gm.GetCurrentActor().HasDropOutProtection() ? DROP_OUT_PROTECTION_SPRITE_PATH : ""
 					)
 						.filter(path -> !path.isEmpty())
 						.toList(),

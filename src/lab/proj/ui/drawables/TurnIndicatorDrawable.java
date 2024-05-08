@@ -4,6 +4,7 @@ import lab.proj.model.Actor;
 import lab.proj.controller.Application;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class TurnIndicatorDrawable extends Drawable {
 	private final JLabel label = new JLabel();
@@ -12,8 +13,10 @@ public class TurnIndicatorDrawable extends Drawable {
 	public TurnIndicatorDrawable(Actor actor, boolean selected) {
 		this.actor = actor;
 		SetDefaults(label, Application.DarkText, Application.Light);
-		if (selected)
+		if (selected) {
 			label.setBorder(BorderFactory.createDashedBorder(Application.Border, 2f, 12f, 6f, false));
+			label.setFont(label.getFont().deriveFont(Font.BOLD));
+		}
 		else
 			label.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
 	}

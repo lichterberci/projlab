@@ -14,7 +14,7 @@ public class ItemFloorDrawableVisitor implements ItemVisitor {
 	public void VisitBeerMug(BeerMug bm) {
 		item = new ItemDrawableBuilder<BeerMug>()
 				.setItem(bm)
-				.setName("BeerMug")
+				.setName("Beer Mug")
 				.setOnBtnLftClick((Consumer<BeerMug>)((BeerMug item) -> {
 					item.PickUp(GameManager.GetInstance().GetCurrentActor());
 					if (GameManager.GetInstance().isRunning())
@@ -79,7 +79,7 @@ public class ItemFloorDrawableVisitor implements ItemVisitor {
 	public void VisitSlideRule(SlideRule sr) {
 		item = new ItemDrawableBuilder<SlideRule>()
 				.setItem(sr)
-				.setName("SlideRule")
+				.setName("Slide Rule")
 				.setOnBtnLftClick((Consumer<SlideRule>)((SlideRule item) -> {
 					item.PickUp(GameManager.GetInstance().GetCurrentActor());
 					if (GameManager.GetInstance().isRunning())

@@ -171,5 +171,12 @@ public abstract class Item implements Entity {
         Logger.returnVoid();
     }
 
+    public boolean IsSticky() {
+        Logger.invokeMethod(this, List.of());
+
+        Logger.returnValue(sticky);
+        return sticky;
+    }
+
     public abstract void VisitItem(ItemVisitor iv);
 }

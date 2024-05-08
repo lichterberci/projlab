@@ -20,7 +20,7 @@ public class ItemInventoryDrawableVisitor implements ItemVisitor {
 	public void VisitBeerMug(BeerMug bm) {
 		item = new ItemDrawableBuilder<BeerMug>()
 				.setItem(bm)
-				.setName("BeerMug")
+				.setName("bm")
 				.setOnBtnLftClick((Consumer<BeerMug>)((BeerMug item) -> {
 					item.Activate();
 					GameManager.GetInstance().EndTurn();
@@ -37,7 +37,7 @@ public class ItemInventoryDrawableVisitor implements ItemVisitor {
 	public void VisitCamembert(Camembert c) {
 		item = new ItemDrawableBuilder<Camembert>()
 				.setItem(c)
-				.setName("Camembert")
+				.setName("cm")
 				.setOnBtnLftClick((Consumer<Camembert>)((Camembert item) -> {
 					item.Activate();
 					GameManager.GetInstance().EndTurn();
@@ -54,7 +54,7 @@ public class ItemInventoryDrawableVisitor implements ItemVisitor {
 	public void VisitMask(Mask m) {
 		item = new ItemDrawableBuilder<Mask>()
 				.setItem(m)
-				.setName("Mask")
+				.setName("m")
 				.setOnBtnLftClick((Consumer<Mask>)((Mask item) -> {
 					item.Activate();
 					GameManager.GetInstance().EndTurn();
@@ -71,7 +71,7 @@ public class ItemInventoryDrawableVisitor implements ItemVisitor {
 	public void VisitPurifier(Purifier p) {
 		item = new ItemDrawableBuilder<Purifier>()
 				.setItem(p)
-				.setName("Purifier")
+				.setName("p")
 				.setOnBtnLftClick((Consumer<Purifier>)((Purifier item) -> {
 					item.Activate();
 					GameManager.GetInstance().EndTurn();
@@ -88,7 +88,7 @@ public class ItemInventoryDrawableVisitor implements ItemVisitor {
 	public void VisitTowel(Towel t) {
 		item = new ItemDrawableBuilder<Towel>()
 				.setItem(t)
-				.setName("Towel")
+				.setName("t")
 				.setOnBtnLftClick((Consumer<Towel>)((Towel item) -> {
 					item.Activate();
 					GameManager.GetInstance().EndTurn();
@@ -105,7 +105,7 @@ public class ItemInventoryDrawableVisitor implements ItemVisitor {
 	public void VisitSlideRule(SlideRule sr) {
 		item = new ItemDrawableBuilder<SlideRule>()
 				.setItem(sr)
-				.setName("SlideRule")
+				.setName("sr")
 				.setOnBtnLftClick((Consumer<SlideRule>)((SlideRule item) -> {
 					item.Activate();
 					GameManager.GetInstance().EndTurn();
@@ -122,7 +122,7 @@ public class ItemInventoryDrawableVisitor implements ItemVisitor {
 	public void VisitCSE(CSE c) {
 		item = new ItemDrawableBuilder<CSE>()
 				.setItem(c)
-				.setName("CSE")
+				.setName("cse")
 				.setOnBtnLftClick((Consumer<CSE>)((CSE item) -> {
 					item.Activate();
 					GameManager.GetInstance().EndTurn();
@@ -139,7 +139,7 @@ public class ItemInventoryDrawableVisitor implements ItemVisitor {
 	public void VisitTransistor(Transistor t) {
 		item = new ItemDrawableBuilder<Transistor>()
 				.setItem(t)
-				.setName("Transistor")
+				.setName("tr")
 				.setOnBtnLftClick((Consumer<Transistor>) ((Transistor item) -> {
 					item.Activate();
 					GameManager.GetInstance().EndTurn();

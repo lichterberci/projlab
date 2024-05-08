@@ -5,6 +5,7 @@ import lab.proj.controller.GameManager;
 import lab.proj.model.Item;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Optional;
@@ -39,6 +40,8 @@ public class ItemDrawable <ItemType extends Item> extends Drawable{
 	public void Draw(JComponent target) {
 		if (item != null) {
 			button.setText(itemName);
+			if (item.IsDead() || item.IsSticky() || item.IsActivated())
+				button.setFont(button.getFont().deriveFont(Font.ITALIC));
 			button.setBackground(getColorFromHashCode(item.hashCode()));
 		}
 		SetRelativeSizes(button, target, 0.3);
