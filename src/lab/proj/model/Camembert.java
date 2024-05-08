@@ -29,7 +29,6 @@ public class Camembert extends Item {
         Drop();
         gp.SetLocation(location);
         dead = true;
-        GameManager.GetInstance().EndTurn();
         Logger.returnVoid();
     }
 }

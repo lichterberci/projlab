@@ -134,7 +134,6 @@ public abstract class Item implements Entity {
 
         if (!fake) {
             activated = true;
-            GameManager.GetInstance().EndTurn();
         }
 
         Logger.returnVoid();

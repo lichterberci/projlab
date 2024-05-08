@@ -25,7 +25,6 @@ public class Purifier extends Item {
         location.VisitEffects(new PurifierVisitor());
         dead = true;
 
-        GameManager.GetInstance().EndTurn();
         Logger.returnVoid();
     }
 }

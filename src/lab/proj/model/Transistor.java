@@ -69,7 +69,6 @@ public class Transistor extends Item {
                 boolean success = location.StepIn(actor);
                 if (success) {
                     prevLoc.StepOut(actor);
-                    GameManager.GetInstance().EndTurn();
                 }
             } else if (pair.activated) {
                 pair.Activate();
@@ -77,7 +76,6 @@ public class Transistor extends Item {
         } else if (pair != null) {
             actor.DropItem(this); // cannot call Drop() directly because it would set its actor to null
             activated = true;
-            GameManager.GetInstance().EndTurn();
         }
 
         Logger.returnVoid();

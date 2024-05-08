@@ -1,6 +1,7 @@
 package lab.proj.ui.drawables;
 
 import lab.proj.controller.Application;
+import lab.proj.controller.GameManager;
 import lab.proj.model.Actor;
 import lab.proj.model.Door;
 import lab.proj.model.Room;
@@ -18,7 +19,10 @@ public class DoorDrawable extends Drawable {
         SetDefaults(button, Application.DarkText, Application.Light);
         button.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
         if (door != null && actor != null)
-            button.addActionListener(actionEvent -> actor.UseDoor(door));
+            button.addActionListener(actionEvent -> {
+                actor.UseDoor(door);
+                GameManager.GetInstance().EndTurn();
+            });
     }
     @Override
     public void Draw(JComponent target) {

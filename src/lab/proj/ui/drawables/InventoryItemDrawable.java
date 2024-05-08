@@ -1,6 +1,7 @@
 package lab.proj.ui.drawables;
 
 import lab.proj.controller.Application;
+import lab.proj.controller.GameManager;
 import lab.proj.model.Item;
 
 import javax.swing.*;
@@ -18,8 +19,10 @@ public class InventoryItemDrawable extends Drawable {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if (SwingUtilities.isLeftMouseButton(e))
+                    if (SwingUtilities.isLeftMouseButton(e)) {
                         item.Activate();
+                        GameManager.GetInstance().EndTurn();
+                    }
                     else if (SwingUtilities.isRightMouseButton(e))
                         item.Drop();
                     Application.GetInstance().RenderGameScreen();

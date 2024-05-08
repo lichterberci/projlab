@@ -58,7 +58,6 @@ public abstract class Actor implements Entity {
         boolean wasSuccessful = d.GoThrough(location, this);
         if (wasSuccessful) {
             prevRoom.StepOut(this);
-            GameManager.GetInstance().EndTurn();
         }
 
         Logger.returnValue(wasSuccessful);
