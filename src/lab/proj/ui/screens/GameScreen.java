@@ -24,7 +24,9 @@ public class GameScreen implements Screen {
 
 	public GameScreen() {
 		endTurnButton = new JButton("End Turn");
-		endTurnButton.addActionListener(actionEvent -> GameManager.GetInstance().EndTurn());
+		endTurnButton.addActionListener(actionEvent -> {
+			GameManager.GetInstance().EndTurn();
+		});
 		endTurnButton.setBackground(Application.Dark);
 		endTurnButton.setForeground(Application.LightText);
 

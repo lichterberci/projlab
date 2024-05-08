@@ -126,20 +126,6 @@ public abstract class Actor implements Entity {
         Logger.returnVoid();
     }
 
-
-    public List<Charge> GetCharges() {
-        Logger.invokeMethod(this, List.of());
-
-        List<Charge> charges = new ArrayList<>();
-        if (!dropOutProtections.isEmpty())
-            charges.add(dropOutProtections.peek());
-        if (!gasProtections.isEmpty())
-            charges.add(gasProtections.peek());
-
-        Logger.returnValue(charges);
-        return charges;
-    }
-
     /**
      * Retrieves the items collected by the actor.
      *

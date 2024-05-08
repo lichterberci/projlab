@@ -7,6 +7,7 @@ import lab.proj.model.Door;
 import lab.proj.model.Room;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 public class DoorDrawable extends Drawable {
     private final JButton button = new JButton();
@@ -26,17 +27,30 @@ public class DoorDrawable extends Drawable {
     }
     @Override
     public void Draw(JComponent target) {
+
+        boolean isEnabled = true;
+
         if (door != null && actor != null) {
-            button.setEnabled(door.Usable(actor));
+
+            isEnabled = door.Usable(actor);
+
             String otherRoom = door.GetRooms().stream()
                     .filter(room -> room != actor.GetLocation())
                     .findFirst()
                     .map(Room::GetName)
                     .orElse("");
+
             button.setText("<html><center>Door<br>%s</center></html>".formatted(otherRoom));
         } else {
-            button.setEnabled(false);
+            isEnabled = false;
         }
+
+        button.setForeground(isEnabled ? Application.DarkText : Application.InvalidText);
+
+        if (!isEnabled) {
+            Arrays.stream(button.getMouseListeners()).forEach(button::removeMouseListener);
+        }
+
         SetRelativeSizes(button, target, 0.3);
         target.add(button);
     }

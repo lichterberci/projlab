@@ -66,4 +66,9 @@ public class CSE extends LivingItem {
 
         Logger.returnVoid();
     }
+
+    @Override
+    public void VisitItem(ItemVisitor iv) {
+        iv.VisitCSE(this);
+    }
 }

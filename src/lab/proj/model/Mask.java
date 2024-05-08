@@ -39,4 +39,9 @@ public class Mask extends LivingItem {
 
         Logger.returnVoid();
     }
+
+    @Override
+    public void VisitItem(ItemVisitor iv) {
+        iv.VisitMask(this);
+    }
 }

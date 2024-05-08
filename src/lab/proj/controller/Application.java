@@ -3,13 +3,21 @@ package lab.proj.controller;
 import lab.proj.model.*;
 import lab.proj.ui.drawables.*;
 import lab.proj.ui.screens.*;
+import lab.proj.ui.visitors.EffectDrawableVisitor;
+import lab.proj.ui.visitors.ItemFloorDrawableVisitor;
+import lab.proj.ui.visitors.ItemInventoryDrawableVisitor;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class Application {
 	public static final Color Dark = new Color(75, 75, 75);
@@ -17,11 +25,14 @@ public class Application {
 	public static final Color Background = new Color(175, 175, 175);
 	public static final Color DarkText = new Color(0,0,0);
 	public static final Color LightText = new Color(255, 255, 255);
-	public static final Color InvalidText = new Color(150, 150, 150);
+	public static final Color InvalidText = new Color(171, 32, 32);
 	public static final Color Border = new Color(0,0,0);
 
 	private static final int windowWidth = 1200;
 	private static  final int windowHeight = 600;
+	private static final String GAS_PROTECTION_SPRITE_PATH = "GameScreen_new.png";
+	private static final String DROP_OUT_PROTECTION_SPRITE_PATH = "GameScreen_new.png";
+
 
 	private final JFrame frame;
 	private final JPanel canvas;
@@ -79,15 +90,36 @@ public class Application {
 				GameScreen.ComponentNames.TurnIndicator);
 		game.SetDrawables(Convert(room.GetDoors(), door -> new DoorDrawable(door, currentActor)),
 				GameScreen.ComponentNames.Doors);
- 		game.SetDrawables(Convert(inventory, InventoryItemDrawable::new),
+ 		game.SetDrawables(Convert(inventory,item -> {
+				    var visitor = new ItemInventoryDrawableVisitor();
+					if (item != null)
+						item.VisitItem(visitor);
+					return visitor.getDrawable();
+			    }),
 				GameScreen.ComponentNames.Inventory);
 		game.SetDrawables(Convert(room.GetActors(), ActorDrawable::new),
 				GameScreen.ComponentNames.Actors);
-		game.SetDrawables(Convert(room.GetItemsOnTheFloor(), item -> new ItemDrawable(item, currentActor)),
+		game.SetDrawables(Convert(room.GetItemsOnTheFloor(), item -> {
+					var visitor = new ItemFloorDrawableVisitor();
+					item.VisitItem(visitor);
+					return visitor.getDrawable();
+				}),
 				GameScreen.ComponentNames.Items);
-		game.SetDrawables(Convert(room.GetEffects(), EffectDrawable::new),
+		game.SetDrawables(Convert(room.GetEffects(), effect -> {
+					var visitor = new EffectDrawableVisitor();
+					effect.VisitRoomEffect(visitor);
+					return visitor.getDrawable();
+				}),
 				GameScreen.ComponentNames.Effects);
-		game.SetDrawables(Convert(currentActor.GetCharges(), ChargeDrawable::new),
+		game.SetDrawables(Convert(
+				Stream.of(
+					currentActor.HasGasProtection() ? GAS_PROTECTION_SPRITE_PATH : "",
+						currentActor.HasDropOutProtection() ? DROP_OUT_PROTECTION_SPRITE_PATH : ""
+					)
+						.filter(path -> !path.isEmpty())
+						.toList(),
+					ChargeDrawable::new
+				),
 				GameScreen.ComponentNames.Charges);
 
 		canvas.removeAll();

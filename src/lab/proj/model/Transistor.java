@@ -80,4 +80,13 @@ public class Transistor extends Item {
 
         Logger.returnVoid();
     }
+
+    @Override
+    public void VisitItem(ItemVisitor iv) {
+        Logger.invokeMethod(this, Collections.singletonList(iv));
+
+        iv.VisitTransistor(this);
+
+        Logger.returnVoid();
+    }
 }

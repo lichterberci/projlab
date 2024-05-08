@@ -119,6 +119,10 @@ public class GameManager {
         }
     }
 
+    public Actor GetCurrentActor() {
+        return currentActor;
+    }
+
     public List<Actor> ActorsInOrder() {
         return IntStream.range(turnCounter, turnCounter + students.size() + nonPlayerCharacters.size())
                                .mapToObj(this::GetNextActorForTurn)

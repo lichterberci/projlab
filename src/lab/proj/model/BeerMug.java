@@ -64,4 +64,9 @@ public class BeerMug extends LivingItem {
 
         Logger.returnVoid();
     }
+
+    @Override
+    public void VisitItem(ItemVisitor iv) {
+        iv.VisitBeerMug(this);
+    }
 }

@@ -27,4 +27,9 @@ public class Purifier extends Item {
 
         Logger.returnVoid();
     }
+
+    @Override
+    public void VisitItem(ItemVisitor iv) {
+        iv.VisitPurifier(this);
+    }
 }

@@ -24,4 +24,9 @@ public class SlideRule extends Item {
         Logger.returnValue(success);
         return success;
     }
+
+    @Override
+    public void VisitItem(ItemVisitor iv) {
+        iv.VisitSlideRule(this);
+    }
 }

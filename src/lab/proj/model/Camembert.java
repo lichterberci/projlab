@@ -31,4 +31,9 @@ public class Camembert extends Item {
         dead = true;
         Logger.returnVoid();
     }
+
+    @Override
+    public void VisitItem(ItemVisitor iv) {
+        iv.VisitCamembert(this);
+    }
 }

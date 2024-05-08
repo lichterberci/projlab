@@ -2,6 +2,10 @@ package lab.proj;
 
 import lab.proj.controller.GameManager;
 import lab.proj.controller.Application;
+import lab.proj.utils.SequenceDiagramPrinter;
+
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 
 public class Main {
@@ -11,7 +15,7 @@ public class Main {
 
     private static void testModel() {
 //        // Suppress output from debug printer
-//        SequenceDiagramPrinter.resetInstance(new PrintStream(OutputStream.nullOutputStream()));
+        SequenceDiagramPrinter.resetInstance(new PrintStream(OutputStream.nullOutputStream()));
 //        // Run interpreter loop
 //        new ActionManager(System.in, System.out).runCommandInterpreter();
 

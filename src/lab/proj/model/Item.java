@@ -170,4 +170,6 @@ public abstract class Item implements Entity {
 
         Logger.returnVoid();
     }
+
+    public abstract void VisitItem(ItemVisitor iv);
 }

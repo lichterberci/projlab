@@ -2,31 +2,43 @@ package lab.proj.ui.drawables;
 
 import lab.proj.controller.Application;
 import lab.proj.controller.GameManager;
-import lab.proj.model.Actor;
 import lab.proj.model.Item;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Optional;
+import java.util.function.Consumer;
 
-public class ItemDrawable extends Drawable{
+public class ItemDrawable <ItemType extends Item> extends Drawable{
 	private final JButton button = new JButton();
-	private final Item item;
+	private final ItemType item;
+	private final String itemName;
 
-	public ItemDrawable(Item item, Actor actor) {
+	public ItemDrawable(ItemType item, String name, Optional<Consumer<ItemType>> onBtnLftClick, Optional<Consumer<ItemType>> onBtnRgtClick) {
 		this.item = item;
+		itemName = name;
 		SetDefaults(button, Application.DarkText, Application.Background);
 		button.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
-		if (item != null && actor != null)
-			button.addActionListener(actionEvent -> {
-				item.PickUp(actor);
-				if (GameManager.GetInstance().isRunning())
-					Application.GetInstance().RenderGameScreen();
+		if (item != null) {
+			button.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (SwingUtilities.isLeftMouseButton(e)) {
+						onBtnLftClick.ifPresent(consumer -> consumer.accept(item));
+					} else if (SwingUtilities.isRightMouseButton(e)) {
+						onBtnRgtClick.ifPresent(consumer -> consumer.accept(item));
+					}
+				}
 			});
+
+		}
 	}
 
 	@Override
 	public void Draw(JComponent target) {
 		if (item != null) {
-			button.setText(item.getClass().getSimpleName());
+			button.setText(itemName);
 			button.setBackground(getColorFromHashCode(item.hashCode()));
 		}
 		SetRelativeSizes(button, target, 0.3);
