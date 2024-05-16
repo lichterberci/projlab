@@ -13,12 +13,12 @@ public class EffectDrawableVisitor implements RoomEffectVisitor {
 
 	@Override
 	public void VisitGasPoisoning(GasPoisoning gp) {
-		drawable = new StatusDrawable("/lab/proj/assets/GameScreen_Render.png");
+		drawable = new StatusDrawable("☢");
 	}
 
 	@Override
 	public void VisitCurse(Curse c) {
-		drawable = new StatusDrawable("/lab/proj/assets/GameScreen_Render.png");
+		drawable = new StatusDrawable("😈");
 	}
 
 	public Drawable getDrawable() {

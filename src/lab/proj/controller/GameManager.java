@@ -1,9 +1,11 @@
 package lab.proj.controller;
 
 import lab.proj.model.*;
+import lab.proj.utils.Randomware;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.IntStream;
 
 public class GameManager {
@@ -62,7 +64,7 @@ public class GameManager {
                 CreateTeacher().SetLocation(rooms.get(5));
             else
                 CreateCleaningLady().SetLocation(rooms.get(4));
-            i = (i+1) % 4;
+            i = (i + 1) % 4;
         }
     }
 
@@ -86,6 +88,9 @@ public class GameManager {
         new Curse().SetLocation(r2);
         new SlideRule().SetLocation(r3);
         new CSE().SetLocation(r1);
+        new Camembert().SetLocation(r1);
+        new Mask().SetLocation(r1);
+        new Towel().SetLocation(r1);
     }
 
     public boolean isRunning() {
@@ -98,23 +103,39 @@ public class GameManager {
 
     public void DropOutStudent(Student student) {
         students.remove(student);
+        if (students.isEmpty())
+            Lose();
     }
 
     public void EndTurn() {
         students.forEach(Student::TimePassed);
-        rooms.forEach(Room::TimePassed);
+        new CopyOnWriteArrayList<>(rooms).forEach(Room::TimePassed);
         nonPlayerCharacters.forEach(Actor::TimePassed);
 
+        if (!isRunning)
+            return;
+
         turnCounter++;
-        currentActor = GetNextActorForTurn(turnCounter)
-;
-        if (turnCounter % 2 == 0) {
+        currentActor = GetNextActorForTurn(turnCounter);
+
+        if (turnCounter % 2 == 0 && !students.isEmpty()) {
             if (currentActor.IsBlocked())
                 EndTurn();
             // only draw UI if it is the turn of a student
             Application.GetInstance().RenderGameScreen();
         } else {
-            // TODO: implement AI logic
+            if (!currentActor.GetLocation().GetItemsOnTheFloor().isEmpty() && Randomware.Decision()) {
+                currentActor.CollectItem(Randomware.Choice(currentActor.GetLocation().GetItemsOnTheFloor()));
+            } else {
+                var usableDoors = currentActor
+                        .GetLocation()
+                        .GetDoors()
+                        .stream()
+                        .filter(door -> door.Usable(currentActor))
+                        .toList();
+                if (!usableDoors.isEmpty() && Randomware.Decision())
+                    currentActor.UseDoor(Randomware.Choice(usableDoors));
+            }
             EndTurn();
         }
     }
@@ -124,9 +145,9 @@ public class GameManager {
     }
 
     public List<Actor> ActorsInOrder() {
-        return IntStream.range(turnCounter, turnCounter + students.size() + nonPlayerCharacters.size())
-                               .mapToObj(this::GetNextActorForTurn)
-                               .toList();
+        return IntStream.range(turnCounter, turnCounter + nonPlayerCharacters.size() * 2)
+                .mapToObj(this::GetNextActorForTurn)
+                .toList();
     }
 
     private Actor GetNextActorForTurn(int n) {
@@ -137,9 +158,7 @@ public class GameManager {
 
     public Room CreateRoom() {
         Room result = new Room();
-
         rooms.add(result);
-
         return result;
     }
 
@@ -149,32 +168,24 @@ public class GameManager {
 
     public Door CreateDoor() {
         Door result = new Door();
-
-//        entities.add(result);
-
         return result;
     }
 
     public Student CreateStudent(String name) {
         Student result = new Student(name);
-
         students.add(result);
         return result;
     }
 
     public CleaningLady CreateCleaningLady() {
         CleaningLady result = new CleaningLady();
-
         nonPlayerCharacters.add(result);
-
         return result;
     }
 
     public Teacher CreateTeacher() {
         Teacher result = new Teacher();
-
         nonPlayerCharacters.add(result);
-
         return result;
     }
 

@@ -20,10 +20,10 @@ public class Main {
 //        new ActionManager(System.in, System.out).runCommandInterpreter();
 
         GameManager.GetInstance().ResetGame();
-        GameManager.GetInstance().CreateStudent("Berci");
-        GameManager.GetInstance().CreateStudent("Dani");
-        GameManager.GetInstance().CreateStudent("Karesz");
-        GameManager.GetInstance().CreateStudent("Soma");
+//        GameManager.GetInstance().CreateStudent("Berci");
+//        GameManager.GetInstance().CreateStudent("Dani");
+//        GameManager.GetInstance().CreateStudent("Karesz");
+//        GameManager.GetInstance().CreateStudent("Soma");
         GameManager.GetInstance().CreateStudent("Zoli");
 
         Application.GetInstance().RenderMenuScreen();

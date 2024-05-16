@@ -7,6 +7,7 @@ import lab.proj.model.Door;
 import lab.proj.model.Room;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 
@@ -31,13 +32,13 @@ public class DoorDrawable extends Drawable {
                     .findFirst()
                     .map(Room::GetName)
                     .orElse("");
-            button.setText("<html><center>%s</center></html>".formatted(otherRoom));
+            button.setText("<html><center>🚪%s</center></html>".formatted(otherRoom));
         }
         button.setForeground(isEnabled ? Application.DarkText : Application.InvalidText);
         if (!isEnabled)
             Arrays.stream(button.getMouseListeners()).forEach(button::removeMouseListener);
 
-        SetRelativeSizes(button, target, 0.3);
+        SetRelativeSizes(button, target, 0.25);
         target.add(button);
     }
 }

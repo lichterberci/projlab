@@ -1,5 +1,6 @@
 package lab.proj.model;
 
+import lab.proj.controller.GameManager;
 import lab.proj.utils.Randomware;
 
 import java.util.*;
@@ -229,6 +230,7 @@ public class Room implements Entity {
         for (Door door : doors)
             door.Show();
 
+        GameManager.GetInstance().DestroyRoom(r2);
         Logger.destroyObject(r2); // in reality, it does not die immediately
 
         Logger.returnVoid();
@@ -265,7 +267,7 @@ public class Room implements Entity {
             return;
         }
 
-        var r2 = new Room();
+        var r2 = GameManager.GetInstance().CreateRoom();
         r2.capacity = capacity;
 
         CopyOnWriteArrayList<Item> currentItems = new CopyOnWriteArrayList<>(itemsOnTheFloor);

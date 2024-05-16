@@ -99,6 +99,7 @@ public class Student extends Actor {
 
         if (dropOutProtections.isEmpty()) {
             droppedOut = true;
+            GameManager.GetInstance().DropOutStudent(this);
         } else {
             var dropOutProtection = dropOutProtections.poll();
             dropOutProtection.Affect();

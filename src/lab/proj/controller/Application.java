@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,7 +33,6 @@ public class Application {
 	private static final String GAS_PROTECTION_SPRITE_PATH = "GameScreen_new.png";
 	private static final String DROP_OUT_PROTECTION_SPRITE_PATH = "GameScreen_new.png";
 
-
 	private final JFrame frame;
 	private final JPanel canvas;
 	private final MenuScreen menu;
@@ -48,7 +49,8 @@ public class Application {
 
 	private Application() {
 		frame = new JFrame("THE SLIDE RULE");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
 		frame.setLayout(null);
 		frame.getContentPane().setPreferredSize(new Dimension(windowWidth, windowHeight));
 		frame.pack();
