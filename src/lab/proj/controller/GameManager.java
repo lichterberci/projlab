@@ -105,13 +105,14 @@ public class GameManager {
             Room room = rooms.get(i);
             int numItems = 1; // easily could be set to a higher number
             for (int j = 0; j < numItems; j++) {
-                final int indexOfItem = Randomware.Number(0, 4);
+                final int indexOfItem = Randomware.Number(0, 5);
                 Item item = switch (indexOfItem) {
                     case 0 -> new Camembert();
                     case 1 -> new Mask();
                     case 2 -> new Purifier();
                     case 3 -> new Towel();
                     case 4 -> new BeerMug();
+					case 5 -> new CSE();
 	                default -> throw new IllegalStateException("Unexpected value: " + indexOfItem);
                 };
                 item.SetLocation(room);
