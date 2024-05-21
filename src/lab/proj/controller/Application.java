@@ -65,7 +65,7 @@ public class Application {
 	 */
 	private static final String GAS_PROTECTION_SPRITE_PATH = "GameScreen_new.png";
 	/**
-	 * The path to the drop out protection sprite
+	 * The path to the drop-out protection sprite
 	 */
 	private static final String DROP_OUT_PROTECTION_SPRITE_PATH = "GameScreen_new.png";
 
