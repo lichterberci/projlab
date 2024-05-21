@@ -68,8 +68,8 @@ public class Towel extends LivingItem {
      */
     @Override
     public boolean PickUp(Actor a) {
-        super.PickUp(a);
         activated = true;
+        return super.PickUp(a);
     }
 
     /**
