@@ -24,7 +24,7 @@ public abstract class LivingItem extends Item {
     protected final void Age() {
         Logger.invokeMethod(this, List.of());
 
-        if (fake) {
+        if (fake || !activated) {
             Logger.returnVoid();
             return;
         }
@@ -56,5 +56,4 @@ public abstract class LivingItem extends Item {
 
         Logger.returnVoid();
     }
-
 }

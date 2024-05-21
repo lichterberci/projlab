@@ -45,7 +45,7 @@ public class CSE extends LivingItem {
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
 
-        if (!activated || fake) {
+        if (fake || !activated) {
             Logger.returnVoid();
             return;
         }
