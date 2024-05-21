@@ -2,7 +2,14 @@ package lab.proj.ui.components;
 
 import javax.swing.*;
 
+/**
+ * Represents the status component
+ */
 public class StatusComponent extends Component {
+    /**
+     *  Creates a new status component
+     * @param target The target component to draw on
+     */
     @Override
     public void Draw(JComponent target) {
         JPanel panel = MakePanelInScroll(target, BorderFactory.createEmptyBorder(),

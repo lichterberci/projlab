@@ -8,6 +8,9 @@ import java.util.List;
  */
 public abstract class LivingItem extends Item {
 
+    /**
+     * The default lifetime of a living item.
+     */
     private static final int DEFAULT_LIFETIME = 5;
 
     /**
@@ -15,6 +18,9 @@ public abstract class LivingItem extends Item {
      */
     protected int lifetime = DEFAULT_LIFETIME;
 
+    /**
+     * Creates a new living item.
+     */
     protected final void Age() {
         Logger.invokeMethod(this, List.of());
 
@@ -38,6 +44,10 @@ public abstract class LivingItem extends Item {
      */
     public abstract void Use();
 
+    /**
+     * Performs actions associated with the passage of time.
+     * Each implementing class must define its own behavior for this method.
+     */
     @Override
     public void TimePassed() {
         Logger.invokeMethod(this, List.of());

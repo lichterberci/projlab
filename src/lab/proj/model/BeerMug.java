@@ -9,6 +9,9 @@ import java.util.List;
  */
 public class BeerMug extends LivingItem {
 
+    /**
+     * Creates a new beer mug.
+     */
     public BeerMug() {
         Logger.createObject(this);
     }
@@ -47,6 +50,12 @@ public class BeerMug extends LivingItem {
         Logger.returnVoid();
     }
 
+    /**
+     * Performs the action of using the beer mug with a specific drop candidate.
+     * This method adds drop-out protection for the associated actor.
+     *
+     * @param dropCandidate The item to drop.
+     */
     public void UseWithSpecificDropCandidate(Item dropCandidate) {
         Logger.invokeMethod(this, Collections.singletonList(dropCandidate));
 
@@ -65,6 +74,11 @@ public class BeerMug extends LivingItem {
         Logger.returnVoid();
     }
 
+    /**
+     * Visits the item with the given visitor.
+     *
+     * @param iv The visitor to visit the item with.
+     */
     @Override
     public void VisitItem(ItemVisitor iv) {
         iv.VisitBeerMug(this);

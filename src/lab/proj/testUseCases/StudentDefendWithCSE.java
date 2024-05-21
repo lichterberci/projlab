@@ -3,9 +3,14 @@ package lab.proj.testUseCases;
 import lab.proj.model.*;
 import lab.proj.utils.AskTheUser;
 
+/**
+ * A class representing a specific use case with a student, two teachers, a door, and a CSE item.
+ */
 public class StudentDefendWithCSE implements TestUseCase {
 
-
+    /**
+     * Runs the use case, creating the student, teachers, door, and CSE item and setting the student in one room and the teachers in another.
+     */
     @Override
     public void runUseCase() {
         Room r1 = new Room();

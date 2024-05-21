@@ -7,12 +7,22 @@ import lab.proj.utils.SequenceDiagramPrinter;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-
+/**
+ * Main class of the project
+ */
 public class Main {
+    /**
+     * Main method of the project
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         testModel();
     }
 
+    /**
+     * Tests the model
+     */
     private static void testModel() {
 //        // Suppress output from debug printer
         SequenceDiagramPrinter.resetInstance(new PrintStream(OutputStream.nullOutputStream()));

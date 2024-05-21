@@ -3,7 +3,14 @@ package lab.proj.ui.components;
 import lab.proj.controller.Application;
 import javax.swing.*;
 
+/**
+ * Represents the student list component
+ */
 public class StudentListComponent extends Component{
+
+    /**
+     * Creates a new student list component
+     */
     @Override
     public void Draw(JComponent target) {
         JPanel panel = MakePanelInScroll(target, BorderFactory.createLineBorder(Application.Border),

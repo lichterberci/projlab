@@ -13,7 +13,14 @@ public class TransistorPairing implements TestUseCase {
 
     protected boolean result;
 
+    /**
+     * The first transistor.
+     */
     protected Transistor t1;
+
+    /**
+     * The second transistor.
+     */
     protected Transistor t2;
 
     /**

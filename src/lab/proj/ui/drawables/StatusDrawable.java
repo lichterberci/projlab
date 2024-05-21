@@ -6,11 +6,24 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * Represents the status drawable
+ */
 public class StatusDrawable extends Drawable {
 
+    /**
+     * The panel
+     */
     private final JPanel panel = new JPanel();
+    /**
+     * The label
+     */
     private final JLabel label = new JLabel();
 
+    /**
+     * Creates a new status drawable
+     * @param spriteText The sprite text
+     */
     public StatusDrawable(String spriteText) {
         SetDefaults(panel, Application.DarkText, Application.Dark);
         SetDefaults(label, Application.DarkText);
@@ -18,6 +31,9 @@ public class StatusDrawable extends Drawable {
         panel.add(label);
     }
 
+    /**
+     * Creates a new status drawable
+     */
     @Override
     public void Draw(JComponent target) {
         SetRelativeSizes(panel, target, 1.0f);

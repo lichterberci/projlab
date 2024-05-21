@@ -11,10 +11,25 @@ import java.awt.*;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 
+/**
+ * Represents the door drawable
+ */
 public class DoorDrawable extends Drawable {
+
+    /**
+     * The button
+     */
     private final JButton button = new JButton();
+    /**
+     * The door
+     */
     private final Door door;
 
+    /**
+     * Creates a new door drawable
+     * @param door The door
+     * @param ml The mouse listener
+     */
     public DoorDrawable(Door door, MouseListener ml) {
         this.door = door;
         SetDefaults(button, Application.DarkText, Application.Light);
@@ -22,6 +37,10 @@ public class DoorDrawable extends Drawable {
         if (ml != null)
             button.addMouseListener(ml);
     }
+
+    /**
+     * Creates a new door drawable
+     */
     @Override
     public void Draw(JComponent target) {
         boolean isEnabled = false;

@@ -11,9 +11,19 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Represents the inventory item drawable visitor
+ */
 public class InventoryItemDrawableVisitor implements ItemVisitor {
+	/**
+	 * The drawable
+	 */
 	private Drawable drawable = new ItemDrawable(null, "", null);
 
+	/**
+	 * Visits the beer mug
+	 * @param bm The beer mug
+	 */
 	@Override
 	public void VisitBeerMug(BeerMug bm) {
 		drawable = new InventoryItemDrawable(bm, "bm", new MouseAdapter() {
@@ -31,6 +41,10 @@ public class InventoryItemDrawableVisitor implements ItemVisitor {
 		});
 	}
 
+	/**
+	 * Visits the camembert
+	 * @param cm The camembert
+	 */
 	@Override
 	public void VisitCamembert(Camembert cm) {
 		drawable = new InventoryItemDrawable(cm, "cm", new MouseAdapter() {
@@ -48,6 +62,10 @@ public class InventoryItemDrawableVisitor implements ItemVisitor {
 		});
 	}
 
+	/**
+	 * Visits the mask
+	 * @param m The mask
+	 */
 	@Override
 	public void VisitMask(Mask m) {
 		drawable = new InventoryItemDrawable(m, "m", new MouseAdapter() {
@@ -65,6 +83,10 @@ public class InventoryItemDrawableVisitor implements ItemVisitor {
 		});
 	}
 
+	/**
+	 * Visits the mask
+	 * @param m The mask
+	 */
 	@Override
 	public void VisitPurifier(Purifier p) {
 		drawable = new InventoryItemDrawable(p, "p", new MouseAdapter() {
@@ -82,6 +104,10 @@ public class InventoryItemDrawableVisitor implements ItemVisitor {
 		});
 	}
 
+	/**
+	 * Visits the mask
+	 * @param m The mask
+	 */
 	@Override
 	public void VisitTowel(Towel t) {
 		drawable = new InventoryItemDrawable(t, "t", new MouseAdapter() {
@@ -99,6 +125,10 @@ public class InventoryItemDrawableVisitor implements ItemVisitor {
 		});
 	}
 
+	/**
+	 * Visits the mask
+	 * @param m The mask
+	 */
 	@Override
 	public void VisitSlideRule(SlideRule sr) {
 		drawable = new InventoryItemDrawable(sr, "sr", new MouseAdapter() {
@@ -116,6 +146,10 @@ public class InventoryItemDrawableVisitor implements ItemVisitor {
 		});
 	}
 
+	/**
+	 * Visits the mask
+	 * @param m The mask
+	 */
 	@Override
 	public void VisitCSE(CSE cse) {
 		drawable = new InventoryItemDrawable(cse, "cse", new MouseAdapter() {
@@ -133,6 +167,10 @@ public class InventoryItemDrawableVisitor implements ItemVisitor {
 		});
 	}
 
+	/**
+	 * Visits the mask
+	 * @param m The mask
+	 */
 	@Override
 	public void VisitTransistor(Transistor tr) {
 		drawable = new InventoryItemDrawable(tr, "tr", new MouseAdapter() {
@@ -150,10 +188,19 @@ public class InventoryItemDrawableVisitor implements ItemVisitor {
 		});
 	}
 
+	/**
+	 * Visits the mask
+	 * @param m The mask
+	 */
 	public Drawable getDrawable() {
 		return drawable;
 	}
 
+	/**
+	 * Visits the item
+	 * @param item The item
+	 * @return The drawable
+	 */
 	public Drawable Visit(Item item) {
 		if (item != null)
 			item.VisitItem(this);

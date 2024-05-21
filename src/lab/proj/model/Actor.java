@@ -11,6 +11,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public abstract class Actor implements Entity {
 
+    /**
+     * The maximum number of items that can be collected by the actor.
+     */
     public static final int MAX_ITEMS = 5;
 
     /**
@@ -214,6 +217,9 @@ public abstract class Actor implements Entity {
         return incapacitated;
     }
 
+    /**
+     * Attempts to get out of the current location.
+     */
     public void GetOut() {
         Logger.invokeMethod(this, List.of());
 
@@ -228,8 +234,16 @@ public abstract class Actor implements Entity {
         Logger.returnVoid();
     }
 
+    /**
+     * Notifies the actor that the student has won the game.
+     *
+     * @param sr The slide rule that the student used to win the game.
+     */
     public abstract void NotifyStudentWin(SlideRule sr);
 
+    /**
+     * Notifies the actor that the teacher has won the game.
+     */
     public String GetName() {
         return this.name;
     }

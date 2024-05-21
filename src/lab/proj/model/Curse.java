@@ -11,10 +11,18 @@ import java.util.List;
  */
 public class Curse extends RoomEffect {
 
+    /**
+     * Creates a new curse effect.
+     */
     public Curse() {
         Logger.createObject(this);
     }
 
+    /**
+     * Visits the curse effect.
+     *
+     * @param rev The visitor to visit the room effect.
+     */
     @Override
     public void VisitRoomEffect(RoomEffectVisitor rev) {
         Logger.invokeMethod(this, Collections.singletonList(rev));

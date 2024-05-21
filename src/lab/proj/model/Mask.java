@@ -8,6 +8,9 @@ import java.util.List;
  */
 public class Mask extends LivingItem {
 
+    /**
+     * Creates a new mask item.
+     */
     public Mask() {
         Logger.createObject(this);
     }
@@ -25,6 +28,10 @@ public class Mask extends LivingItem {
         Logger.returnVoid();
     }
 
+    /**
+     * Applies the charges associated with the mask.
+     * This method adds a gas protection charge to the actor using the mask.
+     */
     @Override
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
@@ -40,6 +47,11 @@ public class Mask extends LivingItem {
         Logger.returnVoid();
     }
 
+    /**
+     * Visits the mask item.
+     *
+     * @param iv The visitor to visit the item.
+     */
     @Override
     public void VisitItem(ItemVisitor iv) {
         iv.VisitMask(this);

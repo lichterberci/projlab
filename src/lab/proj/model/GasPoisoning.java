@@ -9,16 +9,27 @@ import java.util.List;
  */
 public class GasPoisoning extends RoomEffect {
 
+    /**
+     * The visitor to visit actors in the location affected by the gas poisoning.
+     */
     private final GasVisitor gv = new GasVisitor();
     /**
      * The remaining lifetime of the gas poisoning effect.
      */
     private int lifetime = 3;
 
+    /**
+     * Creates a new gas poisoning effect.
+     */
     public GasPoisoning() {
         Logger.createObject(this);
     }
 
+    /**
+     * Visits the gas poisoning effect.
+     *
+     * @param rev The visitor to visit the room effect.
+     */
     @Override
     public void VisitRoomEffect(RoomEffectVisitor rev) {
         Logger.invokeMethod(this, Collections.singletonList(rev));

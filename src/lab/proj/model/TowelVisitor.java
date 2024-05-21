@@ -8,6 +8,9 @@ import java.util.Collections;
  */
 public class TowelVisitor implements ActorVisitor {
 
+    /**
+     * Creates a new towel visitor.
+     */
     public TowelVisitor() {
         Logger.createObject(this);
     }

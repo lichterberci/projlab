@@ -33,5 +33,10 @@ public abstract class RoomEffect implements Entity {
         Logger.returnVoid();
     }
 
+    /**
+     * Visits the room effect.
+     *
+     * @param rev The visitor to visit the room effect.
+     */
     public abstract void VisitRoomEffect(RoomEffectVisitor rev);
 }

@@ -2,7 +2,13 @@ package lab.proj.ui.components;
 
 import javax.swing.*;
 
+/**
+ * Represents the actors component
+ */
 public class ActorsComponent extends Component {
+	/**
+	 * Creates a new actors component
+	 */
 	@Override
 	public void Draw(JComponent target) {
 		JPanel panel = MakePanelInScroll(target, BorderFactory.createEmptyBorder(),

@@ -9,17 +9,40 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Represents the action manager
+ */
 public class ActionManager {
 
+    /**
+     * The registry
+     */
     private final ObjectRegistry registry = SequenceDiagramPrinter.getInstance().registry;
+    /**
+     * The scanner
+     */
     private Scanner scanner;
+    /**
+     * The writer
+     */
     private PrintWriter writer;
 
+    /**
+     * Creates a new action manager
+     * @param input The input stream
+     * @param output The output stream
+     */
     public ActionManager(InputStream input, OutputStream output) {
         this.scanner = new Scanner(input);
         this.writer = new PrintWriter(output, true);
     }
 
+    /**
+     * Performs an action
+     * @param arg0 The first argument
+     * @param arg1 The second argument
+     * @param args The arguments
+     */
     private void performAction(String arg0, String arg1, List<String> args) {
         if (arg0.equals("RunTests")) {
             runAllTestCasesBatched(arg1);
@@ -49,6 +72,10 @@ public class ActionManager {
         throw new IllegalArgumentException("Object not found: %s".formatted(arg1));
     }
 
+    /**
+     * Runs all test cases batched
+     * @param sourceDirectoryName The source directory name
+     */
     private void runAllTestCasesBatched(String sourceDirectoryName) {
         File sourceDirectory = new File(sourceDirectoryName);
         String[] filenameList = sourceDirectory.list();
@@ -103,6 +130,9 @@ public class ActionManager {
         writer.printf("%d / %d / %d (SUCCESS/FAIL/ERROR)%n", success, fail, error);
     }
 
+    /**
+     * Runs the command interpreter
+     */
     public void runCommandInterpreter() {
         while (scanner.hasNextLine()) {
             String inputLine = scanner.nextLine();
@@ -128,6 +158,10 @@ public class ActionManager {
         }
     }
 
+    /**
+     * Prints the status of the object
+     * @param arg1 The argument
+     */
     private void printStatusOfObject(String arg1) {
         final Object object = registry.GetObject(arg1);
 
@@ -162,6 +196,12 @@ public class ActionManager {
                 });
     }
 
+    /**
+     * Calls a method on an object
+     * @param objectName The object name
+     * @param methodName The method name
+     * @param args The arguments
+     */
     private void callMethodOnObject(String objectName, String methodName, List<String> args) {
         final Object object = registry.GetObject(objectName);
 
@@ -240,6 +280,10 @@ public class ActionManager {
         }
     }
 
+    /**
+     * Creates an object
+     * @param className The class name
+     */
     private void createObject(String className) {
         try {
             // the constructor will create the object in the logger

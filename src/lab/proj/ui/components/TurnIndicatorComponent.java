@@ -3,7 +3,14 @@ package lab.proj.ui.components;
 import lab.proj.controller.Application;
 import javax.swing.*;
 
+/**
+ * Represents the turn indicator component
+ */
 public class TurnIndicatorComponent extends Component {
+
+	/**
+	 * Creates a new turn indicator component
+	 */
 	@Override
 	public void Draw(JComponent target) {
 		JPanel panel = MakePanelInScroll(target, BorderFactory.createLineBorder(Application.Border),

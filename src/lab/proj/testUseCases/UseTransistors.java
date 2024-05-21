@@ -3,13 +3,28 @@ package lab.proj.testUseCases;
 import lab.proj.model.Room;
 import lab.proj.model.Student;
 
+/**
+ * A class representing a specific
+ * use case with two transistors and one student.
+ */
 public class UseTransistors extends TransistorPairing {
 
-
+    /**
+     * Runs the use case, invoking the superclass method and switching rooms.
+     */
     private Student st;
+    /**
+     * The first room.
+     */
     private Room r1;
+    /**
+     * The second room.
+     */
     private Room r2;
 
+    /**
+     * Runs the use case, invoking the superclass method and switching rooms.
+     */
     @Override
     public void runUseCase() {
         super.runUseCase();

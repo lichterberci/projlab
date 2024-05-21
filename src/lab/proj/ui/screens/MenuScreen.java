@@ -9,13 +9,40 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Represents the menu screen
+ */
 public class MenuScreen implements Screen {
+
+    /**
+     * The label
+     */
     private final JLabel label;
+
+    /**
+     * The name field
+     */
     private final JTextField nameField;
+
+
+    /**
+     * The add button
+     */
     private final JButton addButton;
+
+    /**
+     * The student list
+     */
     private final StudentListComponent studentList;
+
+    /**
+     * The play button
+     */
     private final JButton playButton;
 
+    /**
+     * Creates a new menu screen
+     */
     public MenuScreen() {
         label = new JLabel("Student Name: ");
         label.setForeground(Application.DarkText);
@@ -42,10 +69,17 @@ public class MenuScreen implements Screen {
         playButton.setForeground(Application.LightText);
     }
 
+    /**
+     * Sets the students
+     * @param students The students
+     */
     public void SetStudents(List<Drawable> students) {
         studentList.SetDrawables(students);
     }
 
+    /**
+     * Renders the screen
+     */
     @Override
     public void Render() {
         RenderInput();
@@ -53,6 +87,9 @@ public class MenuScreen implements Screen {
         RenderPlay();
     }
 
+    /**
+     * Renders the inputfield
+     */
     private void RenderInput() {
         JPanel inputPanel = new JPanel();
         SizeJComponent(inputPanel, 0.05, 0.05, 0.9, 0.05);
@@ -67,6 +104,9 @@ public class MenuScreen implements Screen {
         Application.GetInstance().GetCanvas().add(inputPanel);
     }
 
+    /**
+     * Renders the play btn
+     */
     private void RenderPlay() {
         SizeJComponent(playButton, 0.05, 0.9, 0.9, 0.05);
         playButton.setFont(playButton.getFont().deriveFont(playButton.getHeight() * 0.4f));

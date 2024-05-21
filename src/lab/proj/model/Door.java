@@ -37,6 +37,9 @@ public class Door {
      */
     private boolean oneWay = false;
 
+    /**
+     * Creates a new door.
+     */
     public Door() {
         Logger.createObject(this);
     }
@@ -63,14 +66,26 @@ public class Door {
         Logger.returnVoid();
     }
 
+    /**
+     * Sets the door to be one-way.
+     */
     public void SetOneWay() {
         oneWay = true;
     }
 
+    /**
+     * Sets the door to be two-way.
+     */
     public void SetTwoWay() {
         oneWay = false;
     }
 
+    /**
+     * Checks if the door is usable by the specified actor.
+     *
+     * @param a The actor attempting to use the door.
+     * @return true if the door is usable, false otherwise.
+     */
     public boolean Usable(Actor a) {
         Logger.invokeMethod(this, Collections.singletonList(a));
         boolean usable = !(hidden || (oneWay && a.GetLocation() != r1));

@@ -17,11 +17,19 @@ public class Student extends Actor {
      */
     private boolean droppedOut;
 
+    /**
+     * Creates a new student with the default name "Student".
+     */
     public Student() {
         this.name = "Student";
         Logger.createObject(this);
     }
 
+    /**
+     * Creates a new student with the specified name.
+     *
+     * @param name The name of the student.
+     */
     public Student(String name) {
         this.name = name;
         Logger.createObject(this);
@@ -108,6 +116,11 @@ public class Student extends Actor {
         Logger.returnVoid();
     }
 
+    /**
+     * Reacts to winning the game.
+     *
+     * @param sr The slide rule item that caused the student to win.
+     */
     @Override
     public void NotifyStudentWin(SlideRule sr) {
         Logger.invokeMethod(this, List.of());

@@ -11,6 +11,9 @@ import java.util.List;
  */
 public interface Entity {
 
+    /**
+     * A logger for debugging purposes.
+     */
     DebugPrinter Logger = SequenceDiagramPrinter.getInstance();
 
     /**

@@ -19,34 +19,96 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+/**
+ * Represents the application
+ */
 public class Application {
+	/**
+	 * The dark color
+	 */
 	public static final Color Dark = new Color(75, 75, 75);
+	/**
+	 * The light color
+	 */
 	public static final Color Light = new Color(200, 200, 200);
+	/**
+	 * The background color
+	 */
 	public static final Color Background = new Color(175, 175, 175);
+	/**
+	 * The dark text color
+	 */
 	public static final Color DarkText = new Color(0,0,0);
+	/**
+	 * The light text color
+	 */
 	public static final Color LightText = new Color(255, 255, 255);
+	/**
+	 * The invalid text color
+	 */
 	public static final Color InvalidText = new Color(171, 32, 32);
+	/**
+	 * The border color
+	 */
 	public static final Color Border = new Color(0,0,0);
 
+	/**
+	 * The width of the window
+	 */
 	private static final int windowWidth = 1200;
+	/**
+	 * The height of the window
+	 */
 	private static  final int windowHeight = 600;
+	/**
+	 * The path to the gas protection sprite
+	 */
 	private static final String GAS_PROTECTION_SPRITE_PATH = "GameScreen_new.png";
+	/**
+	 * The path to the drop out protection sprite
+	 */
 	private static final String DROP_OUT_PROTECTION_SPRITE_PATH = "GameScreen_new.png";
 
+	/**
+	 * The instance of the application
+	 */
 	private final JFrame frame;
+	/**
+	 * The canvas
+	 */
 	private final JPanel canvas;
+	/**
+	 * The menu screen
+	 */
 	private final MenuScreen menu;
+	/**
+	 * The game screen
+	 */
 	private final GameScreen game;
+	/**
+	 * The result screen
+	 */
 	private final ResultScreen result;
 
+	/**
+	 * The instance of the application
+	 */
 	private static Application instance;
 
+	/**
+	 * Gets the instance of the application
+	 *
+	 * @return the instance of the application
+	 */
 	public static Application GetInstance() {
 		if (instance == null)
 			instance = new Application();
 		return instance;
 	}
 
+	/**
+	 * Creates a new application
+	 */
 	private Application() {
 		frame = new JFrame("THE SLIDE RULE");
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -68,6 +130,9 @@ public class Application {
 		result = new ResultScreen();
 	}
 
+	/**
+	 * Renders the menu screen
+	 */
 	public void RenderMenuScreen() {
 		frame.setTitle("THE SLIDE RULE - MENU");
 		menu.SetStudents(Convert(GameManager.GetInstance().GetStudents(), StudentNameDrawable::new));
@@ -78,6 +143,9 @@ public class Application {
 		canvas.repaint();
 	}
 
+	/**
+	 * Renders the game screen
+	 */
 	public void RenderGameScreen() {
 		frame.setTitle("THE SLIDE RULE - GAME");
 		GameManager gm = GameManager.GetInstance();
@@ -125,6 +193,9 @@ public class Application {
 		canvas.repaint();
 	}
 
+	/**
+	 * Renders the result screen
+	 */
 	public void RenderResultScreen() {
 		frame.setTitle("THE SLIDE RULE - END");
 		result.SetResult(GameManager.GetInstance().isWon()? "Students win!" : "Teachers win!");
@@ -135,10 +206,28 @@ public class Application {
 		canvas.repaint();
 	}
 
+	/**
+	 * Sets the size of the component
+	 *
+	 * @param component the component
+	 * @param x         the x coordinate
+	 * @param y         the y coordinate
+	 * @param width     the width
+	 * @param height    the height
+	 */
 	public JComponent GetCanvas() {
 		return canvas;
 	}
 
+	/**
+	 * Converts a list of elements to a list of drawables
+	 *
+	 * @param from the list of elements
+	 * @param gen  the function that generates the drawable
+	 * @param <B>  the type of the elements
+	 * @param <D>  the type of the drawables
+	 * @return the list of drawables
+	 */
 	private <B, D extends Drawable> List<Drawable> Convert(List<B> from, Function<B, D> gen) {
 		return from.stream().map(gen).map(ed -> (Drawable) ed).toList();
 	}

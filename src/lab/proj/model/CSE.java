@@ -9,10 +9,16 @@ import java.util.List;
  */
 public class CSE extends LivingItem {
 
+    /**
+     * The lifetime of the CSE item.
+     */
     public CSE() {
         this(3);
     }
 
+    /**
+     * The lifetime of the CSE item.
+     */
     public CSE(int lifetime) {
         Logger.createObject(this);
         this.lifetime = lifetime;
@@ -31,6 +37,10 @@ public class CSE extends LivingItem {
         Logger.returnVoid();
     }
 
+    /**
+     * Applies charges associated with the CSE item.
+     * This method adds drop-out protection for the associated actor.
+     */
     @Override
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
@@ -59,6 +69,9 @@ public class CSE extends LivingItem {
         Logger.returnVoid();
     }
 
+    /**
+     * Ages the CSE item.
+     */
     public void SetLifeTime(int lifetime) {
         Logger.invokeMethod(this, Collections.singletonList(lifetime));
 
@@ -67,6 +80,9 @@ public class CSE extends LivingItem {
         Logger.returnVoid();
     }
 
+    /**
+     * Visits the CSE item.
+     */
     @Override
     public void VisitItem(ItemVisitor iv) {
         iv.VisitCSE(this);

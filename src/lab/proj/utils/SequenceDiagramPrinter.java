@@ -10,11 +10,29 @@ import java.util.stream.IntStream;
  */
 public class SequenceDiagramPrinter implements DebugPrinter {
 
+    /**
+     * The main object.
+     */
     private static final Object MAIN = new Object();
+    /**
+     * The singleton instance of SequenceDiagramPrinter.
+     */
     private static SequenceDiagramPrinter instance;
+    /**
+     * The output stream.
+     */
     private PrintStream outputPrinter;
+    /**
+     * The list of lifelines.
+     */
     private final List<Object> lifelines = new ArrayList<>();
+    /**
+     * The object registry.
+     */
     protected final ObjectRegistry registry = new PascalCaseObjectRegistry();
+    /**
+     * The object stack.
+     */
     private final Deque<Object> objectStack = new ArrayDeque<>();
 
     /**
@@ -61,15 +79,22 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         outputPrinter.println();
     }
 
+    /**
+     * Retrieves the name of an object.
+     *
+     * @param object The object for which to retrieve the name.
+     * @return The name of the object.
+     */
     @Override
     public String getObjectName(Object object) {
         return registry.ResolveObject(object);
     }
 
-    public Object getObject(String name) {
-        return registry.GetObject(name);
-    }
-
+    /**
+     * Logs the creation of an object.
+     *
+     * @param createdObject The object created.
+     */
     @Override
     public void createObject(Object createdObject) {
         String nameOfCreatedObject = registry.RegisterObject(createdObject);
@@ -95,6 +120,11 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         printEmptyLineOfLifelines();
     }
 
+    /**
+     * Logs the destruction of an object.
+     *
+     * @param destroyedObject The object destroyed.
+     */
     @Override
     public void destroyObject(Object destroyedObject) {
         Object destroyer = objectStack.peekLast();
@@ -127,6 +157,11 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         registry.UnregisterObject(destroyedObject);
     }
 
+    /**
+     * Retrieves the name of the method that called the current method.
+     *
+     * @return The name of the method that called the current method.
+     */
     private String getCallerMethodName() {
         List<StackTraceElement> stackTraceElements = Arrays.asList(Thread.currentThread().getStackTrace());
         final String currentLogger = stackTraceElements.get(1).getClassName();
@@ -135,6 +170,12 @@ public class SequenceDiagramPrinter implements DebugPrinter {
                 .findFirst().orElseThrow().getMethodName();
     }
 
+    /**
+     * Logs the invocation of a method on an object.
+     *
+     * @param callee The callee (object) on which the method is invoked.
+     * @param params The parameters passed to the method.
+     */
     @Override
     public void invokeMethod(Object callee, List<?> params) {
         Object caller = objectStack.peekLast();
@@ -159,6 +200,11 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         printEmptyLineOfLifelines();
     }
 
+    /**
+     * Logs the invocation of a method on the same object.
+     *
+     * @param params The parameters passed to the method.
+     */
     private void selfInvokeMethod(List<?> params) {
         Object object = objectStack.peekLast();
         objectStack.offerLast(object);
@@ -193,6 +239,11 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         printEmptyLineOfLifelines();
     }
 
+    /**
+     * Logs the return from a method.
+     *
+     * @param returnValue The return value (optional) of the method.
+     */
     @Override
     public void returnValue(Object returnValue) {
         Object callee = objectStack.pollLast();
@@ -212,6 +263,9 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         printEmptyLineOfLifelines();
     }
 
+    /**
+     * Logs the return from a method.
+     */
     @Override
     public void returnVoid() {
         Object callee = objectStack.pollLast();
@@ -231,6 +285,12 @@ public class SequenceDiagramPrinter implements DebugPrinter {
         printEmptyLineOfLifelines();
     }
 
+    /**
+     * Prints an arrow between two objects in the sequence diagram.
+     *
+     * @param from The object from which the arrow originates.
+     * @param to   The object to which the arrow points.
+     */
     private void printArrowBetweenObjects(Object from, Object to) {
         final int indexOfCaller = lifelines.indexOf(from);
         final int indexOfCallee = lifelines.indexOf(to);

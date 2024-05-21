@@ -4,10 +4,17 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * A class for running test use cases.
+ */
 public class TestUseCaseRunner {
+    /**
+     * A wrapper class for test use cases.
+     */
     private static final List<TestUseCaseWrapper> useCases = new ArrayList<>();
 
     static {
+        // Add test use cases
         useCases.add(new TestUseCaseWrapper("Hallgató átlépni próbál a másik szobába", StudentSwitchesRooms.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, nincs nála aktivált eszköz, nem védekezik", StudentSwitchesRoomsNoProtection.class));
         useCases.add(new TestUseCaseWrapper("Hallgató átlép, van tanár, TVSZ-el próbál védeni", StudentDefendWithCSE.class));
@@ -28,6 +35,11 @@ public class TestUseCaseRunner {
         useCases.sort(Comparator.comparing(TestUseCaseWrapper::title));
     }
 
+    /**
+     * Runs a test use case.
+     *
+     * @param id The id of the test use case.
+     */
     public static void runTest(int id) {
         try {
             TestUseCase useCase = useCases.get(id).testUseCaseClass().newInstance();
@@ -37,6 +49,11 @@ public class TestUseCaseRunner {
         }
     }
 
+    /**
+     * Returns the titles of the available test use cases.
+     *
+     * @return The titles of the available test use cases.
+     */
     public static List<String> getAvailableUseCases() {
         return useCases.stream().map(TestUseCaseWrapper::title).sorted().toList();
     }

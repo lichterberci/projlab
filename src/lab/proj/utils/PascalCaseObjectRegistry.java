@@ -1,7 +1,16 @@
 package lab.proj.utils;
 
+/**
+ * A utility class for managing objects and their names.
+ */
 public class PascalCaseObjectRegistry extends ObjectRegistry {
 
+    /**
+     * Generates a name for an object.
+     *
+     * @param object The object for which to generate a name.
+     * @return The generated name.
+     */
     @Override
     protected String GenerateNameToObject(Object object) {
         String originalName = object.getClass().getSimpleName();

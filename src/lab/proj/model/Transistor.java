@@ -16,6 +16,9 @@ public class Transistor extends Item {
      */
     private Transistor pair = null;
 
+    /**
+     * Creates a new transistor item.
+     */
     public Transistor() {
         Logger.createObject(this);
     }
@@ -39,6 +42,11 @@ public class Transistor extends Item {
         Logger.returnVoid();
     }
 
+    /**
+     * Drops the transistor.
+     * If the transistor is paired with another
+     * transistor, both transistors are dropped.
+     */
     @Override
     public void Drop() {
         Logger.invokeMethod(this, List.of());
@@ -50,6 +58,11 @@ public class Transistor extends Item {
         Logger.returnVoid();
     }
 
+    /**
+     * Activates the transistor.
+     * If the transistor is paired with another
+     * transistor, both transistors are activated.
+     */
     @Override
     public void Activate() {
         Logger.invokeMethod(this, List.of());
@@ -81,6 +94,13 @@ public class Transistor extends Item {
         Logger.returnVoid();
     }
 
+    /**
+     * Attempts to pick up the transistor with the specified actor.
+     * If the transistor is activated, the transistor is activated instead.
+     *
+     * @param a The actor attempting to pick up the transistor.
+     * @return true if the transistor is successfully picked up, false otherwise.
+     */
     @Override
     public boolean PickUp(Actor a) {
         if (activated) {
@@ -91,6 +111,11 @@ public class Transistor extends Item {
         }
     }
 
+    /**
+     * Visits the transistor item.
+     *
+     * @param iv The visitor to visit the item.
+     */
     @Override
     public void VisitItem(ItemVisitor iv) {
         Logger.invokeMethod(this, Collections.singletonList(iv));

@@ -8,6 +8,9 @@ import java.util.Collections;
  */
 public class GasVisitor implements ActorVisitor {
 
+    /**
+     * Constructs a new gas visitor.
+     */
     public GasVisitor() {
         Logger.createObject(this);
     }

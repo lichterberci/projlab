@@ -8,13 +8,23 @@ import java.util.List;
  */
 public class Towel extends LivingItem {
 
+    /**
+     * The visitor for the towel item.
+     */
     private final TowelVisitor tv;
 
+    /**
+     * Creates a new towel item.
+     */
     public Towel() {
         Logger.createObject(this);
         tv = new TowelVisitor();
     }
 
+    /**
+     * Applies the charges associated with the towel.
+     * This method visits the actors in the room of the actor using the towel.
+     */
     @Override
     public void ApplyCharges() {
         Logger.invokeMethod(this, List.of());
@@ -43,6 +53,11 @@ public class Towel extends LivingItem {
         Logger.returnVoid();
     }
 
+    /**
+     * Visits the towel item.
+     *
+     * @param iv The visitor to visit the item.
+     */
     @Override
     public void VisitItem(ItemVisitor iv) {
         iv.VisitTowel(this);

@@ -9,7 +9,13 @@ import javax.swing.*;
 import java.util.EnumMap;
 import java.util.List;
 
+/**
+ * Represents the game screen
+ */
 public class GameScreen implements Screen {
+	/**
+	 * The component names
+	 */
 	public enum ComponentNames {
 		Actors,
 		Items,
@@ -19,9 +25,20 @@ public class GameScreen implements Screen {
 		Charges,
 		TurnIndicator
 	}
+
+	/**
+	 * The end turn button
+	 */
 	private final JButton endTurnButton;
+
+	/**
+	 * The components
+	 */
 	private final EnumMap<ComponentNames, Component> components = new EnumMap<>(ComponentNames.class);
 
+	/**
+	 * Creates a new game screen
+	 */
 	public GameScreen() {
 		endTurnButton = new JButton("End Turn");
 		endTurnButton.addActionListener(actionEvent -> {
@@ -39,10 +56,24 @@ public class GameScreen implements Screen {
 		components.put(ComponentNames.TurnIndicator, new TurnIndicatorComponent());
 	}
 
+
+	/**
+	 * Sets the drawables
+	 * @param drawables The drawables
+	 * @param component The component
+	 */
 	public void SetDrawables(List<Drawable> drawables, ComponentNames component) {
 		components.get(component).SetDrawables(drawables);
 	}
 
+	/**
+	 * Renders the component
+	 * @param component The component
+	 * @param x The x
+	 * @param y The y
+	 * @param width The width
+	 * @param height The height
+	 */
 	@Override
 	public void Render() {
 		RenderEndTurn();
@@ -55,6 +86,14 @@ public class GameScreen implements Screen {
 		RenderComponent(components.get(ComponentNames.Charges), 0.65, 0.9, 0.2, 0.1);
 	}
 
+	/**
+	 * Renders the component
+	 * @param component The component
+	 * @param x The x
+	 * @param y The y
+	 * @param width The width
+	 * @param height The height
+	 */
 	private void RenderEndTurn() {
 		SizeJComponent(endTurnButton, 0.35, 0.02, 0.15, 0.05);
 		endTurnButton.setFont(endTurnButton.getFont().deriveFont(endTurnButton.getHeight() * 0.6f));

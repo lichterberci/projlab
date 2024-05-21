@@ -12,12 +12,30 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class Room implements Entity {
 
+    /**
+     * The likelihood of a room merging with another room.
+     */
     private static final float MERGE_LIKELIHOOD = 0.05f;
+    /**
+     * The likelihood of a room splitting into two rooms.
+     */
     private static final float SPLIT_LIKELIHOOD = 0.02f;
+    /**
+     * The threshold for an item to become sticky.
+     */
     private static final int STICKY_THRESHOLD = 5;
+    /**
+     * The default capacity of a room.
+     */
     private static final int DEFAULT_CAPACITY = 5;
 
+    /**
+     * The id of the room.
+     */
     private static int id = 1;
+    /**
+     * The name of the room.
+     */
     private final String name;
     /**
      * The actors currently inside the room.
@@ -236,6 +254,9 @@ public class Room implements Entity {
         Logger.returnVoid();
     }
 
+    /**
+     * Splits the room into two separate rooms.
+     */
     private void Split() {
         Logger.invokeMethod(this, List.of());
 
@@ -456,6 +477,11 @@ public class Room implements Entity {
         Logger.returnVoid();
     }
 
+    /**
+     * Visits the room using the provided visitor.
+     *
+     * @param rv The visitor object used to visit the room.
+     */
     public String GetName() {
         return name;
     }

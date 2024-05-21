@@ -3,7 +3,14 @@ package lab.proj.ui.components;
 import lab.proj.controller.Application;
 import javax.swing.*;
 
+/**
+ * Represents the doors component
+ */
 public class DoorsComponent extends Component {
+
+    /**
+     * Creates a new doors component
+     */
     @Override
     public void Draw(JComponent target) {
         JPanel panel = MakePanelInScroll(target, BorderFactory.createLineBorder(Application.Border),

@@ -2,20 +2,59 @@ package lab.proj.testUseCases;
 
 import lab.proj.model.*;
 
+/**
+ * A class representing a specific use case with four rooms and three doors.
+ */
 public class FourRoomsThreeDoors implements TestUseCase {
 
+    /**
+     * The rooms and doors in the use case.
+     */
     protected Room r1;
+    /**
+     * The rooms and doors in the use case.
+     */
     protected Room r2;
+    /**
+     * The rooms and doors in the use case.
+     */
     protected Room r3;
+    /**
+     * The rooms and doors in the use case.
+     */
     protected Room r4;
+    /**
+     * The rooms and doors in the use case.
+     */
     protected Door d1;
+    /**
+     * The rooms and doors in the use case.
+     */
     protected Door d2;
+    /**
+     * The rooms and doors in the use case.
+     */
     protected Door d3;
+    /**
+     * The rooms and doors in the use case.
+     */
     protected Curse c1;
+    /**
+     * The rooms and doors in the use case.
+     */
     protected GasPoisoning g;
+    /**
+     * The rooms and doors in the use case.
+     */
     protected Towel t;
+    /**
+     * The rooms and doors in the use case.
+     */
     protected Mask m;
 
+    /**
+     * Runs the use case, creating the rooms and doors and setting the items in the rooms.
+     */
     @Override
     public void runUseCase() {
         r1 = new Room();

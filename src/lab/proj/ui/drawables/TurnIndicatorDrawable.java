@@ -6,10 +6,26 @@ import lab.proj.controller.Application;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Represents the turn indicator drawable
+ */
 public class TurnIndicatorDrawable extends Drawable {
+
+	/**
+	 * The label
+	 */
 	private final JLabel label = new JLabel();
+
+	/**
+	 * The actor
+	 */
 	private final Actor actor;
 
+	/**
+	 * Creates a new turn indicator drawable
+	 * @param actor The actor
+	 * @param selected The selected
+	 */
 	public TurnIndicatorDrawable(Actor actor, boolean selected) {
 		this.actor = actor;
 		SetDefaults(label, Application.DarkText, Application.Light);
@@ -21,6 +37,9 @@ public class TurnIndicatorDrawable extends Drawable {
 			label.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Application.Border));
 	}
 
+	/**
+	 * Creates a new turn indicator drawable
+	 */
 	@Override
 	public void Draw(JComponent target) {
 		if (actor != null) {

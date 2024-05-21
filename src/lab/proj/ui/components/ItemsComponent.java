@@ -2,7 +2,13 @@ package lab.proj.ui.components;
 
 import javax.swing.*;
 
+/**
+ * Represents the items component
+ */
 public class ItemsComponent extends Component {
+	/**
+	 * Creates a new items component
+	 */
 	@Override
 	public void Draw(JComponent target) {
 		JPanel panel = MakePanelInScroll(target, BorderFactory.createEmptyBorder(),

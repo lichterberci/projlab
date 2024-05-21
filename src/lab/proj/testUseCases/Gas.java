@@ -2,8 +2,15 @@ package lab.proj.testUseCases;
 
 import lab.proj.model.*;
 
+/**
+ * A class representing the usage of a Gas item in a specific use case.
+ * This use case involves a room, a student, a teacher, a mask, and a gas protection item.
+ */
 public class Gas implements TestUseCase {
 
+    /**
+     * Runs the use case, invoking the superclass method and activating the Gas item.
+     */
     @Override
     public void runUseCase() {
         var room = new Room();

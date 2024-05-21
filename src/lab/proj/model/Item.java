@@ -163,6 +163,10 @@ public abstract class Item implements Entity {
         Logger.returnVoid();
     }
 
+    /**
+     * Performs the action of using the item.
+     * This method is typically overridden by subclasses to define specific behaviors.
+     */
     public void SetSticky(boolean b) {
         Logger.invokeMethod(this, Collections.singletonList(b));
 
@@ -171,6 +175,11 @@ public abstract class Item implements Entity {
         Logger.returnVoid();
     }
 
+    /**
+     * Checks if the item is sticky.
+     *
+     * @return true if the item is sticky, false otherwise.
+     */
     public boolean IsSticky() {
         Logger.invokeMethod(this, List.of());
 
