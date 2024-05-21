@@ -23,7 +23,11 @@ public class Mask extends LivingItem {
     public void Use() {
         Logger.invokeMethod(this, List.of());
 
-        // No specific action for using masks
+        try{
+        var gp = new GasProtection(this, 0);
+        actor.AddGasProtection(gp);}
+        catch (Exception e){
+        }
 
         Logger.returnVoid();
     }
