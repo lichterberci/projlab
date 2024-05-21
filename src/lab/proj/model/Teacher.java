@@ -72,7 +72,6 @@ public class Teacher extends Actor {
      */
     public void DropOutAll() {
         Logger.invokeMethod(this, List.of());
-
         if (!IsBlocked())
             for (Actor actor : location.GetActors())
                 if (!alreadyDroppedOut.contains(actor))
