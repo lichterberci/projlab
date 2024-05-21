@@ -2,12 +2,10 @@ package lab.proj.ui.drawables;
 
 import lab.proj.controller.Application;
 import lab.proj.controller.GameManager;
-import lab.proj.model.Actor;
 import lab.proj.model.Door;
 import lab.proj.model.Room;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 
@@ -27,8 +25,9 @@ public class DoorDrawable extends Drawable {
 
     /**
      * Creates a new door drawable
+     *
      * @param door The door
-     * @param ml The mouse listener
+     * @param ml   The mouse listener
      */
     public DoorDrawable(Door door, MouseListener ml) {
         this.door = door;

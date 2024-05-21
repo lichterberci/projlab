@@ -16,12 +16,14 @@ public interface RoomEffectVisitor {
 
     /**
      * Defines the behavior of visiting a gas poisoning room effect.
+     *
      * @param gp The gas poisoning room effect being visited.
      */
     void VisitGasPoisoning(GasPoisoning gp);
 
     /**
      * Defines the behavior of visiting a curse room effect.
+     *
      * @param c The curse room effect being visited.
      */
     void VisitCurse(Curse c);

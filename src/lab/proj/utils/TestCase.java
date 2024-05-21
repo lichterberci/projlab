@@ -34,7 +34,7 @@ public class TestCase {
     }
 
     /**
-        * Marks the test case as failed.
+     * Marks the test case as failed.
      */
     public void Fail() {
         result = TestResult.FAIL;

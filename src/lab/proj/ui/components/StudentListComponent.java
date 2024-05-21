@@ -1,12 +1,13 @@
 package lab.proj.ui.components;
 
 import lab.proj.controller.Application;
+
 import javax.swing.*;
 
 /**
  * Represents the student list component
  */
-public class StudentListComponent extends Component{
+public class StudentListComponent extends Component {
 
     /**
      * Creates a new student list component

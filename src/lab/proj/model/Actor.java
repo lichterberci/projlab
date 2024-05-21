@@ -1,7 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.controller.GameManager;
-
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -196,14 +194,14 @@ public abstract class Actor implements Entity {
         Logger.invokeMethod(this, List.of());
         boolean hasProtection = !dropOutProtections.isEmpty();
         Logger.returnValue(hasProtection);
-        return  hasProtection;
+        return hasProtection;
     }
 
     public boolean HasGasProtection() {
         Logger.invokeMethod(this, List.of());
         boolean hasProtection = !gasProtections.isEmpty();
         Logger.returnValue(hasProtection);
-        return  hasProtection;
+        return hasProtection;
     }
 
     /**

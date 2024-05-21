@@ -1,7 +1,7 @@
 package lab.proj.ui.drawables;
 
-import lab.proj.model.Student;
 import lab.proj.controller.Application;
+import lab.proj.model.Student;
 
 import javax.swing.*;
 
@@ -20,6 +20,7 @@ public class StudentNameDrawable extends Drawable {
 
     /**
      * Creates a new student name drawable
+     *
      * @param student The student
      */
     public StudentNameDrawable(Student student) {

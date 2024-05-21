@@ -19,21 +19,21 @@ public class SequenceDiagramPrinter implements DebugPrinter {
      */
     private static SequenceDiagramPrinter instance;
     /**
-     * The output stream.
+     * The object registry.
      */
-    private PrintStream outputPrinter;
+    protected final ObjectRegistry registry = new PascalCaseObjectRegistry();
     /**
      * The list of lifelines.
      */
     private final List<Object> lifelines = new ArrayList<>();
     /**
-     * The object registry.
-     */
-    protected final ObjectRegistry registry = new PascalCaseObjectRegistry();
-    /**
      * The object stack.
      */
     private final Deque<Object> objectStack = new ArrayDeque<>();
+    /**
+     * The output stream.
+     */
+    private PrintStream outputPrinter;
 
     /**
      * Constructs a SequenceDiagramPrinter with a specified output stream.

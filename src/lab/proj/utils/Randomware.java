@@ -61,7 +61,8 @@ public class Randomware {
         return subset;
     }
 
-    /** Generates a random boolean value.
+    /**
+     * Generates a random boolean value.
      *
      * @return a random boolean value
      */

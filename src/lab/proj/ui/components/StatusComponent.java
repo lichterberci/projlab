@@ -7,7 +7,8 @@ import javax.swing.*;
  */
 public class StatusComponent extends Component {
     /**
-     *  Creates a new status component
+     * Creates a new status component
+     *
      * @param target The target component to draw on
      */
     @Override

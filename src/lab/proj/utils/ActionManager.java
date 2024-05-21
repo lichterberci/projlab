@@ -21,15 +21,16 @@ public class ActionManager {
     /**
      * The scanner
      */
-    private Scanner scanner;
+    private final Scanner scanner;
     /**
      * The writer
      */
-    private PrintWriter writer;
+    private final PrintWriter writer;
 
     /**
      * Creates a new action manager
-     * @param input The input stream
+     *
+     * @param input  The input stream
      * @param output The output stream
      */
     public ActionManager(InputStream input, OutputStream output) {
@@ -39,6 +40,7 @@ public class ActionManager {
 
     /**
      * Performs an action
+     *
      * @param arg0 The first argument
      * @param arg1 The second argument
      * @param args The arguments
@@ -74,6 +76,7 @@ public class ActionManager {
 
     /**
      * Runs all test cases batched
+     *
      * @param sourceDirectoryName The source directory name
      */
     private void runAllTestCasesBatched(String sourceDirectoryName) {
@@ -160,6 +163,7 @@ public class ActionManager {
 
     /**
      * Prints the status of the object
+     *
      * @param arg1 The argument
      */
     private void printStatusOfObject(String arg1) {
@@ -198,9 +202,10 @@ public class ActionManager {
 
     /**
      * Calls a method on an object
+     *
      * @param objectName The object name
      * @param methodName The method name
-     * @param args The arguments
+     * @param args       The arguments
      */
     private void callMethodOnObject(String objectName, String methodName, List<String> args) {
         final Object object = registry.GetObject(objectName);
@@ -282,6 +287,7 @@ public class ActionManager {
 
     /**
      * Creates an object
+     *
      * @param className The class name
      */
     private void createObject(String className) {
