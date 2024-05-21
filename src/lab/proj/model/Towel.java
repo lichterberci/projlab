@@ -62,4 +62,16 @@ public class Towel extends LivingItem {
     public void VisitItem(ItemVisitor iv) {
         iv.VisitTowel(this);
     }
+
+    @Override
+    public boolean PickUp(Actor a) {
+        super.PickUp(a);
+        activated = true;
+    }
+
+    @Override
+    public void Drop() {
+        super.Drop();
+        activated = false;
+    }
 }
