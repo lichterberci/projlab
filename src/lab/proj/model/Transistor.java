@@ -73,7 +73,7 @@ public class Transistor extends Item {
         }
 
         if (activated) {
-            if (location != actor.location && pair.location != actor.location) {
+            if (location != actor.location && pair.location != actor.location || location == pair.location) {
                 Logger.returnVoid();
                 return;
             }

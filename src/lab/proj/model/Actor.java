@@ -77,7 +77,7 @@ public abstract class Actor implements Entity {
 
         boolean canBeCollected = collectedItems.size() < MAX_ITEMS;
         if (canBeCollected) {
-            location.RemoveItem(i);
+            i.SetLocation(null);
             collectedItems.add(i);
         }
 
