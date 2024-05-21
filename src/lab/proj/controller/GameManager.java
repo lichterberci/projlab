@@ -61,42 +61,84 @@ public class GameManager {
         for (Student student : students) {
             student.SetLocation(rooms.get(0));
             if (i < 3)
-                CreateTeacher().SetLocation(rooms.get(5));
+                CreateTeacher().SetLocation(rooms.get(rooms.size() - 1));
             else
-                CreateCleaningLady().SetLocation(rooms.get(4));
+                CreateCleaningLady().SetLocation(rooms.get(rooms.size() - 2));
             i = (i + 1) % 4;
         }
     }
 
     private void CalculateLayout() {
-        Room r1 = CreateRoom();
-        Room r2 = CreateRoom();
-        Room r3 = CreateRoom();
-        Room r4 = CreateRoom();
-        Room r5 = CreateRoom();
-        Room r6 = CreateRoom();
 
-        CreateDoor().SetRooms(r1, r2);
-        CreateDoor().SetRooms(r2, r3);
-        CreateDoor().SetRooms(r3, r6);
-        CreateDoor().SetRooms(r6, r5);
-        CreateDoor().SetRooms(r5, r4);
-        CreateDoor().SetRooms(r4, r1);
-        Door d = CreateDoor();
-        d.SetRooms(r2, r5);
-        d.SetOneWay();
-        new Curse().SetLocation(r2);
-        new SlideRule().SetLocation(r3);
-//        new CSE().SetLocation(r1);
-        new Camembert().SetLocation(r1);
-//        new Mask().SetLocation(r1);
-        new Towel().SetLocation(r1);
-        new Purifier().SetLocation(r1);
-        var tr1 = new Transistor();
-        var tr2 = new Transistor();
-        tr1.PairWith(tr2);
-        tr1.SetLocation(r1);
-        tr2.SetLocation(r1);
+        final int numRooms = Randomware.Number(7, 20);
+        rooms.clear();
+        for (int i = 0; i < numRooms; i++) {
+            var room = CreateRoom();
+            room.SetCapacity(Randomware.Number(3, 5));
+        }
+
+        // link doors
+        for (int i = 0; i < numRooms - 1; i++) {
+            var door = CreateDoor();
+            door.SetTwoWay();
+            door.SetRooms(rooms.get(i), rooms.get(i + 1));
+        }
+
+        // random doors
+        for (int i = 0; i < numRooms; i++) {
+            Room room = rooms.get(i);
+            int numDoors = Randomware.Number(1, 3);
+            for (int j = 0; j < numDoors; j++) {
+                Room otherRoom = Randomware.Choice(rooms);
+                if (Math.abs(rooms.indexOf(otherRoom) - i) > 1
+                        && room.GetDoors().stream().noneMatch(
+                                d -> d.GetRooms().stream().anyMatch(r -> r == otherRoom))) {
+                    var door = CreateDoor();
+                    door.SetRooms(room, otherRoom);
+                    door.SetOneWay();
+                }
+            }
+        }
+
+        // random items
+        for (int i = 0; i < numRooms; i++) {
+            Room room = rooms.get(i);
+            int numItems = 1; // easily could be set to a higher number
+            for (int j = 0; j < numItems; j++) {
+                final int indexOfItem = Randomware.Number(0, 4);
+                Item item = switch (indexOfItem) {
+                    case 0 -> new Camembert();
+                    case 1 -> new Mask();
+                    case 2 -> new Purifier();
+                    case 3 -> new Towel();
+                    case 4 -> new BeerMug();
+	                default -> throw new IllegalStateException("Unexpected value: " + indexOfItem);
+                };
+                item.SetLocation(room);
+            }
+        }
+
+        // place slideRule
+        int slideRuleRoomIndex = Randomware.Number(1, numRooms - 1);
+        rooms.get(slideRuleRoomIndex).GetItemsOnTheFloor().add(new SlideRule());
+
+        // place transistors in pairs
+        final int numTransistors = Randomware.Number(1, 2);
+        for (int i = 0; i < numTransistors; i++) {
+            Room room = rooms.get(Randomware.Number(1, numRooms - 1));
+            Transistor tr1 = new Transistor();
+            Transistor tr2 = new Transistor();
+            tr1.PairWith(tr2);
+            tr1.SetLocation(room);
+            tr2.SetLocation(room);
+        }
+
+        // random curses
+        final int numCursedRooms = Randomware.Number(1, 2);
+        for (int i = 0; i < numCursedRooms; i++) {
+            Room room = Randomware.Choice(rooms);
+            new Curse().SetLocation(room);
+        }
     }
 
     public boolean isRunning() {
