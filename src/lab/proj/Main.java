@@ -2,6 +2,7 @@ package lab.proj;
 
 import lab.proj.controller.GameManager;
 import lab.proj.controller.Application;
+import lab.proj.utils.Randomware;
 import lab.proj.utils.SequenceDiagramPrinter;
 
 import java.io.OutputStream;
@@ -17,6 +18,7 @@ public class Main {
      * @param args command-line arguments
      */
     public static void main(String[] args) {
+        Randomware.SetSeed(75);
         testModel();
     }
 

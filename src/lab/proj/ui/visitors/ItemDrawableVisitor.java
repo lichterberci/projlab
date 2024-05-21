@@ -156,6 +156,8 @@ public class ItemDrawableVisitor implements ItemVisitor {
 			public void mouseClicked(MouseEvent e) {
 				if (SwingUtilities.isLeftMouseButton(e)) {
 					tr.PickUp(GameManager.GetInstance().GetCurrentActor());
+					if (tr.IsActivated())
+						GameManager.GetInstance().EndTurn();
 					if (GameManager.GetInstance().isRunning())
 						Application.GetInstance().RenderGameScreen();
 				}
