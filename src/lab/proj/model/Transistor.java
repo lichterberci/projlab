@@ -1,7 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.controller.GameManager;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -43,22 +41,6 @@ public class Transistor extends Item {
     }
 
     /**
-     * Drops the transistor.
-     * If the transistor is paired with another
-     * transistor, both transistors are dropped.
-     */
-    @Override
-    public void Drop() {
-        Logger.invokeMethod(this, List.of());
-
-        if (pair == null) {
-            super.Drop();
-        }
-
-        Logger.returnVoid();
-    }
-
-    /**
      * Activates the transistor.
      * If the transistor is paired with another
      * transistor, both transistors are activated.
@@ -77,7 +59,9 @@ public class Transistor extends Item {
             activated = true;
         }
 
-        if (location != actor.location && pair.location != actor.location || location == pair.location) {
+        if ((location != actor.location && pair.location != actor.location)
+                || location == pair.location
+                || (pair.actor != null && actor != pair.actor)) {
             Logger.returnVoid();
             return;
         }
