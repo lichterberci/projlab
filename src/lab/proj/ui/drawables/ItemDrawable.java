@@ -32,7 +32,7 @@ public class ItemDrawable extends Drawable{
 		boolean isEnabled = false;
 		if (item != null) {
 			button.setText(name);
-			if (item.IsDead() || item.IsSticky() || item.IsActivated())
+			if (item.IsDead() || item.IsSticky())
 				button.setFont(button.getFont().deriveFont(Font.ITALIC));
 			else
 				isEnabled = true;

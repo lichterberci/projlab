@@ -87,10 +87,16 @@ public class GameManager {
         d.SetOneWay();
         new Curse().SetLocation(r2);
         new SlideRule().SetLocation(r3);
-        new CSE().SetLocation(r1);
+//        new CSE().SetLocation(r1);
         new Camembert().SetLocation(r1);
-        new Mask().SetLocation(r1);
+//        new Mask().SetLocation(r1);
         new Towel().SetLocation(r1);
+        new Purifier().SetLocation(r1);
+        var tr1 = new Transistor();
+        var tr2 = new Transistor();
+        tr1.PairWith(tr2);
+        tr1.SetLocation(r1);
+        tr2.SetLocation(r1);
     }
 
     public boolean isRunning() {

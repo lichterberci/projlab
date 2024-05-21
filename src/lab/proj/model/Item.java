@@ -45,7 +45,7 @@ public abstract class Item implements Entity {
     public boolean PickUp(Actor a) {
         Logger.invokeMethod(this, Collections.singletonList(a));
 
-        boolean canBePickedUp = !(dead || activated || sticky) && a.CollectItem(this);
+        boolean canBePickedUp = !(dead || sticky) && a.CollectItem(this);
         if (canBePickedUp)
             actor = a;
 

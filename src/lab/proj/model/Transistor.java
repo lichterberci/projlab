@@ -82,6 +82,16 @@ public class Transistor extends Item {
     }
 
     @Override
+    public boolean PickUp(Actor a) {
+        if (activated) {
+            Activate();
+            return false;
+        } else {
+            return super.PickUp(a);
+        }
+    }
+
+    @Override
     public void VisitItem(ItemVisitor iv) {
         Logger.invokeMethod(this, Collections.singletonList(iv));
 
