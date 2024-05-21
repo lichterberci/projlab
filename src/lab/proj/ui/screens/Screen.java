@@ -13,6 +13,7 @@ public interface Screen {
      * Renders the screen
      */
     void Render();
+
     /**
      * Sizes a JComponent
      *
@@ -29,6 +30,7 @@ public interface Screen {
                 (int) (width * canvas.getWidth()),
                 (int) (height * canvas.getHeight()));
     }
+
     /**
      * Renders a component
      *

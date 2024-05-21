@@ -2,9 +2,7 @@ package lab.proj.ui.drawables;
 
 import lab.proj.controller.Application;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.io.IOException;
 
 /**
  * Represents the status drawable
@@ -22,6 +20,7 @@ public class StatusDrawable extends Drawable {
 
     /**
      * Creates a new status drawable
+     *
      * @param spriteText The sprite text
      */
     public StatusDrawable(String spriteText) {

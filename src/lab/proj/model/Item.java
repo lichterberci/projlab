@@ -1,7 +1,5 @@
 package lab.proj.model;
 
-import lab.proj.controller.GameManager;
-
 import java.util.Collections;
 import java.util.List;
 

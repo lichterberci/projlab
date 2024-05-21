@@ -146,7 +146,7 @@ public class GameManager {
                 Room otherRoom = Randomware.Choice(rooms);
                 if (Math.abs(rooms.indexOf(otherRoom) - i) > 1
                         && room.GetDoors().stream().noneMatch(
-                                d -> d.GetRooms().stream().anyMatch(r -> r == otherRoom))) {
+                        d -> d.GetRooms().stream().anyMatch(r -> r == otherRoom))) {
                     var door = CreateDoor();
                     door.SetRooms(room, otherRoom);
                     door.SetOneWay();
@@ -166,8 +166,8 @@ public class GameManager {
                     case 2 -> new Purifier();
                     case 3 -> new Towel();
                     case 4 -> new BeerMug();
-					case 5 -> new CSE();
-	                default -> throw new IllegalStateException("Unexpected value: " + indexOfItem);
+                    case 5 -> new CSE();
+                    default -> throw new IllegalStateException("Unexpected value: " + indexOfItem);
                 };
                 item.SetLocation(room);
                 if (Randomware.Decision()) {

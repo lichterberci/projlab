@@ -12,51 +12,51 @@ import lab.proj.ui.drawables.StatusDrawable;
  */
 public class EffectDrawableVisitor implements RoomEffectVisitor {
 
-	/**
-	 * The drawable
-	 */
-	private Drawable drawable;
+    /**
+     * The drawable
+     */
+    private Drawable drawable;
 
-	/**
-	 * Visits the effect and returns the drawable
-	 *
-	 * @param effect the effect to visit
-	 * @return the drawable
-	 */
-	@Override
-	public void VisitGasPoisoning(GasPoisoning gp) {
-		drawable = new StatusDrawable("☢");
-	}
+    /**
+     * Visits the effect and returns the drawable
+     *
+     * @param effect the effect to visit
+     * @return the drawable
+     */
+    @Override
+    public void VisitGasPoisoning(GasPoisoning gp) {
+        drawable = new StatusDrawable("☢");
+    }
 
-	/**
-	 * Visits the effect and returns the drawable
-	 *
-	 * @param effect the effect to visit
-	 * @return the drawable
-	 */
-	@Override
-	public void VisitCurse(Curse c) {
-		drawable = new StatusDrawable("😈");
-	}
+    /**
+     * Visits the effect and returns the drawable
+     *
+     * @param effect the effect to visit
+     * @return the drawable
+     */
+    @Override
+    public void VisitCurse(Curse c) {
+        drawable = new StatusDrawable("😈");
+    }
 
-	/**
-	 * Gets the drawable
-	 *
-	 * @return the drawable
-	 */
-	public Drawable getDrawable() {
-		return drawable;
-	}
+    /**
+     * Gets the drawable
+     *
+     * @return the drawable
+     */
+    public Drawable getDrawable() {
+        return drawable;
+    }
 
-	/**
-	 * Visits the effect and returns the drawable
-	 *
-	 * @param effect the effect to visit
-	 * @return the drawable
-	 */
-	public Drawable Visit(RoomEffect effect) {
-		if (effect == null) return null;
-		effect.VisitRoomEffect(this);
-		return drawable;
-	}
+    /**
+     * Visits the effect and returns the drawable
+     *
+     * @param effect the effect to visit
+     * @return the drawable
+     */
+    public Drawable Visit(RoomEffect effect) {
+        if (effect == null) return null;
+        effect.VisitRoomEffect(this);
+        return drawable;
+    }
 }

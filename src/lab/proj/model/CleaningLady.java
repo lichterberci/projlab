@@ -19,19 +19,21 @@ public class CleaningLady extends Actor {
      * The names of the cleaning ladies in order.
      */
     private static final List<String> cleaningLadyNamesInOrder = new ArrayList<>(List.of(CLEANING_LADY_NAMES));
+    /**
+     * The index of the next cleaning lady name to be used.
+     */
+    private static int nextIndexOfCleaningLadyName = 0;
 
     static {
         // Shuffle the cleaning lady names.
         Collections.shuffle(cleaningLadyNamesInOrder);
     }
-    /**
-     * The index of the next cleaning lady name to be used.
-     */
-    private static int nextIndexOfCleaningLadyName = 0;
+
     /**
      * The name of the cleaning lady.
      */
     private final PurifierVisitor pv;
+
     /**
      * The purifier visitor.
      */

@@ -65,7 +65,7 @@ public class Room implements Entity {
     private int visitorCountSinceLastCleaning = 0;
 
     public Room() {
-        this.name = "K-5" + (id < 10? "0" + id++ : id++);
+        this.name = "K-5" + (id < 10 ? "0" + id++ : id++);
         Logger.createObject(this);
     }
 
@@ -73,6 +73,7 @@ public class Room implements Entity {
         this.name = name;
         Logger.createObject(this);
     }
+
     /**
      * Adds an actor to the room.
      *
@@ -276,9 +277,9 @@ public class Room implements Entity {
     /**
      * Splits the room into two separate rooms.
      *
-     * @param itemsToPass The items put in the new room
+     * @param itemsToPass   The items put in the new room
      * @param effectsToPass The effects put on the new room
-     * @param doorsToPass The doors put in the new room
+     * @param doorsToPass   The doors put in the new room
      */
     public void Split(Set<Item> itemsToPass, Set<RoomEffect> effectsToPass, Set<Door> doorsToPass) {
         Logger.invokeMethod(this, List.of());

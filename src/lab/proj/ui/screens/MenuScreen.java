@@ -1,9 +1,9 @@
 package lab.proj.ui.screens;
 
-import lab.proj.controller.GameManager;
 import lab.proj.controller.Application;
+import lab.proj.controller.GameManager;
 import lab.proj.ui.components.StudentListComponent;
-import lab.proj.ui.drawables.*;
+import lab.proj.ui.drawables.Drawable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -71,6 +71,7 @@ public class MenuScreen implements Screen {
 
     /**
      * Sets the students
+     *
      * @param students The students
      */
     public void SetStudents(List<Drawable> students) {
