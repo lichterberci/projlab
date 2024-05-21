@@ -5,6 +5,7 @@ import lab.proj.utils.Randomware;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.IntStream;
 
@@ -116,6 +117,9 @@ public class GameManager {
 	                default -> throw new IllegalStateException("Unexpected value: " + indexOfItem);
                 };
                 item.SetLocation(room);
+                if (Randomware.Decision()) {
+                    item.SetFake();
+                }
             }
         }
 
@@ -138,6 +142,8 @@ public class GameManager {
         final int numCursedRooms = Randomware.Number(1, 2);
         for (int i = 0; i < numCursedRooms; i++) {
             Room room = Randomware.Choice(rooms);
+            if (!Objects.requireNonNull(room).GetEffects().isEmpty())
+                continue;
             new Curse().SetLocation(room);
         }
     }
