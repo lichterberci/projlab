@@ -35,8 +35,7 @@ public class StatusDrawable extends Drawable {
      */
     @Override
     public void Draw(JComponent target) {
-        SetRelativeSizes(panel, target, 1.0f);
-        SetRelativeSizes(label, target, 1.0f);
+        SetRelativeSizes(label, target, 0.6f);
         target.add(panel);
     }
 }

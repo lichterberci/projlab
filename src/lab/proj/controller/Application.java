@@ -178,8 +178,8 @@ public class Application {
                 GameScreen.ComponentNames.Effects);
         game.SetDrawables(Convert(
                         Stream.of(
-                                        gm.GetCurrentActor().HasGasProtection() ? GAS_PROTECTION_SPRITE_PATH : "",
-                                        gm.GetCurrentActor().HasDropOutProtection() ? DROP_OUT_PROTECTION_SPRITE_PATH : ""
+                                        gm.GetCurrentActor().HasGasProtection() ? "😷" : "",
+                                        gm.GetCurrentActor().HasDropOutProtection() ? "🎓" : ""
                                 )
                                 .filter(path -> !path.isEmpty())
                                 .toList(),
